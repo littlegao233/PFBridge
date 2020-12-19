@@ -19,13 +19,13 @@ Public Module Main
         'Task.Run(Sub()
         '             While True
         '                 Threading.Thread.Sleep(1000)
-        '                 Events.OnGroupMessage.ForEach(Sub(l) l.Invoke())
+        '                 Events.OnGroupMessage.Invoke(Nothing)
         '             End While
         '         End Sub)
         'engine.Function.Call(New Native.JsString("hello"), New Native.JsValue() {})
         'engine.Function.c(New Native.JsString("hello"), Nothing)
     End Sub
-    Public ReadOnly Property JSRaw
+    Friend ReadOnly Property JSRaw
         Get
 #If DEBUG Then
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")

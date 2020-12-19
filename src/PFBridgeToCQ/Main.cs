@@ -20,7 +20,6 @@ namespace PFBridgeToCQ
             try { PFBridgeCore.Main.Init(new API());/*主体注入*/} catch (Exception ex) { Console.WriteLine("主入口注入失败：" + ex); }
             //添加监听
             App.currentUserEventSource.AddMessageReceivedEventHandler(OnMessageReceived);
-           
         }
         ~Main() { Dispose(); }
         /// <summary>
@@ -36,8 +35,7 @@ namespace PFBridgeToCQ
         /// </summary>
         private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
         {
-            // 回复一条消息，内容为收到的消息的内容。
-            e.Reply(e.Message);
+            PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(e);
         }
     }
 }
