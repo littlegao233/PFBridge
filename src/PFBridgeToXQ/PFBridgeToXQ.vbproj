@@ -8,7 +8,7 @@
     <ProjectGuid>{E54DC5AD-DB96-4734-B8BC-CE8BD20DB61C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>PFBridgeToXQ</RootNamespace>
-    <AssemblyName>PFBridgeToXQ</AssemblyName>
+    <AssemblyName>PFBridge</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
@@ -22,7 +22,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>PFBridgeToXQ.xml</DocumentationFile>
+    <DocumentationFile>PFBridge.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -31,7 +31,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>PFBridgeToXQ.xml</DocumentationFile>
+    <DocumentationFile>PFBridge.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -52,6 +52,9 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -113,11 +116,14 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.vb" />
+    <Compile Include="API.vb" />
+    <Compile Include="AppInfo.vb" />
+    <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -171,16 +177,12 @@
   <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets')" />
   <Import Project="..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.targets" Condition="Exists('..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>cd $(SolutionDir)
+    <PostBuildEvent>cd "$(SolutionDir)"
 cd ..
 SET SourceFolder=$(SolutionDir)app.publish
 SET GenFolder=%25cd%25\robot\XQ\Plugin
-if not exist %25GenFolder%25 (
-		Xcopy "%25SourceFolder%25" "%25GenFolder%25"  /s/e/h/i
-		echo %25GenFolder%25目录不存在，已创建该目录！
-    )
-set FileName=$(TargetName).XQ.dll
-copy "%25SourceFolder%25\%25FileName=%25" "%25GenFolder%25\%25FileName=%25"
+rmdir /s/q "%25GenFolder%25"
+Xcopy "%25SourceFolder%25" "%25GenFolder%25"  /s/e/h/i/q
 rmdir /s/q "%25SourceFolder%25"</PostBuildEvent>
   </PropertyGroup>
 </Project>

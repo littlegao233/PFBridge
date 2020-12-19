@@ -64,9 +64,9 @@ Namespace My
     Friend Module MySettingsProperty
         
         <Global.System.ComponentModel.Design.HelpKeywordAttribute("My.Settings")>  _
-        Friend ReadOnly Property Settings() As Global.PFBridgeToXQ.My.MySettings
+        Friend ReadOnly Property Settings() As Global.BuildTools.My.MySettings
             Get
-                Return Global.PFBridgeToXQ.My.MySettings.Default
+                Return Global.BuildTools.My.MySettings.Default
             End Get
         End Property
     End Module

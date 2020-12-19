@@ -17,6 +17,15 @@ namespace PFBridgeToCQ
         /// </summary>
         public Main(IMessageEventSource messageEventSource)
         {
+            try
+            {
+                PFBridgeCore.Main.Init(new API());//主体注入
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex);
+            }
             messageEventSource.AddMessageReceivedEventHandler(OnMessageReceived);
         }
 
