@@ -4,6 +4,7 @@ using System.Text;
 using HuajiTech.CoolQ;
 using HuajiTech.CoolQ.Events;
 using HuajiTech.CoolQ.Messaging;
+using PFBridgeCore.EventArgs;
 
 namespace PFBridgeToCQ
 {
@@ -35,7 +36,7 @@ namespace PFBridgeToCQ
         /// </summary>
         private void OnMessageReceived(object sender, MessageReceivedEventArgs e)
         {
-            PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(e);
+            PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new  GroupMessageEventsArgs(e.Source.Number ,e.Sender.Number, e.Message.Content));
         }
     }
 }
