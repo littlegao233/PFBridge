@@ -16,12 +16,12 @@ Public Module Main
         engine.SetValue("api", API)
         engine.SetValue("events", Events)
         engine.Execute(JSRaw)
-        Task.Run(Sub()
-                     While True
-                         Threading.Thread.Sleep(1000)
-                         Events.OnGroupMessage.ForEach(Sub(l) l.Invoke())
-                     End While
-                 End Sub)
+        'Task.Run(Sub()
+        '             While True
+        '                 Threading.Thread.Sleep(1000)
+        '                 Events.OnGroupMessage.ForEach(Sub(l) l.Invoke())
+        '             End While
+        '         End Sub)
         'engine.Function.Call(New Native.JsString("hello"), New Native.JsValue() {})
         'engine.Function.c(New Native.JsString("hello"), Nothing)
     End Sub
