@@ -1,4 +1,4 @@
-# PFBridge : Attach MCBE server to QQGroup
+# PFBridge : Attach QQGroup to MCBE server
 ---
 - ## 特征
    - 多协议支持
