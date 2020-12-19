@@ -178,9 +178,9 @@ SET GenFolder=%25cd%25\robot\XQ\Plugin
 if not exist %25GenFolder%25 (
 		Xcopy "%25SourceFolder%25" "%25GenFolder%25"  /s/e/h/i
 		echo %25GenFolder%25目录不存在，已创建该目录！
-    ) else (echo %25GenFolder%25目录已存在，无需创建！)
+    )
 set FileName=$(TargetName).XQ.dll
 copy "%25SourceFolder%25\%25FileName=%25" "%25GenFolder%25\%25FileName=%25"
-del /f/q "%25SourceFolder%25"</PostBuildEvent>
+rmdir /s/q "%25SourceFolder%25"</PostBuildEvent>
   </PropertyGroup>
 </Project>
