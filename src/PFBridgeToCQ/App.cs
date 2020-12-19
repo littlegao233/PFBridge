@@ -22,25 +22,28 @@ namespace PFBridgeToCQ
         public static void Init()
         {
             Console.WriteLine("[PFBridgeToCQ] Framework Start Loading ...");
+            currentUserEventSource = CurrentUserEventSource.Instance;
+            groupEventSource = GroupEventSource.Instance;
             IBotEventSource botEventSource = BotEventSource.Instance;
-            //ICurrentUserEventSource currentUserEventSource = CurrentUserEventSource.Instance;
-             currentUserEventSource = CurrentUserEventSource.Instance;
-            IGroupEventSource groupEventSource = GroupEventSource.Instance;
-            // 使用下面的代码在酷Q初始化后创建 Main 类的实例。
-            // 需要在 app.json 中注册对应事件。 
             botEventSource.AppDisabling += BotEventSource_AppDisabling;
             botEventSource.AppEnabled += BotEventSource_AppEnabled;
+            // 使用下面的代码在酷Q初始化后创建 Main 类的实例。
+            // 需要在 app.json 中注册对应事件。 
         }
-        private static ICurrentUserEventSource currentUserEventSource;
+        internal static ICurrentUserEventSource currentUserEventSource;
+        internal static IGroupEventSource groupEventSource;
+        private static Main runner;
         private static void BotEventSource_AppEnabled(object sender, EventArgs e)
         {
-            new Main(currentUserEventSource);
             CurrentPluginContext.Logger.LogDebug("BotEventSource_AppEnabled 事件开始处理...");
+            runner?.Dispose();
+            runner = new Main();//注入主体部分
         }
 
         private static void BotEventSource_AppDisabling(object sender, EventArgs e)
         {
             CurrentPluginContext.Logger.LogDebug("BotEventSource_AppDisabling 事件开始处理...");
+            runner?.Dispose();
         }
     }
 }
