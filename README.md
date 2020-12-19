@@ -1,7 +1,7 @@
 # PFBridge : Attach QQGroup to MCBE server
 ---
 - ## Features
-   - 多协议支持
+   - 多框架支持
    - JavaScript自定义配置
 ---
 - ## Progress
