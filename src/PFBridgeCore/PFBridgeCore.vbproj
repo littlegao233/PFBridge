@@ -150,6 +150,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceFiles.resx</DependentUpon>
     </Compile>
+    <Compile Include="WebSocket\config.vb" />
+    <Compile Include="WebSocket\main.vb" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
