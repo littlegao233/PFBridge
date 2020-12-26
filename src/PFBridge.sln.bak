@@ -13,7 +13,7 @@ Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BuildTools", "BuildTools\Bu
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "PFBridgeCore", "PFBridgeCore\PFBridgeCore.vbproj", "{A79DA47F-85C9-4E02-B92B-2E2FB325318C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFBridgeToOPQ", "PFBridgeToOPQ\PFBridgeToOPQ.csproj", "{64219066-DECC-41C6-BF74-32270818D670}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFBridgeToOPQ", "PFBridgeToOPQ\PFBridgeToOPQ.csproj", "{7FDA8C8C-76B4-09EE-315C-01D425767CB3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,14 +61,14 @@ Global
 		{A79DA47F-85C9-4E02-B92B-2E2FB325318C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A79DA47F-85C9-4E02-B92B-2E2FB325318C}.Release|x86.ActiveCfg = Release|Any CPU
 		{A79DA47F-85C9-4E02-B92B-2E2FB325318C}.Release|x86.Build.0 = Release|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Debug|x86.Build.0 = Debug|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Release|x86.ActiveCfg = Release|Any CPU
-		{64219066-DECC-41C6-BF74-32270818D670}.Release|x86.Build.0 = Release|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Debug|x86.Build.0 = Debug|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Release|x86.ActiveCfg = Release|Any CPU
+		{7FDA8C8C-76B4-09EE-315C-01D425767CB3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

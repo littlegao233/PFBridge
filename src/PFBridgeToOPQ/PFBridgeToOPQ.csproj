@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+   
+  <PropertyGroup>
+    <RootNamespace>PFBridgeToOPQ</RootNamespace>
+    <AssemblyName>PFBridge.OPQ</AssemblyName>
+    <OutputType>Exe</OutputType>
+    <LangVersion>8</LangVersion>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+   
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+ 
+
+  <ItemGroup>
+    <PackageReference Include="Costura.Fody" Version="4.1.0" />
+    <PackageReference Include="Fody" Version="6.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Traceless.OPQSDK" Version="0.0.30" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="del /f $(TargetDir)PFBridge.OPQ.deps.json&#xD;&#xA;&#xD;&#xA;cd &quot;$(SolutionDir)&quot;&#xD;&#xA;cd ..&#xD;&#xA;SET GenFolder=%25cd%25\robot\OPQ\Plugin&#xD;&#xA;rmdir /s/q &quot;%25GenFolder%25&quot;&#xD;&#xA;mkdir &quot;%25GenFolder%25&quot;&#xD;&#xA;copy &quot;$(TargetDir)$(TargetFileName)&quot; &quot;%25GenFolder%25\$(TargetFileName)&quot;&#xD;&#xA;copy &quot;$(TargetDir)$(TargetFileName).config&quot; &quot;%25GenFolder%25\$(TargetFileName).config&quot;&#xD;&#xA;copy &quot;$(TargetDir)$(TargetName).exe&quot; &quot;%25GenFolder%25\$(TargetName).exe&quot;&#xD;&#xA;copy &quot;$(TargetDir)$(TargetName).runtimeconfig.json&quot; &quot;%25GenFolder%25\$(TargetName).runtimeconfig.json&quot;" />
+  </Target>
+
+</Project>
