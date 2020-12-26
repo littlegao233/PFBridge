@@ -40,3 +40,10 @@ steps:
     PathtoPublish: 'robot'
     ArtifactName: 'dist'
     publishLocation: 'Container'
+
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'release_node.md'
+    ArtifactName: 'release_node'
+    publishLocation: 'Container'
