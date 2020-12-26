@@ -104,7 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj">
-      <Project>{d780ca89-787d-46ee-b69e-32754a826543}</Project>
+      <Project>{a79da47f-85c9-4e02-b92b-2e2fb325318c}</Project>
       <Name>PFBridgeCore</Name>
     </ProjectReference>
   </ItemGroup>

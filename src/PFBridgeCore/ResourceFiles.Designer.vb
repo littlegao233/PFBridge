@@ -69,17 +69,19 @@ Namespace My.Resources
         '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
         '''//api.Log(&apos;文件位于:&apos; + IO.Path.Combine(api.PluginDataPath, &quot;index.js&quot;));
         '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
-        '''IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;),  ResourceFiles.index)
-        '''
+        '''try {
+        '''   throw
+        '''} catch (e) { api.log(e) }
+        ''' 
         '''/*
         '''//写入最新的默认index.js(用于更新)
-        '''IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;),)
+        ''' IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;), ResourceFiles.index)
         '''*/
         '''//主体
         '''events.onGroupMessage.add(function (e) {
         '''    try {
         '''        api.log(JSON.stringify(e));
-        '''        ap [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''        api.SendPrivateMessageFromGroup( [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property index() As String
             Get
