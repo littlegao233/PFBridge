@@ -3,7 +3,7 @@ api.log('JavaScript自定义配置加载中...');
 //api.Log('文件位于:' + IO.Path.Combine(api.PluginDataPath, "index.js"));
 api.log('文件位于:' + IO.Path.Combine(api.pluginDataPath, "index.js"));
 try {
-   
+   throw
 } catch (e) { api.log(e) }
  
 /*

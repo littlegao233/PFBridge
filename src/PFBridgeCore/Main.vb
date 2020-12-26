@@ -3,13 +3,15 @@ Imports System.Reflection
 Imports Esprima
 Imports Jint
 Imports Newtonsoft.Json.Linq
+Imports Timer = System.Timers.Timer
 
 Public Module Main
-    Public Sub Init(_api As IBridgeQQBase)
-        API = _api '保存API
-        API.Log("正在加载PFBridgeCore...")
+    Private Function CreateJSEngine() As Engine
         Dim options As Options = New Options()
         options.AllowClr()
+        'options.CatchClrExceptions(Function(e)
+        '                               Return False
+        '                           End Function)
         'options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
         Dim engine = New Engine(options)
@@ -17,17 +19,30 @@ Public Module Main
         engine.SetValue("api", API)
         engine.SetValue("events", Events)
         engine.SetValue("engine", engine)
-        'engine.SetValue("resources", .index)
-        engine.Execute(JSRaw)
-        engine.
-        'Task.Run(Sub()
-        '             While True
-        '                 Threading.Thread.Sleep(1000)
-        '                 Events.OnGroupMessage.Invoke(Nothing)
-        '             End While
-        '         End Sub)
-        'engine.Function.Call(New Native.JsString("hello"), New Native.JsValue() {})
-        'engine.Function.c(New Native.JsString("hello"), Nothing)
+        Return engine
+    End Function
+    Private Function StartJSEngine(e As Engine, RestartDuration As UInteger) As Engine
+        Try
+            e.Execute(JSRaw)
+            'engine=Nothing
+        Catch ex As Exception
+            API.LogErr("JS引擎遇到错误:" & ex.ToString)
+            Dim d As TimeSpan = TimeSpan.FromMilliseconds(RestartDuration)
+            API.Log($"将在{If(d.Minutes > 0, d.Minutes & "分", "")}{d.Seconds}秒后重新加载！")
+            Dim t As New Timer(RestartDuration)
+            AddHandler t.Elapsed, Sub()
+                                      StartJSEngine(CreateJSEngine, RestartDuration * 2)
+                                      t.Dispose()
+                                  End Sub
+            t.Start()
+        End Try
+        Return e
+    End Function
+
+    Public Sub Init(_api As IBridgeQQBase)
+        API = _api '保存API
+        API.Log("正在加载PFBridgeCore...")
+        StartJSEngine(CreateJSEngine, 1000)
     End Sub
     Friend ReadOnly Property JSRaw
         Get

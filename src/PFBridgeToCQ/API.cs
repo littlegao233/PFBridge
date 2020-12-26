@@ -39,6 +39,12 @@ namespace PFBridgeToCQ
         {
             CurrentPluginContext.Logger.Log(Message.ToString());
         }
+
+        public void LogErr(object Message)
+        {
+            CurrentPluginContext.Logger.LogError(Message.ToString());
+        }
+
         public void SendGroupMessage(string TargetGroup, string Message)
         {
             Data.GetGroup(TargetGroup).Send(Message);
