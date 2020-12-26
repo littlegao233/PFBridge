@@ -26,7 +26,7 @@ namespace PFBridgeToCQ
             return CurrentPluginContext.Member(QQid, GroupNumber);
         }
     }
-    internal class API : IBridgeBase
+    internal class API : IBridgeQQBase
     {
         public string PluginDataPath
         {
@@ -35,9 +35,9 @@ namespace PFBridgeToCQ
                 return CurrentPluginContext.Bot.AppDirectory.FullName;
             }
         }
-        public void Log(string Message)
+        public void Log(object Message)
         {
-            CurrentPluginContext.Logger.Log(Message);
+            CurrentPluginContext.Logger.Log(Message.ToString());
         }
         public void SendGroupMessage(string TargetGroup, string Message)
         {

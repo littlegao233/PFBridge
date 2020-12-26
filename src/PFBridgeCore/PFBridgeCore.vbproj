@@ -126,6 +126,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API.vb" />
+    <Compile Include="Connections\ConnectionList.vb" />
+    <Compile Include="Connections\WebSocket\connection.vb" />
     <Compile Include="IBridgeBase.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb">
@@ -150,8 +152,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ResourceFiles.resx</DependentUpon>
     </Compile>
-    <Compile Include="WebSocket\config.vb" />
-    <Compile Include="WebSocket\main.vb" />
+    <Compile Include="Connections\WebSocket\config.vb" />
+    <Compile Include="Connections\WebSocket\main.vb" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -159,7 +161,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ResourceFiles.resx">
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceFiles.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />

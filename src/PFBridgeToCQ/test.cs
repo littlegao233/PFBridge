@@ -9,15 +9,7 @@ namespace PFBridgeToCQ
     class test
     {public void test1()
         {
-            using (var ws = new WebSocket("ws://dragonsnest.far/Laputa"))
-            {
-                ws.OnMessage += (sender, e) =>
-                    Console.WriteLine("Laputa says: " + e.Data);
-
-                ws.Connect();
-                ws.Send("BALUS");
-                Console.ReadKey(true);
-            }
+           
         }
     }
 }

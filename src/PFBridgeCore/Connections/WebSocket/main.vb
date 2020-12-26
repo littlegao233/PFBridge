@@ -7,6 +7,7 @@ Public Class WebsocketCore
             ws.Connect()
             ws.Send("BALUS")
             Console.ReadKey(True)
+
         End Using
     End Sub
 End Class

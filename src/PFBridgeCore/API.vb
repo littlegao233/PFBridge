@@ -1,6 +1,6 @@
 ﻿Imports PFBridgeCore.EventArgs
 Public Module QQAPI
-    Public API As IBridgeBase
+    Public API As IBridgeQQBase
     Public Events As New EventsMap
     Public Class EventsMap
         Public OnGroupMessage As New EventsMapItem

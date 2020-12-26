@@ -1,19 +1,19 @@
 ﻿Imports PFBridgeCore
 Imports XQ.Net.SDK
 Friend Class API
-    Implements IBridgeBase
-    Public ReadOnly Property PluginDataPath As String Implements IBridgeBase.PluginDataPath
+    Implements IBridgeQQBase
+    Public ReadOnly Property PluginDataPath As String Implements IBridgeQQBase.PluginDataPath
         Get
             Return XQAPI.AppDir
         End Get
     End Property
-    Public Sub SendGroupMessage(TargetGroup As String, Message As String) Implements IBridgeBase.SendGroupMessage
+    Public Sub SendGroupMessage(TargetGroup As String, Message As String) Implements IBridgeQQBase.SendGroupMessage
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群聊, TargetGroup, Nothing, Message, BubbleID.跟随框架的设置))
     End Sub
-    Public Sub Log(Message As String) Implements IBridgeBase.Log
+    Public Sub Log(Message As String) Implements IBridgeQQBase.Log
         XQAPI.OutPutLog(Message)
     End Sub
-    Public Sub SendPrivateMessageFromGroup(TargetGroup As String, QQid As String, Message As String) Implements IBridgeBase.SendPrivateMessageFromGroup
+    Public Sub SendPrivateMessageFromGroup(TargetGroup As String, QQid As String, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群临时会话, TargetGroup, QQid, Message, BubbleID.跟随框架的设置))
     End Sub
 End Class

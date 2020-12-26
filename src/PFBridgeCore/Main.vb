@@ -5,7 +5,7 @@ Imports Jint
 Imports Newtonsoft.Json.Linq
 
 Public Module Main
-    Public Sub Init(_api As IBridgeBase)
+    Public Sub Init(_api As IBridgeQQBase)
         API = _api '保存API
         API.Log("正在加载PFBridgeCore...")
         Dim options As Options = New Options()
@@ -13,9 +13,13 @@ Public Module Main
         'options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
         Dim engine = New Engine(options)
+        engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(My.Resources.ResourceFiles)))
         engine.SetValue("api", API)
         engine.SetValue("events", Events)
+        engine.SetValue("engine", engine)
+        'engine.SetValue("resources", .index)
         engine.Execute(JSRaw)
+        engine.
         'Task.Run(Sub()
         '             While True
         '                 Threading.Thread.Sleep(1000)

@@ -25,7 +25,7 @@ Namespace My.Resources
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0"),  _
      Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute()>  _
-    Friend Class ResourceFiles
+    Public Class ResourceFiles
         
         Private Shared resourceMan As Global.System.Resources.ResourceManager
         
@@ -40,7 +40,7 @@ Namespace My.Resources
         '''  返回此类使用的缓存的 ResourceManager 实例。
         '''</summary>
         <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Friend Shared ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
+        Public Shared ReadOnly Property ResourceManager() As Global.System.Resources.ResourceManager
             Get
                 If Object.ReferenceEquals(resourceMan, Nothing) Then
                     Dim temp As Global.System.Resources.ResourceManager = New Global.System.Resources.ResourceManager("PFBridgeCore.ResourceFiles", GetType(ResourceFiles).Assembly)
@@ -55,7 +55,7 @@ Namespace My.Resources
         '''  使用此强类型资源类的所有资源查找执行重写。
         '''</summary>
         <Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
-        Friend Shared Property Culture() As Global.System.Globalization.CultureInfo
+        Public Shared Property Culture() As Global.System.Globalization.CultureInfo
             Get
                 Return resourceCulture
             End Get
@@ -65,9 +65,23 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似  的本地化字符串。
+        '''  查找类似 const IO = System.IO;
+        '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
+        '''//api.Log(&apos;文件位于:&apos; + IO.Path.Combine(api.PluginDataPath, &quot;index.js&quot;));
+        '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
+        '''IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;),  ResourceFiles.index)
+        '''
+        '''/*
+        '''//写入最新的默认index.js(用于更新)
+        '''IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;),)
+        '''*/
+        '''//主体
+        '''events.onGroupMessage.add(function (e) {
+        '''    try {
+        '''        api.log(JSON.stringify(e));
+        '''        ap [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
-        Friend Shared ReadOnly Property index() As String
+        Public Shared ReadOnly Property index() As String
             Get
                 Return ResourceManager.GetString("index", resourceCulture)
             End Get
