@@ -1,5 +1,5 @@
 # PFBridge : Attach QQGroup to MCBE server
-> ##### `   `[最新可执行文件](https://github.com/littlegao233/PFBridge/releases)`  `[最新构建状态](https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2)
+>>> ##### [最新可执行文件](https://github.com/littlegao233/PFBridge/releases)`  `[最新构建状态](https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2)
 ---
 - ## Features
    - 多框架支持
