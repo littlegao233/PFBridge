@@ -45,4 +45,5 @@ steps:
   inputs:
     PathtoPublish: 'robot'
     ArtifactName: 'build'
-    publishLocation: 'Container'
+    publishLocation: 'FilePath'
+    TargetPath: 'robot'
