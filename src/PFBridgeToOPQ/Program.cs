@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Traceless.OPQSDK.Models;
 using Traceless.OPQSDK.Models.Event;
 using Traceless.OPQSDK.Models.Msg;
-using Traceless.Robot.Plugins;
 using Traceless.SocketIO;
 using Traceless.SocketIO.Messages;
 using Traceless.Utils.Ai.Tencent;
@@ -22,7 +21,7 @@ namespace Traceless.Robot
             await OPQSDK.Plugin.OPQMain.Client();
             while (true)
             {
-                string temp = Console.ReadLine();
+                Console.ReadLine();
             }
         }
     }

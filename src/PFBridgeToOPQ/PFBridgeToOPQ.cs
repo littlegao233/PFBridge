@@ -7,12 +7,12 @@ using Traceless.OPQSDK.Models.Event;
 using Traceless.OPQSDK.Models.Msg;
 using Traceless.OPQSDK.Plugin;
 
-namespace Traceless.Robot.Plugins
+namespace PFBridgeToOPQ
 {
     /// <summary>
     /// 示例插件 所有事件若不想使用可以直接去除事件代码
     /// </summary>
-    public class MyPlugin : BasePlugin
+    public class PFBridgeToOPQ : BasePlugin
     {
         /// <summary>
         /// 插件名
@@ -46,27 +46,7 @@ namespace Traceless.Robot.Plugins
         /// <returns>0不拦截 1拦截消息</returns>
         public override int GroupMsgProcess(GroupMsg msg, long CurrentQQ)
         {
-            Console.WriteLine($"GroupMsgProcess {CurrentQQ}\n" + JsonConvert.SerializeObject(msg));
-            if (msg.FromGroupId != 516141713) return 0;
-            if (msg.MsgType == MsgType.PicMsg)
-            {
-                var picContent = msg.GetPic();
-                Apis.SendGroupMsg(msg.FromGroupId,
-                    picContent.Content + CodeUtils.At(msg.FromUserId) +
-                    CodeUtils.Pic_Http(picContent.FriendPic.FirstOrDefault().Url));
-            }
-            else if (msg.MsgType == MsgType.VoiceMsg)
-            {
-                var voiceContent = msg.GetVoice();
-                Apis.SendGroupMsg(msg.FromGroupId, voiceContent.Content + CodeUtils.Voice_Http(voiceContent.Url));
-            }
-            else
-            {
-                Apis.SendGroupMsg(msg.FromGroupId, msg.Content + CodeUtils.At(msg.FromUserId));
-            }
-
-            Apis.RevokeMsg(new RevokeMsgReq
-            { GroupID = msg.FromGroupId, MsgRandom = msg.MsgRandom, MsgSeq = msg.MsgRandom });
+            
             return 0;
         }
 
@@ -77,23 +57,7 @@ namespace Traceless.Robot.Plugins
         /// <returns>0不拦截 1拦截消息</returns>
         public override int FriendMsgProcess(FriendMsg msg, long CurrentQQ)
         {
-            Console.WriteLine($"FriendMsgProcess {CurrentQQ}\n" + JsonConvert.SerializeObject(msg));
-            if (msg.MsgType == MsgType.PicMsg)
-            {
-                var picContent = msg.GetPic();
-                Apis.SendFriendMsg(msg.FromUin,
-                    picContent.Content + CodeUtils.Pic_Http(picContent.FriendPic.FirstOrDefault().Url));
-            }
-            else if (msg.MsgType == MsgType.VoiceMsg)
-            {
-                var voiceContent = msg.GetVoice();
-                Apis.SendFriendMsg(msg.FromUin, voiceContent.Content + CodeUtils.Voice_Http(voiceContent.Url));
-            }
-            else
-            {
-                Apis.SendFriendMsg(msg.FromUin, msg.Content);
-            }
-
+            
             return 0;
         }
 
@@ -301,6 +265,7 @@ namespace Traceless.Robot.Plugins
         public override void PluginInit(long currentQQ)
         {
             base.PluginInit(currentQQ);
+            try { PFBridgeCore.Main.Init(new API());/*主体注入*/} catch (Exception ex) { Console.WriteLine("主入口注入失败：" + ex); }
         }
     }
 }
