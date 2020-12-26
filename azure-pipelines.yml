@@ -34,3 +34,15 @@ steps:
     searchFolder: 'robot'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: 'robot'
+    artifact: 'dist'
+    publishLocation: 'pipeline'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: 'robot'
+    ArtifactName: 'build'
+    publishLocation: 'Container'
