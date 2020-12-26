@@ -1,7 +1,8 @@
 Imports System
+Imports Traceless
 
 Module Program
-    Sub Main(args As String())
-        Console.WriteLine("Hello World!")
-    End Sub
+    Async Function Main() As Task
+        Await OPQSDK.Plugin.OPQMain.Client()
+    End Function
 End Module
