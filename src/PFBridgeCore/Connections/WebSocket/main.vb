@@ -1,13 +1,9 @@
 ﻿Imports WebSocketSharp
+Namespace Ws
 
-Public Class WebsocketCore
-    Public Sub New()
-        Using ws = New WebSocket("ws://dragonsnest.far/Laputa")
-            AddHandler ws.OnMessage, Sub(sender, e) Console.WriteLine("Laputa says: " & e.Data)
-            ws.Connect()
-            ws.Send("BALUS")
-            Console.ReadKey(True)
+    Public Class WebsocketCore
+        Public Sub New()
 
-        End Using
-    End Sub
-End Class
+        End Sub
+    End Class
+End Namespace

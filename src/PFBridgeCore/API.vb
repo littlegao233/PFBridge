@@ -8,7 +8,13 @@ Public Module QQAPI
     Public Class EventsMapItem
         Inherits List(Of Action(Of BaseEventsArgs))
         Public Sub Invoke(Args As BaseEventsArgs)
-            ForEach(Sub(l) l.Invoke(Args))
+            ForEach(Sub(l)
+                        Try
+                            l.Invoke(Args)
+                        Catch ex As Exception
+                            API.LogErr($"[回调自{Args.GetType}]{ex}")
+                        End Try
+                    End Sub)
         End Sub
     End Class
 End Module

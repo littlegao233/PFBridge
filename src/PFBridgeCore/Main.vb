@@ -16,6 +16,7 @@ Public Module Main
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
         Dim engine = New Engine(options)
         engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(My.Resources.ResourceFiles)))
+        engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
         engine.SetValue("api", API)
         engine.SetValue("events", Events)
         engine.SetValue("engine", engine)

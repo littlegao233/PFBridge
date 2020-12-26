@@ -1,4 +1,5 @@
-﻿Public Interface IBridgeQQBase
+﻿Imports WebSocketSharp
+Public Interface IBridgeQQBase
     Sub SendGroupMessage(TargetGroup As String, Message As String)
     Sub SendPrivateMessageFromGroup(TargetGroup As String, QQid As String, Message As String)
     Sub Log(Message As Object)

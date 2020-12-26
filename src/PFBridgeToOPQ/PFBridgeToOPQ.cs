@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Newtonsoft.Json;
+using PFBridgeCore.EventArgs;
 using Traceless.OPQSDK;
 using Traceless.OPQSDK.Models.Api;
 using Traceless.OPQSDK.Models.Event;
@@ -46,7 +47,8 @@ namespace PFBridgeToOPQ
         /// <returns>0不拦截 1拦截消息</returns>
         public override int GroupMsgProcess(GroupMsg msg, long CurrentQQ)
         {
-            
+            try { PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new GroupMessageEventsArgs(msg.FromGroupId, msg.FromUserId, msg.Content)); }
+            catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); }
             return 0;
         }
 
@@ -57,7 +59,7 @@ namespace PFBridgeToOPQ
         /// <returns>0不拦截 1拦截消息</returns>
         public override int FriendMsgProcess(FriendMsg msg, long CurrentQQ)
         {
-            
+
             return 0;
         }
 
