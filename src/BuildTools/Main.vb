@@ -11,7 +11,6 @@ Public Module Tools
         Select Case args(0).ToLower
             Case "-zip"
                 Dim path As String = args(1)
-
             Case "-jsonremovecomment", "-jrc"
                 Dim path As String = args(1)
                 Threading.Thread.Sleep(1000)

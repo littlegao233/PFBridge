@@ -9,6 +9,7 @@ Public Module Main
     Private Function CreateJSEngine() As Engine
         Dim options As Options = New Options()
         options.AllowClr()
+        options.AllowClr(GetType(FileIO.FileSystem).Assembly)
         'options.CatchClrExceptions(Function(e)
         '                               Return False
         '                           End Function)
@@ -17,6 +18,9 @@ Public Module Main
         Dim engine = New Engine(options)
         engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(My.Resources.ResourceFiles)))
         engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
+        'engine.SetValue("FileSystem", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(Microsoft.VisualBasic.FileIO.FileSystem)))
+        'FileIO.FileSystem.GetFiles().First()
+
         engine.SetValue("api", API)
         engine.SetValue("events", Events)
         engine.SetValue("engine", engine)
@@ -24,7 +28,12 @@ Public Module Main
     End Function
     Private Function StartJSEngine(e As Engine, RestartDuration As UInteger) As Engine
         Try
+#If DEBUG Then
+            e.Execute(JSRaw, New ParserOptions(JSRaw))
+#Else
             e.Execute(JSRaw)
+#End If
+
             'engine=Nothing
         Catch ex As Exception
             API.LogErr("JS引擎遇到错误:" & ex.ToString)
@@ -45,7 +54,7 @@ Public Module Main
         API.Log("正在加载PFBridgeCore...")
         StartJSEngine(CreateJSEngine, 1000)
     End Sub
-    Friend ReadOnly Property JSRaw
+    Friend ReadOnly Property JSRaw As String
         Get
 #If DEBUG Then
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")
