@@ -8,6 +8,12 @@
     <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net461;netcoreapp3.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="My Project\**" />
+    <EmbeddedResource Remove="My Project\**" />
+    <None Remove="My Project\**" />
+  </ItemGroup>
   
   <ItemGroup>
     <PackageReference Include="Jint">
@@ -23,10 +29,6 @@
   
   <ItemGroup>
     <Content Include="Resources\index.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="My Project\" />
   </ItemGroup>
 
   <ItemGroup>
