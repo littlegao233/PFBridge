@@ -6,15 +6,21 @@
    - JavaScript自定义配置
 ---
 - ## Progress
-    - [ ] 兼容[BDXWebSocket - Minebbs](https://www.minebbs.com/threads/3537/)
-    - [ ] 兼容[PFWebsocketAPI - Minebbs](https://www.minebbs.com/resources/1632/)
+    - [ ] WebSocket协议对接服务器方案
+    - - [ ] 兼容[BDXWebSocket - Minebbs](https://www.minebbs.com/threads/3537/)
+    - - [ ] 兼容[PFWebsocketAPI - Minebbs](https://www.minebbs.com/resources/1632/)
     - [x] 可拓展基础架构
-    - [x] 酷Q插件支持（兼容Mirai Native、CQXQ等）
-    - [x] 先驱机器人框架支持
-    - [x] [OPQ](https://github.com/OPQBOT/OPQ)框架支持
-    - [ ] QQmini框架支持（需要Pro版本）
-    - [ ] WebSocket对接管理方案
-    - [ ] JavaScript实现自定义功能
+    - - [x] JavaScript引擎实现自定义功能
+    - [x] 多机器人框架支持
+    - - [x] 酷Q插件支持（兼容Mirai Native、CQXQ等）
+    - - [x] 先驱机器人框架支持
+    - - [x] [OPQ](https://github.com/OPQBOT/OPQ)框架支持
+    - - [ ] QQmini框架支持（需要Pro版本）
+    - - [ ] OnoQQ机器人框架支持
+    - - [ ] 可爱猫微信机器人框架支持
+    - - [ ] Discord支持
+    - - [ ] Telegram支持
+    - - [ ] 钉钉支持
 ---
 - ## Usage
    - 待写
