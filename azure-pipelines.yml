@@ -22,7 +22,7 @@ steps:
     script: |
       git clone https://github.com/zqu1016/IBoxsForOnoQQ.git
       ls
-      Get-Item IBoxsForOnoQQ\packages\* | Where-Object {$_.PSIsContainer -eq $false} | Move-Item -Destination src\packages\
+      Copy-Item -Path "IBoxsForOnoQQ\packages" -Destination "src\packages" -Recurse
       cd src
       ls
       cd packages
