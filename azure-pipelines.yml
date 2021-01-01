@@ -21,7 +21,8 @@ steps:
     targetType: 'inline'
     script: |
       git clone https://github.com/zqu1016/IBoxsForOnoQQ.git
-      Get-Item IBoxsForOnoQQ\packages\* | Where-Object {$_.PSIsContainer -eq $false} | Move-Item -Destination packages\
+      ls
+      Get-Item IBoxsForOnoQQ\packages\* | Where-Object {$_.PSIsContainer -eq $false} | Move-Item -Destination src\packages\
 
 - task: NuGetCommand@2
   inputs:
