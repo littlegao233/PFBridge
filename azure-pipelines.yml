@@ -23,6 +23,12 @@ steps:
       git clone https://github.com/zqu1016/IBoxsForOnoQQ.git
       ls
       Get-Item IBoxsForOnoQQ\packages\* | Where-Object {$_.PSIsContainer -eq $false} | Move-Item -Destination src\packages\
+      cd src
+      ls
+      cd packages
+      ls 
+      cd ..
+      cd ..
 
 - task: NuGetCommand@2
   inputs:
