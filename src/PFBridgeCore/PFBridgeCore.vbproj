@@ -18,7 +18,6 @@
       <Version>3.0.0-beta-1914</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="SIPSorcery.WebSocketSharp" Version="0.0.1" />
   </ItemGroup>
   
   <ItemGroup>
@@ -43,6 +42,18 @@
       <LastGenOutput>ResourceFiles.Designer.vb</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
+    <PackageReference Include="SIPSorcery.WebSocketSharp" Version="0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <PackageReference Include="SIPSorcery.WebSocketSharp" Version="0.0.1" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="better-websocket-sharp" Version="1.0.2.1" />
   </ItemGroup>
 
 </Project>

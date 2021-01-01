@@ -7,6 +7,7 @@ Namespace Ws
             Token = _token
             AddHandler Client.OnMessage, Sub(sender, e)
                                              Console.WriteLine("Laputa says: " & e.Data)
+
                                          End Sub
             AddHandler Client.OnClose, Sub(sender, e)
                                            Console.WriteLine("断开连接，将在10s后尝试重连： " & e.Reason)
