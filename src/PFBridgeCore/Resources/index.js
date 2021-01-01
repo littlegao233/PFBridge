@@ -42,6 +42,9 @@ if (!IO.Directory.Exists(custom_script_path)) {
     api.log('自定义脚本目录已创建:' + custom_script_path);
 }
 if (IO.Directory.Exists(custom_script_path)) {
+    //#region 如果没有脚本则输出默认自定义脚本
+    if (FileSystem.GetFiles(custom_script_path).Count == 0) IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "main.js"), ResourceFiles.main)
+    //#endregion
     let custom_script_success_count = 0, custom_script_failed_count = 0;
     let FileList = FileSystem.GetFiles(custom_script_path);
     api.log('scripts目录下读取到' + FileList.Count + '个自定义脚本，开始加载...');

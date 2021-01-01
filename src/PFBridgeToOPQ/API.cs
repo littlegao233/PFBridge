@@ -23,14 +23,14 @@ namespace PFBridgeToOPQ
             System.Console.WriteLine(Message.ToString());
         }
 
-        public void SendGroupMessage(string TargetGroup, string Message)
+        public void SendGroupMessage(long TargetGroup, string Message)
         {
-            Apis.SendGroupMsg(long.Parse(TargetGroup), txt:Message);
+            Apis.SendGroupMsg(TargetGroup, txt:Message);
         }
 
-        public void SendPrivateMessageFromGroup(string TargetGroup, string QQid, string Message)
+        public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
-            Apis.SendFriendMsg(long.Parse(QQid),Message);
+            Apis.SendFriendMsg(QQid,Message);
         }
     }
 }

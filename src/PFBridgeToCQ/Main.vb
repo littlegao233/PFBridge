@@ -19,7 +19,7 @@ Namespace PFBridgeToCQ
                 Console.WriteLine("主入口注入失败：" & ex.ToString)
             End Try
             '添加监听
-            currentUserEventSource.AddMessageReceivedEventHandler(New EventHandler(Of MessageReceivedEventArgs)(AddressOf OnMessageReceived))
+            currentUserEventSource.AddMessageReceivedEventHandler(AddressOf OnMessageReceived)
         End Sub
 
         Protected Overrides Sub Finalize()
@@ -35,7 +35,8 @@ Namespace PFBridgeToCQ
         ''' <summary>
         ''' 处理消息接收事件。
         ''' </summary>
-        Private Sub OnMessageReceived(ByVal sender As Object, ByVal e As MessageReceivedEventArgs)
+        Private Sub OnMessageReceived(sender As Object, e As MessageReceivedEventArgs)
+            Console.WriteLine("test")
             PFBridgeCore.Events.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.Source.Number, e.Sender.Number, e.Message.Content))
         End Sub
     End Class

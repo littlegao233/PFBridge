@@ -7,7 +7,7 @@ using System.Data;
 using System.Threading;
 using IBoxs.Sdk.Cqp.EventArgs;
 using System.Windows.Forms;
-
+using PFBridgeToOQ.Plugin;
 namespace IBoxs.Core.App.Event
 {
     public class Event_Group
@@ -19,7 +19,7 @@ namespace IBoxs.Core.App.Event
         /// <returns></returns>
         public static int ReceiveGroupMessage(CqGroupMessageEventArgs e)
         {
-            IBoxs.Core.App.Common.CqApi.SendGroupMessage(e.RobotQQ, e.FromGroup, e.Message);
+            PFBridgeToOQ.Plugin.App.OnMessageReceived(e);
             return 1;
         }
         

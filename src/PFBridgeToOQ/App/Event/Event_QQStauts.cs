@@ -16,6 +16,8 @@ namespace IBoxs.Core.App.Event
         /// <returns></returns>
         public static int LoginSucess(CqQQStuatsChangeEventArgs e)
         {
+            if (e.LineType == Sdk.Cqp.Enum.QQLineType.LoginComplete)
+                PFBridgeToOQ.Plugin.App.OnStartup(e.RobotQQ);
             return 1;
         }
     }

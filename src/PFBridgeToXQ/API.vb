@@ -4,10 +4,12 @@ Friend Class API
     Implements IBridgeQQBase
     Public ReadOnly Property PluginDataPath As String Implements IBridgeQQBase.PluginDataPath
         Get
-            Return XQAPI.AppDir
+            Dim path = XQAPI.AppDir
+            If Not My.Computer.FileSystem.DirectoryExists(path) Then My.Computer.FileSystem.CreateDirectory(path)
+            Return path
         End Get
     End Property
-    Public Sub SendGroupMessage(TargetGroup As String, Message As String) Implements IBridgeQQBase.SendGroupMessage
+    Public Sub SendGroupMessage(TargetGroup As Long, Message As String) Implements IBridgeQQBase.SendGroupMessage
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群聊, TargetGroup, Nothing, Message, BubbleID.跟随框架的设置))
     End Sub
     Public Sub Log(Message As Object) Implements IBridgeQQBase.Log
@@ -16,7 +18,7 @@ Friend Class API
     Public Sub LogErr(Message As Object) Implements IBridgeQQBase.LogErr
         XQAPI.OutPutLog("[错误] " & Message.ToString)
     End Sub
-    Public Sub SendPrivateMessageFromGroup(TargetGroup As String, QQid As String, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
+    Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群临时会话, TargetGroup, QQid, Message, BubbleID.跟随框架的设置))
     End Sub
 End Class

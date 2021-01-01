@@ -9,7 +9,6 @@ Public Module QQAPI
         Inherits List(Of Action(Of BaseEventsArgs))
         Public Sub Invoke(Args As BaseEventsArgs)
             ForEach(Sub(l)
-                        IO.Directory.GetFiles("").ToList()
                         Try
                             l.Invoke(Args)
                         Catch ex As Exception
