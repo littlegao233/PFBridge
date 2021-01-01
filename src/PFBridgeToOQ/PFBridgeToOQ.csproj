@@ -137,7 +137,8 @@
     <Import Project="..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets" Condition="Exists('..\packages\Costura.Fody.1.6.2\build\dotnet\Costura.Fody.targets')" />
   </ImportGroup>
   <PropertyGroup>
-    <PreBuildEvent>if exist "$(TargetName).OQ.dll" (del /F /A /Q "$(TargetName).OQ.dll" )</PreBuildEvent>
+    <PreBuildEvent>if exist "$(TargetName).OQ.dll" (del /F /A /Q "$(TargetName).OQ.dll" )
+</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>if exist "$(TargetName).dll" (
