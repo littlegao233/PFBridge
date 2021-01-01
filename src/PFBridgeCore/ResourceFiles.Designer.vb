@@ -65,27 +65,48 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 const IO = System.IO;
-        '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
-        '''//api.Log(&apos;文件位于:&apos; + IO.Path.Combine(api.PluginDataPath, &quot;index.js&quot;));
-        '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
-        '''try {
-        '''   throw
-        '''} catch (e) { api.log(e) }
-        ''' 
-        '''/*
+        '''  查找类似 /*
         '''//写入最新的默认index.js(用于更新)
         ''' IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;), ResourceFiles.index)
         '''*/
-        '''//主体
-        '''events.onGroupMessage.add(function (e) {
-        '''    try {
-        '''        api.log(JSON.stringify(e));
-        '''        api.SendPrivateMessageFromGroup( [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''const FileSystem = importNamespace(&apos;Microsoft.VisualBasic.FileIO&apos;).FileSystem;
+        '''const IO = importNamespace(&apos;System.IO&apos;);
+        '''
+        '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
+        '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
+        '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法-----&gt;&gt;&gt;&gt;&gt;
+        '''/**
+        ''' * 添加基于WebsocketAPI的mc连接
+        ''' * @param {string} url websocket地址
+        ''' * 格式：ws://地址:端口/终端
+        ''' * 参考：ws://127.0.0.1:29132/mcw [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property index() As String
             Get
                 Return ResourceManager.GetString("index", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 /*
+        '''//写入最新的默认index.js(用于更新)
+        ''' IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;), ResourceFiles.index)
+        '''*/
+        '''const FileSystem = importNamespace(&apos;Microsoft.VisualBasic.FileIO&apos;).FileSystem;
+        '''const IO = importNamespace(&apos;System.IO&apos;);
+        '''
+        '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
+        '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
+        '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法-----&gt;&gt;&gt;&gt;&gt;
+        '''/**
+        ''' * 添加基于WebsocketAPI的mc连接
+        ''' * @param {string} url websocket地址
+        ''' * 格式：ws://地址:端口/终端
+        ''' * 参考：ws://127.0.0.1:29132/mcw [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property main() As String
+            Get
+                Return ResourceManager.GetString("main", resourceCulture)
             End Get
         End Property
     End Class

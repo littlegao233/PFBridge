@@ -1,0 +1,1133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IBox.SDK</name>
+    </assembly>
+    <members>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.FriendListHandle.MemsItem.name">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.FriendListHandle.MemsItem.uin">
+            <summary>
+            QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.FriendListHandle.Result.mems">
+            <summary>
+            列表信息
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.FriendListHandle.Root.errcode">
+            <summary>
+            错误代码
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.FriendListHandle.Root.result">
+            <summary>
+            结果
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Join.gc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Join.gn">
+            <summary>
+            酷Q开发群
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Join.owner">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Root.ec">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Root.errcode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Root.em">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.GroupListHandle.Root.join">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.GetGroupCur(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            获取群最大人数和当前人数
+            </summary>
+            <param name="json"></param>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Lv.point">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Lv.level">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.uin">
+            <summary>
+            QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.role">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.g">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.join_time">
+            <summary>
+            进群时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.last_speak_time">
+            <summary>
+            最后发言时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.lv">
+            <summary>
+            群内等级
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.card">
+            <summary>
+            群名片
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.tags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.flag">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.nick">
+            <summary>
+            路上孤魂
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.qage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Mems.rm">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.ec">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.errcode">
+            <summary>
+            错误码
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.em">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.cache">
+            <summary>
+            缓存
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.adm_num">
+            <summary>
+            管理员数量
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.levelname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.mems">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.count">
+            <summary>
+            群成员数量
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.svr_time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.max_count">
+            <summary>
+            最大人数
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.search_count">
+            <summary>
+            当前人数
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Core.Handle.MemberListHandle.Root.extmode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.Core.KerMsg.FromUnicodeString(System.String)">
+            <summary>
+            对返回值进行Unicode解码
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.Core.KerMsg.GetDateTime(System.Int64)">
+            <summary>
+            时间戳转换为北京时间
+            </summary>
+            <param name="timeStamp">时间戳</param>
+            <returns></returns>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.CqApi">
+            <summary>
+            酷Q Api封装类
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SendPrivateMessage(System.Int64,System.Int64,System.String,System.Int32,System.Int32)">
+            <summary>
+            发送私聊消息
+            </summary>
+            <param name="RobotQQ">机器人QQ</param>
+            <param name="qqId">对方QQ</param>
+            <param name="message">消息内容</param>
+            <param name="Type">消息类型（1为普通，2为匿名）</param>
+            <param name="Bubble">气泡ID（-1为随机）</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SendGroupMessage(System.Int64,System.Int64,System.String,System.Int32,System.Int32)">
+            <summary>
+            发送群消息
+            </summary>
+            <param name="groupId">目标群</param>
+            <param name="message">消息内容</param>
+            <returns>失败返回负值, 成功返回消息 Id</returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SendDiscussMessage(System.Int64,System.Int64,System.String,System.Int32,System.Int32)">
+            <summary>
+            发送讨论组消息
+            </summary>
+            <param name="discussId">目标讨论组</param>
+            <param name="message">消息内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SendGroupPrivateMessage(System.Int64,System.Int64,System.Int64,System.String,System.Int32,System.Int32)">
+            <summary>
+            发送群私聊消息
+            </summary>
+            <param name="RobotQQ">机器人QQ</param>
+            <param name="groupId">所在群号</param>
+            <param name="qqId">QQ号</param>
+            <param name="message">消息内容</param>
+            <param name="Type">消息类型（1为普通，2为匿名）</param>
+            <param name="Bubble">气泡ID（-1为随机）</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SendPraise(System.String,System.String,System.Int32)">
+            <summary>
+            发送赞
+            </summary>
+            <param name="qqId">目标QQ</param>
+            <param name="count">赞的次数，最多10次（留空为1次）</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.CqCode_At(System.Int64,System.Boolean)">
+            <summary>
+            获取酷Q "At某人" 代码
+            </summary>
+            <param name="qqId">QQ号, 填写 -1 为At全体成员</param>
+            <param name="addSpacing">默认为True, At后添加空格, 可使At更规范美观. 如果不需要添加空格, 请置本参数为False</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.CqCode_Emoji(System.Int32)">
+            <summary>
+            获取酷Q "emoji表情" 代码
+            </summary>
+            <param name="id">表情Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.CqCode_Face(System.Int32)">
+            <summary>
+            获取酷Q "表情" 代码
+            </summary>
+            <param name="face">表情枚举</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.CqCode_Trope(System.String,System.Boolean)">
+            <summary>
+            获取字符串的转义形式
+            </summary>
+            <param name="str">欲转义字符串</param>
+            <param name="commaTrope">逗号转义, 默认: False</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.CqCode_UnTrope(System.String)">
+            <summary>
+            获取字符串的非转义形式
+            </summary>
+            <param name="str">欲反转义字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.CqCode_Image(System.String,System.Boolean)">
+             <summary>
+             获取酷Q "图片" 代码
+             </summary>
+             <param name="filePath">图片路径
+             <para>将图片放在 data\image 下，并填写相对路径。如 data\image\1.jpg 则填写 1.jpg</para></param>
+            <param name = "destory">是否为闪图</param>
+             <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetLoginQQ">
+            <summary>
+            取在线QQ
+            </summary>
+            <returns>返回整数</returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.OutLog(System.String)">
+            <summary>
+            向ono输出日志（可用于调试）
+            </summary>
+            <param name="note"></param>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetBkn(System.String)">
+            <summary>
+            获取QQ的Bkn（获取列表接口可能会用到）
+            </summary>
+            <param name="skey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetQQNick(System.String,System.String)">
+            <summary>
+            取对象昵称
+            </summary>
+            <param name="robotQQ">机器人QQ</param>
+            <param name="qq">对象QQ</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetFriendsList(System.String)">
+            <summary>
+            获取好友列表
+            </summary>
+            <param name="robotQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetGroupList(System.Int64)">
+            <summary>
+            获取群列表（含群名称）
+            </summary>
+            <param name="robotQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetGroupIdList(System.Int64)">
+            <summary>
+            获取群列表（仅有群号）
+            </summary>
+            <param name="robotQQ">机器人QQ</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetGroupName(System.Int64,System.Int64)">
+            <summary>
+            获取群名称
+            </summary>
+            <param name="RobotQQ"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetGroupMemberCount(System.Int64,System.Int64,System.Int32@,System.Int32@)">
+            <summary>
+            获取群成员人数与最大人数
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.ReceiveImage(System.Int64,System.String,System.Int32,System.Int64)">
+            <summary>
+            获取图片
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="guid"></param>
+            <param name="type">1 群 讨论组 2临时会话和好友</param>
+            <param name="from">图片所属对应的群号和好友QQ</param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetQQGender(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            获取QQ性别
+            </summary>
+            <param name="qq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetGroupInfo(System.Int64,System.Int64)">
+            <summary>
+            获取群信息
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetMemberList(System.Int64,System.Int64)">
+            <summary>
+            获取群成员列表
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetMemberList_B(System.Int64,System.Int64)">
+            <summary>
+            获取群成员列表（无昵称）
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SetGroupBanSpeak(System.Int64,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            置群成员禁言
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.RepealMessage(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            撤回消息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetQQNick(System.Int64,System.Int64)">
+            <summary>
+            获取用户昵称
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="qq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SetFriendAddRequest(System.Int64,System.Int64,IBoxs.Sdk.Cqp.Enum.ResponseType,System.String)">
+            <summary>
+            处理好友添加请求
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SetGroupAddRequest(System.Int64,System.Int64,System.String,IBoxs.Sdk.Cqp.Enum.RequestType,System.Int64,IBoxs.Sdk.Cqp.Enum.ResponseType,System.String)">
+            <summary>
+            处理加群请求
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.GetMemberInfo(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            获取群成员信息
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <param name="qq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SetGroupMemberRemove(System.Int64,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            移除群成员
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <param name="qq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.CqApi.SetGroupExit(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            退出群
+            </summary>
+            <param name="robotQQ"></param>
+            <param name="group"></param>
+            <returns></returns>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Enum.CashType">
+            <summary>
+            转账收款状态
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.CashType.Wait">
+            <summary>
+            等待收款
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.CashType.Success">
+            <summary>
+            已收款
+            </summary>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Enum.PermitType">
+            <summary>
+            权限类型
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.PermitType.None">
+            <summary>
+            成员
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.PermitType.Manage">
+            <summary>
+            管理
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.PermitType.Holder">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Enum.QQLineType">
+            <summary>
+            QQ登录在线类型
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.LoginComplete">
+            <summary>
+            登录完成
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.ManualOffline">
+            <summary>
+            手动离线
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.ForceOffline">
+            <summary>
+            强制离线
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.OffLine">
+            <summary>
+            QQ掉线
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.FreezeOffline">
+            <summary>
+            被冻结离线
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.AbnormalOffline">
+            <summary>
+            异常离线
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQLineType.LoginFailed">
+            <summary>
+            QQ登录失败
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQStauts.OnLine">
+            <summary>
+            我在线上
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQStauts.Chant">
+            <summary>
+            Q我吧
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQStauts.Leave">
+            <summary>
+            离开
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQStauts.Busy">
+            <summary>
+            忙碌
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQStauts.NotDisturb">
+            <summary>
+            请勿打扰
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.QQStauts.Invisible">
+            <summary>
+            隐身
+            </summary>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Enum.RequestType">
+            <summary>
+            请求类型
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.RequestType.GroupAdd">
+            <summary>
+            进群申请
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.RequestType.GroupInvitation">
+            <summary>
+            机器人被被邀请进群
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.RequestType.MemberInvitation">
+            <summary>
+            某人被邀请进群
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.RequestType.FriendAdd">
+            <summary>
+            某人请求加为好友
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.ResponseType.PASS">
+            <summary>
+            通过
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.ResponseType.FAIL">
+            <summary>
+            不通过
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.ResponseType.IGNORE">
+            <summary>
+            忽略
+            </summary>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Enum.Sex">
+            <summary>
+            表示性别的枚举
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.Sex.Man">
+            <summary>
+            男性
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.Sex.Woman">
+            <summary>
+            女性 
+            </summary>
+        </member>
+        <member name="F:IBoxs.Sdk.Cqp.Enum.Sex.Unknown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs">
+            <summary>
+            表示添加好友请求事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.SendTime">
+            <summary>
+            获取当前事件触发时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.Message">
+            <summary>
+            获取当前消息的消息内容
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.ResponseFlag">
+            <summary>
+            反馈标识, 用于对该请求做响应时的标识参数
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.Handler">
+            <summary>
+            获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs.#ctor(System.DateTime,System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqAddFriendRequestEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="id">事件ID</param>
+            <param name="name">事件名称</param>
+            <param name="sendTime">触发时间</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="message">附加消息</param>
+            <param name="flag">反馈标识</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs">
+            <summary>
+            表示添加群请求事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.SendTime">
+            <summary>
+            获取当前事件触发时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.FromGroup">
+            <summary>
+            获取当前消息的来源群组号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.Message">
+            <summary>
+            获取当前消息的消息内容
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.ResponseFlag">
+            <summary>
+            反馈标识, 用于对该请求做响应时的标识参数
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs.#ctor(System.DateTime,System.Int64,System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqAddGroupRequestEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="sendTime">触发时间</param>
+            <param name="fromGroup">来源群组</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="message">附加消息</param>
+            <param name="flag">反馈标识</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs">
+            <summary>
+            表示群成员减少事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs.SendTime">
+            <summary>
+            获取当前事件触发时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs.FromGroup">
+            <summary>
+            获取当前消息的来源群组号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs.BeingOperateQQ">
+            <summary>
+            获取当前事件触发时的目标QQ
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs.#ctor(System.DateTime,System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberDecreaseEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="id">事件ID</param>
+            <param name="name">事件名称</param>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">操作者QQ</param>
+            <param name="operateQQ">被操作QQ</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs">
+            <summary>
+            表示群成员增加事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs.SendTime">
+            <summary>
+            获取当前事件触发时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs.FromGroup">
+            <summary>
+            获取当前消息的来源群组号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs.BeingOperateQQ">
+            <summary>
+            获取当前事件触发时的目标QQ
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs.#ctor(System.DateTime,System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupMemberIncreaseEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="sendTime">发送时间</param>
+            <param name="fromGroup">来源群</param>
+            <param name="fromQQ">操作者QQ</param>
+            <param name="operateQQ">被操作QQ</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs">
+            <summary>
+            表示群组消息事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.MsgId">
+            <summary>
+            获取或设置一个值, 表示当前事件所产生消息的唯一编号, 可用于撤回消息
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.MsgNum">
+            <summary>
+            消息序号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.FromGroup">
+            <summary>
+            获取当前消息的来源群组号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.Message">
+            <summary>
+            获取当前消息的消息内容
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.Handler">
+            <summary>
+            获取或设置一个值, 指示当前是否处理过此事件. 若此值为 True 将停止处理后续事件
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs.#ctor(System.String,System.String,System.String,System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupMessageEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="name">事件名称</param>
+            <param name="msgId">消息ID</param>
+            <param name="fromGroup">来源群组</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="anonymous">来源匿名</param>
+            <param name="msg">消息</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs">
+            <summary>
+            表示私聊消息事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.MsgId">
+            <summary>
+            获取或设置一个值, 表示当前事件所产生消息的唯一编号, 可用于撤回消息
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.MsgNum">
+            <summary>
+            消息序号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.FromGroup">
+            <summary>
+            来源群
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.Message">
+            <summary>
+            获取当前消息的消息内容
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqGroupPrivateMessageEventArgs.#ctor(System.String,System.String,System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="id">事件ID</param>
+            <param name="name">事件名称</param>
+            <param name="msgId">消息ID</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">消息内容</param>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqQQStuatsChangeEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqQQStuatsChangeEventArgs.LineType">
+            <summary>
+            在线类型
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqQQStuatsChangeEventArgs.#ctor(System.Int64,System.Int32)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqQQStuatsChangeEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="id">事件ID</param>
+            <param name="name">事件名称</param>
+            <param name="msgId">消息ID</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">消息内容</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs">
+            <summary>
+            表示转账消息事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.Money">
+            <summary>
+            金额
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.OrderId">
+            <summary>
+            账单号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.Note">
+            <summary>
+            留言内容
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.Stauts">
+            <summary>
+            收款状态
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqTransferAccountsEventArgs.#ctor(System.Int64,System.Int64,System.Int32,System.String)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="id">事件ID</param>
+            <param name="name">事件名称</param>
+            <param name="msgId">消息ID</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">消息内容</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs">
+            <summary>
+            表示私聊消息事件参数的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs.MsgId">
+            <summary>
+            获取或设置一个值, 表示当前事件所产生消息的唯一编号, 可用于撤回消息
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs.MsgNum">
+            <summary>
+            消息序号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs.RobotQQ">
+            <summary>
+            机器人QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs.FromQQ">
+            <summary>
+            获取当前消息的来源QQ号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs.Message">
+            <summary>
+            获取当前消息的消息内容
+            </summary>
+        </member>
+        <member name="M:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs.#ctor(System.String,System.String,System.Int64,System.Int64,System.String)">
+            <summary>
+            初始化 <see cref="T:IBoxs.Sdk.Cqp.EventArgs.CqPrivateMessageEventArgs"/> 类的一个新实例
+            </summary>
+            <param name="id">事件ID</param>
+            <param name="name">事件名称</param>
+            <param name="msgId">消息ID</param>
+            <param name="fromQQ">来源QQ</param>
+            <param name="msg">消息内容</param>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Model.FriendInfo">
+            <summary>
+            描述 QQ 好友信息的类
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.FriendInfo.Id">
+            <summary>
+            QQ帐号
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.FriendInfo.Nick">
+            <summary>
+            QQ昵称
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupInfo.Id">
+            <summary>
+            群号码
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupInfo.Name">
+            <summary>
+            群名字
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupInfo.owner">
+            <summary>
+            群主QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupInfo.GroupLavel">
+            <summary>
+            群等级
+            </summary>
+        </member>
+        <member name="T:IBoxs.Sdk.Cqp.Model.GroupMemberInfo">
+            <summary>
+            群成员信息
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.GroupId">
+            <summary>
+            获取或设置一个值, 指示成员所在群
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.QQId">
+            <summary>
+            获取或设置一个值, 指示成员QQ
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.Nick">
+            <summary>
+            获取或设置一个值, 指示成员昵称
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.Card">
+            <summary>
+            获取或设置一个值, 指示成员群名片
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.Sex">
+            <summary>
+            获取或设置一个值, 指示成员性别
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.Age">
+            <summary>
+            获取或设置一个值, 指示成员年龄
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.Area">
+            <summary>
+            获取或设置一个值, 指示成员所在地区
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.JoiningTime">
+            <summary>
+            获取或设置一个值, 指示成员入群的时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.LastDateTime">
+            <summary>
+            获取或设置一个值, 指示成员最后发言时间
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.Level">
+            <summary>
+            获取或设置一个值, 指示成员等级的名称
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.PermitType">
+            <summary>
+            获取或设置一个值, 指示成员在此群的权限
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.SpecialTitle">
+            <summary>
+            获取或设置一个值, 指示成员在此群获得的专属头衔
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.SpecialTitleDurationTime">
+            <summary>
+            获取或设置一个值, 指示成员在此群的专属头衔过期时间, 若过期时间换算的秒数为 "-1" 则为无期限
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.BadRecord">
+            <summary>
+            获取或设置一个值, 指示成员是否为不良记录成员
+            </summary>
+        </member>
+        <member name="P:IBoxs.Sdk.Cqp.Model.GroupMemberInfo.CanModifiedCard">
+            <summary>
+            获取或设置一个值, 指示成员是否被允许修改群名片
+            </summary>
+        </member>
+    </members>
+</doc>
