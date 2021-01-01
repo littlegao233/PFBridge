@@ -1,11 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-  </PropertyGroup>
-
+ 
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <RootNamespace>PFBridgeCore</RootNamespace>
-    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net461;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net461;net5;netcoreapp3.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
