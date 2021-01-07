@@ -21,7 +21,10 @@ namespace PFBridgeForOQ.Plugin
         }
         public void LogErr(object Message)
         {
-            OutPutLogCall(Message.ToString(), 0, 255); 
+            OutPutLogCall(Message.ToString(), 0, 255);
+#if DEBUG
+            System.Windows.Forms.MessageBox.Show(Message.ToString(),"ERROR");
+#endif
         }
         public void SendGroupMessage(long TargetGroup, string Message)
         {
@@ -29,7 +32,7 @@ namespace PFBridgeForOQ.Plugin
         }
         public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
-            SendPrivateMsgCall(TargetGroup, QQid, Message);
+            SendGroupPrivateMsgCall(TargetGroup, QQid, Message);
         }
     }
 }

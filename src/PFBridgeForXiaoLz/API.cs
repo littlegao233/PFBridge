@@ -128,7 +128,7 @@ namespace XiaolzCSharp
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             InitFunction();
             //string res = CallGetLoginQQ(); 
-                    PFBridgeForOQ.Plugin.App.OnStartup();
+            PFBridgeForOQ.Plugin.App.OnStartup();
             return 0;
         }
         #endregion
@@ -154,6 +154,7 @@ namespace XiaolzCSharp
         public static List<long> CallGetLoginQQ()
         {
             string RetJson = Marshal.PtrToStringAnsi(GetLoginQQ(PInvoke.plugin_key));
+            //MessageBox.Show(RetJson);
             //try
             //{
             //    var QQlist = root[root.Keys[0]];
@@ -185,14 +186,9 @@ namespace XiaolzCSharp
             //}
             //PluginStatus = false;
             PInvoke.PluginStatus = true;//自己改下
-            List<long> result = new List<long>();
-            dynamic root = new JavaScriptSerializer().Deserialize<Dictionary<string, Dictionary<string, object>>>(RetJson);
-            var QQlist = root[root.Keys[0]];
-            for (var i = 0; i <= root.Count; i++)
-            {
-                result.Add(long.Parse(QQlist.Keys[i]));
-            }
-            return result;
+            //List<long> result = new List<long>();
+            var obj = Newtonsoft.Json.Linq.JObject.Parse(RetJson)["QQlist"];
+            return obj.ToList().ConvertAll(l => long.Parse(((Newtonsoft.Json.Linq.JProperty)l).Name));
         }
         #endregion
         #region 插件设置
@@ -589,10 +585,18 @@ namespace XiaolzCSharp
             CallGetLoginQQ().ForEach(l => SendPrivateMsg(PInvoke.plugin_key, l, targetQQ, Message, ref MessageRandom, ref MessageReq));
         }
         #endregion
-        #region 输出日志
-        public static void OutPutLogCall(  string Message,int fg,int bg)
+        #region 发送群临时消息
+        public static void SendGroupPrivateMsgCall(long targetGroup, long targetQQ, string Message)
         {
-          OutputLogFunc(PInvoke.plugin_key, Message,fg,bg);
+            long MessageRandom = 0;
+            int MessageReq = 0;
+            CallGetLoginQQ().ForEach(l => SendGroupTemporaryMessageFunc(PInvoke.plugin_key, l, targetGroup, targetQQ, Message, ref MessageRandom, ref MessageReq));
+        }
+        #endregion
+        #region 输出日志
+        public static void OutPutLogCall(string Message, int fg, int bg)
+        {
+            OutputLogFunc(PInvoke.plugin_key, Message, fg, bg);
         }
         #endregion
 
@@ -718,6 +722,9 @@ namespace XiaolzCSharp
             GetPluginDataDirectoryDelegate GetPluginDataDirectoryDelegateAPI = (GetPluginDataDirectoryDelegate)Marshal.GetDelegateForFunctionPointer(new IntPtr(json["取插件数据目录"]), typeof(GetPluginDataDirectoryDelegate));
             GetPluginDataDirectoryFunc = GetPluginDataDirectoryDelegateAPI;
             GC.KeepAlive(GetPluginDataDirectoryFunc);
+            SendGroupTemporaryMessageDelegate SendGroupTemporaryMessageDelegateAPI = (SendGroupTemporaryMessageDelegate)Marshal.GetDelegateForFunctionPointer(new IntPtr(json["发送群临时消息"]), typeof(SendGroupTemporaryMessageDelegate));
+            SendGroupTemporaryMessageFunc = SendGroupTemporaryMessageDelegateAPI;  
+            GC.KeepAlive(SendGroupTemporaryMessageFunc);
         }
         #endregion
         #region 函数委托指针
@@ -822,8 +829,9 @@ namespace XiaolzCSharp
         [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
         public delegate bool DeleteFriendDelegate(string pkey, long thisQQ, long friendQQ);
         //发送临时消息
+        public static SendGroupTemporaryMessageDelegate SendGroupTemporaryMessageFunc = null;
         [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
-        public delegate IntPtr SendGroupTemporaryMessage(string pkey, long thisQQ, long groupQQ, long otherQQ, [MarshalAs(UnmanagedType.LPStr)] string content, ref long random, ref int req);
+        public delegate IntPtr SendGroupTemporaryMessageDelegate(string pkey, long thisQQ, long groupQQ, long otherQQ, [MarshalAs(UnmanagedType.LPStr)] string content, ref long random, ref int req);
         //查看转发聊天记录内容
         public static ReadForwardedChatHistoryDelegate ReadForwardedChatHistory = null;
         [UnmanagedFunctionPointer(CallingConvention.Winapi, CharSet = CharSet.Ansi)]
