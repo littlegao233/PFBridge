@@ -1,9 +1,9 @@
 ﻿Imports WebSocketSharp
 Namespace Ws
+    Public Module WebsocketCore
+        Public Sub ProcessMessage(con As Connection, message As String)
 
-    Public Class WebsocketCore
-        Public Sub New()
 
         End Sub
-    End Class
+    End Module
 End Namespace
