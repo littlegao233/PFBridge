@@ -3,21 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeToCQ", "PFBridgeToCQ\PFBridgeToCQ.vbproj", "{B9DE39BF-923A-0032-1A36-3113FC78BA02}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeForCQ", "PFBridgeForCQ\PFBridgeForCQ.vbproj", "{B9DE39BF-923A-0032-1A36-3113FC78BA02}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeToXQ", "PFBridgeToXQ\PFBridgeToXQ.vbproj", "{E54DC5AD-DB96-4734-B8BC-CE8BD20DB61C}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeForXQ", "PFBridgeForXQ\PFBridgeForXQ.vbproj", "{E54DC5AD-DB96-4734-B8BC-CE8BD20DB61C}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeToQM", "PFBridgeToQM\PFBridgeToQM.vbproj", "{660225C5-AD8C-489B-A9CC-F6F563EEE621}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeForQM", "PFBridgeForQM\PFBridgeForQM.vbproj", "{660225C5-AD8C-489B-A9CC-F6F563EEE621}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "BuildTools", "BuildTools\BuildTools.vbproj", "{18BAA22A-4A82-4E18-818A-372416CE495F}"
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "PFBridgeCore", "PFBridgeCore\PFBridgeCore.vbproj", "{A79DA47F-85C9-4E02-B92B-2E2FB325318C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFBridgeToOPQ", "PFBridgeToOPQ\PFBridgeToOPQ.csproj", "{64219066-DECC-41C6-BF74-32270818D670}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PFBridgeForOPQ", "PFBridgeForOPQ\PFBridgeForOPQ.csproj", "{64219066-DECC-41C6-BF74-32270818D670}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFBridgeToOQ", "PFBridgeToOQ\PFBridgeToOQ.csproj", "{8BC2C861-D30C-425B-98A7-812792D2017D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFBridgeForOQ", "PFBridgeForOQ\PFBridgeForOQ.csproj", "{8BC2C861-D30C-425B-98A7-812792D2017D}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeToHyperai", "PFBridgeToHyperai\PFBridgeToHyperai.vbproj", "{5EFD38A8-2319-4C59-8345-28BEED62DF54}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PFBridgeForHyperai", "PFBridgeForHyperai\PFBridgeForHyperai.vbproj", "{5EFD38A8-2319-4C59-8345-28BEED62DF54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PFBridgeForXiaoLz", "PFBridgeForXiaoLz\PFBridgeForXiaoLz.csproj", "{5A936A67-166B-4D6C-B0EA-5D89C14CE334}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,14 @@ Global
 		{5EFD38A8-2319-4C59-8345-28BEED62DF54}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5EFD38A8-2319-4C59-8345-28BEED62DF54}.Release|x86.ActiveCfg = Release|Any CPU
 		{5EFD38A8-2319-4C59-8345-28BEED62DF54}.Release|x86.Build.0 = Release|Any CPU
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Debug|Any CPU.Build.0 = Debug|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Debug|x86.ActiveCfg = Debug|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Debug|x86.Build.0 = Debug|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Release|Any CPU.ActiveCfg = Release|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Release|Any CPU.Build.0 = Release|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Release|x86.ActiveCfg = Release|x86
+		{5A936A67-166B-4D6C-B0EA-5D89C14CE334}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
