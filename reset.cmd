@@ -1,3 +1,3 @@
 cd src
-cd PFBridgeToOQ
+cd PFBridgeForOQ
 PowerShell.exe -file RecoverOnoQQNuget.ps1

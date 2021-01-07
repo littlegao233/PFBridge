@@ -16,7 +16,8 @@ namespace PFBridgeForOQ.Plugin
         }
         public void Log(object Message)
         {
-            OutPutLogCall(Message.ToString(),0,0);
+
+            OutPutLogCall(Message.ToString(),0xa179ca,0xeeeeee);
         }
         public void LogErr(object Message)
         {
