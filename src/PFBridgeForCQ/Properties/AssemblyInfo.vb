@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyConfiguration("")>
 <Assembly: AssemblyCompany("")>
 <Assembly: AssemblyProduct("PFBridgeForCQ")>
-<Assembly: AssemblyCopyright("Copyright ©  2020")>
+<Assembly: AssemblyCopyright("Copyright ©  2021")>
 <Assembly: AssemblyTrademark("")>
 <Assembly: AssemblyCulture("")>
 
@@ -19,7 +19,7 @@ Imports System.Runtime.InteropServices
 <Assembly: ComVisible(False)>
 
 ' 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-<Assembly: Guid("0bfab8d4-5e62-4fc3-986e-fb6d9eef8ea2")>
+<Assembly: Guid("02f7896e-5e65-40b0-b498-b8cf0fe0a638")>
 
 ' 程序集的版本信息由下列四个值组成: 
 '

@@ -6,15 +6,15 @@
     <OptionInfer>On</OptionInfer>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B9DE39BF-923A-0032-1A36-3113FC78BA02}</ProjectGuid>
+    <ProjectGuid>{B0D30805-923D-0F41-36C0-72B16D779298}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PFBridgeForCQ</RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <AssemblyName>PFBridge.CQ</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(ProjectDir)**\*.cs</DefaultItemExcludes>
@@ -24,7 +24,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>DEBUG,TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -36,30 +36,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <DefineDebug>true</DefineDebug>
-    <DefineTrace>true</DefineTrace>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>
-    </DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <DefineTrace>true</DefineTrace>
-  </PropertyGroup>
-  <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HuajiTech.CoolQ, Version=0.4.2.0, Culture=neutral, PublicKeyToken=51c187ed1cdbe1fa, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.CoolQ.0.4.2-beta.1\lib\net45\HuajiTech.CoolQ.dll</HintPath>
@@ -69,7 +45,6 @@
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Core, Version=0.4.2.0, Culture=neutral, PublicKeyToken=0c359f77d3d00a9d, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.CoolQ.Core.0.4.2-beta\lib\net45\HuajiTech.CoolQ.Core.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="HuajiTech.CoolQ.Messaging, Version=0.4.2.0, Culture=neutral, PublicKeyToken=93d39f819b8987ca, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.CoolQ.Messaging.0.4.2-beta\lib\net45\HuajiTech.CoolQ.Messaging.dll</HintPath>
@@ -79,9 +54,6 @@
     </Reference>
     <Reference Include="HuajiTech.UnmanagedExports, Version=1.0.2.0, Culture=neutral, PublicKeyToken=3d66017a845d9010, processorArchitecture=MSIL">
       <HintPath>..\packages\HuajiTech.UnmanagedExports.Metadata.1.0.2\lib\net461\HuajiTech.UnmanagedExports.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -93,18 +65,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API.vb" />
     <Compile Include="App.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="Properties\AppInfo.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="app.json" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="API.vb" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj">
@@ -125,11 +94,6 @@
   </Target>
   <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets')" />
   <Import Project="..\packages\HuajiTech.CoolQ.Packing.ILRepack.0.4.2-beta\build\HuajiTech.CoolQ.Packing.ILRepack.targets" Condition="Exists('..\packages\HuajiTech.CoolQ.Packing.ILRepack.0.4.2-beta\build\HuajiTech.CoolQ.Packing.ILRepack.targets')" />
-  <ProjectExtensions>
-    <VisualStudio>
-      <UserProperties app_1json__JsonSchema="https://json.schemastore.org/config" />
-    </VisualStudio>
-  </ProjectExtensions>
   <PropertyGroup>
     <PostBuildEvent>cd "$(SolutionDir)"
 cd ..
@@ -144,4 +108,9 @@ move "%25GenFolder%25\app.json" "%25GenFolder%25\$(TargetName).json"
 
 $(SolutionDir)BuildTools\build\BuildTools.exe -jrc "%25GenFolder%25\$(TargetName).json"</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties app_1json__JsonSchema="https://json.schemastore.org/jsconfig" />
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>
