@@ -17,6 +17,7 @@
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)框架支持
     - - [ ] QQmini框架支持（需要Pro版本）
     - - [X] OnoQQ机器人框架支持
+    - - [X] 小栗子框架支持
     - - [ ] 可爱猫微信机器人框架支持
     - - [ ] Discord支持
     - - [ ] Telegram支持
