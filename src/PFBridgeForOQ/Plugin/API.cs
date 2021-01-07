@@ -21,7 +21,7 @@ namespace PFBridgeForOQ.Plugin
         }
         public void LogErr(object Message)
         {
-            System.Windows.Forms.MessageBox.Show(Message.ToString());
+            //System.Windows.Forms.MessageBox.Show(Message.ToString());
             Common.CqApi.OutLog("[Error]" + Message.ToString());
         }
         public void SendGroupMessage(long TargetGroup, string Message)

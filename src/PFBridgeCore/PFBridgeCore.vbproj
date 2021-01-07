@@ -59,6 +59,7 @@
 
   <ItemGroup>
     <Folder Include="Connections\WebSocket\AES\" />
+    <Folder Include="My Project\" />
   </ItemGroup>
 
 </Project>

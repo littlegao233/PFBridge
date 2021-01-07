@@ -1,36 +1,34 @@
 ﻿using PFBridgeCore;
 using System.Collections.Generic;
-using IBoxs.Core.App;
+using static XiaolzCSharp.API;
 namespace PFBridgeForOQ.Plugin
 {
     internal class API : IBridgeQQBase
     {
-        public API(long qq) => RobotQQ = qq;
-        public readonly long RobotQQ;
         public string PluginDataPath
         {
             get
             {
-                if (!System.IO.Directory.Exists(Common.AppDirectory)) System.IO.Directory.CreateDirectory(Common.AppDirectory);
-                return Common.AppDirectory;
+                string path = GetPluginDataDirectory();
+                if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
+                return path;
             }
         }
         public void Log(object Message)
         {
-            Common.CqApi.OutLog(Message.ToString());
+            OutPutLogCall(Message.ToString(),0,0);
         }
         public void LogErr(object Message)
         {
-            System.Windows.Forms.MessageBox.Show(Message.ToString());
-            Common.CqApi.OutLog("[Error]" + Message.ToString());
+            OutPutLogCall(Message.ToString(), 0, 255); 
         }
         public void SendGroupMessage(long TargetGroup, string Message)
         {
-            Common.CqApi.SendGroupMessage(RobotQQ,  TargetGroup, Message);
+            SendGroupMsgCall(TargetGroup, Message);
         }
         public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
-            Common.CqApi.SendGroupPrivateMessage(RobotQQ, TargetGroup,  QQid, Message);
+            SendPrivateMsgCall(TargetGroup, QQid, Message);
         }
     }
 }

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PFBridgeForXiaoLz</RootNamespace>
     <AssemblyName>PFBridge</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
@@ -87,9 +87,10 @@
     <Compile Include="API.cs" />
     <Compile Include="Libs\App\Common.cs" />
     <Compile Include="Libs\App\Core\LibCore.cs" />
-    <Compile Include="CpuMemoryCapacity.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="PInvoke.cs" />
+    <Compile Include="Plugin\API.cs" />
+    <Compile Include="Plugin\App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Libs\Repair\Core\Kernel32.cs" />
     <Compile Include="Libs\Repair\Enum\LoadLibraryFlags.cs" />
@@ -115,11 +116,13 @@
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
-    <PackageReference Include="System.Management">
-      <Version>5.0.0</Version>
-    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj">
+      <Project>{a79da47f-85c9-4e02-b92b-2e2fb325318c}</Project>
+      <Name>PFBridgeCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ImportGroup Label=".NET DllExport" />
   <ImportGroup Label=".NET DllExport" />
@@ -132,7 +135,7 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>if exist "$(TargetName).XiaoLz.dll" (del /F /A /Q "$(TargetName).XiaoLz.dll" )
+    <PostBuildEvent>if exist "$(TargetName).XiaoLz.dll" (del /F /Q "$(TargetName).XiaoLz.dll" )
 if exist "$(TargetName).dll" (
 rename "$(TargetName).dll" "$(TargetName).XiaoLz.dll" 
 )
