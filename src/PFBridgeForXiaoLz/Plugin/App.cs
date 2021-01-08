@@ -19,11 +19,13 @@ namespace PFBridgeForXiaoLz.Plugin
             }
             RefreshQQList();
         }
+        private static byte counter = 254;
         /// <summary>
         /// 处理消息接收事件。
         /// </summary>
         internal static void OnMessageReceived(ref SDK.Events.GroupMessageEvent e)
         {
+            if (++counter == byte.MaxValue) { counter = byte.MinValue; App.RefreshQQList(); }
             try { PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent)); }
             catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); App.RefreshQQList(); }
         }

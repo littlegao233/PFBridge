@@ -59,7 +59,6 @@ namespace PFBridgeForOPQ
         /// <returns>0不拦截 1拦截消息</returns>
         public override int FriendMsgProcess(FriendMsg msg, long CurrentQQ)
         {
-
             return 0;
         }
 

@@ -10,7 +10,10 @@ namespace PFBridgeForOPQ
         {
             get
             {
-                return Apis.GetPluginDataDic("PFBridgeForOPQ");
+                string path = Apis.GetPluginDataDic("PFBridgeForOPQ");
+                if (!System.IO.File.Exists(path)) System.IO.Directory.CreateDirectory(path);
+                //System.IO.Directory.Exists()
+                return path;
             }
         }
         public void Log(object Message)

@@ -10,6 +10,7 @@ Public Module Main
         Dim options As Options = New Options()
         options.AllowClr()
         options.AllowClr(GetType(FileIO.FileSystem).Assembly)
+        options.AllowClr(GetType(System.IO.Directory).Assembly)
         'options.CatchClrExceptions(Function(e)
         '                               Return False
         '                           End Function)
@@ -20,7 +21,6 @@ Public Module Main
         engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
         'engine.SetValue("FileSystem", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(Microsoft.VisualBasic.FileIO.FileSystem)))
         'FileIO.FileSystem.GetFiles().First()
-
         engine.SetValue("api", API)
         engine.SetValue("events", Events)
         engine.SetValue("engine", engine)
@@ -33,7 +33,6 @@ Public Module Main
 #Else
             e.Execute(JSRaw)
 #End If
-
             'engine=Nothing
         Catch ex As Exception
             API.LogErr("JS引擎遇到错误:" & ex.ToString)
