@@ -1,7 +1,7 @@
 ﻿using PFBridgeCore;
 using System.Collections.Generic;
-using static XiaolzCSharp.API;
-namespace PFBridgeForOQ.Plugin
+using static SDK.Common;
+namespace PFBridgeForXiaoLz.Plugin
 {
     internal class API : IBridgeQQBase
     {
@@ -9,30 +9,31 @@ namespace PFBridgeForOQ.Plugin
         {
             get
             {
-                string path = GetPluginDataDirectory();
+                string path =xlzAPI.GetPluginDataDirectoryEvent();
                 if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
                 return path;
             }
         }
         public void Log(object Message)
         {
-
-            OutPutLogCall(Message.ToString(),0xa179ca,0xeeeeee);
+            xlzAPI.OutLog(Message.ToString(), 0xa179ca, 0xeeeeee);
         }
         public void LogErr(object Message)
         {
-            OutPutLogCall(Message.ToString(), 0, 255);
+            xlzAPI.OutLog1(Message.ToString(), System.Drawing.Color.Red, System.Drawing.Color.LightGoldenrodYellow);
 #if DEBUG
             System.Windows.Forms.MessageBox.Show(Message.ToString(),"ERROR");
 #endif
         }
         public void SendGroupMessage(long TargetGroup, string Message)
         {
-            SendGroupMsgCall(TargetGroup, Message);
+            Log(xlzAPI.GetThisQQ());
+                //.ForEach(l => SendGroupMsg(PInvoke.plugin_key, l, group, Message, false));
+            //xlzAPI.SendGroupMessage(TargetGroup, Message);
         }
         public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
-            SendGroupPrivateMsgCall(TargetGroup, QQid, Message);
+            //xlzAPI.sendg(TargetGroup, QQid, Message);
         }
     }
 }

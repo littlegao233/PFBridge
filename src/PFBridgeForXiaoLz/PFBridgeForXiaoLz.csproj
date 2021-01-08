@@ -49,6 +49,9 @@
       <SpecificVersion>False</SpecificVersion>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="SDK">
+      <HintPath>..\libs\SDK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -84,21 +87,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="API.cs" />
+    <Compile Include="AppCore.cs" />
     <Compile Include="Libs\App\Common.cs" />
     <Compile Include="Libs\App\Core\LibCore.cs" />
-    <Compile Include="Main.cs" />
-    <Compile Include="PInvoke.cs" />
-    <Compile Include="Plugin\API.cs" />
-    <Compile Include="Plugin\App.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Libs\Repair\Core\Kernel32.cs" />
     <Compile Include="Libs\Repair\Enum\LoadLibraryFlags.cs" />
     <Compile Include="Libs\Repair\Helper\AssemblyHelper.cs" />
     <Compile Include="Libs\Repair\Helper\ReflectionHelper.cs" />
     <Compile Include="Libs\Repair\ModuleInitializer.cs" />
-    <Compile Include="SilkHelp.cs" />
-    <Compile Include="SqliHelper.cs" />
+    <Compile Include="Plugin\API.cs" />
+    <Compile Include="Plugin\App.cs" />
+    <Compile Include="Plugin\AppEnable.cs" />
+    <Compile Include="Plugin\OpenMenu.cs" />
+    <Compile Include="Plugin\RecGroupMsg.cs" />
+    <Compile Include="Plugin\RecPrivateMsg.cs" />
+    <Compile Include="Plugin\RobotEventcallBack.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -115,6 +119,9 @@
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Unity">
+      <Version>5.11.9</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
