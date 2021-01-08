@@ -13,20 +13,28 @@ namespace PFBridgeForXiaoLz.Plugin
     {
         public void EventcallBack(EventTypeBase e)
         {
-            if (e.EventType == SDK.Enum.EventTypeEnum.Group_MemberVerifying)
+            switch (e.EventType )
             {
-                Common.xlzAPI.GroupVerificationEvent(e.ThisQQ, e.SourceGroupQQ, e.TriggerQQ, e.MessageSeq,SDK.Enum.GroupVerificationOperateEnum.Agree,SDK.Enum.EventTypeEnum.Group_MemberVerifying);
+                case SDK.Enum.EventTypeEnum.This_SignInSuccess:
+                    App.RefreshQQList();
+                    break;
+                default:break;
             }
-            if (e.EventType == SDK.Enum.EventTypeEnum.Group_MemberUndid)
-            {
-                string sendstr = $"{e.TriggerQQName}({e.TriggerQQ})撤回了一条消息，内容如下：\r\n{e.MessageContent}";
-                Common.xlzAPI.SendGroupMessage(e.ThisQQ, e.SourceGroupQQ, sendstr);
-            }
-            if (e.EventType == SDK.Enum.EventTypeEnum.Friend_UserUndid)
-            {
-                string sendstr = $"{e.TriggerQQName}({e.TriggerQQ})撤回了一条消息，内容如下：\r\n{e.MessageContent}";
-                Common.xlzAPI.SendPrivateMessage(e.ThisQQ, e.TriggerQQ, sendstr);
-            }
+            //if (e.EventType == SDK.Enum.EventTypeEnum.Group_MemberVerifying)
+            //{
+            //    Common.xlzAPI.GroupVerificationEvent(e.ThisQQ, e.SourceGroupQQ, e.TriggerQQ, e.MessageSeq,SDK.Enum.GroupVerificationOperateEnum.Agree,SDK.Enum.EventTypeEnum.Group_MemberVerifying);
+            //}
+            //if (e.EventType == SDK.Enum.EventTypeEnum.Group_MemberUndid)
+            //{
+            //    string sendstr = $"{e.TriggerQQName}({e.TriggerQQ})撤回了一条消息，内容如下：\r\n{e.MessageContent}";
+            //    Common.xlzAPI.SendGroupMessage(e.ThisQQ, e.SourceGroupQQ, sendstr);
+            //}
+            //if (e.EventType == SDK.Enum.EventTypeEnum.Friend_UserUndid)
+            //{
+            //    string sendstr = $"{e.TriggerQQName}({e.TriggerQQ})撤回了一条消息，内容如下：\r\n{e.MessageContent}";
+            //    Common.xlzAPI.SendPrivateMessage(e.ThisQQ, e.TriggerQQ, sendstr);
+            //}
+
         }
     }
 }

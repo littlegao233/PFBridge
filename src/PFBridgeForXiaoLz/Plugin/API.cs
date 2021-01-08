@@ -9,7 +9,7 @@ namespace PFBridgeForXiaoLz.Plugin
         {
             get
             {
-                string path =xlzAPI.GetPluginDataDirectoryEvent();
+                string path = xlzAPI.GetPluginDataDirectoryEvent();
                 if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
                 return path;
             }
@@ -22,17 +22,18 @@ namespace PFBridgeForXiaoLz.Plugin
         {
             xlzAPI.OutLog1(Message.ToString(), System.Drawing.Color.Red, System.Drawing.Color.LightGoldenrodYellow);
 #if DEBUG
-            System.Windows.Forms.MessageBox.Show(Message.ToString(),"ERROR");
+            System.Windows.Forms.MessageBox.Show(Message.ToString(), "ERROR");
 #endif
         }
         public void SendGroupMessage(long TargetGroup, string Message)
         {
-            Log(xlzAPI.GetThisQQ());
-                //.ForEach(l => SendGroupMsg(PInvoke.plugin_key, l, group, Message, false));
+            App.ForEachQQ(qqid => xlzAPI.SendGroupMessage(qqid, TargetGroup, Message));
+            //.ForEach(l => SendGroupMsg(PInvoke.plugin_key, l, group, Message, false));
             //xlzAPI.SendGroupMessage(TargetGroup, Message);
         }
         public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
+            App.ForEachQQ(qqid => xlzAPI.SendGroupTemporaryMessageEvent(qqid, TargetGroup, QQid, Message));
             //xlzAPI.sendg(TargetGroup, QQid, Message);
         }
     }

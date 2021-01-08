@@ -17,6 +17,7 @@ namespace PFBridgeForXiaoLz.Plugin
                 PFBridgeCore.Main.Init(new API());
                 hasStarted = true;
             }
+            RefreshQQList();
         }
         /// <summary>
         /// 处理消息接收事件。
@@ -24,7 +25,17 @@ namespace PFBridgeForXiaoLz.Plugin
         internal static void OnMessageReceived(ref SDK.Events.GroupMessageEvent e)
         {
             try { PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent)); }
-            catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); }
+            catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); App.RefreshQQList(); }
+        }
+        private static List<long> QQList = new List<long>();
+        internal static void RefreshQQList()
+        {
+            var obj = Newtonsoft.Json.Linq.JObject.Parse(SDK.Common.xlzAPI.GetThisQQ())["QQlist"];
+            QQList = obj.ToList().ConvertAll(l => long.Parse(((Newtonsoft.Json.Linq.JProperty)l).Name));
+        }
+        internal static void ForEachQQ(Action<long> action)
+        {
+            QQList.ForEach(action);
         }
     }
 }
