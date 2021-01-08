@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PFBridgeCore.EventArgs;
+using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
 
 namespace PFBridgeForXiaoLz.Plugin
 {
@@ -26,8 +27,8 @@ namespace PFBridgeForXiaoLz.Plugin
         internal static void OnMessageReceived(ref SDK.Events.GroupMessageEvent e)
         {
             if (++counter == byte.MaxValue) { counter = byte.MinValue; App.RefreshQQList(); }
-            try { PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent)); }
-            catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); App.RefreshQQList(); }
+            try { PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent)); }
+            catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); App.RefreshQQList(); }
         }
         private static List<long> QQList = new List<long>();
         internal static void RefreshQQList()

@@ -40,6 +40,7 @@ Public Module Main
         'engine.SetValue("FileSystem", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(Microsoft.VisualBasic.FileIO.FileSystem)))
         'FileIO.FileSystem.GetFiles().First()
         engine.SetValue("api", API)
+        engine.SetValue("MCConnections", MCConnections)
         engine.SetValue("events", Events)
         engine.SetValue("engine", engine)
         Return engine
@@ -76,6 +77,7 @@ Public Module Main
     Friend ReadOnly Property JSRaw As String
         Get
 #If DEBUG Then
+            If Not Directory.Exists(Path.Combine(API.PluginDataPath, "scripts ")) Then Directory.CreateDirectory(Path.Combine(API.PluginDataPath, "scripts "))
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\main.js"), My.Resources.ResourceFiles.main)
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")
             File.Delete(indexPath)

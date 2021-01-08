@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IBoxs.Sdk.Cqp.EventArgs;
 using PFBridgeCore.EventArgs;
+using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
 
 namespace PFBridgeForOQ.Plugin
 {
@@ -24,8 +25,8 @@ namespace PFBridgeForOQ.Plugin
         /// </summary>
         internal static void OnMessageReceived(CqGroupMessageEventArgs e)
         {
-            try { PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message)); }
-            catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); }
+            try { PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message)); }
+            catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); }
         }
     }
 }

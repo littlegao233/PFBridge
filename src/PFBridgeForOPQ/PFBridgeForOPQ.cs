@@ -7,7 +7,7 @@ using Traceless.OPQSDK.Models.Api;
 using Traceless.OPQSDK.Models.Event;
 using Traceless.OPQSDK.Models.Msg;
 using Traceless.OPQSDK.Plugin;
-
+using static   PFBridgeCore.APIs.EventsMap.QQEventsMap;
 namespace PFBridgeForOPQ
 {
     /// <summary>
@@ -47,8 +47,8 @@ namespace PFBridgeForOPQ
         /// <returns>0不拦截 1拦截消息</returns>
         public override int GroupMsgProcess(GroupMsg msg, long CurrentQQ)
         {
-            try { PFBridgeCore.QQAPI.Events.OnGroupMessage.Invoke(new GroupMessageEventsArgs(msg.FromGroupId, msg.FromUserId, msg.Content)); }
-            catch (Exception ex) { PFBridgeCore.QQAPI.API.LogErr(ex); }
+            try { PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(msg.FromGroupId, msg.FromUserId, msg.Content)); }
+            catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); }
             return 0;
         }
 

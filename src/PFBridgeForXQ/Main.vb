@@ -2,11 +2,13 @@
 Imports PFBridgeCore.EventArgs
 Imports XQ.Net.SDK.Attributes
 Imports XQ.Net.SDK.EventArgs
+Imports PFBridgeCore.APIs.EventsMap.QQEventsMap
+
 <Plugin>
 Friend Module Main
     <GroupMsgEvent>
     Public Sub OnGroupMsg(sender As Object, e As XQAppGroupMsgEventArgs)
-        PFBridgeCore.Events.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.FromGroup.Id, e.FromQQ.Id, e.Message.Text))
+        PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.FromGroup.Id, e.FromQQ.Id, e.Message.Text))
     End Sub
     <EnableEvent>
     Public Sub OnStartup(sender As Object, e As XQEventArgs)
