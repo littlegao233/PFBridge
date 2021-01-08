@@ -4,38 +4,27 @@
 */
 const FileSystem = importNamespace('Microsoft.VisualBasic.FileIO').FileSystem;
 const IO = importNamespace('System.IO');
-
+//#region 加载自定义程序集(位于libs目录下)
+try {
+    const custom_libs_path = IO.Path.Combine(api.pluginDataPath, "libs")//位于".\插件目录\libs\*.dll"
+    if (!IO.Directory.Exists(custom_libs_path)) IO.Directory.CreateDirectory(custom_libs_path)//如果未找到目录就创建目录
+    let FileList = FileSystem.GetFiles(custom_libs_path);
+    for (let i = 0; i < FileList.Count; i++) {
+        const file = FileList[i];
+        if (!file.toLowerCase().endsWith(".dll")) continue;//跳过非dll文件
+        try {
+            if (AssemblyEx.LoadFrom(file)) { AssemblyEx.ReloadEngine(); }
+        } catch (e) {
+            api.LogErr('加载自定义程序集"' + file + '"时遇到错误：' + e)
+        }
+    }
+} catch (e) {
+    api.LogErr("加载自定义程序集出错" + e)
+}
+//#endregion
 api.log('JavaScript自定义配置加载中...');
 api.log('文件位于:' + IO.Path.Combine(api.pluginDataPath, "index.js"));
-//#region >>>>>-----公共方法----->>>>>
-/**
- * 添加基于WebsocketAPI的mc连接
- * @param {string} url websocket地址
- * 格式：ws://地址:端口/终端
- * 参考：ws://127.0.0.1:29132/mcws
- * @param {string} token 密匙串（用于运行命令等操作）
- */
-function AddWebsocket(url, token) { ConnectionManager.AddWebsocketClient(url, token) }
-
-//#endregion <<<<<-----公共方法-----<<<<<
-AddWebsocket("ws://echo.websocket.org", "")
-
-//主体部分
-events.onGroupMessage.add(function (e) {
-    try {
-        api.log(JSON.stringify(e));
-        api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
-        api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
-    } catch (e) {
-        api.log("error:" + e);
-    }
-})
-
-
-
-
 //#region 自定义脚本
-
 const custom_script_path = IO.Path.Combine(api.pluginDataPath, "scripts")
 if (!IO.Directory.Exists(custom_script_path)) {
     IO.Directory.CreateDirectory(custom_script_path);
@@ -46,10 +35,14 @@ if (IO.Directory.Exists(custom_script_path)) {
     if (FileSystem.GetFiles(custom_script_path).Count == 0) IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "main.js"), ResourceFiles.main)
     //#endregion
     let custom_script_success_count = 0, custom_script_failed_count = 0;
-    let FileList = FileSystem.GetFiles(custom_script_path);
-    api.log('scripts目录下读取到' + FileList.Count + '个自定义脚本，开始加载...');
-    for (let i = 0; i < FileList.Count; i++) {
-        const file = FileList[i];
+    let FileListAll = FileSystem.GetFiles(custom_script_path);//目录下所有文件
+    let FileListJS = new Array();//加载列表
+    for (var i = 0; i < FileListAll.Count; i++) {
+        const file = FileListAll[i]
+        if (file.toLowerCase().endsWith(".js")) FileListJS.push(file);//添加js文件到加载列表
+    }
+    api.log('scripts目录下读取到' + FileListJS.length + '个自定义脚本，开始加载...');
+    FileListJS.forEach(file => {
         try {
             engine.Execute(IO.File.ReadAllText(file));
             api.log('自定义脚本"' + IO.Path.GetFileName(custom_script_path) + '"加载成功！');
@@ -58,10 +51,11 @@ if (IO.Directory.Exists(custom_script_path)) {
             api.LogErr('自定义脚本"' + IO.Path.GetFileName(custom_script_path) + '"运行出错：' + e);
             custom_script_failed_count++;
         }
-    }
+    });
     if (custom_script_success_count > 0) api.log(custom_script_success_count + '个脚本文件加载成功！');
     if (custom_script_failed_count > 0) api.LogErr(custom_script_failed_count + '个脚本文件加载失败！');
 }
 //#endregion
-
 api.log('JavaScript自定义配置已加载完毕！');
+
+

@@ -13,7 +13,10 @@ Namespace Ws
                                          End Sub
             AddHandler Client.OnClose, Sub(sender, e)
                                            Console.WriteLine("断开连接，将在10s后尝试重连： " & e.Reason)
-                                           Client.Connect()
+                                           Task.Run(Sub()
+                                                        Threading.Thread.Sleep(10000)
+                                                        Client.Connect()
+                                                    End Sub)
                                        End Sub
             Client.Connect()
         End Sub

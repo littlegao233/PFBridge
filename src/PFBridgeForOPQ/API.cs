@@ -1,10 +1,10 @@
 ﻿using PFBridgeCore;
- using System.Collections.Generic;
+using System.Collections.Generic;
 using Traceless.OPQSDK;
 
 namespace PFBridgeForOPQ
 {
-     internal class API : IBridgeQQBase
+    internal class API : IBridgeQQBase
     {
         public string PluginDataPath
         {
@@ -28,12 +28,14 @@ namespace PFBridgeForOPQ
 
         public void SendGroupMessage(long TargetGroup, string Message)
         {
-            Apis.SendGroupMsg(TargetGroup, txt:Message);
+            try { Apis.SendGroupMsg(TargetGroup, txt: Message); }
+            catch (System.Exception ex) { System.Console.WriteLine(ex.ToString()); }
         }
 
         public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
-            Apis.SendFriendMsg(QQid,Message);
+            try { Apis.SendFriendMsg(QQid, Message); }
+            catch (System.Exception ex) { System.Console.WriteLine(ex.ToString()); }
         }
     }
 }

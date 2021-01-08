@@ -10,7 +10,6 @@ Namespace PFBridgeForCQ
         End Function
         Public Function GetGroup(GroupNumber As Long) As IGroup
             Dim i = GroupList.FindIndex(Function(l) l.Number = GroupNumber)
-
             If i = -1 Then
                 Dim group = CurrentPluginContext.Group(GroupNumber)
                 GroupList.Add(group)

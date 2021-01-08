@@ -9,9 +9,6 @@ Namespace PFBridgeForCQ
     ''' </summary>
     Friend Class Main
         Inherits Plugin
-        ''' <summary>
-        ''' 使用指定的事件源初始化一个 <seecref="Main"/> 类的新实例。
-        ''' </summary>
         Public Sub New()
             Try
                 PFBridgeCore.Init(New API())

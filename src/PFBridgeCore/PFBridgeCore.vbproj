@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Connections\WebSocket\AES\**" />
     <Compile Remove="My Project\**" />
+    <EmbeddedResource Remove="Connections\WebSocket\AES\**" />
     <EmbeddedResource Remove="My Project\**" />
+    <None Remove="Connections\WebSocket\AES\**" />
     <None Remove="My Project\**" />
   </ItemGroup>
   
@@ -58,7 +61,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Connections\WebSocket\AES\" />
     <Folder Include="My Project\" />
   </ItemGroup>
 

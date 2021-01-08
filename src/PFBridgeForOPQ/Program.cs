@@ -18,10 +18,19 @@ namespace Traceless.Robot
     {
         private static async Task Main(string[] args)
         {
-            await OPQSDK.Plugin.OPQMain.Client();
             while (true)
             {
-                Console.ReadLine();
+                try
+                {
+                    await OPQSDK.Plugin.OPQMain.Client();
+                    while (true) { Console.ReadLine(); }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("崩溃啦！(" + ex.ToString() + ")");
+                    Console.WriteLine("将在5s后重启.");
+                    System.Threading.Thread.Sleep(5000);
+                }
             }
         }
     }
