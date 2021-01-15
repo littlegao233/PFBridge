@@ -3,20 +3,16 @@
     <h1>PFBridge</h1>
     <h3>Attach QQGroup to MCBE server</h3>
 </div>
-<div align="center">
-    <table border="0">
+<div align="right">
+    <table border="1">
         <tr>
             <td>
                 <blockquote>
                     <a href="https://github.com/littlegao233/PFBridge/releases">最新可执行文件</a>
-                </blockquote>
-            <td>
-                <blockquote>
+                    <a>|</a>
                     <a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
                 </blockquote>
-            </td>
-            <td align="right">
-                <blockquote>
+                <blockquote align="right">
                     <a href="https://www.minebbs.com/resources/1975/">MineBBS帖子</a>
                 </blockquote>
             </td>
