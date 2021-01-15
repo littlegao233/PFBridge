@@ -3,7 +3,7 @@
     <h1>PFBridge</h1>
     <h3>Attach QQGroup to MCBE server</h3>
 </div>
-<div align="right">
+<div align="center">
     <table border="0">
         <tr>
             <td>
@@ -15,8 +15,6 @@
                     <a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
                 </blockquote>
             </td>
-        </tr>
-        <tr>
             <td>
             </td>
             <td align="right">
