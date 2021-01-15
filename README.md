@@ -15,8 +15,6 @@
                     <a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
                 </blockquote>
             </td>
-            <td>
-            </td>
             <td align="right">
                 <blockquote>
                     <a href="https://www.minebbs.com/resources/1975/">MineBBS帖子</a>
