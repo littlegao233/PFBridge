@@ -3,9 +3,7 @@
         <td>
             <div align="center">
                 <h1>PFBridge</h1>
-                <code>
                     <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attach QQGroup to MCBE server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
-                </code>
             </div>
             <div align="center">
                 <blockquote align="center">
