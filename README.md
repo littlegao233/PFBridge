@@ -1,24 +1,23 @@
-
-<div align="center">
-    <h1>PFBridge</h1>
-    <h3>Attach QQGroup to MCBE server</h3>
-</div>
-<div align="right">
-    <table border="1">
-        <tr>
-            <td>
-                <blockquote>
+<table border="20" align="center">
+    <tr>
+        <td>
+            <div align="center">
+                <h1>PFBridge</h1>
+                <h3>Attach QQGroup to MCBE server</h3>
+            </div>
+            <div align="center">
+                <blockquote align="center">
                     <a href="https://github.com/littlegao233/PFBridge/releases">最新可执行文件</a>
                     <a>|</a>
                     <a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
                 </blockquote>
-                <blockquote align="right">
-                    <a href="https://www.minebbs.com/resources/1975/">MineBBS帖子</a>
+                <blockquote align="center">
+                    <a href="https://www.minebbs.com/resources/1975/">MineBBS</a>
                 </blockquote>
-            </td>
-        </tr>
-    </table>
-</div>
+            </div>
+        </td>
+    </tr>
+</table>
 <hr>
 
 - ## Features
