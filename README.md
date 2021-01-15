@@ -3,20 +3,32 @@
     <h1>PFBridge</h1>
     <h3>Attach QQGroup to MCBE server</h3>
 </div>
-
----
-
 <div align="right">
-<h5>
-<a href="https://github.com/littlegao233/PFBridge/releases">最新可执行文件</a>
-|
-<a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
-
-<a href="https://www.minebbs.com/resources/1975/">MineBBS帖子</a>
-
+    <table border="0">
+        <tr>
+            <td>
+                <blockquote>
+                    <a href="https://github.com/littlegao233/PFBridge/releases">最新可执行文件</a>
+                </blockquote>
+            <td>
+                <blockquote>
+                    <a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
+                </blockquote>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+            <td align="right">
+                <blockquote>
+                    <a href="https://www.minebbs.com/resources/1975/">MineBBS帖子</a>
+                </blockquote>
+            </td>
+        </tr>
+    </table>
 </div>
+<hr>
 
----
 - ## Features
    - 多框架支持
    - JavaScript自定义配置
