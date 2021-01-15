@@ -1,9 +1,11 @@
-<table border="20" align="center">
+<table border="30" align="center">
     <tr>
         <td>
             <div align="center">
                 <h1>PFBridge</h1>
-                <h3>Attach QQGroup to MCBE server</h3>
+                <code>
+                    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Attach QQGroup to MCBE server&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+                </code>
             </div>
             <div align="center">
                 <blockquote align="center">
