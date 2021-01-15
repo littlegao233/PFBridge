@@ -6,10 +6,22 @@ Imports Newtonsoft.Json.Linq
 Imports Timer = System.Timers.Timer
 
 Public Module Main
-    Friend engine As Engine = Nothing
-    Private Function CreateJSEngine() As Engine
+    Public Class EngineEx
+        Inherits Jint.Engine
+        Public Sub New(options As Options)
+            MyBase.New(options)
+        End Sub
+        Public Sub Run(content As String)
+            Execute($"if(true){{
+{content}
+}}")
+        End Sub
+    End Class
+    Public engine As EngineEx = Nothing
+    Private Function CreateJSEngine() As EngineEx
         Dim options As Options = New Options()
         options.AllowClr()
+        options.AllowClr(Assembly.GetExecutingAssembly)
         options.AllowClr(GetType(FileIO.FileSystem).Assembly)
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
@@ -18,7 +30,7 @@ Public Module Main
         options.DebugMode()
         options.CatchClrExceptions()
 #End If
-        options.AllowClr(AssemblyList.Values.ToArray())
+        options.AllowClr(AssemblyEx.AssemblyList.Values.ToArray())
         'System.Console.WriteLine(String.Join(vbCrLf, Assembly.GetCallingAssembly.GetExportedTypes.ToList().ConvertAll(Function(l) l.Assembly.FullName)))
         'For Each item In Assembly.GetExecutingAssembly().GetReferencedAssemblies()
         '    System.Console.WriteLine(item.Name)
@@ -33,27 +45,30 @@ Public Module Main
         '                           End Function)
         'options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
-        engine = New Engine(options)
-        engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(My.Resources.ResourceFiles)))
-        engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
-        engine.SetValue("AssemblyEx", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(AssemblyEx)))
+        engine = New EngineEx(options)
+        'engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType()))
+        'engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
+        'engine.SetValue("AssemblyEx", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(AssemblyEx)))
         'engine.SetValue("FileSystem", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(Microsoft.VisualBasic.FileIO.FileSystem)))
         'FileIO.FileSystem.GetFiles().First()
-        engine.SetValue("api", API)
-        engine.SetValue("MCConnections", MCConnections)
-        engine.SetValue("events", Events)
-        engine.SetValue("engine", engine)
+        'engine.SetValue("api", API)
+        'engine.SetValue("MCConnections", MCConnections)
+        'engine.SetValue("events", Events)
+        'engine.SetValue("engine", engine)
         Return engine
     End Function
-    Private Function StartJSEngine(e As Engine, RestartDuration As UInteger) As Engine
+    Private Function StartJSEngine(e As EngineEx, RestartDuration As UInteger) As EngineEx
         Try
+            Try
+                APIs.Events.QQ.OnGroupMessage.Clear()
+            Catch : End Try
 #If DEBUG Then
             e.Execute(JSRaw, New ParserOptions(JSRaw))
 #Else
             e.Execute(JSRaw)
 #End If
             'engine=Nothing
-        Catch ex As ReloadEngineException
+        Catch ex As AssemblyEx.ReloadEngineException
             StartJSEngine(CreateJSEngine, RestartDuration)
         Catch ex As Exception
             API.LogErr("JS引擎遇到错误:" & ex.ToString)

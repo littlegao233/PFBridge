@@ -1,29 +1,48 @@
-﻿/*
+﻿//本文件是脚本加载器，正常使用时请勿改动
+/*
 //写入最新的默认index.js(用于更新)
  IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, "index_new.js"), ResourceFiles.index)
 */
+const IO = importNamespace('System.IO');//导入命名空间
 const FileSystem = importNamespace('Microsoft.VisualBasic.FileIO').FileSystem;
-const IO = importNamespace('System.IO');
+const api = importNamespace('PFBridgeCore').APIs.API
+const events = importNamespace('PFBridgeCore').APIs.Events
+const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
 //#region 加载自定义程序集(位于libs目录下)
 try {
+    const AssemblyEx = importNamespace('PFBridgeCore').AssemblyEx;
     const custom_libs_path = IO.Path.Combine(api.pluginDataPath, "libs")//位于".\插件目录\libs\*.dll"
     if (!IO.Directory.Exists(custom_libs_path)) IO.Directory.CreateDirectory(custom_libs_path)//如果未找到目录就创建目录
     let FileList = FileSystem.GetFiles(custom_libs_path);
     for (let i = 0; i < FileList.Count; i++) {
-        const file = FileList[i];
-        if (!file.toLowerCase().endsWith(".dll")) continue;//跳过非dll文件
+        let success = false;
         try {
-            if (AssemblyEx.LoadFrom(file)) { AssemblyEx.ReloadEngine(); }
+            const file = FileList[i];
+            if (!file.toLowerCase().endsWith(".dll")) continue;//跳过非dll文件
+            success = AssemblyEx.LoadFrom(file)
         } catch (e) {
             api.LogErr('加载自定义程序集"' + file + '"时遇到错误：' + e)
         }
+        if (success) { AssemblyEx.ReloadEngine(); }
     }
 } catch (e) {
     api.LogErr("加载自定义程序集出错" + e)
 }
 //#endregion
+const ResourceFiles = importNamespace('PFBridgeCore.My.Resources').ResourceFiles;
+const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
 api.log('JavaScript自定义配置加载中...');
 api.log('文件位于:' + IO.Path.Combine(api.pluginDataPath, "index.js"));
+//#region 清理重载前的残留
+try {
+    const events = importNamespace('PFBridgeCore').APIs.Events
+    events.QQ.OnGroupMessage.Clear();
+    events.Server.Chat.Clear();
+    events.Server.Cmd.Clear();
+    events.Server.Join.Clear();
+    events.Server.Left.Clear();
+} catch (e) { }
+//#endregion
 //#region >>>>>-----公共方法----->>>>>
 /**
  * 添加基于WebsocketAPI的mc连接
@@ -52,9 +71,10 @@ if (IO.Directory.Exists(custom_script_path)) {
         if (file.toLowerCase().endsWith(".js")) FileListJS.push(file);//添加js文件到加载列表
     }
     api.log('scripts目录下读取到' + FileListJS.length + '个自定义脚本，开始加载...');
+    const engine = importNamespace('PFBridgeCore').Main.engine
     FileListJS.forEach(file => {
         try {
-            engine.Execute(IO.File.ReadAllText(file));
+            engine.Run(IO.File.ReadAllText(file));
             api.log('自定义脚本"' + IO.Path.GetFileName(file) + '"加载成功！');
             custom_script_success_count++;
         } catch (e) {

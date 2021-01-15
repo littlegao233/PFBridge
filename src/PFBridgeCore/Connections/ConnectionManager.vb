@@ -1,5 +1,5 @@
 ﻿
-Friend Module ConnectionManager
+Public Module ConnectionManager
     Public Sub AddWebsocketClient(url As String, token As String)
         MCConnections.Add(New Ws.Connection(url, token))
 #If DEBUG Then
