@@ -30,7 +30,6 @@ try {
 }
 //#endregion
 const ResourceFiles = importNamespace('PFBridgeCore.My.Resources').ResourceFiles;
-const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
 api.log('JavaScript自定义配置加载中...');
 api.log('文件位于:' + IO.Path.Combine(api.pluginDataPath, "index.js"));
 //#region 清理重载前的残留
@@ -43,16 +42,6 @@ try {
     events.Server.Left.Clear();
 } catch (e) { }
 //#endregion
-//#region >>>>>-----公共方法----->>>>>
-/**
- * 添加基于WebsocketAPI的mc连接
- * @param {string} url websocket地址
- * 格式：ws://地址:端口/终端
- * 参考：ws://127.0.0.1:29132/mcws
- * @param {string} token 密匙串（用于运行命令等操作）
- */
-function AddWebsocket(url, token) { ConnectionManager.AddWebsocketClient(url, token) }
-//#endregion <<<<<-----公共方法-----<<<<<
 //#region 自定义脚本
 const custom_script_path = IO.Path.Combine(api.pluginDataPath, "scripts")
 if (!IO.Directory.Exists(custom_script_path)) {
@@ -71,7 +60,7 @@ if (IO.Directory.Exists(custom_script_path)) {
         if (file.toLowerCase().endsWith(".js")) FileListJS.push(file);//添加js文件到加载列表
     }
     api.log('scripts目录下读取到' + FileListJS.length + '个自定义脚本，开始加载...');
-    const engine = importNamespace('PFBridgeCore').Main.engine
+    const engine = importNamespace('PFBridgeCore').Main.Engine
     FileListJS.forEach(file => {
         try {
             engine.Run(IO.File.ReadAllText(file));

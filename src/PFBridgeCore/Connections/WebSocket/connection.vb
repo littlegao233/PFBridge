@@ -16,6 +16,7 @@ Namespace Ws
             Client.Send(packet2.ToString)
         End Sub
         Public Sub New(url As String, _token As String)
+            Id = IdAll : IdAll += 1
             Client = New WebSocket(url)
             Token = _token
             AddHandler Client.OnMessage, Sub(sender, e)
@@ -38,8 +39,10 @@ Namespace Ws
             Client.ConnectAsync()
             CheckTimer.Start()
         End Sub
-        Property Client As WebSocket
-        Property Token As String
+        Public Property Client As WebSocket
+        Public Property Id As Integer Implements IBridgeMCBase.Id
+        Private Shared IdAll As Integer = 0
+        Public Property Token As String
         Private CheckTimer As New Timers.Timer(10000) With {.AutoReset = True}
         Private Sub CheckConnect()
             If Not Client.IsAlive Then

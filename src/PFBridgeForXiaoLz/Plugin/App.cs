@@ -24,10 +24,17 @@ namespace PFBridgeForXiaoLz.Plugin
         /// <summary>
         /// 处理消息接收事件。
         /// </summary>
-        internal static void OnMessageReceived(ref SDK.Events.GroupMessageEvent e)
+        internal static void OnMessageReceived(SDK.Events.GroupMessageEvent e)
         {
             if (++counter == byte.MaxValue) { counter = byte.MinValue; App.RefreshQQList(); }
-            try { PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent)); }
+            try
+            {
+                PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent,
+                  () => e.SourceGroupName,
+                  () => e.SenderNickname,// SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).NickName
+                  () => SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).GroupCardName
+              ));
+            }
             catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); App.RefreshQQList(); }
         }
         private static List<long> QQList = new List<long>();

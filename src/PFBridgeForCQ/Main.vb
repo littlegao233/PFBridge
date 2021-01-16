@@ -32,7 +32,26 @@ Namespace PFBridgeForCQ
         ''' 处理消息接收事件。
         ''' </summary>
         Private Sub OnMessageReceived(sender As Object, e As MessageReceivedEventArgs)
-            PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.Source.Number, e.Sender.Number, e.Message.Content))
+            'e.Sender.Nickname
+
+            PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(
+                                                                                    e.Source.Number,
+                                                                                    e.Sender.Number,
+                                                                                    CQDeCode(e.Message.Content),
+                                                                                    Function() e.Source.DisplayName,
+                                                                                    Function() e.Sender.Nickname,
+                                                                                    Function() e.Sender.DisplayName)
+                                                                                    )
         End Sub
+        Public Shared Function CQDeCode(source As String) As String
+            If (source Is Nothing) Then Return String.Empty
+            Dim builder As New Text.StringBuilder(source)
+            builder = builder.Replace("&#91;", "[")
+            builder = builder.Replace("&#93;", "]")
+            builder = builder.Replace("&#44;", ",")
+            builder = builder.Replace("&amp;", "&")
+            Return builder.ToString()
+        End Function
     End Class
+
 End Namespace

@@ -1,11 +1,13 @@
 ﻿
 Public Module ConnectionManager
-    Public Sub AddWebsocketClient(url As String, token As String)
-        MCConnections.Add(New Ws.Connection(url, token))
+    Public Function AddWebsocketClient(url As String, token As String) As Integer
+        Dim client = New Ws.Connection(url, token)
+        MCConnections.Add(client)
 #If DEBUG Then
         API.Log($"添加WebsocketClient实例成功！({url})")
 #End If
-    End Sub
+        Return client.Id
+    End Function
     'Friend Function GetClient()
     'End Function
 End Module

@@ -7,6 +7,7 @@ Public Interface IBridgeQQBase
     ReadOnly Property PluginDataPath As String
 End Interface
 Public Interface IBridgeMCBase
+    Property Id As Integer
     Sub RunCmdCallback(cmd As String, callback As Action(Of String))
     Sub RunCmd(cmd As String)
 End Interface

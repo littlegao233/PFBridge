@@ -25,7 +25,15 @@ namespace PFBridgeForOQ.Plugin
         /// </summary>
         internal static void OnMessageReceived(CqGroupMessageEventArgs e)
         {
-            try { PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message)); }
+            //IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.FromGroup)
+            try
+            {
+                PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message,
+                    () => IBoxs.Core.App.Common.CqApi.GetGroupInfo(e.RobotQQ, e.FromGroup).Name,
+                    () => IBoxs.Core.App.Common.CqApi.GetQQNick(e.RobotQQ, e.FromQQ),
+                    () => IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).Card
+              ));
+            }
             catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); }
         }
     }

@@ -8,7 +8,11 @@ Imports PFBridgeCore.APIs.EventsMap.QQEventsMap
 Friend Module Main
     <GroupMsgEvent>
     Public Sub OnGroupMsg(sender As Object, e As XQAppGroupMsgEventArgs)
-        PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.FromGroup.Id, e.FromQQ.Id, e.Message.Text))
+        PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.FromGroup.Id, e.FromQQ.Id, e.Message.Text,
+                                                                                                Function() e.FromGroup.GetGroupName(e.RobotQQ),
+                                                                                                Function() e.FromQQ.GetNick(e.RobotQQ),
+                                                                                                Function() e.FromGroup.GetGroupCard(e.RobotQQ, e.FromQQ.Id)
+                                                                                                ))
     End Sub
     <EnableEvent>
     Public Sub OnStartup(sender As Object, e As XQEventArgs)

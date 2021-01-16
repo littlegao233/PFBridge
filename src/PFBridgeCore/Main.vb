@@ -12,12 +12,15 @@ Public Module Main
             MyBase.New(options)
         End Sub
         Public Sub Run(content As String)
-            Execute($"if(true){{
-{content}
-}}")
+            Execute($"
+function Main() {{
+    {content}
+}}
+    ")
+            Invoke("Main")
         End Sub
     End Class
-    Public engine As EngineEx = Nothing
+    Public Property Engine As EngineEx = Nothing
     Private Function CreateJSEngine() As EngineEx
         Dim options As Options = New Options()
         options.AllowClr()
@@ -25,6 +28,7 @@ Public Module Main
         options.AllowClr(GetType(FileIO.FileSystem).Assembly)
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
+
 #If DEBUG Then
         options.AllowDebuggerStatement()
         options.DebugMode()
@@ -45,7 +49,7 @@ Public Module Main
         '                           End Function)
         'options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
-        engine = New EngineEx(options)
+        Engine = New EngineEx(options)
         'engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType()))
         'engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
         'engine.SetValue("AssemblyEx", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(AssemblyEx)))
@@ -55,7 +59,7 @@ Public Module Main
         'engine.SetValue("MCConnections", MCConnections)
         'engine.SetValue("events", Events)
         'engine.SetValue("engine", engine)
-        Return engine
+        Return Engine
     End Function
     Private Function StartJSEngine(e As EngineEx, RestartDuration As UInteger) As EngineEx
         Try
