@@ -32,7 +32,8 @@ namespace PFBridgeForXiaoLz.Plugin
                 PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent,
                   () => e.SourceGroupName,
                   () => e.SenderNickname,// SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).NickName
-                  () => SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).GroupCardName
+                  () => SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).GroupCardName,
+                  (s) => SDK.Common.xlzAPI.SendGroupMessage(e.ThisQQ, e.MessageGroupQQ, SDK.Common.xlzAPI.GetAt(e.SenderQQ) + s)
               ));
             }
             catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); App.RefreshQQList(); }

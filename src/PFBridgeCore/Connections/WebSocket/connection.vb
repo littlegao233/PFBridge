@@ -7,7 +7,6 @@ Namespace Ws
             Dim packet1 = New ActionRunCmd(cmd, "", Nothing)
             Dim packet2 = New EncryptedPack(EncryptionMode.AES256, packet1.ToString(), Token)
             Client.Send(packet2.ToString)
-
         End Sub
         Public Sub RunCmd(cmd As String, callback As Action(Of String)) Implements IBridgeMCBase.RunCmdCallback
             Dim packet1 = New ActionRunCmd(cmd, Rnd() * Integer.MaxValue, Nothing)
@@ -15,8 +14,9 @@ Namespace Ws
             Dim packet2 = New EncryptedPack(EncryptionMode.AES256, packet1.ToString(), Token)
             Client.Send(packet2.ToString)
         End Sub
-        Public Sub New(url As String, _token As String)
+        Public Sub New(url As String, _token As String, _tag As Object)
             Id = IdAll : IdAll += 1
+            Tag = _tag
             Client = New WebSocket(url)
             Token = _token
             AddHandler Client.OnMessage, Sub(sender, e)
@@ -43,6 +43,9 @@ Namespace Ws
         Public Property Id As Integer Implements IBridgeMCBase.Id
         Private Shared IdAll As Integer = 0
         Public Property Token As String
+
+        Public Property Tag As Object Implements IBridgeMCBase.Tag
+
         Private CheckTimer As New Timers.Timer(10000) With {.AutoReset = True}
         Private Sub CheckConnect()
             If Not Client.IsAlive Then

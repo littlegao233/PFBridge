@@ -63,46 +63,55 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
-        
+
         '''<summary>
-        '''  查找类似 /*
+        '''  查找类似 //本文件是脚本加载器，正常使用时请勿改动
+        '''/*
         '''//写入最新的默认index.js(用于更新)
         ''' IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;), ResourceFiles.index)
         '''*/
+        '''const IO = importNamespace(&apos;System.IO&apos;);//导入命名空间
         '''const FileSystem = importNamespace(&apos;Microsoft.VisualBasic.FileIO&apos;).FileSystem;
-        '''const IO = importNamespace(&apos;System.IO&apos;);
-        '''
-        '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
-        '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
-        '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法-----&gt;&gt;&gt;&gt;&gt;
-        '''/**
-        ''' * 添加基于WebsocketAPI的mc连接
-        ''' * @param {string} url websocket地址
-        ''' * 格式：ws://地址:端口/终端
-        ''' * 参考：ws://127.0.0.1:29132/mcw [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
+        '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
+        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
+        '''//#region 加载自定义程序集(位于libs目录下)
+        ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property index() As String
             Get
                 Return ResourceManager.GetString("index", resourceCulture)
             End Get
         End Property
-        
+
         '''<summary>
-        '''  查找类似 /*
-        '''//写入最新的默认index.js(用于更新)
-        ''' IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;), ResourceFiles.index)
-        '''*/
-        '''const FileSystem = importNamespace(&apos;Microsoft.VisualBasic.FileIO&apos;).FileSystem;
-        '''const IO = importNamespace(&apos;System.IO&apos;);
+        '''  查找类似  的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property ListEx() As String
+            Get
+                Return ResourceManager.GetString("ListEx", resourceCulture)
+            End Get
+        End Property
+
+        '''<summary>
+        '''  查找类似 const AdminQQs = [441870948, 233333]//管理员QQ号
+        '''const Groups = [
+        '''    {
+        '''        id: 626872357,//QQ群号
+        '''        ServerMsgToGroup: true,//是否转发服务器的各种消息到该群
+        '''        GroupMsgToServer: true//是否将该群的消息转发到所有服务器
+        '''    }
+        ''']
+        '''const Servers = [
+        '''    {
+        '''        type: &quot;websocket&quot;,
+        '''        url: &quot;ws://127.0.0.1:29132/mcws&quot;,//websocket地址
+        '''        token: &quot;commandpassword&quot;,//websocket密匙串（用于运行命令等操作）
+        '''        name: &quot;测试服务器&quot;,
+        '''        ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
+        '''        GroupMsgToServer: true,//是否转发群消息到该服务器
         '''
-        '''api.log(&apos;JavaScript自定义配置加载中...&apos;);
-        '''api.log(&apos;文件位于:&apos; + IO.Path.Combine(api.pluginDataPath, &quot;index.js&quot;));
-        '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法-----&gt;&gt;&gt;&gt;&gt;
-        '''/**
-        ''' * 添加基于WebsocketAPI的mc连接
-        ''' * @param {string} url websocket地址
-        ''' * 格式：ws://地址:端口/终端
-        ''' * 参考：ws://127.0.0.1:29132/mcw [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''        [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property main() As String
             Get

@@ -8,6 +8,7 @@ Public Interface IBridgeQQBase
 End Interface
 Public Interface IBridgeMCBase
     Property Id As Integer
+    Property Tag As Object
     Sub RunCmdCallback(cmd As String, callback As Action(Of String))
     Sub RunCmd(cmd As String)
 End Interface

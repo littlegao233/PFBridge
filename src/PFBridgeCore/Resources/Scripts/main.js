@@ -14,7 +14,6 @@ const Servers = [
         name: "测试服务器",
         ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
         GroupMsgToServer: true,//是否转发群消息到该服务器
-
         ServerMsgToOther: true,//是否将该服务器的各种消息转发到其他已连接服服务器（多服联动）
         ReceiveMsgFromOther: true//是否接受其他服务器的消息（多服联动）
     }/*, {//在这里添加多个服务器
@@ -32,8 +31,8 @@ const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
  * 参考：ws://127.0.0.1:29132/mcws
  * @param {string} token 密匙串（用于运行命令等操作）
  */
-function AddWebsocket(url, token) {
-    return ConnectionManager.AddWebsocketClient(url, token)
+function AddWebsocket(url, token,tag) {
+    return ConnectionManager.AddWebsocketClient(url, token,tag)
 }
 /**
  * 发送消息到所有已经连接并且配置开启GroupMsgToServer的MC服务器
@@ -73,7 +72,7 @@ function encodeUnicode(str) {
 //#region 服务器主体部分
 Servers.forEach(server => {//添加所有服务器到实例
     if (server.type = "websocket") {
-        server.id = AddWebsocket(server.url, server.token)
+        server.id = AddWebsocket(server.url, server.token, server)
     } else {
         api.LogErr("未知的mc连接方案:" + server.type)
     }
@@ -141,7 +140,7 @@ function ProcessServerMsgToOtherServer(id, message) {
                 }
             }
         }
-    })
+    });
 }
 //#endregion
 

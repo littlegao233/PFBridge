@@ -16,7 +16,9 @@ Friend Class API
         XQAPI.OutPutLog(Message.ToString)
     End Sub
     Public Sub LogErr(Message As Object) Implements IBridgeQQBase.LogErr
-        XQAPI.OutPutLog("[错误] " & Message.ToString)
+        For Each line In Message.ToString.Split(vbLf)
+            If line IsNot Nothing Then XQAPI.OutPutLog("[错误] " & line)
+        Next
     End Sub
     Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群临时会话, TargetGroup, QQid, Message, BubbleID.跟随框架的设置))

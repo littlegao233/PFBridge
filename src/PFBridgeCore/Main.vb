@@ -24,7 +24,10 @@ function Main() {{
     Private Function CreateJSEngine() As EngineEx
         Dim options As Options = New Options()
         options.AllowClr()
-        options.AllowClr(Assembly.GetExecutingAssembly)
+        options.AllowClr(GetType(Main).Assembly)
+        'APIs.API.Log(Assembly.GetExecutingAssembly.GetName)
+        'APIs.API.Log(Assembly.GetCallingAssembly.GetName)
+        'APIs.API.Log(Assembly.GetEntryAssembly.GetName)
         options.AllowClr(GetType(FileIO.FileSystem).Assembly)
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
@@ -98,6 +101,7 @@ function Main() {{
 #If DEBUG Then
             If Not Directory.Exists(Path.Combine(API.PluginDataPath, "scripts ")) Then Directory.CreateDirectory(Path.Combine(API.PluginDataPath, "scripts "))
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\main.js"), My.Resources.ResourceFiles.main)
+            File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\ListEx.js"), My.Resources.ResourceFiles.ListEx)
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")
             File.Delete(indexPath)
             Return My.Resources.ResourceFiles.index

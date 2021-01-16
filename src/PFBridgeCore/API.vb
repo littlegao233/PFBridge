@@ -12,9 +12,10 @@ Public Module APIs
             Public OnGroupMessage As New EventsMapItem(Of GroupMessageEventsArgs)
             Public Class GroupMessageEventsArgs
                 Inherits BaseEventsArgs
-                Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String))
-                    GroupId = _Group : senderId = _QQ : message = msg
+                Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String), _Feedback As Action(Of String))
+                    groupId = _Group : senderId = _QQ : message = msg
                     getGroupName = _getGroupName : getQQCard = _getQQCard : getQQNick = _getQQNick
+                    Feedback = _Feedback
                 End Sub
                 Public ReadOnly Property groupId As Long
                 Public ReadOnly Property groupName As String
@@ -37,6 +38,7 @@ Public Module APIs
                 Public Property getGroupName As Func(Of String)
                 Public Property getQQNick As Func(Of String)
                 Public Property getQQCard As Func(Of String)
+                Public Property Feedback As Action(Of String)
             End Class
 #End Region
         End Class

@@ -36,7 +36,7 @@
     - - [X] OnoQQ机器人框架支持
     - - [X] 小栗子框架支持
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)客户端支持
-    - - [X] go-cqhttp客户端支持
+    - - [ ] go-cqhttp客户端支持
     - - [ ] QQmini框架支持（需要Pro版本）(暂不适配)
     - - [ ] 可爱猫微信机器人框架支持
     - - [ ] Discord支持
