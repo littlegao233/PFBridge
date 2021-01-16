@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.props" Condition="Exists('..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.props')" />
+  <Import Project="..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.props" Condition="Exists('..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -94,11 +94,11 @@
     <Reference Include="Unity.Container, Version=5.11.8.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.11.7\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
-    <Reference Include="XQ.Net, Version=0.3.6.3, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XQ.Net.0.3.6.3-beta\lib\netstandard2.0\XQ.Net.dll</HintPath>
+    <Reference Include="XQ.Net, Version=0.3.6.4, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XQ.Net.0.3.6.4-beta\lib\netstandard2.0\XQ.Net.dll</HintPath>
     </Reference>
-    <Reference Include="XQ.Net.Pack, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XQ.Net.Pack.1.1.1-beta\lib\netstandard2.0\XQ.Net.Pack.dll</HintPath>
+    <Reference Include="XQ.Net.Pack, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XQ.Net.Pack.1.2.0-beta\lib\netstandard2.0\XQ.Net.Pack.dll</HintPath>
     </Reference>
     <Reference Include="XQ.Net.SDK, Version=0.3.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XQ.Net.SDK.0.3.5.1\lib\netstandard2.0\XQ.Net.SDK.dll</HintPath>
@@ -171,11 +171,10 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets'))" />
     <Error Condition="!Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets'))" />
-    <Error Condition="!Exists('..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.props'))" />
-    <Error Condition="!Exists('..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.targets'))" />
+    <Error Condition="!Exists('..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.props'))" />
+    <Error Condition="!Exists('..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets'))" />
   </Target>
   <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets')" />
-  <Import Project="..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.targets" Condition="Exists('..\packages\XQ.Net.Pack.1.1.1-beta\build\XQ.Net.Pack.targets')" />
   <PropertyGroup>
     <PostBuildEvent>cd "$(SolutionDir)"
 cd ..
@@ -185,4 +184,5 @@ rmdir /s/q "%25GenFolder%25"
 Xcopy "%25SourceFolder%25" "%25GenFolder%25"  /s/e/h/i/q
 rmdir /s/q "%25SourceFolder%25"</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets" Condition="Exists('..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets')" />
 </Project>

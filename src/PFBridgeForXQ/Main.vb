@@ -19,8 +19,8 @@ Friend Module Main
     Public Sub OnStartup(sender As Object, e As XQEventArgs)
         GroupMsgAPI = e.XQAPI
         Try
-            Dim path As String = Environment.CurrentDirectory + "\Plugin\Temp\PFBridge.XQ.dll"
-            PFBridgeCore.AssemblyList.Add(path, Reflection.Assembly.LoadFrom(path))
+            'Dim path As String = Environment.CurrentDirectory + "\Plugin\Temp\PFBridge.XQ.dll"
+            'PFBridgeCore.AssemblyList.Add(path, Reflection.Assembly.LoadFrom(path))
             PFBridgeCore.Init(New API) '核心启动
         Catch ex As Exception
             XQ.Net.SDK.XQAPI.OutPutLog("错误:" + ex.ToString)
