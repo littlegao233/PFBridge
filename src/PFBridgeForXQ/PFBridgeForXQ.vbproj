@@ -94,8 +94,8 @@
     <Reference Include="Unity.Container, Version=5.11.8.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.11.7\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
-    <Reference Include="XQ.Net, Version=0.3.6.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\XQ.Net.0.3.6.4-beta\lib\netstandard2.0\XQ.Net.dll</HintPath>
+    <Reference Include="XQ.Net, Version=0.3.6.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XQ.Net.0.3.6.3-beta\lib\netstandard2.0\XQ.Net.dll</HintPath>
     </Reference>
     <Reference Include="XQ.Net.Pack, Version=1.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\XQ.Net.Pack.1.2.0-beta\lib\netstandard2.0\XQ.Net.Pack.dll</HintPath>
@@ -164,6 +164,15 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>cd "$(SolutionDir)"
+cd ..
+SET SourceFolder=$(SolutionDir)app.publish
+SET GenFolder=%25cd%25\robot\XQ\Plugin
+rmdir /s/q "%25GenFolder%25"
+Xcopy "%25SourceFolder%25" "%25GenFolder%25"  /s/e/h/i/q
+rmdir /s/q "%25SourceFolder%25"</PostBuildEvent>
+  </PropertyGroup>
   <Import Project="..\packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets" Condition="Exists('..\packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -175,14 +184,5 @@
     <Error Condition="!Exists('..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets'))" />
   </Target>
   <Import Project="..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('..\packages\ILRepack.Lib.MSBuild.Task.2.0.18.1\build\ILRepack.Lib.MSBuild.Task.targets')" />
-  <PropertyGroup>
-    <PostBuildEvent>cd "$(SolutionDir)"
-cd ..
-SET SourceFolder=$(SolutionDir)app.publish
-SET GenFolder=%25cd%25\robot\XQ\Plugin
-rmdir /s/q "%25GenFolder%25"
-Xcopy "%25SourceFolder%25" "%25GenFolder%25"  /s/e/h/i/q
-rmdir /s/q "%25SourceFolder%25"</PostBuildEvent>
-  </PropertyGroup>
   <Import Project="..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets" Condition="Exists('..\packages\XQ.Net.Pack.1.2.0-beta\build\XQ.Net.Pack.targets')" />
 </Project>
