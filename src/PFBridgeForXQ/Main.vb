@@ -22,9 +22,7 @@ Friend Module Main
             'Dim path As String = Environment.CurrentDirectory + "\Plugin\Temp\PFBridge.XQ.dll"
             'PFBridgeCore.AssemblyList.Add(path, Reflection.Assembly.LoadFrom(path))
             PFBridgeCore.Init(New API) '核心启动
-            XQ.Net.SDK.XQAPI.OutPutLog("(XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)")
-            XQ.Net.SDK.XQAPI.OutPutLog("(XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)")
-            XQ.Net.SDK.XQAPI.OutPutLog("(XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)")
+            'XQ.Net.SDK.XQAPI.OutPutLog("(XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)")
         Catch ex As Exception
             XQ.Net.SDK.XQAPI.OutPutLog("错误:" + ex.ToString)
         End Try

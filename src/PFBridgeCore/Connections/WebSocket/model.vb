@@ -23,6 +23,15 @@ Namespace PFWebsocketAPI.Model
     End Class
     Friend Class EncryptedPack    '加密包
         Inherits PackBase
+        Public Overrides Function ToString() As String
+            Return New JObject From {
+            New JProperty("type", type),
+            New JProperty("params", New JObject From {
+                New JProperty("mode", params.mode),
+                New JProperty("raw", params.raw)
+            })
+            }.ToString(Formatting.None)
+        End Function
         Public Overrides ReadOnly Property type As PackType = PackType.encrypted
         Public params As ParamMap
         Friend Sub New(json As JObject) '通过已有json初始化对象（通常用作传入解析）
@@ -188,6 +197,16 @@ Namespace PFWebsocketAPI.Model
         'Friend Sub New(json As JObject)
         '    params = GetParams(Of ParamMap)(json)
         'End Sub
+        Public Overrides Function ToString() As String
+            Return New JObject From {
+            New JProperty("action", action),
+            New JProperty("type", type),
+            New JProperty("params", New JObject From {
+                New JProperty("cmd", params.cmd),
+                New JProperty("id", params.id)
+            })
+            }.ToString(Formatting.None)
+        End Function
         Friend Sub New(json As JObject, con As Object)
             params = GetParams(Of ParamMap)(json)
             params.con = con

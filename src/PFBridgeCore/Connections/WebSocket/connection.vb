@@ -4,9 +4,15 @@ Namespace Ws
     Public Class Connection
         Implements IBridgeMCBase
         Public Sub RunCmd(cmd As String) Implements IBridgeMCBase.RunCmd
-            Dim packet1 = New ActionRunCmd(cmd, "", Nothing)
-            Dim packet2 = New EncryptedPack(EncryptionMode.AES256, packet1.ToString(), Token)
-            Client.Send(packet2.ToString)
+            Try
+                Dim packet1 As ActionRunCmd = New ActionRunCmd(cmd, "", Nothing)
+                Dim packet2 = New EncryptedPack(EncryptionMode.AES256, packet1.ToString(), Token)
+                Client.Send(packet2.ToString)
+            Catch ex As Exception
+                API.LogErr(ex)
+            End Try
+
+
         End Sub
         Public Sub RunCmd(cmd As String, callback As Action(Of String)) Implements IBridgeMCBase.RunCmdCallback
             Dim packet1 = New ActionRunCmd(cmd, Rnd() * Integer.MaxValue, Nothing)

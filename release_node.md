@@ -3,5 +3,5 @@
  - <h4>PFBridgeForCQ.zip内含dll和json，用于原酷Q加载器(如Mirai Native和CQXQ)</h4>
  - #### PFBridge.OQ.dll用于OnoQQ框架
  - #### PFBridge.XiaoLz.dll用于小栗子框架
- - ###### ~~PFBridge.XQ.dll用于先驱机器人框架（注意先驱需要加载后重启框架，即保证启动框架的时候已加载，否则有bug）~~ <h5>(XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)</h5>
+ - #### PFBridge.XQ.dll用于先驱机器人框架（注意先驱需要加载后重启框架，即保证启动框架的时候已加载，否则有bug）
  - #### PFBridgeForOPQ.zip内含可执行文件，OPQ框架使用（支持linux：[参考信息](https://github.com/traceless0929/Traceless.OPQ)）
