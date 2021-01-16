@@ -23,7 +23,7 @@ const Servers = [
     }*/
 ]
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
-const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
+const ConnectionManager =  PFBridgeCore.ConnectionManager;
 /**
  * 添加基于WebsocketAPI的mc连接
  * @param {string} url websocket地址

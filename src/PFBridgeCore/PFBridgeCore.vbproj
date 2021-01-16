@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <RootNamespace>PFBridgeCore</RootNamespace>
-    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net461;net5;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net461;net48;net5;netcoreapp3.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
   </PropertyGroup>
 
@@ -57,6 +57,9 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="better-websocket-sharp" Version="1.0.2.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <PackageReference Include="better-websocket-sharp" Version="1.0.2.1" />
   </ItemGroup>
 

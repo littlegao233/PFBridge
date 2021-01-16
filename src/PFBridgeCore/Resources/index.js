@@ -5,12 +5,13 @@
 */
 const IO = importNamespace('System.IO');//导入命名空间
 const FileSystem = importNamespace('Microsoft.VisualBasic.FileIO').FileSystem;
-const api = importNamespace('PFBridgeCore').APIs.API
-const events = importNamespace('PFBridgeCore').APIs.Events
-const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+const PFBridgeCore =  importNamespace('PFBridgeCore') 
+const api = PFBridgeCore.APIs.API
+const events = PFBridgeCore.APIs.Events
+const MCConnections = PFBridgeCore.ConnectionList.MCConnections
 //#region 加载自定义程序集(位于libs目录下)
 try {
-    const AssemblyEx = importNamespace('PFBridgeCore').AssemblyEx;
+    const AssemblyEx = PFBridgeCore.AssemblyEx;
     const custom_libs_path = IO.Path.Combine(api.pluginDataPath, "libs")//位于".\插件目录\libs\*.dll"
     if (!IO.Directory.Exists(custom_libs_path)) IO.Directory.CreateDirectory(custom_libs_path)//如果未找到目录就创建目录
     let FileList = FileSystem.GetFiles(custom_libs_path);
@@ -34,7 +35,7 @@ api.log('JavaScript自定义配置加载中...');
 api.log('文件位于:' + IO.Path.Combine(api.pluginDataPath, "index.js"));
 //#region 清理重载前的残留
 try {
-    const events = importNamespace('PFBridgeCore').APIs.Events
+    const events = PFBridgeCore.APIs.Events
     events.QQ.OnGroupMessage.Clear();
     events.Server.Chat.Clear();
     events.Server.Cmd.Clear();
@@ -60,7 +61,7 @@ if (IO.Directory.Exists(custom_script_path)) {
         if (file.toLowerCase().endsWith(".js")) FileListJS.push(file);//添加js文件到加载列表
     }
     api.log('scripts目录下读取到' + FileListJS.length + '个自定义脚本，开始加载...');
-    const engine = importNamespace('PFBridgeCore').Main.Engine
+    const engine = PFBridgeCore.Main.Engine
     FileListJS.forEach(file => {
         try {
             engine.Run(IO.File.ReadAllText(file));
