@@ -33,7 +33,7 @@
     - [x] 多机器人框架支持
     - - [x] 原酷Q插件支持（兼容Mirai Native、CQXQ等）
     - - [ ] ~~先驱机器人框架支持~~ 
-    - - - (XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)
+    -   - (XQ的SDK或插件机制存在问题，造成程序集无法完整加载，无法正常使用，请使用[CQXQ](https://github.com/w4123/CQXQ)加载PFBridgeForCQ替代)
     - - [X] OnoQQ机器人框架支持
     - - [X] 小栗子框架支持
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)客户端支持
