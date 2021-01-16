@@ -30,7 +30,7 @@ namespace IBoxs.Core.App
         /// <summary>
         /// Skey
         /// </summary>
-        public static string skey
+        public static string Skey
         {
             get
             {

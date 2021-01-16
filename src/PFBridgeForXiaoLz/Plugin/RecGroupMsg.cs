@@ -39,7 +39,7 @@ namespace PFBridgeForXiaoLz.Plugin
             //{
             //    Common.xlzAPI.GetReceiveRedEnvelopeEvent(e.ThisQQ, e.MessageGroupQQ,e.SenderQQ, "", 2,"");
             //}
-            App.OnMessageReceived(ref e);
+            App.OnMessageReceived(  e);
         }
      }
 }

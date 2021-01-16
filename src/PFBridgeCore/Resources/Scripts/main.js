@@ -148,11 +148,13 @@ function ProcessServerMsgToOtherServer(id, message) {
 //#region QQ主体部分
 events.QQ.onGroupMessage.add(function (e) {
     try {
-        let index = Groups.findIndex(l => l.id == e.fromGroup);//匹配群号（于配置）
+        const { groupId } = e
+        let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
         if (index !== -1) {
             let group = Groups[index];
-            let msg = e.message;
-            if (msg.startsWith('/')) {
+            //let msg = e.message;
+            const { senderId, message } = e
+            if (message.startsWith('/')) {
                 //const act1 = /^(\S+)/.exec(msg.substr(1));
                 //if (AdminQQs.indexOf(e.fromQQ) === -1) {
                 //    api.SendGroupMessage(e.fromGroup, "无权限!")
@@ -165,8 +167,9 @@ events.QQ.onGroupMessage.add(function (e) {
                 //}
             } else {
                 if (group.GroupMsgToServer) {
-                    api.log(JSON.stringify(e));
-                    SendBoardcastToAllServer(e.message);
+                    const { groupName, senderNick, memberCard } = e
+                    let msg = `[${groupName}]${memberCard}>${message}`
+                    SendBoardcastToAllServer(msg);
                 }
                 //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
                 //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)

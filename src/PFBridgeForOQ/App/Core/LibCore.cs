@@ -42,7 +42,7 @@ namespace IBoxs.Core.App.Core
             Common.Author = "littlegao233";
             Common.AppDirectory = Application.StartupPath + @"\Config\" + Common.AppName;
             Common.Description = "PFBridgeForOQ beta by gxh (github:https://github.com/littlegao233/PFBridge)";
-            Common.skey = "8956RTEWDFG3216598WERDF3";
+            Common.Skey = "8956RTEWDFG3216598WERDF3";
             Common.SDK = "S3";
             Initialize();
             return AppInfoHandle();
@@ -54,7 +54,7 @@ namespace IBoxs.Core.App.Core
                 "插件版本{"+Common.AppVersion+"}\r" +
                 "插件作者{"+Common.Author+"}\r" +
                 "插件说明{"+Common.Description+"}\r" +
-                "插件skey{"+Common.skey+"}\r" +
+                "插件skey{"+Common.Skey+"}\r" +
                 "插件sdk{"+Common.SDK+"}";
             return ret;
         }

@@ -40,8 +40,7 @@ Namespace PFBridgeForCQ
                                                                                     CQDeCode(e.Message.Content),
                                                                                     Function() e.Source.DisplayName,
                                                                                     Function() e.Sender.Nickname,
-                                                                                    Function() e.Sender.DisplayName)
-                                                                                    )
+                                                                                    Function() e.Sender.DisplayName))
         End Sub
         Public Shared Function CQDeCode(source As String) As String
             If (source Is Nothing) Then Return String.Empty
