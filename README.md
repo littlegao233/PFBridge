@@ -49,7 +49,7 @@
 ---
 - ## Usage/使用方法
 >---
->- MC服务器部分
+>- ### MC服务器部分
 >- - 下载PFWebsocketAPI([Minebbs](https://www.minebbs.com/>resources/csr-pfwebsocketapi.1632/)|[Github](https://github.>com/littlegao233/PFWebsocketAPI/releases))
 >- - 使用BDSNetRunner配合插件注入器加载下载PFWebsocketAPI.csr.>dll(不再赘述)
 >- - 配置好并记下`[BDS]\plugins\PFWebsocket\config.json`的配置>参数
@@ -61,7 +61,7 @@
 >}
 >```
 >---
->- QQ部分
+>- ### QQ部分
 >- - 启动某机器人框架
 >- - 下载对应已构建文件(<a href="https://github.com/littlegao233/PFBridge/releases">最新可执行文件</a>)
 >- - 根据提示加载本插件(不再赘述)
