@@ -38,6 +38,7 @@
     - - [x] 原酷Q插件支持（兼容Mirai Native、CQXQ等）
     - - [x] 先驱机器人框架支持
     - - [X] OnoQQ机器人框架支持
+    - - [X] ERbot机器人框架支持
     - - [X] 小栗子框架支持
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)客户端支持
     - - [ ] go-cqhttp客户端支持
