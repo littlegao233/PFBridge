@@ -35,7 +35,7 @@ Namespace Ws
                                            API.LogErr($"{Client.Url}遇到错误：{ e.Exception}")
                                        End Sub
             AddHandler Client.OnClose, Sub(sender, e)
-                                           API.Log($"{Client.Url}断开连接，将自动尝试重连： " & e.Reason)
+                                           API.LogErr($"{Client.Url}断开连接，将自动尝试重连： " & e.Reason)
                                        End Sub
             AddHandler CheckTimer.Elapsed, Sub(sender, e)
                                                Try

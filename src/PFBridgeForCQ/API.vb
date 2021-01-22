@@ -1,6 +1,7 @@
 ﻿Imports PFBridgeCore
 Imports HuajiTech.CoolQ
 Imports System.Collections.Generic
+Imports System
 
 Namespace PFBridgeForCQ
     Friend Module Data
@@ -38,7 +39,9 @@ Namespace PFBridgeForCQ
             CurrentPluginContext.Logger.LogSuccess(Message.ToString())
         End Sub
         Public Sub LogErr(Message As Object) Implements IBridgeQQBase.LogErr
-            CurrentPluginContext.Logger.LogWarning(Message.ToString())
+            Try
+                CurrentPluginContext.Logger.LogWarning(Message.ToString())
+            Catch ex As Exception : System.Console.WriteLine(ex) : End Try
         End Sub
         Public Sub SendGroupMessage(TargetGroup As Long, Message As String) Implements IBridgeQQBase.SendGroupMessage
             GetGroup(TargetGroup).Send(Message)

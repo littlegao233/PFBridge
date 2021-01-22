@@ -14,10 +14,6 @@
 //        }
 //    })
 //}
-
-
-
-
 /**
  * 发送消息到指定玩家
  * @param {*} connection 连接实例
@@ -39,6 +35,7 @@ function encodeUnicode(str) {
     return "\\u" + res.join("\\u");
 }
 //#endregion <<<<<-----公共方法(建议折叠)-----<<<<<
+const events = importNamespace('PFBridgeCore').APIs.Events
 events.Server.Cmd.add(function (e) {
     try {
         const { connection, sender, cmd } = e;

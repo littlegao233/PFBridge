@@ -22,8 +22,14 @@ const Servers = [
         token: "commandpassword",//websocket密匙串（用于运行命令等操作）
     }*/
 ]
+ 
+
+
+
+
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
-const ConnectionManager =  PFBridgeCore.ConnectionManager;
+const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
+const events = importNamespace('PFBridgeCore').APIs.Events
 /**
  * 添加基于WebsocketAPI的mc连接
  * @param {string} url websocket地址
@@ -31,8 +37,8 @@ const ConnectionManager =  PFBridgeCore.ConnectionManager;
  * 参考：ws://127.0.0.1:29132/mcws
  * @param {string} token 密匙串（用于运行命令等操作）
  */
-function AddWebsocket(url, token,tag) {
-    return ConnectionManager.AddWebsocketClient(url, token,tag)
+function AddWebsocket(url, token, tag) {
+    return ConnectionManager.AddWebsocketClient(url, token, tag)
 }
 /**
  * 发送消息到所有已经连接并且配置开启GroupMsgToServer的MC服务器
@@ -95,20 +101,20 @@ events.Server.Chat.add(function (e) {
         api.LogErr("events.Server.Chat.error:" + e);
     }
 })
-events.Server.Cmd.add(function (e) {
-    try {
-        const { connection, sender, cmd } = e
-        const { Id } = connection
-        ProcessServerMsgToGroup(JSON.stringify(e));
-    } catch (e) {
-        api.LogErr("events.Server.Cmd.error:" + e);
-    }
-})
+//events.Server.Cmd.add(function (e) {
+//    try {
+//        const { connection, sender, cmd } = e
+//        const { Id } = connection
+//        ProcessServerMsgToGroup(JSON.stringify(e));
+//    } catch (e) {
+//        api.LogErr("events.Server.Cmd.error:" + e);
+//    }
+//})
 events.Server.Join.add(function (e) {
     try {
         const { connection, sender, ip, uuid, xuid } = e
         const { Id } = connection
-        ProcessServerMsgToGroup(JSON.stringify(e));
+        ProcessServerMsgToGroup(`[${server.name}:Join]${sender}加入了服务器`);
     } catch (e) {
         api.LogErr("events.Server.Join.error:" + e);
     }
@@ -117,7 +123,7 @@ events.Server.Left.add(function (e) {
     try {
         const { connection, sender, ip, uuid, xuid } = e
         const { Id } = connection
-        ProcessServerMsgToGroup(JSON.stringify(e));
+        ProcessServerMsgToGroup(`[${server.name}:Left]${sender}离开了服务器`);
     } catch (e) {
         api.LogErr("events.Server.Left.error:" + e);
     }

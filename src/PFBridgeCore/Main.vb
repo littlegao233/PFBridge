@@ -11,13 +11,18 @@ Public Module Main
         Public Sub New(options As Options)
             MyBase.New(options)
         End Sub
-        Public Sub Run(content As String)
-            Execute($"
-function Main() {{
+        Public Shadows Sub Execute(content As String)
+            Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
+            'Dim rndstr As String = Nothing
+            MyBase.Execute($"
+function Main{rndstr}() {{
     {content}
 }}
     ")
-            Invoke("Main")
+            Invoke($"Main{rndstr}")
+        End Sub
+        Public Sub Run(content As String)
+            Execute(content)
         End Sub
     End Class
     Public Property Engine As EngineEx = Nothing
@@ -70,7 +75,7 @@ function Main() {{
                 APIs.Events.QQ.OnGroupMessage.Clear()
             Catch : End Try
 #If DEBUG Then
-            e.Execute(JSRaw, New ParserOptions(JSRaw))
+            e.Execute(JSRaw)
 #Else
             e.Execute(JSRaw)
 #End If
