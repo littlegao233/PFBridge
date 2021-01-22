@@ -9,7 +9,7 @@ const Groups = [
 const Servers = [
     {
         type: "websocket",
-        url: "ws://127.0.0.1:29132/mcws",//websocket地址
+        url: "ws://127.0.0.1:29132/mcws",//websocket地址,{"Port": "29132","EndPoint": "mcws", 
         token: "commandpassword",//websocket密匙串（用于运行命令等操作）
         name: "测试服务器",
         ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
