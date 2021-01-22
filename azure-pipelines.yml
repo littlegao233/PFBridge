@@ -19,7 +19,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: '.\reset.cmd'
+    script: '.\recover.cmd'
 
 - task: NuGetCommand@2
   inputs:
