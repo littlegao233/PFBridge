@@ -70,7 +70,7 @@
 >- - - `libs`文件夹用于加载net类库(.dll)，加载后可在脚本中使用`const xxx = importNamespace('net命名空间')`来使用
 >- - - `scripts`文件夹存放的是主体部分的脚本
 >- 使用专业的编辑器(别拿个记事本截图问怎么用)(如[VisualStudioCode](https://code.visualstudio.com/))打开插件数据目录`scripts`文件夹下的`main.js`
->- 可以在文件的前几行看到详细的注释，
+>- 可以在文件的前几行看到详细的注释，自行修改对应内容即可
 >```javascript
 >const AdminQQs = [441870948, 233333]//管理员QQ号
 >const Groups = [
