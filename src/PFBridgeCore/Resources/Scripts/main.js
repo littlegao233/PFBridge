@@ -30,6 +30,8 @@ const Servers = [
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
 const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
 const events = importNamespace('PFBridgeCore').APIs.Events
+const api = importNamespace('PFBridgeCore').APIs.API
+
 /**
  * 添加基于WebsocketAPI的mc连接
  * @param {string} url websocket地址

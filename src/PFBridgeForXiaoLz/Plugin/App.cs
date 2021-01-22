@@ -15,8 +15,8 @@ namespace PFBridgeForXiaoLz.Plugin
         {
             if (!hasStarted)
             {
-                PFBridgeCore.Main.Init(new API());
                 hasStarted = true;
+                PFBridgeCore.Main.Init(new API());
             }
             RefreshQQList();
         }

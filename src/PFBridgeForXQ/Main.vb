@@ -34,7 +34,7 @@ Friend Module Main
     End Sub
     Friend ReadOnly Property QQList As List(Of String)
         Get
-            Return XQ.Net.SDK.XQAPI.GetQQList.Split(New Char() {vbLf, vbCr}, StringSplitOptions.RemoveEmptyEntries).ToList
+            Return XQ.Net.SDK.XQAPI.GetOnLineList.Split(New Char() {vbLf, vbCr}, StringSplitOptions.RemoveEmptyEntries).ToList
         End Get
     End Property
     Friend GroupMsgAPI As XQ.Net.SDK.XQAPI
