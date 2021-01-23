@@ -15,14 +15,14 @@ Namespace PFWebsocketAPI.Model
             Next
             Return sTemp.ToUpper()
         End Function
-        Public Function AESEncrypt(content As String, password As String)
-            Dim md5 = GetMD5(content)
+        Public Function AESEncrypt(content As String, password As String) As String
+            Dim md5 = GetMD5(password)
             Dim iv As String = md5.Substring(16)
             Dim key As String = md5.Remove(16)
             Return EasyEncryption.AES.Encrypt(content, key, iv)
         End Function
-        Public Function AESDecrypt(content As String, password As String)
-            Dim md5 = GetMD5(content)
+        Public Function AESDecrypt(content As String, password As String) As String
+            Dim md5 = GetMD5(password)
             Dim iv As String = md5.Substring(16)
             Dim key As String = md5.Remove(16)
             Return EasyEncryption.AES.Decrypt(content, key, iv)
