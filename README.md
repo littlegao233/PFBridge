@@ -100,10 +100,24 @@
 >]
 >```
 ---
-- ## 鸣谢(直接或间接使用到的库和源码)
+- ## Thanks/鸣谢
+- - (直接或间接使用到的库和源码)
 >| name | link |
 >|  ----|----  |
 >| Jint | https://github.com/sebastienros/jint |
->| IBoxsForOnoQQ | https://github.com/zqu1016/IBoxsForOnoQQ |
->| BDS API | https://github.com/MCMrARM |
->| BDS API | https://github.com/codehz/cobblestone  |
+>| Costura.Fody | https://github.com/Fody/Costura |
+>| Newtonsoft.Json | https://www.newtonsoft.com/json |
+>| DllExport | https://github.com/3F/DllExport |
+>| SIPSorcery.WebSocketSharp | https://github.com/sipsorcery/websocket-sharp |
+>| SimpleAES | https://github.com/jonjomckay/dotnet-simpleaes |
+>| `Sora` | https://github.com/Yukari316/Sora |
+>| `CSharpIRQQ` | https://gitee.com/qinghuabumo_admin/CSharpIRQQ |
+>| `Traceless.OPQ` | https://github.com/traceless0929/Traceless.OPQ |
+>| `ProjHyperai` | https://github.com/theGravityLab/ProjHyperai |
+>| `QQMini.PluginSDK` | https://github.com/QQMiniBot/QQMini.PluginSDK |
+>| `XQ.Net` | https://gitee.com/heerkaisair/XQ.Net |
+>| `HuajiTech.CoolQ` | https://github.com/huajitech/coolq-dotnet-sdk |
+>| `XiaolzCSharp` | https://github.com/laomms/XiaolzCSharp |
+>| `XiaoLiZi_SDK` | https://github.com/wpyok168/XiaoLiZi_SDK |
+>| `IBoxsForCorn` | https://github.com/zqu1016/IBoxsForCorn |
+>| `IBoxsForOnoQQ` | https://github.com/zqu1016/IBoxsForOnoQQ |
