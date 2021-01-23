@@ -38,12 +38,12 @@
     - - [x] 原酷Q插件支持（兼容Mirai Native、CQXQ等）
     - - [x] 先驱机器人框架支持
     - - [X] OnoQQ机器人框架支持
-    - - [X] ERbot机器人框架支持
     - - [X] 小栗子框架支持
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)客户端支持
     - - [ ] go-cqhttp客户端支持
     - - [ ] Nanbot支持
-    - - [ ] NutQQ支持
+    - - [X] ERbot机器人框架支持(重命名`PFBridge.IR.dll`为`PFBridge.ER.dll`即可载入)
+    - - [x] NutQQ支持(重命名`PFBridge.IR.dll`为`PFBridge.NT.dll`即可载入)
     - - [ ] QQmini框架支持（需要Pro版本）(暂不适配)
     - - [ ] 可爱猫微信机器人框架支持
     - - [ ] Discord支持
@@ -99,3 +99,11 @@
 >    }*/
 >]
 >```
+---
+- ## 鸣谢(直接或间接使用到的库和源码)
+>| name | link |
+>|  ----|----  |
+>| Jint | https://github.com/sebastienros/jint |
+>| IBoxsForOnoQQ | https://github.com/zqu1016/IBoxsForOnoQQ |
+>| BDS API | https://github.com/MCMrARM |
+>| BDS API | https://github.com/codehz/cobblestone  |
