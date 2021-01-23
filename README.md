@@ -121,3 +121,4 @@
 >| `XiaoLiZi_SDK` | https://github.com/wpyok168/XiaoLiZi_SDK |
 >| `IBoxsForCorn` | https://github.com/zqu1016/IBoxsForCorn |
 >| `IBoxsForOnoQQ` | https://github.com/zqu1016/IBoxsForOnoQQ |
+>| `OneBot 标准` | https://github.com/howmanybots/onebot |

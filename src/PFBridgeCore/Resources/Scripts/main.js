@@ -22,7 +22,7 @@ const Servers = [
         token: "commandpassword",//websocket密匙串（用于运行命令等操作）
     }*/
 ]
- 
+
 
 
 
@@ -86,48 +86,50 @@ Servers.forEach(server => {//添加所有服务器到实例
     }
 });
 events.Server.Chat.add(function (e) {
-    try {
-        const { connection, sender, message } = e
-        const { Id } = connection
-        let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
-        if (index !== -1) {
-            let server = Servers[index];
-            if (server.ServerMsgToGroup) {
-                ProcessServerMsgToGroup(`[${server.name}:Chat]${sender}>${message}`);
-            }
-            if (server.ServerMsgToOther) {
-                ProcessServerMsgToOtherServer(Id, `[${server.name}:Chat]${sender}>${message}`);
-            }
+    const { connection, sender, message } = e
+    const { Id } = connection
+    let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
+    if (index !== -1) {
+        let server = Servers[index];
+        if (server.ServerMsgToGroup) {
+            ProcessServerMsgToGroup(`[${server.name}:Chat]${sender}>${message}`);
         }
-    } catch (e) {
-        api.LogErr("events.Server.Chat.error:" + e);
+        if (server.ServerMsgToOther) {
+            ProcessServerMsgToOtherServer(Id, `[${server.name}:Chat]${sender}>${message}`);
+        }
     }
 })
 //events.Server.Cmd.add(function (e) {
-//    try {
 //        const { connection, sender, cmd } = e
 //        const { Id } = connection
 //        ProcessServerMsgToGroup(JSON.stringify(e));
-//    } catch (e) {
-//        api.LogErr("events.Server.Cmd.error:" + e);
-//    }
 //})
 events.Server.Join.add(function (e) {
-    try {
-        const { connection, sender, ip, uuid, xuid } = e
-        const { Id } = connection
-        ProcessServerMsgToGroup(`[${server.name}:Join]${sender}加入了服务器`);
-    } catch (e) {
-        api.LogErr("events.Server.Join.error:" + e);
+    const { connection, sender, ip, uuid, xuid } = e
+    const { Id } = connection
+    let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
+    if (index !== -1) {
+        let server = Servers[index];
+        if (server.ServerMsgToGroup) {
+            ProcessServerMsgToGroup(`[${server.name}:Join]${sender}加入了服务器`);
+        }
+        if (server.ServerMsgToOther) {
+            ProcessServerMsgToOtherServer(Id, `[${server.name}:Join]${sender}加入了服务器`);
+        }
     }
 })
 events.Server.Left.add(function (e) {
-    try {
-        const { connection, sender, ip, uuid, xuid } = e
-        const { Id } = connection
-        ProcessServerMsgToGroup(`[${server.name}:Left]${sender}离开了服务器`);
-    } catch (e) {
-        api.LogErr("events.Server.Left.error:" + e);
+    const { connection, sender, ip, uuid, xuid } = e
+    const { Id } = connection
+    let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
+    if (index !== -1) {
+        let server = Servers[index];
+        if (server.ServerMsgToGroup) {
+            ProcessServerMsgToGroup(`[${server.name}:Left]${sender}离开了服务器`);
+        }
+        if (server.ServerMsgToOther) {
+            ProcessServerMsgToOtherServer(Id, `[${server.name}:Left]${sender}离开了服务器`);
+        }
     }
 })
 function ProcessServerMsgToGroup(message) {
@@ -182,8 +184,8 @@ events.QQ.onGroupMessage.add(function (e) {
                 //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
             }
         }
-    } catch (e) {
-        api.LogErr("events.QQ.onGroupMessage.error:" + e);
+    } catch (error) {
+        api.LogErr("events.QQ.onGroupMessage.error:" + error);
     }
 })
 //#endregion

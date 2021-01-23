@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>PFBridgeCore</RootNamespace>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net5</TargetFrameworks>
+    <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
+    <RootNamespace>PFBridgeForOneBot</RootNamespace>
+    <StartupObject>(无)</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Sora" Version="0.4.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj" />
+  </ItemGroup>
+
+ 
+
+</Project>

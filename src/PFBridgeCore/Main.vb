@@ -36,7 +36,6 @@ function Main{rndstr}() {{
         options.AllowClr(GetType(FileIO.FileSystem).Assembly)
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
-
 #If DEBUG Then
         options.AllowDebuggerStatement()
         options.DebugMode()
@@ -58,6 +57,11 @@ function Main{rndstr}() {{
         'options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
         Engine = New EngineEx(options)
+#If DEBUG Then
+        'Engine.SetValue("testfunc", Sub(obj)
+        '                                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(obj))
+        '                            End Sub)
+#End If
         'engine.SetValue("ResourceFiles", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType()))
         'engine.SetValue("ConnectionManager", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(ConnectionManager)))
         'engine.SetValue("AssemblyEx", Runtime.Interop.TypeReference.CreateTypeReference(engine, GetType(AssemblyEx)))
