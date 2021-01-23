@@ -69,7 +69,7 @@ events.QQ.onGroupMessage.add(function (e) {
         if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
             const act1 = /^(\S+)/.exec(msg.substr(1))[0];
             switch (act1.toLowerCase()) {
-                case "list": case "查询": case "query":
+                case "list": case "查询": case "查服": case "query":
                     MCConnections.forEach(eachCon => {
                         const ServerName = eachCon.Tag.name;
                         eachCon.RunCmd("list", function (result) {
