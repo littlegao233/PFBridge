@@ -127,6 +127,7 @@ function Main{rndstr}(moduleInfo) {{
             If Not Directory.Exists(Path.Combine(API.PluginDataPath, "scripts ")) Then Directory.CreateDirectory(Path.Combine(API.PluginDataPath, "scripts "))
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\main.js"), My.Resources.ResourceFiles.main)
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\query.js"), My.Resources.ResourceFiles.query)
+            File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\command.js"), My.Resources.ResourceFiles.command)
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")
             File.Delete(indexPath)
             Return My.Resources.ResourceFiles.index

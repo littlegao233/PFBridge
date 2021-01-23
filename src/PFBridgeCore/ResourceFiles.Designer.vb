@@ -65,6 +65,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似  的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property command() As String
+            Get
+                Return ResourceManager.GetString("command", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找类似 //本文件是脚本加载器，正常使用时请勿改动
         '''/*
         '''//写入最新的默认index.js(用于更新)
@@ -112,16 +121,16 @@ Namespace My.Resources
         '''moduleInfo.Version = &quot;v0.0.1&quot;
         '''moduleInfo.Description = &quot;群内使用/list命令查询服务器在线玩家\n服务器内使用/list命令自动反馈其他服务器的在线状态&quot;
         '''
+        '''
+        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
+        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
         '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法(建议折叠)-----&gt;&gt;&gt;&gt;&gt;
         '''// /**
         '''// * 发送消息到所有已经连接并且配置开启GroupMsgToServer的MC服务器
         '''// * @param {string} message 消息内容
         '''// */
         '''//function SendBoardcastToAllServer(message) {
-        '''//    MCConnections.forEach(connection =&gt; {
-        '''//        let index = Servers.findIndex(s =&gt; s.id === connection.Id)
-        '''//        if (index !== -1) {
-        '''//            let server = Server [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''//    MCConnections.forEach(connection  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property query() As String
             Get
