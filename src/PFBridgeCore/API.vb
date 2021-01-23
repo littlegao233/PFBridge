@@ -38,7 +38,7 @@ Public Module APIs
                 Public Property getGroupName As Func(Of String)
                 Public Property getQQNick As Func(Of String)
                 Public Property getQQCard As Func(Of String)
-                Public Property Feedback As Action(Of String)
+                Public Property feedback As Action(Of String)
             End Class
 #End Region
         End Class

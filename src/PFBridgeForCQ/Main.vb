@@ -41,7 +41,7 @@ Namespace PFBridgeForCQ
                                                                                     Function() e.Source.DisplayName,
                                                                                     Function() e.Sender.Nickname,
                                                                                     Function() e.Sender.DisplayName,
-Sub(s) e.Source.Send($"[CQ:At,qq={e.Sender.Number}]{s}")
+Sub(s) e.Source.Send($"[CQ:at,qq={e.Sender.Number}]{s}")
 ))
         End Sub
         Public Shared Function CQDeCode(source As String) As String

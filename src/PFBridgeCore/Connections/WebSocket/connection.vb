@@ -42,7 +42,6 @@ Namespace Ws
                                                    CheckConnect()
                                                Catch : End Try
                                            End Sub
-            Client.ConnectAsync()
             CheckTimer.Start()
         End Sub
         Public Property Client As WebSocket

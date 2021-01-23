@@ -24,6 +24,22 @@ function Main{rndstr}() {{
         Public Sub Run(content As String)
             Execute(content)
         End Sub
+        Public Function LoadModule(content As String) As ModuleInfo
+            Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
+            Dim moduleInfo As New ModuleInfo
+            MyBase.Execute($"
+function Main{rndstr}(moduleInfo) {{
+    {content}
+}}
+    ")
+            Invoke($"Main{rndstr}", moduleInfo)
+            Return moduleInfo
+        End Function
+        Public Class ModuleInfo
+            Public Property Author As String = "unknown"
+            Public Property Description As String = "unknown"
+            Public Property Version As String = "unknown"
+        End Class
     End Class
     Public Property Engine As EngineEx = Nothing
     Private Function CreateJSEngine() As EngineEx
@@ -110,7 +126,7 @@ function Main{rndstr}() {{
 #If DEBUG Then
             If Not Directory.Exists(Path.Combine(API.PluginDataPath, "scripts ")) Then Directory.CreateDirectory(Path.Combine(API.PluginDataPath, "scripts "))
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\main.js"), My.Resources.ResourceFiles.main)
-            File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\ListEx.js"), My.Resources.ResourceFiles.ListEx)
+            File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\query.js"), My.Resources.ResourceFiles.query)
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")
             File.Delete(indexPath)
             Return My.Resources.ResourceFiles.index

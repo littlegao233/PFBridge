@@ -63,7 +63,7 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
-
+        
         '''<summary>
         '''  查找类似 //本文件是脚本加载器，正常使用时请勿改动
         '''/*
@@ -72,27 +72,19 @@ Namespace My.Resources
         '''*/
         '''const IO = importNamespace(&apos;System.IO&apos;);//导入命名空间
         '''const FileSystem = importNamespace(&apos;Microsoft.VisualBasic.FileIO&apos;).FileSystem;
-        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
-        '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
-        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
+        '''const PFBridgeCore = importNamespace(&apos;PFBridgeCore&apos;)
+        '''const api = PFBridgeCore.APIs.API
+        '''const events = PFBridgeCore.APIs.Events
+        '''const MCConnections = PFBridgeCore.ConnectionList.MCConnections
         '''//#region 加载自定义程序集(位于libs目录下)
-        ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''try [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property index() As String
             Get
                 Return ResourceManager.GetString("index", resourceCulture)
             End Get
         End Property
-
-        '''<summary>
-        '''  查找类似  的本地化字符串。
-        '''</summary>
-        Public Shared ReadOnly Property ListEx() As String
-            Get
-                Return ResourceManager.GetString("ListEx", resourceCulture)
-            End Get
-        End Property
-
+        
         '''<summary>
         '''  查找类似 const AdminQQs = [441870948, 233333]//管理员QQ号
         '''const Groups = [
@@ -105,17 +97,35 @@ Namespace My.Resources
         '''const Servers = [
         '''    {
         '''        type: &quot;websocket&quot;,
-        '''        url: &quot;ws://127.0.0.1:29132/mcws&quot;,//websocket地址
-        '''        token: &quot;commandpassword&quot;,//websocket密匙串（用于运行命令等操作）
-        '''        name: &quot;测试服务器&quot;,
-        '''        ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
-        '''        GroupMsgToServer: true,//是否转发群消息到该服务器
-        '''
-        '''        [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''        url: &quot;ws://127.0.0.1:29132/mcws&quot;,//websocket地址|如{&quot;Port&quot;: &quot;29132&quot;,&quot;EndPoint&quot;: &quot;mcws&quot;,&quot;Password&quot;: &quot;commandpassword&quot;}对应ws://127.0.0.1:29132/mcws
+        '''        token: &quot;commandpassword&quot;,//websocket密匙串（用于运行命令等操作）|&quot;Password&quot;: &quot;commandpassword&quot;
+        '''       [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property main() As String
             Get
                 Return ResourceManager.GetString("main", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
+        '''moduleInfo.Version = &quot;v0.0.1&quot;
+        '''moduleInfo.Description = &quot;群内使用/list命令查询服务器在线玩家\n服务器内使用/list命令自动反馈其他服务器的在线状态&quot;
+        '''
+        '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法(建议折叠)-----&gt;&gt;&gt;&gt;&gt;
+        '''// /**
+        '''// * 发送消息到所有已经连接并且配置开启GroupMsgToServer的MC服务器
+        '''// * @param {string} message 消息内容
+        '''// */
+        '''//function SendBoardcastToAllServer(message) {
+        '''//    MCConnections.forEach(connection =&gt; {
+        '''//        let index = Servers.findIndex(s =&gt; s.id === connection.Id)
+        '''//        if (index !== -1) {
+        '''//            let server = Server [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property query() As String
+            Get
+                Return ResourceManager.GetString("query", resourceCulture)
             End Get
         End Property
     End Class

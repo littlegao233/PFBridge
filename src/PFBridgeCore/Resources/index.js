@@ -5,7 +5,7 @@
 */
 const IO = importNamespace('System.IO');//导入命名空间
 const FileSystem = importNamespace('Microsoft.VisualBasic.FileIO').FileSystem;
-const PFBridgeCore =  importNamespace('PFBridgeCore') 
+const PFBridgeCore = importNamespace('PFBridgeCore')
 const api = PFBridgeCore.APIs.API
 const events = PFBridgeCore.APIs.Events
 const MCConnections = PFBridgeCore.ConnectionList.MCConnections
@@ -51,7 +51,10 @@ if (!IO.Directory.Exists(custom_script_path)) {
 }
 if (IO.Directory.Exists(custom_script_path)) {
     //#region 如果没有脚本则输出默认自定义脚本
-    if (FileSystem.GetFiles(custom_script_path).Count == 0) IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "main.js"), ResourceFiles.main)
+    if (FileSystem.GetFiles(custom_script_path).Count == 0) {
+        IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "main.js"), ResourceFiles.main);
+        IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "query.js"), ResourceFiles.query);
+    }
     //#endregion
     let custom_script_success_count = 0, custom_script_failed_count = 0;
     let FileListAll = FileSystem.GetFiles(custom_script_path);//目录下所有文件
@@ -64,8 +67,18 @@ if (IO.Directory.Exists(custom_script_path)) {
     const engine = PFBridgeCore.Main.Engine
     FileListJS.forEach(file => {
         try {
-            engine.Run(IO.File.ReadAllText(file));
-            api.log('自定义脚本"' + IO.Path.GetFileName(file) + '"加载成功！');
+            let loadedInfo = engine.LoadModule(IO.File.ReadAllText(file));
+            const { Author, Description, Version } = loadedInfo
+            api.log('██████████████');
+            api.log('█脚本"' + IO.Path.GetFileName(file) + '"加载成功!');
+            api.log('█作者：' + Author);
+            let isFirstLine = true;
+            Description.split("\n").forEach((s) => {
+                api.log((isFirstLine ? '█描述：' : '█　　　') + s);
+                isFirstLine = false;
+            });
+            api.log('█版本：' + Version);
+            api.log('██████████████');
             custom_script_success_count++;
         } catch (e) {
             api.LogErr('自定义脚本"' + IO.Path.GetFileName(file) + '"运行出错：' + e);

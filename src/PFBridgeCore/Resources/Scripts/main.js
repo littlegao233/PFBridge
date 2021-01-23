@@ -23,9 +23,14 @@ const Servers = [
     }*/
 ]
 
+moduleInfo.Author = "littlegao233"
+moduleInfo.Version = "v0.0.1"
+moduleInfo.Description = "包含群与服务器的聊天同步\n以及加入服务器的群反馈"
+//#region 共享数据
+const engine = importNamespace('PFBridgeCore').Main.Engine
+engine.SetValue("ConfigGroups", Groups)
 
-
-
+//#endregion
 
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
 const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
@@ -156,36 +161,32 @@ function ProcessServerMsgToOtherServer(id, message) {
 
 //#region QQ主体部分
 events.QQ.onGroupMessage.add(function (e) {
-    try {
-        const { groupId } = e
-        let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
-        if (index !== -1) {
-            let group = Groups[index];
-            //let msg = e.message;
-            const { senderId, message } = e
-            if (message.startsWith('/')) {
-                //const act1 = /^(\S+)/.exec(msg.substr(1));
-                //if (AdminQQs.indexOf(e.fromQQ) === -1) {
-                //    api.SendGroupMessage(e.fromGroup, "无权限!")
-                //} else {
-                //    MCConnections.forEach(l => {
-                //        l.RunCmd("say " + msg, function (l) {
-                //            api.log("cb:" + l)
-                //        })
-                //    })
-                //}
-            } else {
-                if (group.GroupMsgToServer) {
-                    const { groupName, senderNick, memberCard } = e
-                    let msg = `[${groupName}]${memberCard}>${message}`
-                    SendBoardcastToAllServer(msg);
-                }
-                //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
-                //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
+    const { groupId } = e
+    let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
+    if (index !== -1) {
+        let group = Groups[index];
+        //let msg = e.message;
+        const { senderId, message } = e
+        if (message.startsWith('/')) {
+            //const act1 = /^(\S+)/.exec(msg.substr(1));
+            //if (AdminQQs.indexOf(e.fromQQ) === -1) {
+            //    api.SendGroupMessage(e.fromGroup, "无权限!")
+            //} else {
+            //    MCConnections.forEach(l => {
+            //        l.RunCmd("say " + msg, function (l) {
+            //            api.log("cb:" + l)
+            //        })
+            //    })
+            //}
+        } else {
+            if (group.GroupMsgToServer) {
+                const { groupName, senderNick, memberCard } = e
+                let msg = `[${groupName}]${memberCard}>${message}`
+                SendBoardcastToAllServer(msg);
             }
+            //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
+            //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
         }
-    } catch (error) {
-        api.LogErr("events.QQ.onGroupMessage.error:" + error);
     }
 })
 //#endregion
