@@ -54,7 +54,7 @@ Namespace PFWebsocketAPI.Model
             Return New JObject From {
             New JProperty("type", type),
             New JProperty("params", New JObject From {
-                New JProperty("mode", params.mode),
+                New JProperty("mode", params.mode.ToString()),
                 New JProperty("raw", params.raw)
             })
             }.ToString(Formatting.None)
@@ -242,7 +242,7 @@ Namespace PFWebsocketAPI.Model
             New JProperty("action", action),
             New JProperty("type", type),
             New JProperty("params", New JObject From {
-                New JProperty("cmd", params.cmd),
+                New JProperty("cmd", params.cmd.ToString()),
                 New JProperty("id", params.id)
             })
             }.ToString(Formatting.None)

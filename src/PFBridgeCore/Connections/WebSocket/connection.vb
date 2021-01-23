@@ -6,18 +6,16 @@ Namespace Ws
         Public Sub RunCmd(cmd As String) Implements IBridgeMCBase.RunCmd
             Try
                 Dim packet1 As ActionRunCmd = New ActionRunCmd(cmd, "", Nothing)
-                Dim packet2 = New EncryptedPack(EncryptionMode.AES256, packet1.ToString(), Token)
+                Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
                 Client.Send(packet2.ToString)
             Catch ex As Exception
                 API.LogErr(ex)
             End Try
-
-
         End Sub
         Public Sub RunCmd(cmd As String, callback As Action(Of String)) Implements IBridgeMCBase.RunCmdCallback
-            Dim packet1 = New ActionRunCmd(cmd, Rnd() * Integer.MaxValue, Nothing)
+            Dim packet1 = New ActionRunCmd(cmd, Guid.NewGuid().ToString(), Nothing)
             CmdQueue.Add(New WaitingModel(packet1, callback))
-            Dim packet2 = New EncryptedPack(EncryptionMode.AES256, packet1.ToString(), Token)
+            Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
             Client.Send(packet2.ToString)
         End Sub
         Public Sub New(url As String, _token As String, _tag As Object)
@@ -57,5 +55,6 @@ Namespace Ws
                 Client.ConnectAsync()
             End If
         End Sub
+        Public Shared Property EncryptionMode As EncryptionMode = EncryptionMode.aes_cbc_pck7padding
     End Class
 End Namespace
