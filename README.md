@@ -54,7 +54,7 @@
 >---
 >- ### MC服务器部分
 >- - 下载PFWebsocketAPI([Minebbs](https://www.minebbs.com/>resources/csr-pfwebsocketapi.1632/)|[Github](https://github.>com/littlegao233/PFWebsocketAPI/releases))
->- - 使用BDSNetRunner配合插件注入器加载下载PFWebsocketAPI.csr.dll(不再赘述)
+>- - 使用BDSNetRunner加载PFWebsocketAPI.csr.dll(不再赘述)
 >- - 配置好并记下`[BDS]\plugins\PFWebsocket\config.json`的配置参数
 >``` jsonc
 >{
