@@ -25,7 +25,8 @@ namespace PFBridgeForOneBot
         {
             Console.Write("[", Color.DarkKhaki);
             Console.Write(System.DateTime.Now.ToString("G"), Color.LightGreen);
-            Console.Write(" INFO", Color.Cyan);
+            Console.Write("][", Color.DarkKhaki);
+            Console.Write("INFO", Color.Cyan);
             Console.Write("] ", Color.DarkKhaki);
             Console.WriteLine(Message.ToString(), Color.LightPink);
         }
@@ -34,7 +35,8 @@ namespace PFBridgeForOneBot
         {
             Console.Write("[", Color.DarkKhaki);
             Console.Write(System.DateTime.Now.ToString("G"), Color.LightGreen);
-            Console.Write(" Error", Color.PaleVioletRed);
+            Console.Write("][", Color.DarkKhaki);
+            Console.Write("Error", Color.PaleVioletRed);
             Console.Write("] ", Color.DarkKhaki);
             Console.WriteLine(Message.ToString(), Color.OrangeRed);
         }
