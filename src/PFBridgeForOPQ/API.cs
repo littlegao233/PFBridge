@@ -1,11 +1,13 @@
-﻿using PFBridgeCore;
+﻿using   Console = Colorful.Console;
+using PFBridgeCore;
 using System.Collections.Generic;
 using Traceless.OPQSDK;
-
+using System.Drawing;
 namespace PFBridgeForOPQ
 {
     internal class API : IBridgeQQBase
     {
+        //private ConsoleWriter Console = new ConsoleWriter();
         public string PluginDataPath
         {
             get
@@ -18,24 +20,32 @@ namespace PFBridgeForOPQ
         }
         public void Log(object Message)
         {
-            System.Console.WriteLine(Message.ToString());
+            Console.Write("[",Color.DarkKhaki);
+            Console.Write(System.DateTime.Now.ToString("HH:mm:ss"), Color.LightGreen);
+            Console.Write(" INFO", Color.Cyan);
+            Console.Write("] ", Color.DarkKhaki);
+            Console.WriteLine(Message.ToString(), Color.LightPink);
         }
 
         public void LogErr(object Message)
         {
-            System.Console.WriteLine(Message.ToString());
+            Console.Write("[", Color.DarkKhaki);
+            Console.Write(System.DateTime.Now.ToString("HH:mm:ss"), Color.LightGreen);
+            Console.Write(" Error", Color.PaleVioletRed);
+            Console.Write("] ", Color.DarkKhaki);
+            Console.WriteLine(Message.ToString(), Color.OrangeRed);
         }
 
         public void SendGroupMessage(long TargetGroup, string Message)
         {
             try { Apis.SendGroupMsg(TargetGroup, txt: Message); }
-            catch (System.Exception ex) { System.Console.WriteLine(ex.ToString()); }
+            catch (System.Exception ex) { Console.WriteLine(ex.ToString(), System.ConsoleColor.Red); }
         }
 
         public void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
             try { Apis.SendFriendMsg(QQid, Message); }
-            catch (System.Exception ex) { System.Console.WriteLine(ex.ToString()); }
+            catch (System.Exception ex) { Console.WriteLine(ex.ToString(), System.ConsoleColor.Red); }
         }
     }
 }

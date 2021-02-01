@@ -1,5 +1,11 @@
-﻿Imports WebSocketSharp
+﻿'#If NETFULL Then
+Imports WebSocketSharp
+'#Else
+'Imports sta_websocket_sharp_core
+'#End If
+
 Imports PFBridgeCore.PFWebsocketAPI.Model
+
 Namespace Ws
     Public Class Connection
         Implements IBridgeMCBase
@@ -23,7 +29,8 @@ Namespace Ws
         Public Sub New(url As String, _token As String, _tag As Object)
             Id = IdAll : IdAll += 1
             Tag = _tag
-            Client = New WebSocket(url)
+            Client = New WebSocket(url) 'New Microsoft.Extensions.Logging.ILogger
+
             Token = _token
             AddHandler Client.OnMessage, Sub(sender, e)
                                              ProcessMessage(Me, e.Data)
@@ -52,10 +59,16 @@ Namespace Ws
         Public Property Tag As Object Implements IBridgeMCBase.Tag
 
         Private CheckTimer As New Timers.Timer(10000) With {.AutoReset = True}
-        Private Sub CheckConnect()
-            If Not Client.IsAlive Then
-                Client.ConnectAsync()
-            End If
+        Private Sub CheckConnect() Implements IBridgeMCBase.CheckConnect
+            Try
+                If Not Client.IsAlive Then
+                    Client.ConnectAsync()
+                End If
+            Catch ex As Exception
+#If DEBUG Then
+                API.LogErr(ex.ToString)
+#End If
+            End Try
         End Sub
         Public Shared Property EncryptionMode As EncryptionMode = EncryptionMode.aes_cbc_pck7padding
     End Class

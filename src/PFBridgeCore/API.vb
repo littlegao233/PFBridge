@@ -127,18 +127,22 @@ Public Module APIs
         Private CmdStart As String() = Nothing
         Dim message As String
         Public Function getCommands(ParamArray start() As String) As String()
-            If CmdStart Is Nothing OrElse CmdList Is Nothing OrElse CmdStart.Any(Function(l) Not start.Contains(l)) Then
-                CmdList = New String() {}
-                Dim cmd As String = message.Trim
-                For Each st In start
-                    If cmd.StartsWith(st) Then
-                        cmd = cmd.Substring(st.Length)
-                        Exit For
-                    End If
-                Next
-                CmdList = Regex.Matches(cmd, """(.*?)""|[\S-[""]]+").OfType(Of Match)().Select(Function(m) If(m.Value(0) = """"c, m.Groups(1).Value, m.Value))
-                'Dim result As Jint.Native.Array.ArrayConstructor = Jint.Native.Array.ArrayConstructor.FromObject
-            End If
+            Try
+                If CmdStart Is Nothing OrElse CmdList Is Nothing OrElse CmdStart.Any(Function(l) Not start.Contains(l)) Then
+                    CmdList = New String() {}
+                    Dim cmd As String = message.Trim
+                    For Each st In start
+                        If cmd.StartsWith(st) Then
+                            cmd = cmd.Substring(st.Length)
+                            Exit For
+                        End If
+                    Next
+                    CmdList = Regex.Matches(cmd, """(.*?)""|[\S-[""]]+").OfType(Of Match)().Select(Function(m) If(m.Value(0) = """"c, m.Groups(1).Value, m.Value))
+                    'Dim result As Jint.Native.Array.ArrayConstructor = Jint.Native.Array.ArrayConstructor.FromObject
+                End If
+            Catch ex As Exception
+                APIs.API.LogErr(ex.ToString)
+            End Try
             Return CmdList.ToArray
         End Function
     End Class

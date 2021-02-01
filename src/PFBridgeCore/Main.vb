@@ -98,6 +98,7 @@ Public Module Main
             e.Execute(JSRaw)
 #End If
             'engine=Nothing
+            MCConnections.ForEach(Sub(l) l.CheckConnect())
         Catch ex As ReloadEngineException
             StartJSEngine(CreateJSEngine, RestartDuration)
         Catch ex As Exception

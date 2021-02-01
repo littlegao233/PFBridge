@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
- 
+
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <RootNamespace>PFBridgeCore</RootNamespace>
@@ -15,20 +15,21 @@
     <None Remove="Connections\WebSocket\AES\**" />
     <None Remove="My Project\**" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <PackageReference Include="EasyEncryption.Core" Version="1.0.0" />
+  
     <PackageReference Include="Jint">
       <Version>3.0.0-beta-1914</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SimpleAES" Version="1.1.1" />
-    <PackageReference Include="SIPSorcery.WebSocketSharp" Version="0.0.1" /> </ItemGroup>
-  
+  </ItemGroup>
+
   <ItemGroup>
     <None Remove="Resources\index.js" />
   </ItemGroup>
-  
+
   <ItemGroup>
     <Content Include="Resources\index.js" />
   </ItemGroup>
@@ -49,10 +50,25 @@
     </EmbeddedResource>
   </ItemGroup>
 
-   
+
 
   <ItemGroup>
     <Folder Include="My Project\" />
   </ItemGroup>
 
+
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5'">
+    <Reference Include="WebSocketSharp.NetCore">
+      <HintPath>..\libs\WebSocketSharp.NetCore\WebSocketSharp.NetCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+    <Reference Include="WebSocketSharp.NetCore">
+      <HintPath>..\libs\WebSocketSharp.NetCore\WebSocketSharp.NetCore.dll</HintPath>
+    </Reference>
+   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <PackageReference Include="WebSocketSharpFork" Version="1.0.4" />
+  </ItemGroup>
 </Project>

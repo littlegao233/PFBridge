@@ -108,7 +108,8 @@
 >| Costura.Fody | https://github.com/Fody/Costura |
 >| Newtonsoft.Json | https://www.newtonsoft.com/json |
 >| DllExport | https://github.com/3F/DllExport |
->| SIPSorcery.WebSocketSharp | https://github.com/sipsorcery/websocket-sharp |
+>| WebSocketSharp | http://sta.github.io/websocket-sharp/ |
+>| WebSocketSharp.NetCore | https://github.com/littlegao233/websocket-sharp |
 >| SimpleAES | https://github.com/jonjomckay/dotnet-simpleaes |
 >| `Sora` | https://github.com/Yukari316/Sora |
 >| `CSharpIRQQ` | https://gitee.com/qinghuabumo_admin/CSharpIRQQ |

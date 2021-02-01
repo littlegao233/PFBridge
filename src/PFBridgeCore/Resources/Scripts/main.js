@@ -1,4 +1,4 @@
-﻿const AdminQQs = [441870948, 233333]//管理员QQ号
+﻿const AdminQQs = [441870948, 233333]//管理员QQ号,仅管理员可以执行命令
 const Groups = [
     {
         id: 626872357,//QQ群号
@@ -29,6 +29,7 @@ moduleInfo.Description = "包含群与服务器的聊天同步\n以及加入服�
 //#region 共享数据
 const engine = importNamespace('PFBridgeCore').Main.Engine
 engine.SetValue("ConfigGroups", Groups)
+engine.SetValue("ConfigAdminQQs", AdminQQs)
 
 //#endregion
 
