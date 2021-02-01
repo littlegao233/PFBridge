@@ -123,13 +123,13 @@ Public Module APIs
         Public Sub New(msg As String)
             message = msg
         End Sub
-        Private CmdList As String() = Nothing
+        Private CmdList As List(Of String) = Nothing
         Private CmdStart As String() = Nothing
         Dim message As String
-        Public Function getCommands(ParamArray start() As String) As String()
+        Public Function getCommands(ParamArray start() As String) As List(Of String)
             Try
-                If CmdStart Is Nothing OrElse CmdList Is Nothing OrElse CmdStart.Any(Function(l) Not start.Contains(l)) Then
-                    CmdList = New String() {}
+                If CmdStart Is Nothing OrElse CmdList Is Nothing OrElse Not CmdStart.All(Function(l) start.Contains(l)) Then
+                    CmdStart = start
                     Dim cmd As String = message.Trim
                     For Each st In start
                         If cmd.StartsWith(st) Then
@@ -137,13 +137,17 @@ Public Module APIs
                             Exit For
                         End If
                     Next
-                    CmdList = Regex.Matches(cmd, """(.*?)""|[\S-[""]]+").OfType(Of Match)().Select(Function(m) If(m.Value(0) = """"c, m.Groups(1).Value, m.Value))
-                    'Dim result As Jint.Native.Array.ArrayConstructor = Jint.Native.Array.ArrayConstructor.FromObject
+                    CmdList = Regex.Matches(cmd, """(.*?)""|[\S-[""]]+").OfType(Of Match)().ToList.ConvertAll(Function(m) If(m.Value(0) = """"c, m.Groups(1).Value, m.Value))
+#If DEBUG Then
+                    For Each x In CmdList
+                        Console.WriteLine(x.ToString())
+                    Next
+#End If
                 End If
             Catch ex As Exception
                 APIs.API.LogErr(ex.ToString)
             End Try
-            Return CmdList.ToArray
+            Return CmdList
         End Function
     End Class
 #Enable Warning IDE1006 ' 命名样式

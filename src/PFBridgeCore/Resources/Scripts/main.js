@@ -166,28 +166,18 @@ events.QQ.onGroupMessage.add(function (e) {
     let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         let group = Groups[index];
-        //let msg = e.message;
         const { senderId, message } = e
-        if (message.startsWith('/')) {
-            //const act1 = /^(\S+)/.exec(msg.substr(1));
-            //if (AdminQQs.indexOf(e.fromQQ) === -1) {
-            //    api.SendGroupMessage(e.fromGroup, "无权限!")
-            //} else {
-            //    MCConnections.forEach(l => {
-            //        l.RunCmd("say " + msg, function (l) {
-            //            api.log("cb:" + l)
-            //        })
-            //    })
-            //}
-        } else {
-            if (group.GroupMsgToServer) {
-                const { groupName, senderNick, memberCard } = e
-                let msg = `[${groupName}]${memberCard}>${message}`
-                SendBoardcastToAllServer(msg);
-            }
-            //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
-            //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
+        //if (message.startsWith('/')) {
+        //} else {
+        if (group.GroupMsgToServer) {
+            const { groupName, senderNick, memberCard } = e
+            let msg = `[${groupName}]${memberCard}>${message}`
+            SendBoardcastToAllServer(msg);
         }
+        //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
+        //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
+
+        //}
     }
 })
 //#endregion

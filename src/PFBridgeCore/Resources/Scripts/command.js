@@ -12,28 +12,46 @@ events.QQ.onGroupMessage.add(function (e) {
         //let group = ConfigGroups[index];
         let msg = e.message;
         const { senderId, message } = e
-        let cmds = e.messageMatch.getCommands("/", "+")//使用现有的匹配方法
-        for (var i = 0; i < cmds.Length; i++) {
-            api.log(cmds[i]);
-        }
-        //if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
-        //    const act1 = /^(\S+)/.exec(msg.substr(1))[0];
-        //    switch (act1.toLowerCase()) {
-        //        case "cmd": case "命令": 
-        //            //if (AdminQQs.indexOf(e.fromQQ) === -1) {
-        //            //    api.SendGroupMessage(e.fromGroup, "无权限!")
-        //            //} else {
+        if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
+            let cmds = e.messageMatch.getCommands("/", "+")//使用现成的匹配方法
+            if (cmds.Count >= 1) {
+                switch (cmds[0]) {
+                    case "cmd": case "运行": case "命令": case "运行命令":
+                        if (ConfigAdminQQs.some(l => l == senderId)) { //判断权限
+                            if (cmds.Count < 2) {
+                                e.feedback("参数不足！")
+                            } else if (cmds.Count < 3) {//只有两个参数,如：/cmd listd
+                                MCConnections.forEach(eachCon => {
+                                    const ServerName = eachCon.Tag.name;
+                                    eachCon.RunCmd(cmds[1], function (result) {
+                                        e.feedback(ServerName + "执行结果:" + result.trim())
+                                    });
+                                });
+                            } else if (cmds.Count < 4) {//有三个参数,如：/cmd 生存服 "testfor @a"
+                                let executed = false;
+                                MCConnections.forEach(eachCon => {
+                                    if (executed) return;
+                                    const ServerName = eachCon.Tag.name;
+                                    if (ServerName == cmds[1]) {
+                                        eachCon.RunCmd(cmds[2], function (result) {
+                                            e.feedback(ServerName + "执行结果:" + result.trim())
+                                        });
+                                        executed = true;
+                                    }
+                                });
+                                if (!executed) {
+                                    e.feedback(`未匹配到服务器:${cmds[1]}`)
+                                }
+                            } else {
+                                e.feedback(`没有${cmds.Count}个参数的重载！\n如：/cmd listd\n或：/cmd 生存服 "testfor @a"`)
+                            }
+                        } else {
+                            e.feedback("无权限！")
+                        }
 
-        //            //    })
-        //            //}
-        //            MCConnections.forEach(eachCon => {
-        //                const ServerName = eachCon.Tag.name;
-        //                eachCon.RunCmd("list", function (result) {
-        //                    e.feedback(ServerName + "查询结果:\n" + result.trim())
-        //                });
-        //            });
-        //        default:
-        //    }
-        //}
+                }
+
+            }
+        }
     }
 })
