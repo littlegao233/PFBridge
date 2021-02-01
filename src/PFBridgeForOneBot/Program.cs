@@ -14,11 +14,8 @@ namespace PFBridgeForOneBot
                 UniversalPath = "universal",
                 Port = 9876
             });
-            await server.StartServer();
-            server.Event.OnGroupMessage += async (sender, eventArgs) =>
-            {
-
-            };
+            PluginMain.Init(server);
+            await server.StartServer(); 
         }
     }
 }
