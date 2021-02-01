@@ -10,3 +10,4 @@
  - - ##### 重命名为`PFBridge.OQ.dll`即可在OnoQQ框架载入
  - - ###### （注意需要加载后重启框架，启动后需要手动登录至少1个QQ，插件才能加载）
  - #### PFBridgeForOPQ.zip内含可执行文件，OPQ框架使用（支持linux：[参考信息](https://github.com/traceless0929/Traceless.OPQ)）
+ - #### PFBridgeForOneBot.zip内含可执行文件，cqhttp使用（支持linux|[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)）

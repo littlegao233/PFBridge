@@ -40,7 +40,7 @@
     - - [X] OnoQQ机器人框架支持
     - - [X] 小栗子框架支持
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)客户端支持
-    - - [ ] go-cqhttp客户端支持
+    - - [x] go-cqhttp客户端支持
     - - [ ] Nanbot支持
     - - [X] ERbot机器人框架支持(重命名`PFBridge.IR.dll`为`PFBridge.ER.dll`即可载入)
     - - [x] NutQQ支持(重命名`PFBridge.IR.dll`为`PFBridge.NT.dll`即可载入)
