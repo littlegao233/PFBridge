@@ -7,7 +7,8 @@ Namespace Ws
             Try
                 Dim packet1 As ActionRunCmd = New ActionRunCmd(cmd, "", Nothing)
                 Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
-                Client.Send(packet2.ToString)
+                Client.SendAsync(packet2.ToString, Sub(result)
+                                                   End Sub)
             Catch ex As Exception
                 API.LogErr(ex)
             End Try
@@ -16,7 +17,8 @@ Namespace Ws
             Dim packet1 = New ActionRunCmd(cmd, Guid.NewGuid().ToString(), Nothing)
             CmdQueue.Add(New WaitingModel(packet1, callback))
             Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
-            Client.Send(packet2.ToString)
+            Client.SendAsync(packet2.ToString, Sub(result)
+                                               End Sub)
         End Sub
         Public Sub New(url As String, _token As String, _tag As Object)
             Id = IdAll : IdAll += 1

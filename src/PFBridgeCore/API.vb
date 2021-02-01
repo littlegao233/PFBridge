@@ -1,4 +1,5 @@
-﻿Imports PFBridgeCore.EventArgs
+﻿Imports System.Text.RegularExpressions
+Imports PFBridgeCore.EventArgs
 Public Module APIs
     Public Property API As IBridgeQQBase
     Public Property Events As New EventsMap
@@ -15,7 +16,7 @@ Public Module APIs
                 Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String), _Feedback As Action(Of String))
                     groupId = _Group : senderId = _QQ : message = msg
                     getGroupName = _getGroupName : getQQCard = _getQQCard : getQQNick = _getQQNick
-                    Feedback = _Feedback
+                    feedback = _Feedback
                 End Sub
                 Public ReadOnly Property groupId As Long
                 Public ReadOnly Property groupName As String
@@ -35,10 +36,20 @@ Public Module APIs
                     End Get
                 End Property
                 Public ReadOnly Property message As String
-                Public Property getGroupName As Func(Of String)
-                Public Property getQQNick As Func(Of String)
-                Public Property getQQCard As Func(Of String)
-                Public Property feedback As Action(Of String)
+
+                Private _MessageMatchCmd As MessageMatchCmd = Nothing
+                Public ReadOnly Property messageMatch As MessageMatchCmd
+                    Get
+                        If _MessageMatchCmd Is Nothing Then
+                            _MessageMatchCmd = New MessageMatchCmd(message)
+                        End If
+                        Return _MessageMatchCmd
+                    End Get
+                End Property
+                Public ReadOnly Property getGroupName As Func(Of String)
+                Public ReadOnly Property getQQNick As Func(Of String)
+                Public ReadOnly Property getQQCard As Func(Of String)
+                Public ReadOnly Property feedback As Action(Of String)
             End Class
 #End Region
         End Class
@@ -107,6 +118,29 @@ Public Module APIs
 #End Region
         End Class
 #End Region
+    End Class
+    Public Class MessageMatchCmd
+        Public Sub New(msg As String)
+            message = msg
+        End Sub
+        Private CmdList As String() = Nothing
+        Private CmdStart As String() = Nothing
+        Dim message As String
+        Public Function getCommands(ParamArray start() As String) As String()
+            If CmdStart Is Nothing OrElse CmdList Is Nothing OrElse CmdStart.Any(Function(l) Not start.Contains(l)) Then
+                CmdList = New String() {}
+                Dim cmd As String = message.Trim
+                For Each st In start
+                    If cmd.StartsWith(st) Then
+                        cmd = cmd.Substring(st.Length)
+                        Exit For
+                    End If
+                Next
+                CmdList = Regex.Matches(cmd, """(.*?)""|[\S-[""]]+").OfType(Of Match)().Select(Function(m) If(m.Value(0) = """"c, m.Groups(1).Value, m.Value))
+                'Dim result As Jint.Native.Array.ArrayConstructor = Jint.Native.Array.ArrayConstructor.FromObject
+            End If
+            Return CmdList.ToArray
+        End Function
     End Class
 #Enable Warning IDE1006 ' 命名样式
     Public Class EventsMapItem(Of T)

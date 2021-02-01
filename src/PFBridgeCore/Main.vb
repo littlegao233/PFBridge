@@ -13,12 +13,9 @@ Public Module Main
         End Sub
         Public Shadows Sub Execute(content As String)
             Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
-            'Dim rndstr As String = Nothing
-            MyBase.Execute($"
-function Main{rndstr}() {{
-    {content}
-}}
-    ")
+            MyBase.Execute($"function Main{rndstr}() {{
+{content}
+}}")
             Invoke($"Main{rndstr}")
         End Sub
         Public Sub Run(content As String)
@@ -27,13 +24,15 @@ function Main{rndstr}() {{
         Public Function LoadModule(content As String) As ModuleInfo
             Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
             Dim moduleInfo As New ModuleInfo
-            MyBase.Execute($"
-function Main{rndstr}(moduleInfo) {{
-    {content}
-}}
-    ")
-            Invoke($"Main{rndstr}", moduleInfo)
-            Return moduleInfo
+            'Try
+            MyBase.Execute($"function Main{rndstr}(moduleInfo) {{
+{content}
+}}")
+                Invoke($"Main{rndstr}", moduleInfo)
+                'Catch ex As Exception
+                '    APIs.API.LogErr("模块加载失败：" & ex.ToString)
+                'End Try
+                Return moduleInfo
         End Function
         Public Class ModuleInfo
             Public Property Author As String = "unknown"
@@ -53,7 +52,6 @@ function Main{rndstr}(moduleInfo) {{
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
 #If DEBUG Then
-        options.AllowDebuggerStatement()
         options.DebugMode()
         options.CatchClrExceptions()
 #End If
@@ -100,7 +98,7 @@ function Main{rndstr}(moduleInfo) {{
             e.Execute(JSRaw)
 #End If
             'engine=Nothing
-        Catch ex As AssemblyEx.ReloadEngineException
+        Catch ex As ReloadEngineException
             StartJSEngine(CreateJSEngine, RestartDuration)
         Catch ex As Exception
             API.LogErr("JS引擎遇到错误:" & ex.ToString)

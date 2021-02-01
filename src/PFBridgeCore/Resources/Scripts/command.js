@@ -10,26 +10,32 @@ events.QQ.onGroupMessage.add(function (e) {
     let index = ConfigGroups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         //let group = ConfigGroups[index];
+          
         let msg = e.message;
         const { senderId, message } = e
-        if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
-            const act1 = /^(\S+)/.exec(msg.substr(1))[0];
-            switch (act1.toLowerCase()) {
-                case "list": case "查询": case "查服": case "query":
-                    //if (AdminQQs.indexOf(e.fromQQ) === -1) {
-                    //    api.SendGroupMessage(e.fromGroup, "无权限!")
-                    //} else {
-
-                    //    })
-                    //}
-                    MCConnections.forEach(eachCon => {
-                        const ServerName = eachCon.Tag.name;
-                        eachCon.RunCmd("list", function (result) {
-                            e.feedback(ServerName + "查询结果:\n" + result.trim())
-                        });
-                    });
-                default:
-            }
+        let cmds = e.messageMatch.getCommands("/", "+")
+        for (var i = 0; i < cmds.Length; i++) {
+            api.log(cmds[i]);
         }
+
+        //if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
+        //    const act1 = /^(\S+)/.exec(msg.substr(1))[0];
+        //    switch (act1.toLowerCase()) {
+        //        case "cmd": case "命令": 
+        //            //if (AdminQQs.indexOf(e.fromQQ) === -1) {
+        //            //    api.SendGroupMessage(e.fromGroup, "无权限!")
+        //            //} else {
+
+        //            //    })
+        //            //}
+        //            MCConnections.forEach(eachCon => {
+        //                const ServerName = eachCon.Tag.name;
+        //                eachCon.RunCmd("list", function (result) {
+        //                    e.feedback(ServerName + "查询结果:\n" + result.trim())
+        //                });
+        //            });
+        //        default:
+        //    }
+        //}
     }
 })
