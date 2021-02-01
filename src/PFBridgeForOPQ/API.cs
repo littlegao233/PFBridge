@@ -7,14 +7,12 @@ namespace PFBridgeForOPQ
 {
     internal class API : IBridgeQQBase
     {
-        //private ConsoleWriter Console = new ConsoleWriter();
         public string PluginDataPath
         {
             get
             {
                 string path = Apis.GetPluginDataDic("PFBridgeForOPQ");
-                if (!System.IO.File.Exists(path)) System.IO.Directory.CreateDirectory(path);
-                //System.IO.Directory.Exists()
+                if (!System.IO.Directory.Exists(path)) System.IO.Directory.CreateDirectory(path);
                 return path;
             }
         }

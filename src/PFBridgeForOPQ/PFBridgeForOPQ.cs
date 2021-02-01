@@ -53,8 +53,15 @@ namespace PFBridgeForOPQ
             {
                 void feedback(string s)
                 {
-                    try { Apis.SendGroupMsg(msg.FromGroupId, txt: $"[ATUSER({msg.FromUserId})]{s}"); }
-                    catch { feedback(s); }
+                    try
+                    {
+                        Apis.SendGroupMsg(msg.FromGroupId, txt: $"[ATUSER({msg.FromUserId})]{s}");
+                    }
+                    catch
+                    {
+                        //System.Threading.Thread.Sleep(250);
+                        //feedback(s);
+                    }
                 };
                 PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(msg.FromGroupId, msg.FromUserId, msg.Content,
                       () => msg.FromGroupName,

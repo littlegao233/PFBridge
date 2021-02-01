@@ -1,21 +1,70 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Sora.Server;
+using System.IO;
+using Newtonsoft.Json;
+using Sora.Extensions;
+
 namespace PFBridgeForOneBot
 {
     class Program
     {
+        static void WriteLine(string content)
+        {
+            Console.WriteLine($"[{DateTime.Now:G}][INFO][PFBridgeForOneBot]" + content);
+        }
+        static void WriteLineErr(string content)
+        {
+            Console.WriteLine($"[{DateTime.Now:G}][Error][PFBridgeForOneBot]" + content);
+        }
+        static string ConfigPath { get { return Path.GetFullPath("config.json"); } }
+        private static ServerConfig _ConfigData = null;
+        static ServerConfig ConfigData
+        {
+            get
+            {
+                if (_ConfigData is null)
+                {
+                    if (File.Exists(ConfigPath))
+                    {
+                        WriteLine("正在读取\"config.json\"...");
+                        try { _ConfigData= JsonConvert.DeserializeObject<ServerConfig>(File.ReadAllText(ConfigPath)); }
+                        catch (Exception ex)
+                        {
+                            WriteLineErr("配置文件读取错误！请检查\"config.json\"填写是否规范！\n信息" + ex.ToString());
+                            System.Threading.Thread.Sleep(5000);
+                            throw  ;
+                        }
+                    }
+                    else
+                        ConfigData = new ServerConfig();
+                }
+                return _ConfigData;
+            }
+            set
+            {
+                File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(value, Formatting.Indented));
+                WriteLine("已输出默认配置文件：\"config.json\"\t请自行修改！");
+                    _ConfigData = value;
+            }
+        }
         static async Task Main(string[] args)
         {
-            SoraWSServer server = new SoraWSServer(new ServerConfig()
-            {
-                ApiPath = "api",
-                EventPath = "event",
-                UniversalPath = "universal",
-                Port = 9876
-            });
+            SoraWSServer server = new SoraWSServer(ConfigData);
             PluginMain.Init(server);
-            await server.StartServer(); 
+            WriteLine("QQ端参考配置方法：\n" + @$"-----------------------------------------------------
+ws_reverse_servers: [
+    {{
+        enabled: true
+        reverse_url: ws://127.0.0.1:{ConfigData.Port}/{ConfigData.UniversalPath}
+        reverse_api_url: ws://127.0.0.1:{ConfigData.Port}/{ConfigData.ApiPath}
+        reverse_event_url: ws://127.0.0.1:{ConfigData.Port}/{ConfigData.EventPath}
+        reverse_reconnect_interval: 3000
+    }}
+]
+post_message_format: array
+-----------------------------------------------------");
+            await server.StartServer().RunCatch(); 
         }
     }
 }
