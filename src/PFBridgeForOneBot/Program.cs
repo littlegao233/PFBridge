@@ -12,7 +12,7 @@ namespace PFBridgeForOneBot
     {
         static void WriteLine(string content)
         {
-            Console.WriteLine($"[{DateTime.Now:G}][INFO][PFBridgeForOneBot]" + content,System.Drawing.Color.Yellow);
+            Console.WriteLine($"[{DateTime.Now:G}][INFO][PFBridgeForOneBot]" + content, System.Drawing.Color.Yellow);
         }
         static void WriteLineErr(string content)
         {
@@ -52,67 +52,92 @@ namespace PFBridgeForOneBot
         static async Task Main(string[] args)
         {
             SoraWSServer server = new SoraWSServer(ConfigData);
-            PluginMain.Init(server); 
+            PluginMain.Init(server);
             WriteLine("QQ端参考配置方法：");
+            Span EditText(string content) => new Span(content) { Background = ConsoleColor.Magenta, Color = ConsoleColor.Gray };
+            Span BgText(string content) => new Span(content) { Color = ConsoleColor.Yellow };
+            Span SeptTxt = new Span("......") { Color = ConsoleColor.Cyan };
+            Span NewLine = new Span("\n");
             var doc = new Document(
-                       new Dock()
+                       new Grid()
                        {
+                           TextAlign = TextAlign.Left,
+                           Columns = {
+                                new Column() {Width=new GridLength(1,GridUnit.Star)},
+                                new Column() {Width=new GridLength(1,GridUnit.Auto)},
+                                new Column() {Width=new GridLength(1,GridUnit.Star)}
+                            },
                            Background = ConsoleColor.DarkGray,
-                           Margin = new Thickness(1),
                            Children = {
-                           new  Border()
-                           {
-                                Background=ConsoleColor.Blue,
-                               Margin=new Thickness(1),
-                                Stroke=new LineThickness(LineWidth.Single),
-                                Align=Align.Stretch,
-                                Children = {
-                                    new Span("github.com/Mrs4s/go-cqhttp") { Color = ConsoleColor.Gray  },
-                                    new Separator()  ,
-                                    new Span(@$"......
-ws_reverse_servers: [
-    {{
-        enabled: true
-        reverse_url: ws://127.0.0.1:{ConfigData.Port}/{ConfigData.UniversalPath}
-        reverse_api_url: ws://127.0.0.1:{ConfigData.Port}/{ConfigData.ApiPath}
-        reverse_event_url: ws://127.0.0.1:{ConfigData.Port}/{ConfigData.EventPath}
-        reverse_reconnect_interval: 3000
-    }}
-]
-......
-post_message_format: array
-......") { Color = ConsoleColor.Yellow }
-                               }
-                            } ,
-                           new  Border()
-                           {
-                               Background=ConsoleColor.Blue,
-                               Align=Align.Right,
-                               Stroke=new LineThickness(LineWidth.Single),
-                               Margin=new Thickness(1),
-                               Children = {
-                                    new Span("github.com/yyuueexxiinngg/onebot-kotlin") { Color = ConsoleColor.Gray },
-                                    new Separator()  ,
-                                    new Span(@$"......
-    heartbeat: 
-      enable: true
-......
-    ws_reverse: 
-      - enable: true
-        postMessageFormat: array
-        reverseHost: 127.0.0.1
-        reversePort: {ConfigData.Port}
-        accessToken: ''
-        reversePath: '/{ConfigData.UniversalPath}'
-        reverseApiPath: '/{ConfigData.ApiPath}'
-        reverseEventPath: '/{ConfigData.EventPath}'
-......") { Color = ConsoleColor.Yellow }
-                               }
-                            }
+                               new  Border()
+                               {
+                                    Background=ConsoleColor.Blue,
+                                    Margin=new Thickness(1,0,0,0),
+                                    Align=Align.Stretch,
+                                    Children = {
+                                       new  Border(new Span("github.com/Mrs4s/go-cqhttp"){Color=ConsoleColor.DarkBlue,Background=ConsoleColor.DarkCyan}){Align=Align.Center},
+                                       new Separator(),
+                                       SeptTxt,
+                                       NewLine,BgText("ws_reverse_servers: ["),
+                                       NewLine,BgText("    {"),
+                                       NewLine,BgText("        enabled: "),EditText("true") ,
+                                       NewLine,BgText("        reverse_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.UniversalPath}") ,
+                                       NewLine,BgText("        reverse_api_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.ApiPath}"),
+                                       NewLine,BgText("        reverse_event_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.EventPath}"),
+                                       NewLine,BgText("        reverse_reconnect_interval: 3000"),
+                                       NewLine,BgText("    }"),
+                                       NewLine,BgText("]"),
+                                       NewLine,SeptTxt,
+                                       NewLine,BgText("post_message_format: "),EditText("array"),
+                                       NewLine,SeptTxt
+                                   }
+                                } ,
+                               new Cell() ,
+                               new  Border()
+                               {
+                                   TextAlign   =TextAlign.Left,
+                                   Background=ConsoleColor.Blue,
+                                   Align=Align.Stretch,
+                                   Margin=new Thickness(1,0,0,0),
+                                   Children = {
+                                       new  Border(new Span("github.com/yyuueexxiinngg/onebot-kotlin"){Color=ConsoleColor.DarkBlue,Background=ConsoleColor.DarkCyan}){Align=Align.Center},
+                                       new Separator(),
+                                       SeptTxt,
+                                       NewLine,BgText("    heartbeat:"),
+                                       NewLine,BgText("      enable: "),EditText("true"),
+                                       NewLine,SeptTxt,
+                                       NewLine,BgText("    ws_reverse: "),
+                                       NewLine,BgText("      - enable: "),EditText("true") ,
+                                       NewLine,BgText("        postMessageFormat: "),EditText("array") ,
+                                       NewLine,BgText("        reverseHost: 127.0.0.1"),
+                                       NewLine,BgText("        reversePort: "),EditText(ConfigData.Port.ToString()),
+                                       NewLine,BgText("        accessToken: ''"),
+                                       NewLine,BgText("        reversePath: "),EditText(string.IsNullOrEmpty(ConfigData.UniversalPath)?"''":ConfigData.UniversalPath),
+                                       NewLine,BgText("        reverseApiPath: "),EditText(string.IsNullOrEmpty(ConfigData.ApiPath)?"''":ConfigData.ApiPath),
+                                       NewLine,BgText("        reverseEventPath: "),EditText(string.IsNullOrEmpty(ConfigData.EventPath)?"''":ConfigData.EventPath),
+                                       NewLine,SeptTxt
+                                   }
+                                }
                            }
                        }
-                   );
+                    );
             ConsoleRenderer.RenderDocument(doc);
+            _ = Task.Run(() =>
+             {
+                 while (true)
+                 {
+                     var read = Console.ReadLine();
+                     switch (read.Trim().ToLower())
+                     {
+                         case "help":
+                             Console.WriteLine("未完成");
+                             break;
+                         default:
+                             Console.WriteLine("未知命令:" + read);
+                             break;
+                     }
+                 }
+             });
             await server.StartServer().RunCatch();
         }
     }
