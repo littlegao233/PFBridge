@@ -126,9 +126,8 @@
 
 
 
->##### ██████████████████████████████████████
->##### [Telegram交流群](https://t.me/joinchat/TDe2w1ZgMVSw10vbugwg1w)
->##### 如有bug可前往反馈
+>##### █████████████████
+>##### [Telegram交流群](https://t.me/joinchat/TDe2w1ZgMVSw10vbugwg1w) 如有bug可前往反馈
 >##### [赞助通道](https://afdian.net/@PF_littlegao233)
->##### ██████████████████████████████████████
+>##### █████████████████
 
