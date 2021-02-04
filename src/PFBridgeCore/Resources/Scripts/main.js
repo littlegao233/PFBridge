@@ -101,7 +101,7 @@ events.Server.Chat.add(function (e) {
             ProcessServerMsgToGroup(`[${server.name}:Chat]${sender}>${message}`);
         }
         if (server.ServerMsgToOther) {
-            ProcessServerMsgToOtherServer(Id, `[${server.name}:Chat]${sender}>${message}`);
+            ProcessServerMsgToOtherServer(Id, `§b【${server.name}服务器消息】§e<${sender}>§a${message}`);
         }
     }
 })
@@ -120,7 +120,7 @@ events.Server.Join.add(function (e) {
             ProcessServerMsgToGroup(`[${server.name}:Join]${sender}加入了服务器`);
         }
         if (server.ServerMsgToOther) {
-            ProcessServerMsgToOtherServer(Id, `[${server.name}:Join]${sender}加入了服务器`);
+            ProcessServerMsgToOtherServer(Id, `§b【${server.name}:Join】§e${sender}§a加入了服务器`);
         }
     }
 })
@@ -134,7 +134,7 @@ events.Server.Left.add(function (e) {
             ProcessServerMsgToGroup(`[${server.name}:Left]${sender}离开了服务器`);
         }
         if (server.ServerMsgToOther) {
-            ProcessServerMsgToOtherServer(Id, `[${server.name}:Left]${sender}离开了服务器`);
+            ProcessServerMsgToOtherServer(Id, `§b【${server.name}:Left】§e${sender}§a离开了服务器`);
         }
     }
 })
@@ -167,17 +167,17 @@ events.QQ.onGroupMessage.add(function (e) {
     if (index !== -1) {
         let group = Groups[index];
         const { senderId, message } = e
-        //if (message.startsWith('/')) {
-        //} else {
-        if (group.GroupMsgToServer) {
-            const { groupName, senderNick, memberCard } = e
-            let msg = `[${groupName}]${memberCard}>${message}`
-            SendBoardcastToAllServer(msg);
-        }
-        //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
-        //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
+        if (message.startsWith('/')) {
+        } else {
+            if (group.GroupMsgToServer) {
+                const { groupName, senderNick, memberCard } = e
+                let msg = `§b【群聊消息】§e<${memberCard}>§a${message}`
+                SendBoardcastToAllServer(msg);
+            }
+            //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
+            //api.SendGroupMessage(e.fromGroup, "test1:" + e.message)
 
-        //}
+        }
     }
 })
 //#endregion

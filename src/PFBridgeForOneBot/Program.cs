@@ -58,17 +58,19 @@ namespace PFBridgeForOneBot
             Span BgText(string content) => new Span(content) { Color = ConsoleColor.Yellow };
             Span SeptTxt = new Span("......") { Color = ConsoleColor.Cyan };
             Span NewLine = new Span("\n");
-            var doc = new Document(
-                       new Grid()
-                       {
-                           TextAlign = TextAlign.Left,
-                           Columns = {
+            try
+            {
+                var doc = new Document(
+                                  new Grid()
+                                  {
+                                      TextAlign = TextAlign.Left,
+                                      Columns = {
                                 new Column() {Width=new GridLength(1,GridUnit.Star)},
                                 new Column() {Width=new GridLength(1,GridUnit.Auto)},
                                 new Column() {Width=new GridLength(1,GridUnit.Star)}
-                            },
-                           Background = ConsoleColor.DarkGray,
-                           Children = {
+                                       },
+                                      Background = ConsoleColor.DarkGray,
+                                      Children = {
                                new  Border()
                                {
                                     Background=ConsoleColor.Blue,
@@ -118,10 +120,13 @@ namespace PFBridgeForOneBot
                                        NewLine,SeptTxt
                                    }
                                 }
-                           }
-                       }
-                    );
-            ConsoleRenderer.RenderDocument(doc);
+                                      }
+                                  }
+                               );
+                ConsoleRenderer.RenderDocument(doc);
+
+            }
+            catch (Exception) { }
             _ = Task.Run(() =>
              {
                  while (true)
@@ -131,6 +136,9 @@ namespace PFBridgeForOneBot
                      {
                          case "help":
                              Console.WriteLine("未完成");
+                             break;
+                         case "stop":
+                             System.Environment.Exit(0);
                              break;
                          default:
                              Console.WriteLine("未知命令:" + read);
