@@ -101,7 +101,7 @@ events.Server.Chat.add(function (e) {
             ProcessServerMsgToGroup(`[${server.name}:Chat]${sender}>${message}`);
         }
         if (server.ServerMsgToOther) {
-            ProcessServerMsgToOtherServer(Id, `§b【${server.name}服务器消息】§e<${sender}>§a${message}`);
+            ProcessServerMsgToOtherServer(Id, `§b【${server.name}消息】§e<${sender}>§a${message}`);
         }
     }
 })
