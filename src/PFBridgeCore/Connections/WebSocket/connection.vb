@@ -67,7 +67,7 @@ Namespace Ws
 
         Public Property Tag As Object Implements IBridgeMCBase.Tag
 
-        Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 10000, .Enabled = True}
+        Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 5000, .Enabled = True}
         Private Sub CheckConnect() Implements IBridgeMCBase.CheckConnect
             Try
                 If Not Client.IsAlive Then
