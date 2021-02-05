@@ -13,8 +13,13 @@ Namespace Ws
             Try
                 Dim packet1 As ActionRunCmd = New ActionRunCmd(cmd, "", Nothing)
                 Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
-                Client.SendAsync(packet2.ToString, Sub(result)
-                                                   End Sub)
+                If Client.IsAlive Then
+                    Client.SendAsync(packet2.ToString, Sub(result)
+                                                       End Sub)
+                Else
+                    CheckConnect()
+                    If Not CheckTimer.Enabled Then CheckTimer.Start()
+                End If
             Catch ex As Exception
                 API.LogErr(ex)
             End Try
@@ -23,8 +28,13 @@ Namespace Ws
             Dim packet1 = New ActionRunCmd(cmd, Guid.NewGuid().ToString(), Nothing)
             CmdQueue.Add(New WaitingModel(packet1, callback))
             Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
-            Client.SendAsync(packet2.ToString, Sub(result)
-                                               End Sub)
+            If Client.IsAlive Then
+                Client.SendAsync(packet2.ToString, Sub(result)
+                                                   End Sub)
+            Else
+                CheckConnect()
+                If Not CheckTimer.Enabled Then CheckTimer.Start()
+            End If
         End Sub
         Public Sub New(url As String, _token As String, _tag As Object)
             Id = IdAll : IdAll += 1
@@ -49,7 +59,6 @@ Namespace Ws
                                                    CheckConnect()
                                                Catch : End Try
                                            End Sub
-            CheckTimer.Start()
         End Sub
         Public Property Client As WebSocket
         Public Property Id As Integer Implements IBridgeMCBase.Id
@@ -58,7 +67,7 @@ Namespace Ws
 
         Public Property Tag As Object Implements IBridgeMCBase.Tag
 
-        Private CheckTimer As New Timers.Timer(10000) With {.AutoReset = True}
+        Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 10000, .Enabled = True}
         Private Sub CheckConnect() Implements IBridgeMCBase.CheckConnect
             Try
                 If Not Client.IsAlive Then
