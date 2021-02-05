@@ -13,10 +13,11 @@ Public Module APIs
             Public OnGroupMessage As New EventsMapItem(Of GroupMessageEventsArgs)
             Public Class GroupMessageEventsArgs
                 Inherits BaseEventsArgs
-                Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String), _Feedback As Action(Of String))
+                Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String), _getMemberType As Func(Of Integer), _Feedback As Action(Of String))
                     groupId = _Group : senderId = _QQ : message = msg
                     getGroupName = _getGroupName : getQQCard = _getQQCard : getQQNick = _getQQNick
                     feedback = _Feedback
+                    getMemberType = _getMemberType
                 End Sub
                 Public ReadOnly Property groupId As Long
                 Public ReadOnly Property groupName As String
@@ -35,6 +36,11 @@ Public Module APIs
                         Return getQQCard.Invoke
                     End Get
                 End Property
+                Public ReadOnly Property memberType As String
+                    Get
+                        Return getMemberType.Invoke
+                    End Get
+                End Property
                 Public ReadOnly Property message As String
 
                 Private _MessageMatchCmd As MessageMatchCmd = Nothing
@@ -49,6 +55,7 @@ Public Module APIs
                 Public ReadOnly Property getGroupName As Func(Of String)
                 Public ReadOnly Property getQQNick As Func(Of String)
                 Public ReadOnly Property getQQCard As Func(Of String)
+                Public ReadOnly Property getMemberType As Func(Of Integer)
                 Public ReadOnly Property feedback As Action(Of String)
             End Class
 #End Region
@@ -137,7 +144,14 @@ Public Module APIs
                             Exit For
                         End If
                     Next
-                    CmdList = Regex.Matches(cmd, """(.*?)""|[\S-[""]]+").OfType(Of Match)().ToList.ConvertAll(Function(m) If(m.Value(0) = """"c, m.Groups(1).Value, m.Value))
+                    CmdList = Regex.Matches(cmd, "(?<!\\)""(.*?)(?<!\\)""|(?<!\\)'(.*?)(?<!\\)'|[\S-[""]]+").OfType(Of Match)().ToList.ConvertAll(Function(m)
+                                                                                                                                                      If m.Value(0) = """"c Then
+                                                                                                                                                          Return m.Groups(1).Value.Replace("\""", """")
+                                                                                                                                                      ElseIf m.Value(0) = "'"c Then
+                                                                                                                                                          Return m.Groups(2).Value.Replace("\'", "'")
+                                                                                                                                                      End If
+                                                                                                                                                      Return m.Value
+                                                                                                                                                  End Function)
 #If DEBUG Then
                     For Each x In CmdList
                         Console.WriteLine(x.ToString())
@@ -167,4 +181,10 @@ End Module
 Namespace EventArgs
     Public MustInherit Class BaseEventsArgs
     End Class
+    'Public Class GroupMemberInfo
+    '    Sub New(_Permissions)
+    '        Permissions = _Permissions
+    '    End Sub
+    '    Public Permissions As Integer
+    'End Class
 End Namespace

@@ -41,6 +41,7 @@ Namespace PFBridgeForCQ
                                                                                     Function() e.Source.DisplayName,
                                                                                     Function() e.Sender.Nickname,
                                                                                     Function() e.Sender.DisplayName,
+                                                                                    Function() e.Sender.AsMemberOf(e.Source.Number, PluginContext.Current).Role,
 Sub(s) e.Source.Send($"[CQ:at,qq={e.Sender.Number}]{s}")
 ))
         End Sub

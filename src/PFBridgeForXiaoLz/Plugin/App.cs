@@ -33,6 +33,7 @@ namespace PFBridgeForXiaoLz.Plugin
                   () => e.SourceGroupName,
                   () => e.SenderNickname,// SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).NickName
                   () => SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).GroupCardName,
+                  () => (int)SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).groupPosition,
                   (s) => SDK.Common.xlzAPI.SendGroupMessage(e.ThisQQ, e.MessageGroupQQ, SDK.Common.xlzAPI.GetAt(e.SenderQQ) + s)
               ));
             }

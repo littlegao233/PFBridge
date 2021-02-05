@@ -3,6 +3,8 @@ using PFBridgeCore;
 using Sora.Entities.Base;
 using System.Collections.Generic;
 using System.Drawing;
+using PFBridgeCore.EventArgs;
+
 namespace PFBridgeForOneBot
 {
     internal class API : IBridgeQQBase
@@ -21,6 +23,8 @@ namespace PFBridgeForOneBot
                 return p;
             }
         }
+
+
         public void Log(object Message)
         {
             Console.Write("[", Color.DarkKhaki);

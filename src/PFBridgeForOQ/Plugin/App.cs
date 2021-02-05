@@ -32,6 +32,7 @@ namespace PFBridgeForOQ.Plugin
                     () => IBoxs.Core.App.Common.CqApi.GetGroupInfo(e.RobotQQ, e.FromGroup).Name,
                     () => IBoxs.Core.App.Common.CqApi.GetQQNick(e.RobotQQ, e.FromQQ),
                     () => IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).Card,
+                    () => (int)IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).PermitType,
                     (s) => IBoxs.Core.App.Common.CqApi.SendGroupMessage(e.RobotQQ, e.FromGroup, IBoxs.Core.App.Common.CqApi.CqCode_At(e.FromQQ)+s)
               ));
             }

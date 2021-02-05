@@ -12,6 +12,18 @@ Friend Module Main
                                                                                                 Function() e.FromGroup.GetGroupName(e.RobotQQ),
                                                                                                 Function() e.FromQQ.GetNick(e.RobotQQ),
                                                                                                 Function() e.FromGroup.GetGroupCard(e.RobotQQ, e.FromQQ.Id),
+                                                                                                Function()
+                                                                                                    Dim result = 1
+                                                                                                    Dim isOwner = True
+                                                                                                    For Each member In e.FromGroup.GetGroupAdmin(e.RobotQQ).Split(New String() {vbCrLf}, StringSplitOptions.RemoveEmptyEntries)
+                                                                                                        If member = e.FromQQ.Id Then
+                                                                                                            result = If(isOwner, 3, 2)
+                                                                                                            Exit For
+                                                                                                        End If
+                                                                                                        isOwner = False
+                                                                                                    Next
+                                                                                                    Return result
+                                                                                                End Function,
                                                                                                 Sub(s) e.FromGroup.SendMessage(e.RobotQQ, s)
                                                                                                 ))
     End Sub

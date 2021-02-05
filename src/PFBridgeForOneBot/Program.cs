@@ -124,7 +124,6 @@ namespace PFBridgeForOneBot
                                   }
                                );
                 ConsoleRenderer.RenderDocument(doc);
-
             }
             catch (Exception) { }
             _ = Task.Run(() =>
@@ -138,7 +137,7 @@ namespace PFBridgeForOneBot
                              Console.WriteLine("未完成");
                              break;
                          case "stop":
-                             System.Environment.Exit(0);
+                             Environment.Exit(0);
                              break;
                          default:
                              Console.WriteLine("未知命令:" + read);

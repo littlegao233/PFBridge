@@ -67,6 +67,23 @@ namespace PFBridgeForOPQ
                       () => msg.FromGroupName,
                       () => msg.FromNickName,
                       () => msg.FromNickName,
+                      () =>
+                      {
+                          var got = Apis.GetGroupUserList(msg.FromGroupId);
+                          int i = got.FindIndex(x => x.MemberUin == msg.FromUserId);
+                          if (i == -1) return 0;
+                          else
+                          {
+                              long type = got[i].GroupAdmin;
+                              if (type == 0)
+                                  return 1;
+                              if (type == 1)
+                                  return 2;
+                              if (type == 192)
+                                  return 3;
+                              return (int)type;
+                          }
+                      },
                       feedback
                   ));
             }

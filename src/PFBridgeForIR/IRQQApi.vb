@@ -45,6 +45,10 @@ Namespace IRQQ.CSharp
             InvokeAsAllQQ(Sub(robotQQ) Api_SendMsg(robotQQ, 4, group.ToString(), qq.ToString(), message, -1))
         End Sub
 
+        Friend Function GetGroupAdmin(robotQQ As String, GroupNum As String) As String
+            Return Api_GetGroupAdmin(robotQQ, GroupNum)
+        End Function
+
         Public Sub Log(ByVal content As String)
             Api_OutPutLog(content)
         End Sub

@@ -25,6 +25,18 @@ Namespace PFBridgeForER.Plugin
                                                                                              Function() IRQQ.CSharp.IRApi.GetGroupName(_robotQQ, group),
                                                                                              Function() IRQQ.CSharp.IRApi.GetNickName(_robotQQ, sender),
                                                                                              Function() IRQQ.CSharp.IRApi.GetMemberCard(_robotQQ, group, sender),
+                                                                                             Function()
+                                                                                                 Dim result = 1
+                                                                                                 Dim isOwner = True
+                                                                                                 For Each member In IRQQ.CSharp.IRApi.GetGroupAdmin(_robotQQ, group).Split(New String() {vbCrLf}, StringSplitOptions.RemoveEmptyEntries)
+                                                                                                     If member = sender Then
+                                                                                                         result = If(isOwner, 3, 2)
+                                                                                                         Exit For
+                                                                                                     End If
+                                                                                                     isOwner = False
+                                                                                                 Next
+                                                                                                 Return result
+                                                                                             End Function,
                                                                                              Sub(s) IRQQ.CSharp.IRApi.SendGroupMessage(group, $"[IR:at={sender}]{s}")))
                 'https://gitee.com/jiguang_aurora/CleverQQ-SDK/wikis/%E5%8F%98%E9%87%8F%E5%88%97%E8%A1%A8?sort_id=1516257
             Catch ex As Exception

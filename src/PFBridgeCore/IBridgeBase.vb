@@ -1,10 +1,12 @@
-﻿Imports WebSocketSharp
+﻿Imports PFBridgeCore.EventArgs
+Imports WebSocketSharp
 Public Interface IBridgeQQBase
     Sub SendGroupMessage(TargetGroup As Long, Message As String)
     Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String)
     Sub Log(Message As Object)
     Sub LogErr(Message As Object)
     ReadOnly Property PluginDataPath As String
+    'Function GetGroupMemberInfo(TargetGroup As Long, QQid As Long) As GroupMemberInfo
 End Interface
 Public Interface IBridgeMCBase
     Property Id As Integer

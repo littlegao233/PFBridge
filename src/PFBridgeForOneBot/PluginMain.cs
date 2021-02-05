@@ -27,6 +27,21 @@ namespace PFBridgeForOneBot
                         () => eventArgs.SourceGroup.GetGroupInfo().Result.groupInfo.GroupName,
                         () => eventArgs.SenderInfo.Nick,
                         () => eventArgs.SenderInfo.Card,
+                        () => (int)eventArgs.SenderInfo.Role+1,
+                        /*
+                            //
+        // 摘要:
+        //     成员
+        Member = 0,
+        //
+        // 摘要:
+        //     管理员
+        Admin = 1,
+        //
+        // 摘要:
+        //     群主
+        Owner = 2
+                         */
                         s => eventArgs.Reply(s)
                     ));
               }
