@@ -4,6 +4,7 @@ using Sora.Entities.Base;
 using System.Collections.Generic;
 using System.Drawing;
 using PFBridgeCore.EventArgs;
+using Colorful;
 
 namespace PFBridgeForOneBot
 {
@@ -27,22 +28,28 @@ namespace PFBridgeForOneBot
 
         public void Log(object Message)
         {
-            Console.Write("[", Color.DarkKhaki);
-            Console.Write(System.DateTime.Now.ToString("G"), Color.LightGreen);
-            Console.Write("][", Color.DarkKhaki);
-            Console.Write("INFO", Color.Cyan);
-            Console.Write("] ", Color.DarkKhaki);
-            Console.WriteLine(Message.ToString(), Color.LightPink);
+            Console.WriteLineFormatted("{0}{1}{2}{3}{4}{5}{6}", Color.White, new Formatter[] {
+                new Formatter("[", Color.PeachPuff),
+                new Formatter(System.DateTime.Now.ToString("G"), Color.LightGreen),
+                new Formatter("]", Color.PeachPuff),
+                new Formatter("[", Color.Orange),
+                new Formatter("INFO", Color.Cyan),
+                new Formatter("]", Color.Orange),
+                new Formatter(Message.ToString(), Color.LightPink)
+            });
         }
 
         public void LogErr(object Message)
         {
-            Console.Write("[", Color.DarkKhaki);
-            Console.Write(System.DateTime.Now.ToString("G"), Color.LightGreen);
-            Console.Write("][", Color.DarkKhaki);
-            Console.Write("Error", Color.PaleVioletRed);
-            Console.Write("] ", Color.DarkKhaki);
-            Console.WriteLine(Message.ToString(), Color.OrangeRed);
+            Console.WriteLineFormatted("{0}{1}{2}{3}{4}{5}{6}", Color.White, new Formatter[] {
+                new Formatter("[", Color.DarkKhaki),
+                new Formatter(System.DateTime.Now.ToString("G"), Color.LightBlue),
+                new Formatter("]", Color.DarkKhaki),
+                new Formatter("[", Color.Yellow),
+                new Formatter("Error", Color.PaleVioletRed),
+                new Formatter("]", Color.Yellow),
+                new Formatter(Message.ToString(), Color.OrangeRed)
+            });
         }
 
         public async void SendGroupMessage(long TargetGroup, string Message)
