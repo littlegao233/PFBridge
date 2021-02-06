@@ -44,13 +44,14 @@ Namespace Ws
             Client.Log.Output = Sub(data, e)
                                     Select Case data.Level
                                         Case LogLevel.Trace, LogLevel.Debug, LogLevel.Info
-                                            API.Log($"{Client.Url}[WS-{data.Level}]{data.Message}")
+                                            API.Log($"{Client.Url}[ws|{data.Level}]{data.Message}")
                                         Case LogLevel.Fatal
                                             'API.LogErr()
                                             If data.Caller.GetMethod().Name = "<startReceiving>b__2" Then Return
-                                            API.LogErr($"{Client.Url}[WS-{data.Level}]{data.Message}")
+                                            If data.Message.ToLower.StartsWith("no connection could be made because the target machine actively refused it.") Then API.LogErr($"{Client.Url}[ws|{data.Level}]无法建立连接，因为目标计算机主动拒绝了该连接") : Return
+                                            API.LogErr($"{Client.Url}[ws|{data.Level}]{data.Message}")
                                         Case LogLevel.Error, LogLevel.Warn
-                                            API.LogErr($"{Client.Url}[WS-{data.Level}]{data.Message}")
+                                            API.LogErr($"{Client.Url}[ws|{data.Level}]{data.Message}")
                                     End Select
                                 End Sub
             AddHandler Client.OnMessage, Sub(sender, e)
@@ -64,9 +65,9 @@ Namespace Ws
             '                           End Sub
             AddHandler Client.OnClose, Sub(sender, e)
                                            If e.Code = 1006 Then
-                                               API.LogErr($"{Client.Url}断开连接，将自动尝试重连[" & e.Code & "]:" & e.Reason)
+                                               API.LogErr($"{Client.Url}建立连接失败，将自动尝试重连[" & e.Code & "]:尝试连接时发生异常“)
                                            Else
-                                               API.LogErr($"{Client.Url}建立连接失败，将自动尝试重连[" & e.Code & "]:" & e.Reason)
+                                               API.LogErr($"{Client.Url}断开连接，将自动尝试重连[" & e.Code & "]:" & e.Reason)
                                            End If
                                        End Sub
             AddHandler CheckTimer.Elapsed, Sub(sender, e)
