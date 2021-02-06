@@ -55,6 +55,7 @@ if (IO.Directory.Exists(custom_script_path)) {
         IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "main.js"), ResourceFiles.main);
         IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "query.js"), ResourceFiles.query);
         IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "command.js"), ResourceFiles.command);
+        //IO.File.WriteAllText(IO.Path.Combine(custom_script_path, "whitelist.js"), ResourceFiles.whitelist);
     }
     //#endregion
     let custom_script_success_count = 0, custom_script_failed_count = 0;

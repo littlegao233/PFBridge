@@ -1,6 +1,6 @@
 ﻿moduleInfo.Author = "littlegao233"
 moduleInfo.Version = "v0.0.1"
-moduleInfo.Description = '群内使用""/cmd [服务器] <命令>""命令执行服务器命令'
+moduleInfo.Description = '群内使用"/cmd [服务器] <命令>"命令执行服务器命令'
 //管理员QQ请在main.js配置
 const events = importNamespace('PFBridgeCore').APIs.Events
 const api = importNamespace('PFBridgeCore').APIs.API
@@ -15,7 +15,7 @@ events.QQ.onGroupMessage.add(function (e) {
         if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
             let cmds = e.messageMatch.getCommands("/", "+")//使用现成的匹配方法
             if (cmds.Count >= 1) {
-                switch (cmds[0]) {
+                switch (cmds[0].toLowerCase()) {
                     case "cmd": case "运行": case "命令": case "运行命令":
                         if (ConfigAdminQQs.some(l => l == senderId)) { //判断权限
                             if (cmds.Count < 2) {

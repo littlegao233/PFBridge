@@ -5,6 +5,7 @@
     <RootNamespace>PFBridgeCore</RootNamespace>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'==''">net461;net5;netcoreapp3.1</TargetFrameworks>
     <TargetFrameworks Condition="'$(LibraryFrameworks)'!=''">$(LibraryFrameworks)</TargetFrameworks>
+    <Platforms>AnyCPU;x86</Platforms>
   </PropertyGroup>
 
   <ItemGroup>
@@ -69,6 +70,6 @@
     </Reference>
    </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
-    <PackageReference Include="WebSocketSharpFork" Version="1.0.4" />
+    <PackageReference Include="SIPSorcery.WebSocketSharp" Version="0.0.1" />
   </ItemGroup>
 </Project>

@@ -39,20 +39,35 @@ Namespace Ws
         Public Sub New(url As String, _token As String, _tag As Object)
             Id = IdAll : IdAll += 1
             Tag = _tag
-            Client = New WebSocket(url) 'New Microsoft.Extensions.Logging.ILogger
-
             Token = _token
+            Client = New WebSocket(url)
+            Client.Log.Output = Sub(data, e)
+                                    Select Case data.Level
+                                        Case LogLevel.Trace, LogLevel.Debug, LogLevel.Info
+                                            API.Log($"{Client.Url}[WS-{data.Level}]{data.Message}")
+                                        Case LogLevel.Fatal
+                                            'API.LogErr()
+                                            If data.Caller.GetMethod().Name = "<startReceiving>b__2" Then Return
+                                            API.LogErr($"{Client.Url}[WS-{data.Level}]{data.Message}")
+                                        Case LogLevel.Error, LogLevel.Warn
+                                            API.LogErr($"{Client.Url}[WS-{data.Level}]{data.Message}")
+                                    End Select
+                                End Sub
             AddHandler Client.OnMessage, Sub(sender, e)
                                              ProcessMessage(Me, e.Data)
                                          End Sub
-            AddHandler Client.OnOpen, Sub(sender, e)
-                                          API.Log($"与{Client.Url}的连接已建立 ")
-                                      End Sub
-            AddHandler Client.OnError, Sub(sender, e)
-                                           API.LogErr($"{Client.Url}遇到错误：{ e.Exception}")
-                                       End Sub
+            'AddHandler Client.OnOpen, Sub(sender, e)
+            '                              API.Log($"与{Client.Url}的连接已建立 ")
+            '                          End Sub
+            'AddHandler Client.OnError, Sub(sender, e)
+            '                               API.LogErr($"{Client.Url}遇到错误：{ e.Exception}")
+            '                           End Sub
             AddHandler Client.OnClose, Sub(sender, e)
-                                           API.LogErr($"{Client.Url}断开连接，将自动尝试重连： " & e.Reason)
+                                           If e.Code = 1006 Then
+                                               API.LogErr($"{Client.Url}断开连接，将自动尝试重连[" & e.Code & "]:" & e.Reason)
+                                           Else
+                                               API.LogErr($"{Client.Url}建立连接失败，将自动尝试重连[" & e.Code & "]:" & e.Reason)
+                                           End If
                                        End Sub
             AddHandler CheckTimer.Elapsed, Sub(sender, e)
                                                Try
@@ -71,8 +86,12 @@ Namespace Ws
         Private Sub CheckConnect() Implements IBridgeMCBase.CheckConnect
             Try
                 If Not Client.IsAlive Then
+#If DEBUG Then
+                    API.Log(Client.ReadyState)
+#End If
                     Client.ConnectAsync()
                 End If
+            Catch ex As InvalidOperationException
             Catch ex As Exception
 #If DEBUG Then
                 API.LogErr(ex.ToString)

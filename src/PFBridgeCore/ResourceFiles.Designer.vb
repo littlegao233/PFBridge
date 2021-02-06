@@ -65,7 +65,17 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似  的本地化字符串。
+        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
+        '''moduleInfo.Version = &quot;v0.0.1&quot;
+        '''moduleInfo.Description = &apos;群内使用&quot;/cmd [服务器] &lt;命令&gt;&quot;命令执行服务器命令&apos;
+        '''//管理员QQ请在main.js配置
+        '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
+        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
+        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
+        '''events.QQ.onGroupMessage.add(function (e) {
+        '''    const { groupId } = e
+        '''    let index = ConfigGroups.findIndex(l =&gt; l.id == groupId);//匹配群号（于配置）
+        '''    if (index !== -1)  [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property command() As String
             Get
@@ -95,7 +105,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 const AdminQQs = [441870948, 233333]//管理员QQ号
+        '''  查找类似 const AdminQQs = [441870948, 233333]//管理员QQ号,仅管理员可以执行命令
         '''const Groups = [
         '''    {
         '''        id: 626872357,//QQ群号
@@ -107,8 +117,7 @@ Namespace My.Resources
         '''    {
         '''        type: &quot;websocket&quot;,
         '''        url: &quot;ws://127.0.0.1:29132/mcws&quot;,//websocket地址|如{&quot;Port&quot;: &quot;29132&quot;,&quot;EndPoint&quot;: &quot;mcws&quot;,&quot;Password&quot;: &quot;commandpassword&quot;}对应ws://127.0.0.1:29132/mcws
-        '''        token: &quot;commandpassword&quot;,//websocket密匙串（用于运行命令等操作）|&quot;Password&quot;: &quot;commandpassword&quot;
-        '''       [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''        token: &quot;commandpassword&quot;,//websocket密匙串（用于运行命令等操作）|&quot;Password&quot;: &quot;commandpasswo [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property main() As String
             Get
@@ -135,6 +144,26 @@ Namespace My.Resources
         Public Shared ReadOnly Property query() As String
             Get
                 Return ResourceManager.GetString("query", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
+        '''moduleInfo.Version = &quot;v0.0.1&quot;
+        '''moduleInfo.Description = &apos;群内管理员使用&quot;/白名单 添加 [服务器] &lt;玩家名&gt;&quot;添加白名单\
+        '''群内使用&quot;/白名单 [服务器] &lt;玩家名&gt;&apos;
+        '''//管理员QQ请在main.js配置
+        '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
+        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
+        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
+        '''const Thread = importNamespace(&apos;System.Threading&apos;).Thread
+        '''events.QQ.onGroupMessage.add(function (e) {
+        '''    const { groupId } = e
+        '''    let in [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property whitelist() As String
+            Get
+                Return ResourceManager.GetString("whitelist", resourceCulture)
             End Get
         End Property
     End Class

@@ -51,6 +51,7 @@ Public Module Main
         options.AllowClr(GetType(FileIO.FileSystem).Assembly)
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
+        options.AllowClr(GetType(System.Threading.Thread).Assembly)
 #If DEBUG Then
         options.DebugMode()
         options.CatchClrExceptions()
@@ -127,6 +128,7 @@ Public Module Main
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\main.js"), My.Resources.ResourceFiles.main)
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\query.js"), My.Resources.ResourceFiles.query)
             File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\command.js"), My.Resources.ResourceFiles.command)
+            File.WriteAllText(Path.Combine(API.PluginDataPath, "scripts\whitelist.js"), My.Resources.ResourceFiles.whitelist)
             Dim indexPath = Path.Combine(API.PluginDataPath, "index.js")
             File.Delete(indexPath)
             Return My.Resources.ResourceFiles.index
