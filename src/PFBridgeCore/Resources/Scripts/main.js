@@ -15,7 +15,8 @@ const Servers = [
         ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
         GroupMsgToServer: true,//是否转发群消息到该服务器
         ServerMsgToOther: true,//是否将该服务器的各种消息转发到其他已连接服服务器（多服联动）
-        ReceiveMsgFromOther: true//是否接受其他服务器的消息（多服联动）
+        ReceiveMsgFromOther: true,//是否接受其他服务器的消息（多服联动）
+        WhitelistEnabled: true//是否开启白名单，改参数主要在whitelist.js中用到
     }/*, {//在这里添加多个服务器
         type: "websocket",
         url: "ws://127.0.0.1:29132/mcws",//websocket地址

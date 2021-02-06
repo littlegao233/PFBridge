@@ -101,7 +101,7 @@ Namespace Ws
 #Else
         Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 10000, .Enabled = True}
 #End If
-        Private ConnectingStateTimes As Integer = 0
+        'Private ConnectingStateTimes As Integer = 0
         Private ClosedStateTimes As Integer = 0
         Private _connectionState As Boolean = False
         Private WriteOnly Property ConnectionState
@@ -111,7 +111,7 @@ Namespace Ws
                         If Client.Ping() Then
                             API.Log($"与{Client.Url}的连接已建立 ")
                             _connectionState = value
-                            ConnectingStateTimes = 0
+                            'ConnectingStateTimes = 0
                             ClosedStateTimes = 0
                         End If
                     Else
@@ -123,12 +123,11 @@ Namespace Ws
 
         Private Sub CheckConnect() Implements IBridgeMCBase.CheckConnect
             Try
-                ConnectionState = Client.IsAlive
                 If Not Client.IsAlive Then
 #If DEBUG Then
                     API.Log(Client.ReadyState)
 #End If
-                    If Client.ReadyState = WebSocketState.Closed Then
+                    If Client.ReadyState = WebSocketState.Closed OrElse Client.ReadyState = WebSocketState.Connecting Then
                         Client.Connect()
                         ClosedStateTimes += 1
                         If ClosedStateTimes > 30 Then
@@ -138,12 +137,12 @@ Namespace Ws
                             Client = CreateNewClient()
                             ClosedStateTimes = 0
                         End If
-                    ElseIf Client.ReadyState = WebSocketState.Connecting Then
-                        ConnectingStateTimes += 1
-                        If ConnectingStateTimes > 4 Then
-                            Client.ConnectAsync()
-                            ConnectingStateTimes = 0
-                        End If
+                        'ElseIfThen
+                        'ConnectingStateTimes += 1
+                        'If ConnectingStateTimes > 4 Then
+                        '    Client.ConnectAsync()
+                        '    ConnectingStateTimes = 0
+                        'End If
                     End If
                 End If
             Catch ex As InvalidOperationException
@@ -156,7 +155,16 @@ Namespace Ws
                 API.LogErr(ex.ToString)
 #End If
             End Try
+            Try
+                ConnectionState = Client.IsAlive
+            Catch : End Try
         End Sub
         Public Shared Property EncryptionMode As EncryptionMode = EncryptionMode.aes_cbc_pck7padding
+
+        Public ReadOnly Property State As Boolean Implements IBridgeMCBase.State
+            Get
+                Return Client.IsAlive
+            End Get
+        End Property
     End Class
 End Namespace

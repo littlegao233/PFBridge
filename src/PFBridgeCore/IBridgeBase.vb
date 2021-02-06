@@ -11,6 +11,7 @@ End Interface
 Public Interface IBridgeMCBase
     Property Id As Integer
     Property Tag As Object
+    ReadOnly Property State As Boolean
     Sub RunCmdCallback(cmd As String, callback As Action(Of String))
     Sub RunCmd(cmd As String)
     Sub CheckConnect()

@@ -28,11 +28,11 @@ Public Module Main
             MyBase.Execute($"function Main{rndstr}(moduleInfo) {{
 {content}
 }}")
-                Invoke($"Main{rndstr}", moduleInfo)
-                'Catch ex As Exception
-                '    APIs.API.LogErr("模块加载失败：" & ex.ToString)
-                'End Try
-                Return moduleInfo
+            Invoke($"Main{rndstr}", moduleInfo)
+            'Catch ex As Exception
+            '    APIs.API.LogErr("模块加载失败：" & ex.ToString)
+            'End Try
+            Return moduleInfo
         End Function
         Public Class ModuleInfo
             Public Property Author As String = "unknown"
@@ -99,7 +99,15 @@ Public Module Main
             e.Execute(JSRaw)
 #End If
             'engine=Nothing
-            MCConnections.ForEach(Sub(l) l.CheckConnect())
+            MCConnections.ForEach(Sub(l)
+                                      l.CheckConnect()
+                                  End Sub)
+            'Task.Run(Sub()
+            '             Threading.Thread.Sleep(500)
+            '             MCConnections.ForEach(Sub(l)
+            '                                       l.CheckConnect()
+            '                                   End Sub)
+            '         End Sub)
         Catch ex As ReloadEngineException
             StartJSEngine(CreateJSEngine, RestartDuration)
         Catch ex As Exception
