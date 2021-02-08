@@ -81,7 +81,7 @@ events.QQ.onGroupMessage.add(function (e) {
                                 const ServerName = thisCon.Tag.name;
                                 if (thisCon.State) {
                                     AllResult.push([ServerName, "查询结果未知"])
-                                    thisCon.RunCmd('whitelist list', function (result) {
+                                    thisCon.RunCmd('list', function (result) {
                                         try {
                                             let item = AllResult.find(x => x[0] == ServerName);
                                             item[1] = result.trim();
