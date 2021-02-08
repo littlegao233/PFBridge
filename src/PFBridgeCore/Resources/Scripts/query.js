@@ -87,8 +87,8 @@ events.QQ.onGroupMessage.add(function (e) {
                                             item[1] = result.trim();
                                             SuccessCount++;
                                             if (TotalCount == SuccessCount + FailedCount && SuccessCount != 0) {//判断是否是执行的最后一个服务器
-                                                let outputResult = [`[在线查询结果]`];
-                                                AllResult.forEach(x => outputResult.push(`${x[0]}:${x[1]}`));
+                                                let outputResult = [`在线查询结果:`];
+                                                AllResult.forEach(x => outputResult.push(`[${x[0]}]${x[1].replace(/\n/g,"")}`));
                                                 e.feedback(outputResult.join("\n"));
                                             }
                                         } catch (error) { }
