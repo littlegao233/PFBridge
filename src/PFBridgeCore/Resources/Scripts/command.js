@@ -1,23 +1,37 @@
-﻿moduleInfo.Author = "littlegao233"
-moduleInfo.Version = "v0.0.1"
-moduleInfo.Description = '群内使用"/cmd [服务器] <命令>"命令执行服务器命令'
-//管理员QQ请在main.js配置
+﻿moduleInfo.Author = "littlegao233";
+moduleInfo.Version = "v0.0.2";
+moduleInfo.Description = '群内使用"/cmd [服务器] <命令>"命令执行服务器命令';
+//简单设置：
+const JudgePermissionByConfig = true;
+//JudgePermissionByConfig：是否通过配置文件判断权限
+//  - true：仅有main.js配置的管理员QQ课执行
+//  - false：发送者为群内的管理员就能执行
 const events = importNamespace('PFBridgeCore').APIs.Events
 const api = importNamespace('PFBridgeCore').APIs.API
 const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+function JudgePermission(e) {
+    if (JudgePermissionByConfig) {
+        const { senderId } = e;
+        //根据配置文件main.js中的管理员判断权限
+        return ConfigAdminQQs.some(l => l == senderId);
+    } else {
+        //根据成员类型判断权限（memberType属性=>0未知;1成员;2管理员;3群主）
+        return e.memberType >= 2
+    }
+}
 events.QQ.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = ConfigGroups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         //let group = ConfigGroups[index];
-        let msg = e.message;
-        const { senderId, message } = e
+        //let msg = e.message;
+        const {  message } = e
         if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
             let cmds = e.messageMatch.getCommands("/", "+")//使用现成的匹配方法
             if (cmds.Count >= 1) {
                 switch (cmds[0].toLowerCase()) {
                     case "cmd": case "运行": case "命令": case "运行命令":
-                        if (ConfigAdminQQs.some(l => l == senderId)) { //判断权限
+                        if (JudgePermission(e)) { 
                             if (cmds.Count < 2) {
                                 e.feedback("参数不足！")
                             } else if (cmds.Count < 3) {//只有两个参数,如：/cmd listd

@@ -1,37 +1,15 @@
-﻿const AdminQQs = [441870948, 233333]//管理员QQ号,仅管理员可以执行命令
-const Groups = [
-    {
-        id: 626872357,//QQ群号
-        ServerMsgToGroup: true,//是否转发服务器的各种消息到该群
-        GroupMsgToServer: true//是否将该群的消息转发到所有服务器
-    }
-]
-const Servers = [
-    {
-        type: "websocket",
-        url: "ws://127.0.0.1:29132/mcws",//websocket地址|如{"Port": "29132","EndPoint": "mcws","Password": "commandpassword"}对应ws://127.0.0.1:29132/mcws
-        token: "commandpassword",//websocket密匙串（用于运行命令等操作）|"Password": "commandpassword"
-        name: "测试服务器",
-        ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
-        GroupMsgToServer: true,//是否转发群消息到该服务器
-        ServerMsgToOther: true,//是否将该服务器的各种消息转发到其他已连接服服务器（多服联动）
-        ReceiveMsgFromOther: true,//是否接受其他服务器的消息（多服联动）
-        WhitelistEnabled: true//是否开启白名单，改参数主要在whitelist.js中用到
-    }/*, {//在这里添加多个服务器
-        type: "websocket",
-        url: "ws://127.0.0.1:29132/mcws",//websocket地址
-        token: "commandpassword",//websocket密匙串（用于运行命令等操作）
-    }*/
-]
+﻿moduleInfo.Author = "littlegao233"
+moduleInfo.Version = "v0.0.2"
+moduleInfo.Description = "包含配置文件的读写、\n服务器之间的同步、\n群与服务器的聊天同步、\n加入服务器的群反馈"
 
-moduleInfo.Author = "littlegao233"
-moduleInfo.Version = "v0.0.1"
-moduleInfo.Description = "包含群与服务器的聊天同步\n以及加入服务器的群反馈"
+
+let AdminQQs = []
+let Groups = []
+let Servers = []
 //#region 共享数据
 const engine = importNamespace('PFBridgeCore').Main.Engine
 engine.SetValue("ConfigGroups", Groups)
 engine.SetValue("ConfigAdminQQs", AdminQQs)
-
 //#endregion
 
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
@@ -39,6 +17,22 @@ const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
 const events = importNamespace('PFBridgeCore').APIs.Events
 const api = importNamespace('PFBridgeCore').APIs.API
 const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+//保存文件
+const File = importNamespace('System.IO').File;//导入命名空间
+const configPath = api.pluginDataPath + "\\config.json"
+if (File.Exists(configPath)) {
+    const JSONLinq = importNamespace('Newtonsoft.Json.Linq');//导入命名空间
+    //用于读取带注释的json
+    const imported = JSON.parse(JSONLinq.JObject.Parse(File.ReadAllText(configPath)).ToString())
+    AdminQQs = imported.AdminQQs
+    Groups = imported.Groups
+    Servers = imported.Servers
+    api.Log("从"+configPath+"读取配置文件成功")
+} else {//输出默认配置文件
+    const willexport =  "{\n    \"AdminQQs\": [441870948, 233333]/*管理员QQ号,用于配置是否可执行命令等*/,\n    \"Groups\": [\n        {\n            \"id\": 626872357,//QQ群号\n            \"ServerMsgToGroup\": true,//是否转发服务器的各种消息到该群\n            \"GroupMsgToServer\": true//是否将该群的消息转发到所有服务器\n        }\n    ],\n    \"Servers\": [\n        {\n            \"type\": \"websocket\",\n            \"url\": \"ws://127.0.0.1:29132/mcws\",//websocket地址|如{\"Port\": \"29132\",\"EndPoint\": \"mcws\",\"Password\": \"commandpassword\"}对应ws://127.0.0.1:29132/mcws\n            \"token\": \"commandpassword\",//websocket密匙串（用于运行命令等操作）|\"Password\": \"commandpassword\"\n            \"name\": \"测试服务器\",\n            \"ServerMsgToGroup\": true,//是否将该服务器的各种消息转发到群\n            \"GroupMsgToServer\": true,//是否转发群消息到该服务器\n            \"ServerMsgToOther\": true,//是否将该服务器的各种消息转发到其他已连接服服务器（多服联动）\n            \"ReceiveMsgFromOther\": true,//是否接受其他服务器的消息（多服联动）\n            \"WhitelistEnabled\": true//是否开启白名单，改参数主要在whitelist.js中用到\n        }/*, {//在这里添加多个服务器\n            \"type\": \"websocket\",\n            \"url\": \"ws://127.0.0.1:29132/mcws\",//websocket地址\n            \"token\": \"commandpassword\",//websocket密匙串（用于运行命令等操作）\n        }*/\n    ]\n}"
+    File.WriteAllText(configPath, willexport)
+    api.Log("已输出默认配置文件到"+configPath)
+}
 /**
  * 添加基于WebsocketAPI的mc连接
  * @param {string} url websocket地址

@@ -130,7 +130,7 @@ Namespace Ws
                     If Client.ReadyState = WebSocketState.Closed OrElse Client.ReadyState = WebSocketState.Connecting Then
                         Client.Connect()
                         ClosedStateTimes += 1
-                        If ClosedStateTimes > 30 Then
+                        If ClosedStateTimes > 20 Then
                             Try : Client.Log.Output = Sub()
                                                       End Sub : Catch : End Try
                             Try : Client.CloseAsync() : Catch : End Try

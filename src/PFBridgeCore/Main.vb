@@ -52,10 +52,11 @@ Public Module Main
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
         options.AllowClr(GetType(System.Threading.Thread).Assembly)
+        options.AllowClr(GetType(Newtonsoft.Json.Linq.JObject).Assembly)
 #If DEBUG Then
         options.DebugMode()
-        options.CatchClrExceptions()
 #End If
+        options.CatchClrExceptions()
         options.AllowClr(AssemblyEx.AssemblyList.Values.ToArray())
         'System.Console.WriteLine(String.Join(vbCrLf, Assembly.GetCallingAssembly.GetExportedTypes.ToList().ConvertAll(Function(l) l.Assembly.FullName)))
         'For Each item In Assembly.GetExecutingAssembly().GetReferencedAssemblies()
