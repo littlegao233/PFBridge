@@ -87,7 +87,7 @@
 >    "Servers": [
 >        {
 >            "type": "websocket",
->            "url": "ws://127.0.0.1:29132/mcws",//websocket地址|如{"Port": "29132","EndPoint": "mcws","Password": "commandpassword"}对应ws://127.0.0.1:29132/mcws
+>            "url": "ws://127.0.0.1:29132/mcws",//websocket地址|如BDS的{"Port": "29132","EndPoint": "mcws","Password": "commandpassword"}对应ws://127.0.0.1:29132/mcws
 >            "token": "commandpassword",//websocket密匙串（用于运行命令等操作）|"Password": "commandpassword"
 >            "name": "测试服务器",
 >            "ServerMsgToGroup": true,//是否将该服务器的各种消息转发到群

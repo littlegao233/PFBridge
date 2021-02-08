@@ -21,9 +21,9 @@ function JudgePermission(e) {
 }
 events.QQ.onGroupMessage.add(function (e) {
     const { groupId } = e
-    let index = ConfigGroups.findIndex(l => l.id == groupId);//匹配群号（于配置）
+    let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
-        //let group = ConfigGroups[index];
+        //let group = GetConfigGroups()[index];
         //let msg = e.message;
         const {  message } = e
         if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
