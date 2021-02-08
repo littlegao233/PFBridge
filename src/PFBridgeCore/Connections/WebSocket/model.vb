@@ -239,8 +239,8 @@ Namespace PFWebsocketAPI.Model
         'End Sub
         Public Overrides Function ToString() As String
             Return New JObject From {
-            New JProperty("action", action.ToString()),
             New JProperty("type", type.ToString()),
+            New JProperty("action", action.ToString()),
             New JProperty("params", New JObject From {
                 New JProperty("cmd", params.cmd.ToString()),
                 New JProperty("id", params.id)
