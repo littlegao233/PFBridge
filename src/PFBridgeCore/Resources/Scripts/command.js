@@ -13,7 +13,7 @@ function JudgePermission(e) {
     if (JudgePermissionByConfig) {
         const { senderId } = e;
         //根据配置文件main.js中的管理员判断权限
-        return ConfigAdminQQs.some(l => l == senderId);
+        return GetConfigAdminQQs().some(l => l == senderId);
     } else {
         //根据成员类型判断权限（memberType属性=>0未知;1成员;2管理员;3群主）
         return e.memberType >= 2

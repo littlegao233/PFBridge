@@ -8,8 +8,8 @@ let Groups = new Array()
 let Servers = new Array()
 //#region 共享数据
 const engine = importNamespace('PFBridgeCore').Main.Engine
-engine.SetValue("GetConfigGroups", () => Groups)
-engine.SetValue("GetConfigAdminQQs", () => AdminQQs)
+engine.SetValue("GetConfigGroups", () => { return Groups; })
+engine.SetValue("GetConfigAdminQQs", () => { return AdminQQs; })
 //#endregion
 
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
