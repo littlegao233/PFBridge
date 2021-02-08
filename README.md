@@ -72,32 +72,36 @@
 >- - - `index.js`是加载器入口,不建议修改
 >- - - `libs`文件夹用于加载net类库(.dll)，加载后可在脚本中使用`const xxx = importNamespace('net命名空间')`来使用
 >- - - `scripts`文件夹存放的是主体部分的脚本
->- 使用专业的编辑器(别拿个记事本截图问怎么用)(如[VisualStudioCode](https://code.visualstudio.com/))打开插件数据目录`scripts`文件夹下的`main.js`
->- 可以在文件的前几行看到详细的注释，自行修改对应内容即可
->```javascript
->const AdminQQs = [441870948, 233333]//管理员QQ号
->const Groups = [
->    {
->        id: 626872357,//QQ群号
->        ServerMsgToGroup: true,//是否转发服务器的各种消息到该群
->        GroupMsgToServer: true//是否将该群的消息转发到所有服务器
->    }
->]
->const Servers = [
->    {
->        type: "websocket",
->        url: "ws://127.0.0.1:29132/mcws",//websocket地址|如{"Port": "29132","EndPoint": "mcws","Password": "commandpassword"}对应ws://127.0.0.1:29132/mcws
->        token: "commandpassword",//websocket密匙串（用于运行命令等操作）|"Password": "commandpassword"        name: "测试服务器",
->        ServerMsgToGroup: true,//是否将该服务器的各种消息转发到群
->        GroupMsgToServer: true,//是否转发群消息到该服务器
->        ServerMsgToOther: true,//是否将该服务器的各种消息转发到其他已连接服服务器（多服联动）
->        ReceiveMsgFromOther: true//是否接受其他服务器的消息（多服联动）
->    }/*, {//在这里添加多个服务器
->        type: "websocket",
->        url: "ws://127.0.0.1:29132/mcws",//websocket地址
->        token: "commandpassword",//websocket密匙串（用于运行命令等操作）
->    }*/
->]
+>- 使用专业的编辑器(别拿个记事本截图问怎么用)(如[VisualStudioCode](https://code.visualstudio.com/))打开插件数据目录下的`config.json`
+>- 可以在文件中看到详细的注释，自行修改对应内容,然后重启框架（重载插件）
+>```jsonc
+>{
+>    "AdminQQs": [441870948, 233333]/*管理员QQ号,用于配置是否可执行命令等*/,
+>    "Groups": [
+>        {
+>            "id": 626872357,//QQ群号
+>            "ServerMsgToGroup": true,//是否转发服务器的各种消息到该群
+>            "GroupMsgToServer": true//是否将该群的消息转发到所有服务器
+>        }
+>    ],
+>    "Servers": [
+>        {
+>            "type": "websocket",
+>            "url": "ws://127.0.0.1:29132/mcws",//websocket地址|如{"Port": "29132","EndPoint": "mcws","Password": "commandpassword"}对应ws://127.0.0.1:29132/mcws
+>            "token": "commandpassword",//websocket密匙串（用于运行命令等操作）|"Password": "commandpassword"
+>            "name": "测试服务器",
+>            "ServerMsgToGroup": true,//是否将该服务器的各种消息转发到群
+>            "GroupMsgToServer": true,//是否转发群消息到该服务器
+>            "ServerMsgToOther": true,//是否将该服务器的各种消息转发到其他已连接服服务器（多服联动）
+>            "ReceiveMsgFromOther": true,//是否接受其他服务器的消息（多服联动）
+>            "WhitelistEnabled": true//是否开启白名单，改参数主要在whitelist.js中用到
+>        }/*, {//在这里添加多个服务器
+>            "type": "websocket",
+>            "url": "ws://127.0.0.1:29132/mcws",//websocket地址
+>            "token": "commandpassword",//websocket密匙串（用于运行命令等操作）
+>        }*/
+>    ]
+>}
 >```
 ---
 - ## Thanks/鸣谢
