@@ -1,6 +1,6 @@
 ﻿moduleInfo.Author = "littlegao233"
 moduleInfo.Version = "v0.0.1"
-moduleInfo.Description = '群内管理员使用"/白名单 添加 [服务器] <玩家名>"添加白名单\n群内使用"/白名单 [服务器] <玩家名>'
+moduleInfo.Description = '群内管理员使用"/白名单 <添加|删除> [服务器] <玩家名>"操作白名单\n群内使用"/白名单 查询 [服务器] <玩家名>查询白名单'
 //管理员QQ请在main.js配置
 const events = importNamespace('PFBridgeCore').APIs.Events
 const api = importNamespace('PFBridgeCore').APIs.API
@@ -11,7 +11,7 @@ events.QQ.onGroupMessage.add(function (e) {
     let index = ConfigGroups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         //let group = ConfigGroups[index];
-        let msg = e.message;
+        //let msg = e.message;
         const { senderId, message } = e
         if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
             let cmds = e.messageMatch.getCommands("/", "+")//使用现成的匹配方法

@@ -23,11 +23,11 @@ namespace PFBridgeForOneBot
           {
               try
               {
-                  PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(eventArgs.SourceGroup.Id, eventArgs.Sender.Id, eventArgs.Message.RawText,
+                  PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(eventArgs.SourceGroup.Id, eventArgs.Sender.Id, CQDeCode(eventArgs.Message.RawText),
                         () => eventArgs.SourceGroup.GetGroupInfo().Result.groupInfo.GroupName,
                         () => eventArgs.SenderInfo.Nick,
                         () => eventArgs.SenderInfo.Card,
-                        () => (int)eventArgs.SenderInfo.Role+1,
+                        () => (int)eventArgs.SenderInfo.Role + 1,
                         /*
                             //
         // 摘要:
@@ -57,6 +57,16 @@ namespace PFBridgeForOneBot
             //{
             //    await eventArgs.SourceGroup.SendGroupMessage(eventArgs.Message.MessageList);
             //};
+        }
+        internal static string CQDeCode(string source)
+        {
+            if (source == null) return string.Empty;
+            var builder = new StringBuilder(source);
+            builder = builder.Replace("&#91;", "[");
+            builder = builder.Replace("&#93;", "]");
+            builder = builder.Replace("&#44;", ",");
+            builder = builder.Replace("&amp;", "&");
+            return builder.ToString();
         }
     }
 }

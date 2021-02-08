@@ -52,7 +52,7 @@ Namespace PFWebsocketAPI.Model
         Inherits PackBase
         Public Overrides Function ToString() As String
             Return New JObject From {
-            New JProperty("type", type),
+            New JProperty("type", type.ToString()),
             New JProperty("params", New JObject From {
                 New JProperty("mode", params.mode.ToString()),
                 New JProperty("raw", params.raw)
@@ -239,8 +239,8 @@ Namespace PFWebsocketAPI.Model
         'End Sub
         Public Overrides Function ToString() As String
             Return New JObject From {
-            New JProperty("action", action),
-            New JProperty("type", type),
+            New JProperty("action", action.ToString()),
+            New JProperty("type", type.ToString()),
             New JProperty("params", New JObject From {
                 New JProperty("cmd", params.cmd.ToString()),
                 New JProperty("id", params.id)
