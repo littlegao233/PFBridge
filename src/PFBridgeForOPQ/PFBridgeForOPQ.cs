@@ -45,12 +45,14 @@ namespace PFBridgeForOPQ
         /// </summary>
         /// <param name="msg"></param>
         /// <returns>0不拦截 1拦截消息</returns>
-        public override int GroupMsgProcess(GroupMsg msg, long CurrentQQ)
+        public override int GroupMsgProcess(GroupMsg _msg, long _CurrentQQ)
         {
             //msg.FromNickName
             //msg.FromGroupName
             try
             {
+                var msg = _msg;
+                var CurrentQQ = _CurrentQQ;
                 void feedback(string s)
                 {
                     try

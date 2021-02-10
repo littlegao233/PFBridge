@@ -24,11 +24,12 @@ namespace PFBridgeForXiaoLz.Plugin
         /// <summary>
         /// 处理消息接收事件。
         /// </summary>
-        internal static void OnMessageReceived(SDK.Events.GroupMessageEvent e)
+        internal static void OnMessageReceived(SDK.Events.GroupMessageEvent _e)
         {
             if (++counter == byte.MaxValue) { counter = byte.MinValue; App.RefreshQQList(); }
             try
             {
+                var e = _e;
                 PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent,
                   () => e.SourceGroupName,
                   () => e.SenderNickname,// SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).NickName
