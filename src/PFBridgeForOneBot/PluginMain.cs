@@ -23,11 +23,17 @@ namespace PFBridgeForOneBot
           {
               try
               {
-                  PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(eventArgs.SourceGroup.Id, eventArgs.Sender.Id, CQDeCode(eventArgs.Message.RawText),
-                        () => eventArgs.SourceGroup.GetGroupInfo().Result.groupInfo.GroupName,
-                        () => eventArgs.SenderInfo.Nick,
-                        () => eventArgs.SenderInfo.Card,
-                        () => (int)eventArgs.SenderInfo.Role + 1,
+                  Sora.EventArgs.SoraEvent.GroupMessageEventArgs e = eventArgs;
+                  PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, CQDeCode(e.Message.RawText),
+                        () =>
+                        {
+                            var get = e.SourceGroup.GetGroupInfo().AsTask();
+                            get.Wait();
+                            return get.Result.groupInfo.GroupName;
+                        },
+                        () => e.SenderInfo.Nick,
+                        () => e.SenderInfo.Card,
+                        () => (int)e.SenderInfo.Role + 1,
                         /*
                             //
         // 摘要:
@@ -42,7 +48,7 @@ namespace PFBridgeForOneBot
         //     群主
         Owner = 2
                          */
-                        s => eventArgs.Reply(s)
+                        s => e.Reply(s)
                     ));
               }
               catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); }

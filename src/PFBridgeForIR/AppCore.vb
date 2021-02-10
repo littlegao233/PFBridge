@@ -33,7 +33,7 @@ Namespace IRQQ.CSharp
         <DllExport(ExportName:=NameOf(IR_Event), CallingConvention:=CallingConvention.StdCall)>
         Public Function IR_Event(ByVal RobotQQ As String, ByVal MsgType As Integer, ByVal MsgCType As Integer, ByVal MsgFrom As String, ByVal TigObjF As String, ByVal TigObjC As String, ByVal Msg As String, ByVal MsgNum As String, ByVal MsgID As String, ByVal RawMsg As String, ByVal Json As String, ByVal pText As Integer) As Integer
 #If DEBUG Then
-            ERApi.Log(MsgType.ToString())
+            'ERApi.Log(MsgType.ToString())
 #End If
             Select Case MsgType
                 Case 2 '群消息

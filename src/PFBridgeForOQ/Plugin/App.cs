@@ -23,11 +23,19 @@ namespace PFBridgeForOQ.Plugin
         /// <summary>
         /// 处理消息接收事件。
         /// </summary>
-        internal static void OnMessageReceived(CqGroupMessageEventArgs e)
+        internal static void OnMessageReceived(CqGroupMessageEventArgs oe)
         {
             //IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.FromGroup)
             try
             {
+#if DEBUG
+                //IBoxs.Core.App.Common.CqApi.OutLog(IBoxs.Core.App.Common.CqApi.GetGroupInfo(e.RobotQQ, e.FromGroup).Name);
+                //IBoxs.Core.App.Common.CqApi.OutLog(IBoxs.Core.App.Common.CqApi.GetQQNick(e.RobotQQ, e.FromQQ));
+                //IBoxs.Core.App.Common.CqApi.OutLog(IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).Card);
+                //IBoxs.Core.App.Common.CqApi.OutLog(((int)IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).PermitType).ToString());
+
+#endif
+                CqGroupMessageEventArgs e = oe;
                 PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message,
                     () => IBoxs.Core.App.Common.CqApi.GetGroupInfo(e.RobotQQ, e.FromGroup).Name,
                     () => IBoxs.Core.App.Common.CqApi.GetQQNick(e.RobotQQ, e.FromQQ),

@@ -31,9 +31,9 @@ Namespace PFBridgeForCQ
         ''' <summary>
         ''' 处理消息接收事件。
         ''' </summary>
-        Private Sub OnMessageReceived(sender As Object, e As MessageReceivedEventArgs)
+        Private Sub OnMessageReceived(sender As Object, _e As MessageReceivedEventArgs)
             'e.Sender.Nickname
-
+            Dim e = _e
             PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(
                                                                                     e.Source.Number,
                                                                                     e.Sender.Number,

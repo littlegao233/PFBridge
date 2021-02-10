@@ -18,8 +18,12 @@ Namespace PFBridgeForER.Plugin
         ''' <summary>
         ''' 处理消息接收事件。
         ''' </summary>
-        Friend Sub OnMessageReceived(ByVal group As String, ByVal sender As String, ByVal message As String, ByVal _robotQQ As String)
+        Friend Sub OnMessageReceived(ByVal _group As String, ByVal _sender As String, ByVal _message As String, ByVal __robotQQ As String)
             'if (++counter == byte.MaxValue) { counter = byte.MinValue; App.RefreshQQList(); }
+            Dim group = _group
+            Dim sender = _sender
+            Dim message = _message
+            Dim _robotQQ = __robotQQ
             Try
                 PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(Long.Parse(group), Long.Parse(sender), message,
                                                                                              Function() IRQQ.CSharp.IRApi.GetGroupName(_robotQQ, group),
