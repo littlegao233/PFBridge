@@ -29,8 +29,8 @@
    - JavaScript自定义配置
 ---
 - ## Progress/进度
-    - [ ] WebSocket协议对接服务器方案
-    - - [ ] 兼容[BDXWebSocket - Minebbs](https://www.minebbs.com/threads/3537/)(适配中...)
+    - [x] WebSocket协议对接服务器方案
+    - - [x] 兼容[BDXWebSocket - Minebbs](https://www.minebbs.com/threads/3537/)(最新版本已适配，尚未测试)
     - - [x] 兼容[PFWebsocketAPI - Minebbs](https://www.minebbs.com/resources/1632/)
     - [x] 可拓展基础架构
     - - [x] JavaScript引擎实现自定义功能
