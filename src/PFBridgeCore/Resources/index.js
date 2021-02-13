@@ -71,16 +71,16 @@ if (IO.Directory.Exists(custom_script_path)) {
         try {
             let loadedInfo = engine.LoadModule(IO.File.ReadAllText(file));
             const { Author, Description, Version } = loadedInfo
-            api.log('██████████████');
-            api.log('█脚本"' + IO.Path.GetFileName(file) + '"加载成功!');
-            api.log('█作者：' + Author);
+            api.log('■■■■■■■■■■■■■■');
+            api.log('■脚本"' + IO.Path.GetFileName(file) + '"加载成功!');
+            api.log('■作者：' + Author);
             let isFirstLine = true;
             Description.split("\n").forEach((s) => {
-                api.log((isFirstLine ? '█描述：' : '█　　　') + s);
+                api.log((isFirstLine ? '■描述：' : '■　　　') + s);
                 isFirstLine = false;
             });
-            api.log('█版本：' + Version);
-            api.log('██████████████');
+            api.log('■版本：' + Version);
+            api.log('■■■■■■■■■■■■■■');
             custom_script_success_count++;
         } catch (e) {
             api.LogErr('自定义脚本"' + IO.Path.GetFileName(file) + '"运行出错：' + e);

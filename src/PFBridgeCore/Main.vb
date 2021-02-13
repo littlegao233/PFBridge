@@ -7,28 +7,63 @@ Imports Timer = System.Timers.Timer
 
 Public Module Main
     Public Class EngineEx
-        Inherits Jint.Engine
+        Inherits Engine
         Public Sub New(options As Options)
             MyBase.New(options)
         End Sub
-        Public Shadows Sub Execute(content As String)
-            Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
-            MyBase.Execute($"function Main{rndstr}() {{
-{content}
-}}")
-            Invoke($"Main{rndstr}")
+        '        Public Shadows Sub Execute(content As String)
+        '            Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
+        '            MyBase.Execute($"function Main{rndstr}() {{
+        '{content}
+        '}}")
+        '            Invoke($"Main{rndstr}")
+        '        End Sub
+        'Public Sub Run(content As String)
+        '    Execute(content)
+        'End Sub
+    End Class
+    Public Class EngineList
+        Inherits List(Of EngineEx)
+        Public Sub SetValue(key As String, value As Native.JsValue)
+            SetShareData(key, value) : End Sub
+        Public Property ShareDataList As New List(Of ShareData)
+        Public Class ShareData
+            Public Sub New(k As String, v As Native.JsValue)
+                Key = k : Value = v
+            End Sub
+            Public Property Key As String
+            Public Property Value As Native.JsValue
+        End Class
+        Public Sub SetShareData(key As String, value As Native.JsValue)
+            Dim index = ShareDataList.FindIndex(Function(x) x.Key = key)
+            If index = -1 Then
+                ShareDataList.Add(New ShareData(key, value))
+            Else
+                ShareDataList(index).Value = value
+            End If
         End Sub
-        Public Sub Run(content As String)
-            Execute(content)
-        End Sub
+        Public Function GetShareData(key As String) As ShareData
+            Dim index = ShareDataList.FindIndex(Function(x) x.Key = key)
+            If index = -1 Then
+                Dim create = New ShareData(key, Native.Undefined.Instance)
+                ShareDataList.Add(create)
+                Return create
+            Else
+                Return ShareDataList(index)
+            End If
+        End Function
         Public Function LoadModule(content As String) As ModuleInfo
-            Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
+            'Dim rndstr As String = Guid.NewGuid.ToString.Replace("-", "_")
+            Dim moduleEngine = CreateJSEngine()
             Dim moduleInfo As New ModuleInfo
+            moduleEngine.SetValue("moduleInfo", moduleInfo)
+            moduleEngine.Execute(content)
+            Add(moduleEngine)
             'Try
-            MyBase.Execute($"function Main{rndstr}(moduleInfo) {{
-{content}
-}}")
-            Invoke($"Main{rndstr}", moduleInfo)
+            '    MyBase.Execute($"function Main{rndstr}(moduleInfo) {{
+            '{content}
+            '}}")
+            '    Invoke($"Main{rndstr}", moduleInfo)
             'Catch ex As Exception
             '    APIs.API.LogErr("模块加载失败：" & ex.ToString)
             'End Try
@@ -39,8 +74,9 @@ Public Module Main
             Public Property Description As String = "unknown"
             Public Property Version As String = "unknown"
         End Class
+
     End Class
-    Public Property Engine As EngineEx = Nothing
+    Public Property Engine As New EngineList
     Private Function CreateJSEngine() As EngineEx
         Dim options As Options = New Options()
         options.AllowClr()
@@ -72,7 +108,7 @@ Public Module Main
         '                           End Function)
         'options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
         'engine.SetValue("TheType", TypeReference.CreateTypeReference(engine, TypeOf (TheType)))
-        Engine = New EngineEx(options)
+        Dim e = New EngineEx(options)
 #If DEBUG Then
         'Engine.SetValue("testfunc", Sub(obj)
         '                                Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(obj))
@@ -87,14 +123,22 @@ Public Module Main
         'engine.SetValue("MCConnections", MCConnections)
         'engine.SetValue("events", Events)
         'engine.SetValue("engine", engine)
-        Return Engine
+        Return e
     End Function
     Private Function StartJSEngine(e As EngineEx, RestartDuration As UInteger) As EngineEx
+        Try
+            Engine.ForEach(Sub(x)
+                               Try : x.ResetConstraints() : Catch : End Try
+                               Try : x.ResetCallStack() : Catch : End Try
+                           End Sub)
+            Engine.Clear()
+        Catch : End Try
         Try
             Try
                 APIs.Events.QQ.OnGroupMessage.Clear()
             Catch : End Try
 #If DEBUG Then
+            Engine.Add(e)
             e.Execute(JSRaw)
 #Else
             e.Execute(JSRaw)
@@ -109,8 +153,8 @@ Public Module Main
             '                                       l.CheckConnect()
             '                                   End Sub)
             '         End Sub)
-        Catch ex As ReloadEngineException
-            StartJSEngine(CreateJSEngine, RestartDuration)
+            'Catch ex As ReloadEngineException
+            '    StartJSEngine(CreateJSEngine, RestartDuration)
         Catch ex As Exception
             API.LogErr("JS引擎遇到错误:" & ex.ToString)
             Dim d As TimeSpan = TimeSpan.FromMilliseconds(RestartDuration)

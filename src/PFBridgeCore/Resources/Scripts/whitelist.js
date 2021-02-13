@@ -20,6 +20,13 @@ const events = importNamespace('PFBridgeCore').APIs.Events
 const api = importNamespace('PFBridgeCore').APIs.API
 const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
 const Thread = importNamespace('System.Threading').Thread
+
+const Engine = importNamespace('PFBridgeCore').Main.Engine
+const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
+const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
+function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
+function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value(); }
+
 events.QQ.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）

@@ -2,14 +2,13 @@
 moduleInfo.Version = "v0.0.2"
 moduleInfo.Description = "包含配置文件的读写、\n服务器之间的同步、\n群与服务器的聊天同步、\n加入服务器的群反馈"
 
-
 let AdminQQs = new Array()
 let Groups = new Array()
 let Servers = new Array()
 //#region 共享数据
 const engine = importNamespace('PFBridgeCore').Main.Engine
-engine.SetValue("GetConfigGroups", () => { return Groups; })
-engine.SetValue("GetConfigAdminQQs", () => { return AdminQQs; })
+engine.SetShareData("GetConfigGroups", () => { return Groups; })
+engine.SetShareData("GetConfigAdminQQs", () => { return AdminQQs; })
 //#endregion
 
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
@@ -17,6 +16,7 @@ const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
 const events = importNamespace('PFBridgeCore').APIs.Events
 const api = importNamespace('PFBridgeCore').APIs.API
 const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+
 //保存文件
 const File = importNamespace('System.IO').File;//导入命名空间
 const configPath = api.pluginDataPath + "\\config.json"

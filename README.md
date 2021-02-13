@@ -33,6 +33,7 @@
     - - [x] 兼容`LiteLoaderWebSocketR - by WangYneos`推荐(最新版本已适配，测试成功)
     - - [x] 兼容[PFWebsocketAPI - Minebbs](https://www.minebbs.com/resources/1632/)(基于CSR)
     - - [x] 兼容`BDXWebSocketR - by WangYneos`BDX群内发布(最新版本已适配，尚未测试)
+    - - [ ] `ElementZeroR`的webapi(还没出)
     - [x] 可拓展基础架构
     - - [x] JavaScript引擎实现自定义功能
     - [x] 多机器人框架支持

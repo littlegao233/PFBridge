@@ -6,7 +6,6 @@ Public Module AssemblyEx
             If AssemblyList.ContainsKey(path) Then
                 Return False
             End If
-
             AssemblyList.Add(path, Assembly.LoadFrom(path))
             API.Log("[AssemblyEx] [√] 程序集""" & IO.Path.GetFileName(path) & """加载成功！")
             Return True
@@ -21,10 +20,10 @@ Public Module AssemblyEx
     'Public Sub LoadFile(path As String)
     '    AssemblyList.Add(Assembly.LoadFile(path))
     'End Sub
-    Friend Class ReloadEngineException
-        Inherits Exception
-    End Class
-    Public Sub ReloadEngine()
-        Throw New ReloadEngineException
-    End Sub
+    'Friend Class ReloadEngineException
+    '    Inherits Exception
+    'End Class
+    'Public Sub ReloadEngine()
+    '    Throw New ReloadEngineException
+    'End Sub
 End Module

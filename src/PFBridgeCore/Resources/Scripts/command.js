@@ -19,6 +19,12 @@ function JudgePermission(e) {
         return e.memberType >= 2
     }
 }
+const Engine = importNamespace('PFBridgeCore').Main.Engine
+const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
+const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
+function GetConfigGroups() { return Data_GetConfigGroups.Value();}
+function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value();}
+
 events.QQ.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）

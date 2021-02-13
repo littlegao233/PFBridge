@@ -41,6 +41,13 @@ function encodeUnicode(str) {
     for (var i = 0; i < str.length; i++) { res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4); }
     return "\\u" + res.join("\\u");
 }
+
+const Engine = importNamespace('PFBridgeCore').Main.Engine
+const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
+const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
+function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
+function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value(); }
+
 //#endregion <<<<<-----公共方法(建议折叠)-----<<<<<
 const events = importNamespace('PFBridgeCore').APIs.Events
 events.Server.Cmd.add(function (e) {
@@ -64,7 +71,7 @@ events.QQ.onGroupMessage.add(function (e) {
     let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         //let group = GetConfigGroups()[index];
-        let msg = e.message;
+        //let msg = e.message;
         const { /*senderId,*/ message } = e
         if (message.startsWith('/') || message.startsWith('+')) {//判断消息前缀
             let cmds = e.messageMatch.getCommands("/", "+")//使用现成的匹配方法
