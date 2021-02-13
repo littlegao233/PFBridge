@@ -35,13 +35,17 @@ Namespace Ws
                                 API.LogErr(con.Client.Url.ToString & "==>" & e.params.msg)
                         End Select
                     Case PackType.encrypted
+#If DEBUG Then
+                        API.Log("收到加密包")
+#End If
                         Dim ep As EncryptedPack = New EncryptedPack(receive)
-                        Select Case ep.params.mode
-                            Case EncryptionMode.AES256
-                                Dim passwd As String = con.Token
-                                Dim decoded As String = ep.Decode(passwd)
-                                ProcessMessage(con, decoded)
-                        End Select
+                        'Select Case ep.params.mode
+                        'Case EncryptionMode.aes256
+                        Dim passwd As String = con.Token
+                        Dim decoded As String = ep.Decode(passwd)
+                        ProcessMessage(con, decoded)
+                        'Case EncryptionMode.aes_cbc_pck7padding
+                        'End Select
                     Case Else
                 End Select
             Catch
