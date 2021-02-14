@@ -35,6 +35,8 @@ Namespace PFBridgeForCQ
                 Return path
             End Get
         End Property
+
+
         Public Sub Log(Message As Object) Implements IBridgeQQBase.Log
             CurrentPluginContext.Logger.LogSuccess(Message.ToString())
         End Sub
@@ -49,5 +51,6 @@ Namespace PFBridgeForCQ
         Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
             GetMember(TargetGroup, QQid).Send(Message)
         End Sub
+        Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeQQBase.ParseMessageFormat
     End Class
 End Namespace

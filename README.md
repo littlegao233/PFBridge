@@ -30,7 +30,7 @@
 ---
 - ## Progress/进度
     - [x] WebSocket协议对接服务器方案
-    - - [x] 兼容`LiteLoaderWebSocketR - by WangYneos`推荐(最新版本已适配，测试成功)
+    - - [x] 兼容(LiteLoaderWebSocketR - by WangYneos](https://www.minebbs.com/resources/2150)`推荐`(最新版本已适配，测试成功)
     - - [x] 兼容[PFWebsocketAPI - Minebbs](https://www.minebbs.com/resources/1632/)(基于CSR)
     - - [x] 兼容`BDXWebSocketR - by WangYneos`BDX群内发布(最新版本已适配，尚未测试)
     - - [ ] `ElementZeroR`的webapi(还没出)

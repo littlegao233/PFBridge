@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using PFBridgeCore.EventArgs;
 using Colorful;
+using System.Text.RegularExpressions;
 
 namespace PFBridgeForOneBot
 {
@@ -14,7 +15,7 @@ namespace PFBridgeForOneBot
         {
             BaseApi = _api;
         }
-        internal SoraApi BaseApi = null;
+        internal static SoraApi BaseApi = null;
         public string PluginDataPath
         {
             get
@@ -24,8 +25,6 @@ namespace PFBridgeForOneBot
                 return p;
             }
         }
-
-
         public void Log(object Message)
         {
             Console.WriteLineFormatted("{0}{1}{2}{3}{4}{5}{6}", Color.White, new Formatter[] {
@@ -38,7 +37,6 @@ namespace PFBridgeForOneBot
                 new Formatter(Message.ToString(), Color.LightPink)
             });
         }
-
         public void LogErr(object Message)
         {
             Console.WriteLineFormatted("{0}{1}{2}{3}{4}{5}{6}", Color.White, new Formatter[] {
@@ -51,7 +49,6 @@ namespace PFBridgeForOneBot
                 new Formatter(Message.ToString(), Color.OrangeRed)
             });
         }
-
         public async void SendGroupMessage(long TargetGroup, string Message)
         {
             try
@@ -60,7 +57,6 @@ namespace PFBridgeForOneBot
             }
             catch (System.Exception ex) { Console.WriteLine(ex.ToString(), System.ConsoleColor.Red); }
         }
-
         public async void SendPrivateMessageFromGroup(long TargetGroup, long QQid, string Message)
         {
             try
@@ -69,5 +65,6 @@ namespace PFBridgeForOneBot
             }
             catch (System.Exception ex) { Console.WriteLine(ex.ToString(), System.ConsoleColor.Red); }
         }
+        public IParseMessageFormat ParseMessageFormat { get; set; } = new PFBridgeCore.Model.DefaultParseFormat();
     }
 }

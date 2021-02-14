@@ -13,11 +13,12 @@ Public Module APIs
             Public OnGroupMessage As New EventsMapItem(Of GroupMessageEventsArgs)
             Public Class GroupMessageEventsArgs
                 Inherits BaseEventsArgs
-                Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String), _getMemberType As Func(Of Integer), _Feedback As Action(Of String))
+                Public Sub New(_Group As Long, _QQ As Long, msg As String, _getGroupName As Func(Of String), _getQQNick As Func(Of String), _getQQCard As Func(Of String), _getMemberType As Func(Of Integer), _Feedback As Action(Of String), _parseMessagef As Func(Of String))
                     groupId = _Group : senderId = _QQ : message = msg
                     getGroupName = _getGroupName : getQQCard = _getQQCard : getQQNick = _getQQNick
                     feedback = _Feedback
                     getMemberType = _getMemberType
+                    getParsedMessage = _parseMessagef
                 End Sub
                 Public ReadOnly Property groupId As Long
                 Public ReadOnly Property groupName As String
@@ -52,11 +53,19 @@ Public Module APIs
                         Return _MessageMatchCmd
                     End Get
                 End Property
+                Private _ParsedMessage As String = Nothing
+                Public ReadOnly Property parsedMessage As String
+                    Get
+                        If _ParsedMessage Is Nothing Then _ParsedMessage = getParsedMessage.Invoke()
+                        Return _ParsedMessage
+                    End Get
+                End Property
                 Public ReadOnly Property getGroupName As Func(Of String)
                 Public ReadOnly Property getQQNick As Func(Of String)
                 Public ReadOnly Property getQQCard As Func(Of String)
                 Public ReadOnly Property getMemberType As Func(Of Integer)
                 Public ReadOnly Property feedback As Action(Of String)
+                Public ReadOnly Property getParsedMessage As Func(Of String)
             End Class
 #End Region
         End Class
@@ -187,4 +196,28 @@ Namespace EventArgs
     '    End Sub
     '    Public Permissions As Integer
     'End Class
+End Namespace
+Namespace Model
+    Public Class DefaultParseFormat
+        Implements IParseMessageFormat
+        Public Property At As String = "§r§l§6@§r§6{0}§a" Implements IParseMessageFormat.At
+        Public Property AtAll As String = "§r§l§g@§r§g全体成员§a" Implements IParseMessageFormat.AtAll
+        Public Property Image As String = "§r§l§d[图骗]§r§a" Implements IParseMessageFormat.Image
+        Public Property Emoji As String = "§r§l§d[emoji]§r§a" Implements IParseMessageFormat.Emoji
+        Public Property Face As String = "§r§l§c[表情]§r§a" Implements IParseMessageFormat.Face
+        '[CQ:face,id=123]
+        Public Property Bface As String = "§r§l§d[大表情:§r§o§7{0}§r§l§d]§r§a" Implements IParseMessageFormat.Bface
+        Public Property Record As String = "§r§l§g[语音]§r§a" Implements IParseMessageFormat.Record
+        Public Property Video As String = "§r§l§b[视频]§r§a" Implements IParseMessageFormat.Video
+        Public Property Share As String = "§r§l§b[分享§r§e:{1}§d({0})§l§b]§r§a" Implements IParseMessageFormat.Share
+        '[CQ:share,url=http://baidu.com,title=百度]
+        Public Property Music As String = "§r§l§d[音乐§r§d:{1}§l§b]§r§a" Implements IParseMessageFormat.Music
+        Public Property Reply As String = "§r§l§7[回复]§r§a" Implements IParseMessageFormat.Reply
+        Public Property Forward As String = "§r§l§7[转发]§r§a" Implements IParseMessageFormat.Forward
+        Public Property Node As String = "§r§l§7[转发节点]§r§a" Implements IParseMessageFormat.Node
+        Public Property Xml As String = "§r§l§7[XML消息]§r§a" Implements IParseMessageFormat.Xml
+        Public Property Json As String = "§r§l§7[JSON消息]§r§a" Implements IParseMessageFormat.Json
+        Public Property Unknown As String = "§r§l§7[{0}]§r§a" Implements IParseMessageFormat.Unknown
+        'Public Property Data As String Implements IBridgeQQBase.IParseMessageFormat.Image
+    End Class
 End Namespace

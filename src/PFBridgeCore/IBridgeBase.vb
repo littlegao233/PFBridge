@@ -1,5 +1,23 @@
 ﻿Imports PFBridgeCore.EventArgs
 Imports WebSocketSharp
+Public Interface IParseMessageFormat
+    Property At As String
+    Property AtAll As String
+    Property Image As String
+    Property Emoji As String
+    Property Face As String
+    Property Bface As String
+    Property Record As String
+    Property Video As String
+    Property Share As String
+    Property Music As String
+    Property Reply As String
+    Property Forward As String
+    Property Node As String
+    Property Xml As String
+    Property Json As String
+    Property Unknown As String
+End Interface
 Public Interface IBridgeQQBase
     Sub SendGroupMessage(TargetGroup As Long, Message As String)
     Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String)
@@ -7,6 +25,7 @@ Public Interface IBridgeQQBase
     Sub LogErr(Message As Object)
     ReadOnly Property PluginDataPath As String
     'Function GetGroupMemberInfo(TargetGroup As Long, QQid As Long) As GroupMemberInfo
+    Property ParseMessageFormat As IParseMessageFormat
 End Interface
 Public Interface IBridgeMCBase
     Property Id As Integer

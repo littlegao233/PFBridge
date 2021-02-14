@@ -165,12 +165,12 @@ events.QQ.onGroupMessage.add(function (e) {
     let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         let group = Groups[index];
-        const { senderId, message } = e
-        if (message.startsWith('/')) {
+        const {/* senderId,*/ message } = e
+        if (message.startsWith('/') || message.startsWith('+')) {
         } else {
             if (group.GroupMsgToServer) {
-                const { groupName, senderNick, memberCard } = e
-                let msg = `§b【群聊消息】§e<${memberCard}>§a${message}`
+                const { groupName,/* senderNick, */memberCard, parsedMessage } = e
+                let msg = `§b【${groupName}】§e<${memberCard}>§a${parsedMessage}`
                 SendBoardcastToAllServer(msg);
             }
             //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)
