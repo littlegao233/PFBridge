@@ -41,7 +41,13 @@ namespace PFBridgeForOQ.Plugin
                     () => IBoxs.Core.App.Common.CqApi.GetQQNick(e.RobotQQ, e.FromQQ),
                     () => IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).Card,
                     () => (int)IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).PermitType,
-                    (s) => IBoxs.Core.App.Common.CqApi.SendGroupMessage(e.RobotQQ, e.FromGroup, IBoxs.Core.App.Common.CqApi.CqCode_At(e.FromQQ)+s)
+                    (s) => IBoxs.Core.App.Common.CqApi.SendGroupMessage(e.RobotQQ, e.FromGroup, IBoxs.Core.App.Common.CqApi.CqCode_At(e.FromQQ)+s),
+                    () => {
+                        //未完成
+                        return Decode.ParseMessage(e.Message,e.FromGroup);
+                        
+                        }
+
               ));
             }
             catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); }

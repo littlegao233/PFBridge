@@ -25,7 +25,8 @@ Friend Module Main
                                                                                                     Next
                                                                                                     Return result
                                                                                                 End Function,
-                                                                                                Sub(s) e.FromGroup.SendMessage(e.RobotQQ, s)
+                                                                                                Sub(s) e.FromGroup.SendMessage(e.RobotQQ, s),
+                                                                                                Function() DeCode.ParseMessage(e.Message.Text, e.FromGroup.Id)
                                                                                                 ))
     End Sub
     <EnableEvent>

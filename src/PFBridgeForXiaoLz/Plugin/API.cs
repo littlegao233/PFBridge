@@ -5,6 +5,8 @@ namespace PFBridgeForXiaoLz.Plugin
 {
     internal class API : IBridgeQQBase
     {
+        public IParseMessageFormat ParseMessageFormat { get; set; } = new PFBridgeCore.Model.DefaultParseFormat();
+
         public string PluginDataPath
         {
             get

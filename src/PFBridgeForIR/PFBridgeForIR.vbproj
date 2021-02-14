@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCore.vb" />
+    <Compile Include="DeCode.vb" />
     <Compile Include="IRQQApi.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

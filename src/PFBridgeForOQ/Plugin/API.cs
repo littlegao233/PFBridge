@@ -32,5 +32,7 @@ namespace PFBridgeForOQ.Plugin
         {
             Common.CqApi.SendGroupPrivateMessage(RobotQQ, TargetGroup,  QQid, Message);
         }
+        public IParseMessageFormat ParseMessageFormat { get; set; } = new PFBridgeCore.Model.DefaultParseFormat();
+
     }
 }

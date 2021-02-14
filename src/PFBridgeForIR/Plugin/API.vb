@@ -28,5 +28,8 @@ Namespace PFBridgeForER.Plugin
         Public Sub LogErr(Message As Object) Implements IBridgeQQBase.LogErr
             IRApi.Log("[ERROR]" & Message.ToString())
         End Sub
+
+        Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeQQBase.ParseMessageFormat
+
     End Class
 End Namespace

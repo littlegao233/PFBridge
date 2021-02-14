@@ -41,7 +41,8 @@ Namespace PFBridgeForER.Plugin
                                                                                                  Next
                                                                                                  Return result
                                                                                              End Function,
-                                                                                             Sub(s) IRQQ.CSharp.IRApi.SendGroupMessage(group, $"[IR:at={sender}]{s}")))
+                                                                                             Sub(s) IRQQ.CSharp.IRApi.SendGroupMessage(group, $"[IR:at={sender}]{s}"),
+                                                                                             Function() DeCode.ParseMessage(message, Long.Parse(group))))
                 'https://gitee.com/jiguang_aurora/CleverQQ-SDK/wikis/%E5%8F%98%E9%87%8F%E5%88%97%E8%A1%A8?sort_id=1516257
             Catch ex As Exception
                 PFBridgeCore.APIs.API.LogErr(ex)

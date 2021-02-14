@@ -86,7 +86,11 @@ namespace PFBridgeForOPQ
                               return (int)type;
                           }
                       },
-                      feedback
+                      feedback,
+                      () =>
+                      {
+                          return Decode.ParseMessage(msg.Content, msg.FromGroupId);
+                      }
                   ));
             }
             catch (Exception ex) { PFBridgeCore.APIs.API.LogErr(ex); }

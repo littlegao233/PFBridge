@@ -23,6 +23,8 @@ Friend Class API
     Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群临时会话, TargetGroup, QQid, Message, BubbleID.跟随框架的设置))
     End Sub
+    Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeQQBase.ParseMessageFormat
+
 End Class
 Friend Module APIEx
     '信息类型 : 0在线临时会话/1好友/2群/3讨论群/4群临时会话/5讨论组临时会话/7好友验证回复会话

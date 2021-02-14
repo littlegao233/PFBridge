@@ -16,6 +16,9 @@ namespace PFBridgeForOPQ
                 return path;
             }
         }
+
+        public IParseMessageFormat ParseMessageFormat { get; set; } = new PFBridgeCore.Model.DefaultParseFormat();
+
         public void Log(object Message)
         {
             Console.Write("[",Color.DarkKhaki);
