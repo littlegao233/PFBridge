@@ -138,6 +138,7 @@
   <ItemGroup>
     <Compile Include="API.vb" />
     <Compile Include="AppInfo.vb" />
+    <Compile Include="DeCode.vb" />
     <Compile Include="Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

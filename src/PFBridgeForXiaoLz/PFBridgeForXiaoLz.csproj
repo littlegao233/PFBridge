@@ -82,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppCore.cs" />
+    <Compile Include="Decode.cs" />
     <Compile Include="Libs\App\Common.cs" />
     <Compile Include="Libs\App\Core\LibCore.cs" />
     <Compile Include="Libs\Repair\Core\Kernel32.cs" />

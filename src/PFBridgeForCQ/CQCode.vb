@@ -50,9 +50,9 @@ Public Module CodeEx
                 Case CQFunction.Video
                     builder.Replace(code.Original, APIs.API.ParseMessageFormat.Video)
                 Case CQFunction.Music
-                    Dim url As String
+                    Dim url As String = "?"
                     If Not code.Items.TryGetValue("url", url) Then url = "?"
-                    Dim title As String
+                    Dim title As String = "?"
                     If Not code.Items.TryGetValue("title", title) Then title = "?"
                     builder.Replace(code.Original, String.Format(APIs.API.ParseMessageFormat.Music, url, title))
                     Exit Select

@@ -91,6 +91,7 @@
     <Compile Include="App\Event\Event_Group.cs" />
     <Compile Include="App\Event\Event_Private.cs" />
     <Compile Include="App\Event\Event_QQStauts.cs" />
+    <Compile Include="Decode.cs" />
     <Compile Include="Plugin\API.cs" />
     <Compile Include="Plugin\App.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
