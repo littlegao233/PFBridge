@@ -65,21 +65,32 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
-        '''moduleInfo.Version = &quot;v0.0.1&quot;
-        '''moduleInfo.Description = &apos;群内使用&quot;/cmd [服务器] &lt;命令&gt;&quot;命令执行服务器命令&apos;
-        '''//管理员QQ请在main.js配置
+        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;;
+        '''moduleInfo.Version = &quot;v0.0.2&quot;;
+        '''moduleInfo.Description = &apos;群内使用&quot;/cmd [服务器] &lt;命令&gt;&quot;命令执行服务器命令&apos;;
+        '''//简单设置：
+        '''const JudgePermissionByConfig = true;
+        '''//JudgePermissionByConfig：是否通过配置文件判断权限
+        '''//  - true：仅有main.js配置的管理员QQ课执行
+        '''//  - false：发送者为群内的管理员就能执行
         '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
         '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
         '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
-        '''events.QQ.onGroupMessage.add(function (e) {
-        '''    const { groupId } = e
-        '''    let index = ConfigGroups.findIndex(l =&gt; l.id == groupId);//匹配群号（于配置）
-        '''    if (index !== -1)  [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''function JudgePermission(e) {
+        '''    i [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property command() As String
             Get
                 Return ResourceManager.GetString("command", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似  的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property format() As String
+            Get
+                Return ResourceManager.GetString("format", resourceCulture)
             End Get
         End Property
         
@@ -105,19 +116,21 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 const AdminQQs = [441870948, 233333]//管理员QQ号,仅管理员可以执行命令
-        '''const Groups = [
-        '''    {
-        '''        id: 626872357,//QQ群号
-        '''        ServerMsgToGroup: true,//是否转发服务器的各种消息到该群
-        '''        GroupMsgToServer: true//是否将该群的消息转发到所有服务器
-        '''    }
-        ''']
-        '''const Servers = [
-        '''    {
-        '''        type: &quot;websocket&quot;,
-        '''        url: &quot;ws://127.0.0.1:29132/mcws&quot;,//websocket地址|如{&quot;Port&quot;: &quot;29132&quot;,&quot;EndPoint&quot;: &quot;mcws&quot;,&quot;Password&quot;: &quot;commandpassword&quot;}对应ws://127.0.0.1:29132/mcws
-        '''        token: &quot;commandpassword&quot;,//websocket密匙串（用于运行命令等操作）|&quot;Password&quot;: &quot;commandpasswo [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
+        '''moduleInfo.Version = &quot;v0.0.2&quot;
+        '''moduleInfo.Description = &quot;包含配置文件的读写、\n服务器之间的同步、\n群与服务器的聊天同步、\n加入服务器的群反馈&quot;
+        '''
+        '''let AdminQQs = new Array()
+        '''let Groups = new Array()
+        '''let Servers = new Array()
+        '''//#region 共享数据
+        '''const engine = importNamespace(&apos;PFBridgeCore&apos;).Main.Engine
+        '''engine.SetShareData(&quot;GetConfigGroups&quot;, () =&gt; { return Groups; })
+        '''engine.SetShareData(&quot;GetConfigAdminQQs&quot;, () =&gt; { return AdminQQs; })
+        '''//#endregion
+        '''
+        '''//#region &gt;&gt;&gt;&gt;&gt;-----公共方法(建议折叠)-----&gt;&gt;&gt;&gt;&gt;
+        '''const ConnectionMa [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property main() As String
             Get
@@ -127,7 +140,7 @@ Namespace My.Resources
         
         '''<summary>
         '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
-        '''moduleInfo.Version = &quot;v0.0.1&quot;
+        '''moduleInfo.Version = &quot;v0.0.2&quot;
         '''moduleInfo.Description = &quot;群内使用/list命令查询服务器在线玩家\n服务器内使用/list命令自动反馈其他服务器的在线状态&quot;
         '''
         '''
@@ -149,17 +162,19 @@ Namespace My.Resources
         
         '''<summary>
         '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;
-        '''moduleInfo.Version = &quot;v0.0.1&quot;
-        '''moduleInfo.Description = &apos;群内管理员使用&quot;/白名单 添加 [服务器] &lt;玩家名&gt;&quot;添加白名单\
-        '''群内使用&quot;/白名单 [服务器] &lt;玩家名&gt;&apos;
-        '''//管理员QQ请在main.js配置
-        '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
-        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
-        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
-        '''const Thread = importNamespace(&apos;System.Threading&apos;).Thread
-        '''events.QQ.onGroupMessage.add(function (e) {
-        '''    const { groupId } = e
-        '''    let in [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''moduleInfo.Version = &quot;v0.0.2&quot;
+        '''moduleInfo.Description = &apos;群内管理员使用&quot;/白名单 &lt;添加|删除&gt; [服务器] &lt;玩家名&gt;&quot;操作白名单\n群内使用&quot;/白名单 查询 [服务器] &lt;玩家名&gt;查询白名单&apos;
+        '''//简单设置：
+        '''const JudgePermissionByConfig = true;
+        '''//JudgePermissionByConfig：是否通过配置文件判断权限
+        '''//  - true：仅有main.js配置的管理员QQ课执行
+        '''//  - false：发送者为群内的管理员就能执行
+        '''function JudgePermission(e) {
+        '''    if (JudgePermissionByConfig) {
+        '''        const { senderId } = e;
+        '''        //根据配置文件main.js中的管理员判断权限
+        '''        return GetConfigAdminQQs().some(l =&gt; l == senderId);
+        '''   [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property whitelist() As String
             Get
