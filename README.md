@@ -28,7 +28,7 @@
    - 多框架支持
    - JavaScript自定义配置
 ---
-- ## Progress/进度
+- ## [Progress/进度](https://github.com/littlegao233/PFBridge/projects/1)
     - [x] WebSocket协议对接服务器方案
     - - [x] 兼容(LiteLoaderWebSocketR - by WangYneos](https://www.minebbs.com/resources/2150)`推荐`(最新版本已适配，测试成功)
     - - [x] 兼容[PFWebsocketAPI - Minebbs](https://www.minebbs.com/resources/1632/)(基于CSR)
