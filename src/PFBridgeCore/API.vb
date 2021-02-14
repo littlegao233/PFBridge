@@ -215,8 +215,8 @@ Namespace Model
         Public Property Reply As String = "§r§l§7[回复]§r§a" Implements IParseMessageFormat.Reply
         Public Property Forward As String = "§r§l§7[转发]§r§a" Implements IParseMessageFormat.Forward
         Public Property Node As String = "§r§l§7[转发节点]§r§a" Implements IParseMessageFormat.Node
-        Public Property Xml As String = "§r§l§7[XML消息]§r§a" Implements IParseMessageFormat.Xml
-        Public Property Json As String = "§r§l§7[JSON消息]§r§a" Implements IParseMessageFormat.Json
+        Public Property Xml As String = "§r§l§7[富文本消息]§r§a" Implements IParseMessageFormat.Xml
+        Public Property Json As String = "§r§l§7[富文本消息]§r§a" Implements IParseMessageFormat.Json
         Public Property Unknown As String = "§r§l§7[{0}]§r§a" Implements IParseMessageFormat.Unknown
         'Public Property Data As String Implements IBridgeQQBase.IParseMessageFormat.Image
     End Class

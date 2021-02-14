@@ -35,8 +35,6 @@ Namespace PFBridgeForCQ
                 Return path
             End Get
         End Property
-
-
         Public Sub Log(Message As Object) Implements IBridgeQQBase.Log
             CurrentPluginContext.Logger.LogSuccess(Message.ToString())
         End Sub

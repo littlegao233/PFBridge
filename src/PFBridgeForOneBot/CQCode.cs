@@ -43,28 +43,7 @@ namespace PFBridgeForOneBot
             return builder.ToString();
         }
         internal static string ParseMessage(string raw, long group)
-        {
-            //StringBuilder builder = new StringBuilder(raw);
-            //            foreach (Match m in Regex.Matches(raw, @"
-            //\[CQ:                 #最外层的左括号
-            //(?<main>
-            //    [^\[\]]*           #它后面非括号的内容
-            //    (
-            //        (
-            //        (?'Open'\[)#左括号，压入""Open""
-            //        [^\[\]]*      #左括号后面的内容
-            //        )+
-            //        (
-            //        (?'-Open'\]) #右括号，弹出一个""Open""
-            //        [^\[\]]*        #右括号后面的内容
-            //        )+
-            //    )*
-            //    (?(Open)(?!))#最外层的右括号前检查
-            //                        #若还有未弹出的""Open""
-            //                        #则匹配失败
-            //)
-            //\]                   #最外层的右括号", RegexOptions.IgnoreCase | RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture))
-            //            {
+        { 
             StringBuilder builder = new StringBuilder(raw);
             foreach (var code in CQCode.Parse(raw))
             {
@@ -111,7 +90,7 @@ namespace PFBridgeForOneBot
                         builder.Replace(code.Original, APIs.API.ParseMessageFormat.Image); break;
                     //case Sora.Enumeration.CQFunction.TTS: break;
                     default:
-                        builder.Replace(code.Original, string.Format(APIs.API.ParseMessageFormat.Unknown, code.Function.ToString())); break;
+                        builder.Replace(code.Original, string.Format(APIs.API.ParseMessageFormat.Unknown, code.UnknownType)); break;
                 }
             }
             return CQDeCode(builder);
@@ -140,6 +119,7 @@ namespace PFBridgeForOneBot
 
         private string _originalString;
         private CQFunction _type;
+        internal string UnknownType;
         private Dictionary<string, string> _items;
         #endregion
 
@@ -187,6 +167,7 @@ namespace PFBridgeForOneBot
             if (!System.Enum.TryParse<CQFunction>(match.Groups[1].Value, true, out _type))
             {
                 this._type = CQFunction.Unknown;    // 解析不出来的时候, 直接给一个默认
+                UnknownType = match.Groups[1].Value;
             }
             #endregion
 
