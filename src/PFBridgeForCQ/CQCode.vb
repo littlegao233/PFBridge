@@ -187,10 +187,6 @@ Public Class CQCode
 #End Region
 
 #Region "--构造函数--"
-    ''' <summary>
-    ''' 使用 CQ码 字符串初始化 <seecref="CQCode"/> 类的新实例
-    ''' </summary>
-    ''' <paramname="str">CQ码字符串 或 包含CQ码的字符串</param>
     Private Sub New(ByVal str As String)
         _originalString = str
 
@@ -221,12 +217,6 @@ Public Class CQCode
 #End Region
     End Sub
 
-
-    ''' <summary>
-    ''' 初始化 <seecref="CQCode"/> 类的新实例
-    ''' </summary>
-    ''' <paramname="type">CQ码类型</param>
-    ''' <paramname="keyValues">包含的键值对</param>
     Public Sub New(ByVal type As CQFunction, ParamArray keyValues As KeyValuePair(Of String, String)())
         _type = type
         _items = New Dictionary(Of String, String)(keyValues.Length)
@@ -241,11 +231,6 @@ Public Class CQCode
 #End Region
 
 #Region "--公开方法--"
-    ''' <summary>
-    ''' 从字符串中解析出所有的 CQ码, 转换为 <seecref="CQCode"/> 集合
-    ''' </summary>
-    ''' <paramname="source">原始字符串</param>
-    ''' <returns>返回等效的 <seecref="List(OfCqCode)"/></returns>
     Public Shared Function Parse(ByVal source As String) As List(Of CQCode)
         Dim collection As MatchCollection = _regices.Value(0).Matches(source)
         Dim codes As List(Of CQCode) = New List(Of CQCode)(collection.Count)
@@ -257,29 +242,14 @@ Public Class CQCode
         Return codes
     End Function
 
-    ''' <summary>
-    ''' 判断是否是图片 <seecref="CQCode"/>
-    ''' </summary>
-    ''' <paramname="code">要判断的 <seecref="CQCode"/> 实例</param>
-    ''' <returns>如果是图片 <seecref="CQCode"/> 返回 <seelangword="true"/> 否则返回 <seelangword="false"/></returns>
     Public Shared Function EqualIsImageCQCode(ByVal code As CQCode) As Boolean
         Return code.Function = CQFunction.Image
     End Function
 
-    ''' <summary>
-    ''' 判断是否是语音 <seecref="CQCode"/>
-    ''' </summary>
-    ''' <paramname="code">要判断的 <seecref="CQCode"/> 实例</param>
-    ''' <returns>如果是语音 <seecref="CQCode"/> 返回 <seelangword="true"/> 否则返回 <seelangword="false"/></returns>
     Public Shared Function EqualIsRecordCQCode(ByVal code As CQCode) As Boolean
         Return code.Function = CQFunction.Record
     End Function
 
-    ''' <summary>
-    ''' 确定指定的对象是否等于当前对象
-    ''' </summary>
-    ''' <paramname="obj">要与当前对象进行比较的对象</param>
-    ''' <returns>如果指定的对象等于当前对象，则为 <code>true</code>，否则为 <code>false</code></returns>	
     Public Overrides Function Equals(ByVal obj As Object) As Boolean
         Dim code As CQCode = TryCast(obj, CQCode)
 
@@ -290,18 +260,10 @@ Public Class CQCode
         Return MyBase.Equals(obj)
     End Function
 
-    ''' <summary>
-    ''' 返回该字符串的哈希代码
-    ''' </summary>
-    ''' <returns> 32 位有符号整数哈希代码</returns>
     Public Overrides Function GetHashCode() As Integer
         Return MyBase.GetHashCode() And _originalString.GetHashCode()
     End Function
 
-    ''' <summary>
-    ''' 返回此实例等效的CQ码形式
-    ''' </summary>
-    ''' <returns></returns>
     Public Overrides Function ToString() As String
         If Equals(_originalString, Nothing) Then
 
@@ -336,10 +298,6 @@ Public Class CQCode
 #End Region
 
 #Region "--私有方法--"
-    ''' <summary>
-    ''' 延时初始化正则表达式
-    ''' </summary>
-    ''' <returns></returns>
     Private Shared Function InitializeRegex() As Regex()
         ' 此处延时加载, 以提升运行速度
         Return New Regex() {New Regex("\[CQ:([A-Za-z]*)(?:(,[^\[\]]+))?\]", RegexOptions.Compiled), New Regex(",([A-Za-z]+)=([^,\[\]]+)", RegexOptions.Compiled)}    ' 匹配CQ码

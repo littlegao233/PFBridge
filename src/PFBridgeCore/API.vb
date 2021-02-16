@@ -234,6 +234,7 @@ Namespace Model
         Public Property Node As String = "§r§l§7[转发节点]§r§a" Implements IParseMessageFormat.Node
         Public Property Xml As String = "§r§l§7[富文本消息]§r§a" Implements IParseMessageFormat.Xml
         Public Property Json As String = "§r§l§7[富文本消息]§r§a" Implements IParseMessageFormat.Json
+        Public Property File As String = "§r§l§b[文件:§r§o§7{0}§r§l§d]§r§a" Implements IParseMessageFormat.File
         Public Property Unknown As String = "§r§l§7[{0}]§r§a" Implements IParseMessageFormat.Unknown
         'Public Property Data As String Implements IBridgeQQBase.IParseMessageFormat.Image
     End Class

@@ -23,9 +23,9 @@ namespace PFBridgeForXiaoLz.Plugin
         public void LogErr(object Message)
         {
             xlzAPI.OutLog1(Message.ToString(), System.Drawing.Color.Red, System.Drawing.Color.LightGoldenrodYellow);
-#if DEBUG
-            System.Windows.Forms.MessageBox.Show(Message.ToString(), "ERROR");
-#endif
+//#if DEBUG
+//            System.Windows.Forms.MessageBox.Show(Message.ToString(), "ERROR");
+//#endif
         }
         public void SendGroupMessage(long TargetGroup, string Message)
         {

@@ -347,8 +347,8 @@ events.QQ.onGroupMessage.add(function (e) {
         if (message.startsWith('/') || message.startsWith('+')) {
         } else {
             if (group.GroupMsgToServer) {
-                const { groupName,/* senderNick, */memberCard, parsedMessage } = e
-                let msg = `§b【${groupName}】§e<${memberCard}>§a${parsedMessage}`
+                const { groupName,/*senderNick, */memberCard, parsedMessage } = e
+                let msg = `§b【${groupName}】§e<${((memberCard === null || memberCard === "") ? e.senderNick : memberCard)}>§a${parsedMessage}`
                 SendBoardcastToAllServer(msg);
             }
             //api.SendPrivateMessageFromGroup(e.fromGroup, e.fromQQ, "test:" + e.message)

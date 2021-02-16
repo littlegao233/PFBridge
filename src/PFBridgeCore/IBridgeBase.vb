@@ -16,6 +16,7 @@ Public Interface IParseMessageFormat
     Property Node As String
     Property Xml As String
     Property Json As String
+    Property File As String
     Property Unknown As String
 End Interface
 Public Interface IBridgeQQBase

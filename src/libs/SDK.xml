@@ -1,0 +1,3877 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SDK</name>
+    </assembly>
+    <members>
+        <member name="F:SDK.Common.unityContainer">
+            <summary>
+            依赖注入
+            </summary>
+        </member>
+        <member name="F:SDK.Common.xlzAPI">
+            <summary>
+            小栗子API 
+            </summary>
+        </member>
+        <member name="M:SDK.Common.BugLog(System.String)">
+            <summary>
+            记录错误日志
+            </summary>
+            <param name="log"></param>
+        </member>
+        <member name="M:SDK.Core.API.OutLog(System.String,System.Int32,System.Int32)">
+            <summary>
+            输出日志
+            </summary>
+            <param name="message"></param>
+            <param name="text_color"></param>
+            <param name="background_color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.OutLog1(System.String,System.Drawing.Color,System.Drawing.Color)">
+            <summary>
+            输出日志1
+            </summary>
+            <param name="message"></param>
+            <param name="text_color"></param>
+            <param name="background_color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendPrivateMessage(System.Int64,System.Int64,System.String,System.Int64,System.UInt32)">
+            <summary>
+            发送好友消息
+            </summary>
+            <param name="ThisQQ"></param>
+            <param name="SenderQQ"></param>
+            <param name="MessageContent"></param>
+            <param name="MessageRandom"></param>
+            <param name="MessageReq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendGroupMessage(System.Int64,System.Int64,System.String,System.Boolean)">
+            <summary>
+            发送群消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="msgcontent"></param>
+            <param name="anonymous"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetPluginDataDirectoryEvent">
+            <summary>
+            取插件数据目录<para>没有权限限制，建议将设置文件之类的都写这里面，结果结尾带\</para>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.RecviceImage(System.String,System.Int64,System.Int64)">
+            <summary>
+            取图片下载地址
+            </summary>
+            <param name="msgcontent"></param>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <returns>返回URL下载地址</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGuidImage(System.String)">
+            <summary>
+            获取guid
+            </summary>
+            <param name="msgcontent"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetFriendList(System.Int64)">
+            <summary>
+            取好友列表
+            </summary>
+            <param name="thisQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.Getgrouplist(System.Int64)">
+            <summary>
+            取群列表
+            </summary>
+            <param name="thisQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetgroupMemberlist(System.Int64,System.Int64)">
+            <summary>
+            取群成员列表
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="gruopNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetAdministratorList(System.Int64,System.Int64)">
+            <summary>
+            取管理层列表
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="gruopNumber"></param>
+            <returns>首个为群主</returns>
+        </member>
+        <member name="M:SDK.Core.API.ReStart">
+            <summary>
+            框架重启
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendVerificationEvent(System.Int64,System.Int64,System.Int64,SDK.Enum.FriendVerificationOperateEnum)">
+            <summary>
+            处理好友验证事件
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="triggerQQ"></param>
+            <param name="message_seq"></param>
+            <param name="operate_type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupVerificationEvent(System.Int64,System.Int64,System.Int64,System.Int64,SDK.Enum.GroupVerificationOperateEnum,SDK.Enum.EventTypeEnum,System.String)">
+            <summary>
+            处理群验证事件
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="source_groupQQ"></param>
+            <param name="triggerQQ"></param>
+            <param name="message_seq"></param>
+            <param name="operate_type"></param>
+            <param name="event_type"></param>
+            <param name="refuse_reason"></param>
+        </member>
+        <member name="M:SDK.Core.API.ReadForwardedChatHistoryEvent(System.Int64,System.String)">
+            <summary>
+            查看转发聊天记录内容
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="resID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetFriendInfoEvent(System.Int64,System.Int64)">
+            <summary>
+            查询好友信息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupInfoEvent(System.Int64,System.Int64)">
+            <summary>
+            查询群信息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherGroupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.Undo_GroupEvent(System.Int64,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            撤回消息_群聊
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="message_random"></param>
+            <param name="message_req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.Undo_PrivateEvent(System.Int64,System.Int64,System.Int64,System.Int32,System.Int32)">
+            <summary>
+            撤回消息_私聊本身
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="message_random"></param>
+            <param name="message_req"></param>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendFriendJSONMessageEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            发送好友json消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="friendQQ"></param>
+            <param name="json_content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendFreeGiftEvent(System.Int64,System.Int64,System.Int64,SDK.Enum.FreeGiftEnum)">
+            <summary>
+            发送免费礼物（绕过广告）
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="gift"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendGroupJSONMessageEvent(System.Int64,System.Int64,System.String,System.Boolean)">
+            <summary>
+            发送群json消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="json_content"></param>
+            <param name="anonymous"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendGroupTemporaryMessageEvent(System.Int64,System.Int64,System.Int64,System.String,System.Int64,System.Int32)">
+            <summary>
+            发送群临时消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="content"></param>
+            <param name="random"></param>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ShareMusicEvent(System.Int64,System.Int64,System.String,System.String,System.String,System.String,System.String,SDK.Enum.MusicAppTypeEnum,SDK.Enum.MusicShare_Type)">
+            <summary>
+            分享音乐
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="music_name">歌曲名</param>
+            <param name="artist_name">歌手名</param>
+            <param name="redirect_link">跳转地址 点击音乐json后跳转的地址</param>
+            <param name="cover_link">封面地址 音乐的封面图片地址</param>
+            <param name="file_path">文件地址 音乐源文件地址，如https://xxx.com/xxx.mp3</param>
+            <param name="app_type">应用类型 0QQ音乐 1虾米音乐 2酷我音乐 3酷狗音乐 4网易云音乐  默认0</param>
+            <param name="share_type">分享类型 0私聊 1群聊  默认0</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ModifyGroupMessageContentEvent(System.Int32,System.String)">
+            <summary>
+            更改群聊消息内容<para>使用此命令可以更改当前群聊消息内容，并使更改后的内容投递给之后的插件，无权限返回假</para>
+            </summary>
+            <param name="data_pointer"></param>
+            <param name="new_message_content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ModifyPrivateMessageContentEvent(System.Int32,System.String)">
+            <summary>
+            更改私聊消息内容<para>使用此命令可以更改当前私聊消息内容，并使更改后的内容投递给之后的插件，无权限返回假</para>
+            </summary>
+            <param name="data_pointer"></param>
+            <param name="new_message_content"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendFollowRedEnvelopeEvent(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            好友接龙红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="otherQQ">对方QQ</param>
+            <param name="follow_content">接龙内容</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendDrawRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            好友画图红包 不支持非好友！
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="otherQQ">对方QQ</param>
+            <param name="question">题目名<para>只能填手Q有的，如：庄周</para></param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendPasswordRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            好友口令红包 不支持非好友！
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="otherQQ">对方QQ</param>
+            <param name="kouling">口令</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendNormalRedEnvelopeEvent(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.Int32,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            好友普通红包 不支持非好友！
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="otherQQ">对方QQ</param>
+            <param name="blessing">祝福语</param>
+            <param name="skinID">红包皮肤Id<para>红包皮肤Id 1522: 光与夜之恋, 1527: 代号：三国（打了一辈子仗）, 1525: 街霸：对决, 1518: 代号：三国（俺送红包来了）, 1476: 天涯明月刀, 1512: 一人之下，其他皮肤id自己找</para></param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendAudioRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            好友语音红包 不支持非好友！
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="otherQQ">对方QQ</param>
+            <param name="audio_password">语音口令</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupDrawRedEnvelopeEvent(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊画图红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="question">题目名<para>只能填手Q有的，如：庄周</para></param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPasswordRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊口令红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="password">口令</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupFollowRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊接龙红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="follow_content">接龙内容</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupRandomRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.Int32,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊拼手气红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="blessing">祝福语</param>
+            <param name="skinID">皮肤<para>1522光与夜之恋,1527代号:三国(打了一辈子仗),1525街霸:对决,1518代号:三国(俺送红包来了),1476天涯明月刀,1512一人之下。其他皮肤id自己找</para></param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupNormalRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.Int32,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊普通红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="blessing">祝福语</param>
+            <param name="skinID">皮肤<para>1522光与夜之恋,1527代号:三国(打了一辈子仗),1525街霸:对决,1518代号:三国(俺送红包来了),1476天涯明月刀,1512一人之下。其他皮肤id自己找</para></param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupAudioRedEnvelope(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊语音红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="audio_password">语音口令</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupExclusiveRedEnvelopeEvent(System.Int64,System.Int32,System.Int32,System.Int64,System.String,System.String,System.Boolean,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            群聊专属红包
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="total_number">总数量</param>
+            <param name="total_amount">总金额 单位分</param>
+            <param name="groupQQ">群号</param>
+            <param name="otherQQ">领取人 多个领取人QQ用|分隔</param>
+            <param name="blessing">祝福语</param>
+            <param name="isEvenlysplit">是否均分</param>
+            <param name="payment_password">支付密码</param>
+            <param name="card_serial">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">银行卡支付时，若需要短信验证码，将在此传回验证码信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.FriendFileToFriendEvent(System.Int64,System.Int64,System.Int64,System.String,System.String,System.Int64,System.Int32,System.Int64,System.Int32)">
+            <summary>
+            好友文件转发至好友
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="sourceQQ">来源QQ</param>
+            <param name="targetQQ">目标QQ</param>
+            <param name="fileID">FileId</param>
+            <param name="file_name">file_name</param>
+            <param name="file_size">文件大小</param>
+            <param name="msgReq">Req 撤回消息用</param>
+            <param name="Random">Random 撤回消息用</param>
+            <param name="time">time 撤回消息用</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetClientKeyEvent(System.Int64)">
+            <summary>
+            获取clientkey
+            </summary>
+            <param name="thisQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetPSKeyEvent(System.Int64,System.String)">
+            <summary>
+            获取pskey
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="domain">tenpay.com;openmobile.qq.com;docs.qq.com;connect.qq.com;qzone.qq.com;vip.qq.com;gamecenter.qq.com;qun.qq.com;game.qq.com;qqweb.qq.com;ti.qq.com;office.qq.com;mail.qq.com;mma.qq.com</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetSKey(System.Int64,System.String)">
+            <summary>
+            获取skey
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="domain"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetOrderDetailEvent(System.Int64,System.String)">
+            <summary>
+            获取订单详情
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="orderID">订单号 或者称之为listid</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.DissolveGroupEvent(System.Int64,System.Int64)">
+            <summary>
+            解散群
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ShutUpGroupMemberEvent(System.Int64,System.Int64,System.Int64,System.Int32)">
+            <summary>
+            禁言群成员
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="groupQQ">群号</param>
+            <param name="otherQQ">群成员QQ</param>
+            <param name="time">禁言时长 单位：秒，为0时解除禁言</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetNameForceEvent(System.Int64,System.Int64)">
+            <summary>
+            强制取昵称
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetQQWalletPersonalInformationEvent(System.Int64)">
+            <summary>
+            取QQ钱包个人信息
+            </summary>
+            <param name="thisQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetSignature(System.Int64,System.Int64)">
+            <summary>
+            取个性签名
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ">可以填框架QQ本身</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetFriendStatus(System.Int64,System.Int64)">
+            <summary>
+            取好友在线状态 失败或无权限返回空，支持查询陌生人
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetThisQQ">
+            <summary>
+            取框架QQ
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetNameFromCacheEvent(System.Int64)">
+            <summary>
+            从缓存获取昵称
+            </summary>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupNameFromCache(System.Int64)">
+            <summary>
+            取群名称_从缓存<para>成功返回群名称，如果是框架QQ没加的群，请使用[查询群信息]，查询后也会记录缓存</para>
+            </summary>
+            <param name="groupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupNicknameEvent(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            取群名片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ShutUpAllEvent(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            全员禁言
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_shut_up_all">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_CreateTemporaryConversation(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_发起临时会话
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_CreateGroup(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_发起新的群聊
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_Anonymous(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_匿名聊天
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_UploadFile(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_上传文件
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_UploadPicture(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_上传相册
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_ChatFrankly(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_坦白说
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_NewMemberReadChatHistory(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_新成员查看历史消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_InviteFriend(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群权限_邀请好友加群
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="is_allowed">是否开启</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupPermission_SetInviteMethodEvent(System.Int64,System.Int64,SDK.Enum.GroupPermission_SetInviteMethodEnum)">
+            <summary>
+            群权限_邀请方式设置
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="method">审核方式 1 无需审核;2 需要管理员审核;3 100人以内无需审核 </param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetGroupNickRulesEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            群权限_设置群昵称规则<para>需要管理员权限</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="rules">名片规则</param>
+            <returns>成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetGroupLimitNumberEvent(System.Int64,System.Int64,System.Int32)">
+            <summary>
+            群权限_设置群发言频率
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="LimitNumber">限制每分钟多少条发言,为0表示无限制</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetGroupFindMethodEvent(System.Int64,System.Int64,SDK.Enum.GroupFindMethodEnum)">
+            <summary>
+            群权限_设置群查找方式<para>需要管理员权限</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="method">0不允许,1通过群号或关键词,2仅可通过群号,默认0</param>
+            <returns>成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.SaveFileToWeiYunEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            保存文件到微云
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="file_id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.CreateGroupFolderEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            创建群文件夹
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="folder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupFileListEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            取群文件列表
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="folder">欲查看的文件夹名，根目录留空或填/</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ForwardGroupFileToFriendEvent(System.Int64,System.Int64,System.Int64,System.String,System.String,System.Int64,System.Int32,System.Int64,System.Int32)">
+            <summary>
+            转发群文件至好友
+            </summary>
+            <param name="thisQQ">框架QQ</param>
+            <param name="source_groupQQ">来源群号</param>
+            <param name="target_QQ">目标QQ</param>
+            <param name="fileID"></param>
+            <param name="filename"></param>
+            <param name="filesize"></param>
+            <param name="msgReq">Req 撤回消息用</param>
+            <param name="Random">Random 撤回消息用</param>
+            <param name="time">time 撤回消息用</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ForwardGroupFileToGroupEvent(System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            群文件转发至群
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="source_groupQQ"></param>
+            <param name="target_groupQQ"></param>
+            <param name="fileID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.DeleteGroupFileEvent(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            删除群文件
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="file_id"></param>
+            <param name="folder">文件所在的文件夹名，根目录留空或填/</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.DeleteGroupFolderEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            删除群文件夹
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="folder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.RenameGroupFolderEvent(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            重命名群文件夹
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="old_folder"></param>
+            <param name="new_folder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadGroupFileEvent(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            上传群文件 <para>本命令为耗时操作，请另开线程执行，本命令不支持上百mb的文件，无权限时不执行</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="path">文件路径 本地文件路径</param>
+            <param name="folder">文件夹名 上传到哪个文件夹，填文件夹名，根目录留空或填/</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.MoveGroupFileEvent(System.Int64,System.Int64,System.String,System.String,System.String)">
+            <summary>
+            移动群文件
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="file_id"></param>
+            <param name="old_folder">文件所在的文件夹名，根目录留空或填/</param>
+            <param name="new_folder">根目录留空或填/</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendFriendImage(System.Int64,System.Int64,System.String,System.Boolean,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            发送好友图片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="friendQQ"></param>
+            <param name="picpath">图片路径</param>
+            <param name="is_flash">是否设置为闪照</param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="cartoon">动图,为真时可自动播放动图</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadFriendImageEvent(System.Int64,System.Int64,System.String,System.Boolean,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            上传好友图片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="friendQQ"></param>
+            <param name="picpath">图片路径</param>
+            <param name="is_flash">是否设置为闪照</param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="cartoon">动图,为真时可自动播放动图</param>
+            <returns>成功返回图片代码</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetByteArrayByImage(System.Drawing.Bitmap)">
+            <summary>
+            图片转为二进制
+            </summary>
+            <param name="img"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadGroupImage(System.Int64,System.Int64,System.String,System.Boolean,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            上传群图片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="picpath">图片路径</param>
+            <param name="is_flash">是否设置为闪照</param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="cartoon">动图,为真时可自动播放动图</param>
+            <returns>成功返回图片代码</returns>
+        </member>
+        <member name="M:SDK.Core.API.SendGroupImage(System.Int64,System.Int64,System.String,System.Boolean,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            发送群图片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="picpath">图片路径</param>
+            <param name="is_flash">是否设置为闪照</param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="cartoon">动图,为真时可自动播放动图</param>
+            <returns>成功返回图片代码</returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadGroupAvatarEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            上传群头像
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="picpath">图片路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadAvatarEvent(System.Int64,System.String)">
+            <summary>
+            上传头像
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="picpath">图片路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadFriendAudioEvent(System.Int64,System.Int64,SDK.Enum.AudioTypeEnum,System.String,System.Byte[],System.Int32)">
+            <summary>
+            上传好友语音
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="friendQQ"></param>
+            <param name="audio_type">语音类型<para>0普通语音,1变声语音,2文字语音,3红包匹配语音</para></param>
+            <param name="audio_text">语音文字，可为空<para>文字语音填附加文字(腾讯貌似会自动替换为语音对应的文本),匹配语音填a、b、s、ss、sss，注意是小写</para></param>
+            <param name="audio">语音数据 需要使用silk编码</param>
+            <param name="time">时长</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadGroupAudio(System.Int64,System.Int64,SDK.Enum.AudioTypeEnum,System.String,System.Byte[],System.Int32)">
+            <summary>
+            上传群语音
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="audio_type">语音类型 <para>0普通语音,1变声语音,2文字语音,3红包匹配语音</para></param>
+            <param name="audio_text">语音文字<para>文字语音填附加文字(腾讯貌似会自动替换为语音对应的文本),匹配语音填a、b、s、ss、sss，注意是小写</para></param>
+            <param name="audio">语音数据 需要使用silk编码</param>
+            <param name="time">时长</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.ReportCurrentEvent(System.Int64,System.Int64,System.Double,System.Double)">
+            <summary>
+            上报当前位置 <para>大约3s上报一次，不得过快，失败或无权限返回假</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="Longitude">经度</param>
+            <param name="Latitude">纬度</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetLocationShareEvent(System.Int64,System.Int64,System.Double,System.Double,System.Boolean)">
+            <summary>
+            设置位置共享 <para>开启后需要上报位置，大约3s上报一次，否则会自动关闭，失败或无权限返回假</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="Longitude">经度</param>
+            <param name="Latitude">纬度</param>
+            <param name="is_enabled">是否开启</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.RemoveFriend(System.Int64,System.Int64)">
+            <summary>
+            删除好友
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.RemoveGroupMemberEvent(System.Int64,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            删除群成员
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="is_verification_refused">拒绝加群申请</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetAdministratorEvent(System.Int64,System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            设置管理员
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="is_administrator">取消或设置管理</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetGroupNicknameEvent(System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            设置群名片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ">可以是自己，无权限修改别人时会失败</param>
+            <param name="nickname">新名片</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetStatusEvent(System.Int64,SDK.Enum.StatusTypeEnum,SDK.Enum.StatusOnlineTypeEnum,System.Int32)">
+            <summary>
+            设置在线状态
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="main">主要在线状态</param>
+            <param name="sun">详细在线状态 当main为Online(在线)时，可进一步设置详细在线状态</param>
+            <param name="battery">电量 当sun为ShowBattery(我的电量)时，可以设置上报电量，取值1到100</param>
+            <returns>失败或无权限返回false</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetexclusivetitleEvent(System.Int64,System.Int64,System.Int64,System.String)">
+            <summary>
+            设置专属头衔<para>只能群主调用</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="name">专属头衔</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.IsShuttedUpEvent(System.Int64,System.Int64)">
+            <summary>
+            机器人是否被禁言
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.AddFriendEvent(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            添加好友
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="verification">问题答案<para>可设置回答问题答案或是验证消息，多个问题答案用"|"分隔开</para></param>
+            <param name="comment">备注<para>自定义给对方的备注</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.AddGroupEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            添加群<para>注意加群腾讯不会判断你是否在群内，你在群内或需要付费入群都会直接发送验证消息</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="verification">验证消息：可设置回答问题答案或是验证消息</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.QuitGroupEvent(System.Int64,System.Int64)">
+            <summary>
+            退群
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetSignatureEvent(System.Int64,System.String,System.String)">
+            <summary>
+            修改个性签名
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="signature">签名</param>
+            <param name="location">可自定义签名地点</param>
+            <returns>失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetNameEvent(System.Int64,System.String)">
+            <summary>
+            修改昵称
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetBlockFriendEvent(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            置屏蔽好友
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="is_blocked">是否屏蔽</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetGroupMessageReceiveEvent(System.Int64,System.Int64,SDK.Enum.IsGroupRecviceEnum)">
+            <summary>
+            置群消息接收
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ"></param>
+            <param name="set_type">设置类型 <para>1接收并提醒 2收进群助手 3屏蔽群消息 4接收不提醒</para></param>
+            <returns>失败或无权限返回假，此API未对返回结果进行分析，返回真不一定成功</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetSpecialFriendEvent(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            置特别关心好友
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="is_special">是否关心</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SubmitPaymentCaptchaEvent(System.Int64,SDK.Model.CaptchaInformation@,System.String,System.String)">
+            <summary>
+            提交支付验证码  用于配合发红包使用  ---  发红包返回的 验证码信息，框架作者似乎忘记了返回 所以此部分无法使用
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="captcha_information">验证码信息<para>银行卡发红包时传回的</para></param>
+            <param name="captcha">验证码<para>手机收到的短信验证码</para></param>
+            <param name="payment_password">支付密码<para>用于验证并支付</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.LoginSpecifyQQEvent(System.Int64)">
+            <summary>
+            登录指定QQ <para>敏感权限，建议使用前检查是否有权限，</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <returns>返回真表示成功投递密码登录任务，不代表对应QQ登录成功</returns>
+        </member>
+        <member name="M:SDK.Core.API.SignoutQQEvent(System.Int64)">
+            <summary>
+            下线指定QQ <para>敏感权限，建议使用前检查是否有权限，</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <returns>返回真表示成功投递下线任务，不代表对应QQ下线成功</returns>
+        </member>
+        <member name="M:SDK.Core.API.SendIMEStatusEvent(System.Int64,System.Int64,SDK.Enum.IMEStatusEnum)">
+            <summary>
+            发送输入状态 <para>在与他人私聊时，在发消息前使用，显得更有真实感，输入状态默认为1</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="ohterQQ"></param>
+            <param name="iMEStatus">1:正在输入,2:关闭显示,3:正在说话</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.CheckPermissionEvent(SDK.Enum.PermissionEnum)">
+            <summary>
+            api是否有权限
+            </summary>
+            <param name="permission"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.QQLikeEvent(System.Int64,System.Int64)">
+            <summary>
+            QQ点赞
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SilkDecoding(System.String)">
+            <summary>
+            Silk解码
+            </summary>
+            <param name="audio_path">音频文件路径<para>注意文件后缀必须和文件格式相对应</para></param>
+            <returns>返回null 可能是corn文件夹缺少语音转码库，请自行到官网或交流群下载</returns>
+        </member>
+        <member name="M:SDK.Core.API.SilkEncoding(System.String)">
+            <summary>
+            Silk编码
+            </summary>
+            <param name="audio_path">音频文件路径<para>注意文件后缀必须和文件格式相对应</para></param>
+            <returns>返回null 可能是corn文件夹缺少语音转码库，请自行到官网或交流群下载</returns>
+        </member>
+        <member name="M:SDK.Core.API.ArmEncoding(System.String)">
+            <summary>
+            arm编码
+            </summary>
+            <param name="audio_path">音频文件路径<para>注意文件后缀必须和文件格式相对应</para></param>
+            <returns>返回null 可能是corn文件夹缺少语音转码库，请自行到官网或交流群下载</returns>
+        </member>
+        <member name="M:SDK.Core.API.ModifyinformationEvent(System.Int64,System.String,SDK.Enum.SexEnum,System.String,SDK.Enum.ProfessionEnum,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            修改资料 <para>生日、家乡、所在地 参数格式和子参数数量必须正确，否则修改资料无法成功，不需要修改的项就不要填</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="name">昵称<para>如果用户没有填此项，就不加入json，否则会出错</para></param>
+            <param name="sex">性别</param>
+            <param name="birthday">生日<para>格式：2020/5/5 均为整数</para></param>
+            <param name="Profession">职业</param>
+            <param name="CompanyName">公司名</param>
+            <param name="city">所在地<para>国家代码|省份代码|市代码|区字母|区代码，如：49|13110|56|NK|51，表示中国江西省吉安市青原区，这些数据是腾讯的数据，非国际数据</para></param>
+            <param name="hometown">家乡<para>国家代码|省份代码|市代码|区字母|区代码，如：49|13110|56|NK|51，表示中国江西省吉安市青原区，这些数据是腾讯的数据，非国际数据</para></param>
+            <param name="email">邮箱</param>
+            <param name="personalStatement">个人说明</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetRedEnvelopeEvent(System.Int64,System.Int64)">
+            <summary>
+            取群未领红包
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <returns>成功返回未领红包数量，注意：使用此API获取的红包只能用手Q上"群未领红包"入口的http请求领取</returns>
+        </member>
+        <member name="M:SDK.Core.API.CallPhoneEvent(System.Int64,System.Int64)">
+            <summary>
+            打好友电话 -- 不建议频繁使用<para>可向好友发起语音通话(不能传递语音数据)</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+        </member>
+        <member name="M:SDK.Core.API.IsUploadfiles(System.String)">
+            <summary>
+            是否上传了文件
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupFileDownloadLinkEvent(System.Int64,System.Int64,System.String,System.String)">
+            <summary>
+            取群文件下载地址
+            </summary>
+            <param name="thisQQ">框架QQ必须在群内</param>
+            <param name="GroupQQ">群号</param>
+            <param name="fileid">文件id</param>
+            <param name="filename">文件名<para>可自定义，必须带文件后缀</para></param>
+            <returns>文件下载地址在返回的json里面，具有时效性，请及时下载</returns>
+        </member>
+        <member name="M:SDK.Core.API.DoubleclickFirendFacePic(System.Int64,System.Int64)">
+            <summary>
+            头像双击_好友
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SDK.Core.API.DoubleclickGroupFacePic(System.Int64,System.Int64,System.Int64)" -->
+        <member name="M:SDK.Core.API.GroupTopEvent(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            群聊置顶
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="istop">是否置顶,默认假</param>
+            <returns>成功返回真，失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.PrivateTopEvent(System.Int64,System.Int64,System.Boolean)">
+            <summary>
+            私聊置顶
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="istop">是否置顶,默认假</param>
+            <returns>成功返回真，失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupTopEvent(System.Int64,System.Int64)">
+            <summary>
+            取加群链接
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetEssenceEvent(System.Int64,System.Int64,System.Int32,System.Int64)">
+            <summary>
+            设为精华<para>需要管理员权限</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="MsgReq"></param>
+            <param name="MsgRandom"></param>
+            <returns>置指定群消息为精华内容,成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.InvitefriendJoinGroup(System.Int64,System.Int64,System.Int64,System.Int64)">
+            <summary>
+            邀请好友加群<para>邀请一个好友或从群聊中邀请一个QQ加入指定群聊，需要群聊开启了邀请</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ">让好友加入的群聊</param>
+            <param name="otherQQ">被邀请的QQ,如果参数三不为0则通过参数三的群号邀请,否则视为邀请好友</param>
+            <param name="otherGroupQQ">必须在群里,如果不为0则从群中邀请该目标</param>
+            <returns>成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupNoticeMethodEvent(System.Int64,System.Int64,System.Int64,SDK.Enum.GroupNoticeMethodEnum)">
+            <summary>
+            置群内消息通知<para>设置群内指定QQ的消息通知</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="metohd">方式<para>0不接收此人消息,1特别关注,2默认(接受此人消息) 如果参数为空则默认方式为2</para></param>
+            <returns>成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupMemberBriefInfoEvent(System.Int64,System.Int64)">
+            <summary>
+            取群成员简略信息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UpdataGroupNameEvent(System.Int64,System.Int64,System.String)">
+            <summary>
+            修改群名称<para>需要管理员权限</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="NewGroupName"></param>
+            <returns>成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.ReloadItSelfEvent(System.String)">
+            <summary>
+            重载自身
+            </summary>
+            <param name="dllpath">若需重载自身并替换更新自身，在此处填入新dll文件路径</param>
+        </member>
+        <member name="M:SDK.Core.API.OfflinePCQQEvent(System.Int64)">
+            <summary>
+            下线PCQQ
+            </summary>
+            <param name="PCQQ"></param>
+            <returns>成功返回真,失败或无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetFrameVersionEvent">
+            <summary>
+            取框架版本
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetWebCookiesEvent(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            登录网页取ck
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="JumpUrl">不能url编码！如QQ空间是：https://h5.qzone.qq.com/mqzone/index 群：https://qun.qq.com</param>
+            <param name="appid">如QQ空间是：549000929，群：715030901</param>
+            <param name="daid">如QQ空间是：5；群：73</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SetAnnouncementEvent(System.Int64,System.Int64,System.String,System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            发送群公告
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="title">标题<para>支持emoji表情,如：\uD83D\uDE01</para></param>
+            <param name="msgcotent">内容<para>支持emoji表情,如：\uD83D\uDE01</para></param>
+            <param name="picpath">图片,图片必需大于300*200像素<para>在公告当中插入图片,如果设置了[腾讯视频]参数,则不显示图片只显示视频</para></param>
+            <param name="video">公告当中插入视频,只支持腾讯视频,如：https://v.qq.com/x/cover/4gl2i78zd9idpi0/j0024zknymk.html</param>
+            <param name="isShow">弹窗展示</param>
+            <param name="isConfrim">需要确认</param>
+            <param name="isTop">置顶</param>
+            <param name="isSendNewMember">发送给新成员</param>
+            <param name="setGroupNickName">引导修改群昵称</param>
+            <returns>ec=0表示成功</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetOneGroupMemberInfo(System.Int64,System.Int64,System.Int64)">
+            <summary>
+            取群成员信息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="groupQQ">群号</param>
+            <param name="otherQQ">群成员QQ</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendMailEvent(System.Int64,System.String,System.String,System.String)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="mailaddr">邮箱地址</param>
+            <param name="mailtitle">邮件标题</param>
+            <param name="msgContent">邮件内容<para>支持html</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetBkn(System.String)">
+            <summary>
+            QQ bkn
+            </summary>
+            <param name="skey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGTK(System.String)">
+            <summary>
+            QQ gtk
+            </summary>
+            <param name="sKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetCookie(System.Int64,System.String,System.String@,System.String@,System.String@)">
+            <summary>
+            组Cookie<para>需要获取skey和获取pskey权限</para><para>有时效性，随时可能失效</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="domin"></param>
+            <param name="retCookie"></param>
+            <param name="skey"></param>
+            <param name="pskey"></param>
+        </member>
+        <member name="M:SDK.Core.API.GetCookie(System.Int64,System.String)">
+            <summary>
+            组Cookie<para>需要获取skey和获取pskey权限</para><para>有时效性，随时可能失效</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="domin"></param>
+        </member>
+        <member name="M:SDK.Core.API.GetMoneyCookie(System.Int64)">
+            <summary>
+            取钱包cookie<para>敏感API,框架4h刷新一次</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetMailCookie(System.Int64)">
+            <summary>
+            取手Q邮箱cookie<para>敏感API,框架4h刷新一次,邮箱sid在cookie当中,键名为xxsid</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.TransferEvent(System.Int64,System.Int32,System.Int64,System.String,SDK.Enum.TransferTypeEnum,System.String,System.Int32,SDK.Model.CaptchaInformation@)">
+            <summary>
+            转账
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="Amount">转账金额 单位分</param>
+            <param name="otherQQ">对方QQ</param>
+            <param name="leaveMsg">转账留言<para>支持emoji</para></param>
+            <param name="type">转账类型</param>
+            <param name="PaymentPWD">支付密码</param>
+            <param name="bankCard">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="captchaInfo">验证码信息<para>银行卡支付时，若需要短信验证码，将在此传回验证码信息</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.BalanceWithdrawalEvent(System.Int64,System.Int32,System.String,System.Int32)">
+            <summary>
+            余额提现
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="Amount">提现金额 单位分</param>
+            <param name="PaymentPWD">支付密码</param>
+            <param name="bankCard">银行卡序列<para>指定提现到的银行卡</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetRecPaymentEvent(System.Int64,System.Int32,System.String)">
+            <summary>
+            取收款链接
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="Amount">指定收款金额,单位：分</param>
+            <param name="desc">说明文本</param>
+            <returns>返回收款链接,可以借此生成收款二维码</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupSmallVideoDownloadUrl(System.Int64,System.Int64,System.Int64,System.String,System.String,System.String)">
+            <summary>
+            取群小视频下载地址
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ">来源群号</param>
+            <param name="SourceQQ">来源QQ</param>
+            <param name="param"></param>
+            <param name="harsh1"></param>
+            <param name="filename">文件名(如：xxx.mp4),必须带上文件后缀</param>
+            <returns>成功返回json含下载链接</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetFrienderSmallVideoDownloadUrl(System.Int64,System.Int64,System.String,System.String,System.String)">
+            <summary>
+            取私聊小视频下载地址
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="SourceQQ">来源QQ</param>
+            <param name="param"></param>
+            <param name="harsh1"></param>
+            <param name="filename">文件名(如：xxx.mp4),必须带上文件后缀</param>
+            <returns>成功返回json含下载链接</returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadVideoEvent(System.Int64,System.Int64,System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            上传小视频<para>请另开线程调用本API,使用的手机录小视频入口,因此不支持较大文件</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ">得到的文本代码也可在私聊使用,上传到私聊时,群号可乱填</param>
+            <param name="videopath">本地小视频路径</param>
+            <param name="picpath">小视频封面图</param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="time">时长</param>
+            <returns>成功返回文本代码</returns>
+        </member>
+        <member name="M:SDK.Core.API.SendFriendXmlEvent(System.Int64,System.Int64,System.String,System.Int64@,System.Int32@)">
+            <summary>
+            发送好友xml消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ"></param>
+            <param name="xmlcode">xml代码</param>
+            <param name="Random">撤回消息用</param>
+            <param name="Req">撤回消息用</param>
+            <returns>成功返回的time用于撤回消息</returns>
+        </member>
+        <member name="M:SDK.Core.API.SendGroupXmlEvent(System.Int64,System.Int64,System.String,System.Boolean)">
+            <summary>
+            发送群xml消息
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="xmlcode">xml代码</param>
+            <param name="anonymous">匿名发送</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupMemberOverview(System.Int64,System.Int64)">
+            <summary>
+            取群成员概况
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <returns>成功返回json,含有群上限、群人数、群成员统计概况</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetAuthenticationType(System.Int64,System.Int64)">
+            <summary>
+            添加好友_取验证类型
+            </summary>
+            <param name="uin"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GroupTurnOn(System.Int64,System.Int64)">
+            <summary>
+            群聊打卡
+            </summary>
+            <param name="GroupQQ"></param>
+            <returns>返回json</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SDK.Core.API.GroupSigninEvent(System.Int64,System.Int64,System.String)" -->
+        <member name="M:SDK.Core.API.GroupRemarks(System.Int64,System.Int64,System.String)">
+            <summary>
+            置群聊备注
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="Remarks">备注</param>
+            <returns>成功返回真,失败返回假,无权限返回假</returns>
+        </member>
+        <member name="M:SDK.Core.API.ForwardRedEnvelopeEvent(System.Int64,System.String,System.Int64,SDK.Enum.RedE2TypeEnum)">
+            <summary>
+            红包转发
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="redEnvelopeID"></param>
+            <param name="QQ">QQ号或群号：以Type类型为准,如果是1则判断为QQ号否则判断为群号</param>
+            <param name="type">类型：1为好友,2为群</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.SendDataPackEvent(System.Int64,System.Int32,System.Int32,System.Byte[]@)">
+            <summary>
+            发送数据包
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="packID">包体序号<para>ssoseq,通过【请求ssoseq】API获取</para></param>
+            <param name="maxwaittime">最大等待时长<para>毫秒,不填或小于0时不等待返回包,大于0时等待返回包</para></param>
+            <param name="bytes">数据: 返回数据参考传回,拉取返回包失败参考回空字节集</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.GetssoseqEvent(System.Int64)">
+            <summary>
+            请求ssoseq
+            </summary>
+            <param name="thisQQ"></param>
+            <returns>无权限等返回0</returns>
+        </member>
+        <member name="M:SDK.Core.API.Getsessionkey(System.Int64)">
+            <summary>
+            取sessionkey<para>敏感权限</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <returns>成功返回16进制秘钥,敏感权限</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetBkn_Gtk(System.Int64,System.String)">
+            <summary>
+            获取bkn_gtk
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="bkn_gtk">自定义bkn_gtk<para>如果此参数不为空值则提交自定义值,否则框架返回内部值</para></param>
+            <returns>返回网页用到的bkn或者gtk,也可以自定义计算的值</returns>
+        </member>
+        <member name="M:SDK.Core.API.SetFriendAuthenticationMode(System.Int64,SDK.Enum.FriendAuthenticationModeEnum,System.String)">
+            <summary>
+            置好友验证方式
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="type">验证类型<para>1：禁止任何人添加 2：允许任何人添加 3：需要验证信息 4：需要正确回答问题 5：需要回答问题并由我确认</para></param>
+            <param name="Q_and_A">验证问题和答案<para>可空,如果类型为4则填写问题和答案用‘|’分割,如果类型为5则根据情况填写问题至少一个最多三个问题,用‘|’分割</para></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.UploadPhotoWall(System.Int64,System.String)">
+            <summary>
+            上传照片墙图片
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="picpath">图片路径</param>
+            <returns>上传一照片至照片墙,成功返回带有‘上传成功’字样的json,失败或无权限返回json</returns>
+        </member>
+        <member name="M:SDK.Core.API.PaymentEvent(System.Int64,System.String,System.Int32,System.String,SDK.Model.CaptchaInformation@)">
+            <summary>
+            付款
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="QrcodeUrl">QQ钱包支付二维码内容(需要自己识别二维码,将识别结果填入)</param>
+            <param name="bankCard">银行卡序列<para>大于0时使用银行卡支付</para></param>
+            <param name="PaymentPWD">支付密码</param>
+            <param name="captchaInfo">验证码信息<para>银行卡支付时，若需要短信验证码，将在此传回验证码信息</para></param>
+            <returns>银行卡支付时，若需要短信验证码，将在此传回验证码信息</returns>
+        </member>
+        <member name="M:SDK.Core.API.UPPaymentPWDEvent(System.Int64,System.String,System.String)">
+            <summary>
+            修改支付密码
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="oldpwd">6位数字原密码</param>
+            <param name="newpwd">6位数字新密码</param>
+            <returns>修改QQ钱包支付密码,成功返回json retcode=0 ,失败或无权限返回其他值</returns>
+        </member>
+        <member name="M:SDK.Core.API.AccountSearch(System.Int64,System.String)">
+            <summary>
+            账号搜索
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="KeyWords">关键词，支持QQ号、群号、昵称等，支持emoji</param>
+            <returns>对一个关键词进行简略搜索,通过关键词一般返回3个QQ号信息和群信息,成功返回json retcode=0 ,失败或无权限返回其他值</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetGroupAuthenticationType(System.Int64,System.Int64)">
+            <summary>
+            添加群_取验证类型<para>获取群的加群验证信息</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <returns>成功返回json retcode：1允许任何人加群 2需要验证消息 3不允许任何人加群 4回答正确问题 5回答问题并审核 如果retcode=4或5那么返回的json中retmsg有验证文本</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetReceiveRedEnvelopeEvent(System.Int64,System.Int64,System.Int64,System.String,System.Int32,System.String)">
+            <summary>
+            领取红包，未开放，根据大佬截图推测
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ">来源群号，红包未好友时，此参数可省略</param>
+            <param name="sendQQ">发送人QQ</param>
+            <param name="redenvelopetext">红包文本代码</param>
+            <param name="type">红包类型，1为好友；2为群，其他，群临时</param>
+            <param name="apikey">API密钥，未开放</param>
+            <returns>成功返回原始Json数据，rec_object.amount是领取分数</returns>
+        </member>
+        <member name="M:SDK.Core.API.GetRedEnvelopeDetailsEvent(System.Int64,System.Int64,System.String,System.Int32)">
+            <summary>
+            获取红包领取详情
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ">来源群号，红包未好友时，此参数可省略</param>
+            <param name="redenvelopetext">红包文本代码</param>
+            <param name="type">红包类型，1为好友；2为群，其他，群临时</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SDK.Core.API.GetFriendFileDownLoadUrl(System.Int64,System.String,System.String)" -->
+        <member name="M:SDK.Core.API.GetFriendFileDownLoadUrl(System.Int64,System.Int64)">
+            <summary>
+            取扩列资料
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="otherQQ">对方QQ</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.API.DelGroupMemberByBatch(System.Int64,System.Int64,System.Collections.Generic.List{System.Int64},System.Boolean)">
+            <summary>
+            删除群成员_批量<para>暂时不能用</para>
+            </summary>
+            <param name="thisQQ"></param>
+            <param name="GroupQQ"></param>
+            <param name="QQList"></param>
+            <param name="isRefuse"></param>
+            <returns></returns>
+        </member>
+        <member name="F:SDK.Core.AppInfo.sdkv">
+            <summary>
+            SDK版本
+            </summary>
+        </member>
+        <member name="F:SDK.Core.AppInfo.appname">
+            <summary>
+            应用名
+            </summary>
+        </member>
+        <member name="F:SDK.Core.AppInfo.author">
+            <summary>
+            应用作者
+            </summary>
+        </member>
+        <member name="F:SDK.Core.AppInfo.describe">
+            <summary>
+            应用说明
+            </summary>
+        </member>
+        <member name="F:SDK.Core.AppInfo.appv">
+            <summary>
+            应用版本
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.groupmsaddres">
+            <summary>
+            群消息处理函数
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.friendmsaddres">
+            <summary>
+            私聊消息处理函数
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.eventmsaddres">
+            <summary>
+            事件消息处理函数
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.unitproaddres">
+            <summary>
+            将被卸载处理函数
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.setproaddres">
+            <summary>
+            点击插件设置处理函数
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.useproaddres">
+            <summary>
+            插件被启用处理函数
+            </summary>
+        </member>
+        <member name="P:SDK.Core.AppInfo.banproaddres">
+            <summary>
+            插件被禁用处理函数
+            </summary>
+        </member>
+        <member name="M:SDK.Core.DisablePlugin.DisablePluginMethod">
+            <summary>
+            禁用插件
+            </summary>
+        </member>
+        <member name="M:SDK.Core.DisablePlugin.UnInstallPluginMethod">
+            <summary>
+            卸载插件
+            </summary>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.SilkDecoding1(System.String)">
+            <summary>
+            Silk解码
+            </summary>
+            <param name="audio_path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.SilkEncoding1(System.String)">
+            <summary>
+            Silk编码
+            </summary>
+            <param name="audio_path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.AmrEncoding1(System.String)">
+            <summary>
+            amr编码
+            </summary>
+            <param name="audio_path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.GetByte(System.String)">
+            <summary>
+            将文件转换为byte[]
+            </summary>
+            <param name="filepath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.Runcmd(System.String,System.String)">
+            <summary>
+            调用外部程序
+            </summary>
+            <param name="filename"></param>
+            <param name="arg"></param>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.SilkDecoding(System.String)">
+            <summary>
+            Silk解码<para>框架2.8.8.1后Silk解码方式</para>
+            </summary>
+            <param name="audio_path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.SilkEncoding(System.String)">
+            <summary>
+            Silk编码<para>框架2.8.8.1后Silk编码方式</para>
+            </summary>
+            <param name="audio_path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.SilkHelp.AmrEncoding(System.String)">
+            <summary>
+            amr编码<para>框架2.8.8.1后amr编码方式</para>
+            </summary>
+            <param name="audio_path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetAt(System.Int64)">
+            <summary>
+            艾特某人
+            </summary>
+            <param name="qq"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetAtAll">
+            <summary>
+            艾特全体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetFace(System.Int32,System.String)">
+            <summary>
+            表情
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetFace(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            大表情
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+            <param name="hash"></param>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetSmallFace(System.Int32,System.String)">
+            <summary>
+            小表情
+            </summary>
+            <param name="id"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetShake(System.String,System.Int32,System.Int32)">
+            <summary>
+            抖一抖
+            </summary>
+            <param name="name"></param>
+            <param name="id"></param>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetLimiShow(System.String,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            厘米秀 目前不支持3D消息
+            </summary>
+            <param name="name"></param>
+            <param name="id"></param>
+            <param name="type"></param>
+            <param name="QQ"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetFlashPicFile(System.String)">
+            <summary>
+            闪照_本地
+            </summary>
+            <param name="path">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetFlashWord(System.String,System.String,System.String)">
+            <summary>
+            闪字
+            </summary>
+            <param name="desc"></param>
+            <param name="resid"></param>
+            <param name="prompt">闪字内容，注意此处不支持其他文本代码</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetHonest(System.Int64,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            坦白说
+            </summary>
+            <param name="QQ">对方QQ--可自定义</param>
+            <param name="name">对方昵称--可自定义</param>
+            <param name="desc">描述--可自定义</param>
+            <param name="time">文本型--10位时间戳，可自定义</param>
+            <param name="Random">发送Random--可自定义</param>
+            <param name="backgroundtype">背景类型--可自定义，不同背景对应的值日志查看</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetPicFile(System.String)">
+            <summary>
+            图片_本地
+            </summary>
+            <param name="path">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetGraffiti(System.Int32,System.String,System.String)">
+            <summary>
+            涂鸦
+            </summary>
+            <param name="id">模型Id</param>
+            <param name="hash">涂鸦hash</param>
+            <param name="address">涂鸦图片地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.Getbq(System.Int32)">
+            <summary>
+            小黄豆表情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetLitleVideo(System.String,System.String,System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            小视频
+            </summary>
+            <param name="linkParam"></param>
+            <param name="hash1"></param>
+            <param name="hash2"></param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="time">时长</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetAudioFile(System.String)">
+            <summary>
+            语音_本地
+            </summary>
+            <param name="path">必须是silk_v3编码的文件</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetShopPic(System.String,SDK.Enum.ShowPicEnum,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            秀图<para>秀图文本代码只支持群聊发送</para>
+            </summary>
+            <param name="pichash">通过群图片代码获得</param>
+            <param name="showpictype">40000普通,40001幻影,40002抖动,40003生日,40004爱你,40005征友，默认普通</param>
+            <param name="wide">宽度</param>
+            <param name="high">高度</param>
+            <param name="cartoon">动图,为真时可自动播放动图</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetRandomDice(System.Int32)">
+            <summary>
+            自定义骰子
+            </summary>
+            <param name="num">默认为6</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.GetPasteMsg(System.String,System.String,System.String,System.String,System.String,System.Int32,System.Int32,System.Int64)">
+            <summary>
+            粘贴消息<para>粘贴内容直接追加在本命令后面,粘贴内容只支持图片、表情</para>
+            </summary>
+            <param name="x">X值：与粘贴位置有关,由横向位置经过特定算法得到</param>
+            <param name="y">Y值：与粘贴位置有关,由纵向位置经过特定算法得到</param>
+            <param name="msgWitdh">粘贴内容宽值：可决定粘贴内容的宽度,由缩放宽度经过特定算法得到</param>
+            <param name="msgHight">粘贴内容高值：可决定粘贴内容的高度,由缩放高度经过特定算法得到</param>
+            <param name="msgAngle">粘贴倾角：粘贴内容与水平位置的倾角</param>
+            <param name="msgRecTime">消息接收时间</param>
+            <param name="msgReq">消息req</param>
+            <param name="msgRandom">消息random</param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.TextCodeEncode(System.String)">
+            <summary>
+            转义特殊字符( <c>"["、"]"</c> )
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.TextCodeDecode(System.String)">
+            <summary>
+            去除特殊字符转义
+            </summary>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.At">
+            <summary>
+            表示小栗子文本转义的[@xxxx]类型
+            "Target": "123456789"
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.AtAll">
+            <summary>
+            表示小栗子文本转义的[@all]类型
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.Face">
+            <summary>
+            表情
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.bigFace">
+            <summary>
+            大表情
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.smallFace">
+            <summary>
+            小表情
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.bq">
+            <summary>
+            小黄豆表情
+            如[bq32]
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.pic">
+             <summary>
+             图片 
+             "Items": {
+                "hash": "8A9D5DA85D5976DFD10258ED1165C060",
+                "wide": "479",
+                "high": "299",
+                "cartoon": "false"
+            }
+             </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.Reply">
+             <summary>
+             回复
+             "Items": {
+                "Content": "\\u005B\\u6D4B\\u8BD5\\u670D\\u52A1\\u5668\\u003A\\u0044\\u0069\\u0065\\u005D\\u73A9\\u5BB6\\u0067\\u0078\\u0068\\u0032\\u0030\\u0030\\u0034\\u88AB\\u50F5\\u5C38\\u6740\\u6B7B\\u4E86",
+                "SendQQID": "3623498320",
+                "Req": "25041",
+                "Random": "72057595651407026",
+                "SendTime": "1613469151"
+            }
+             </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.Share">
+            <summary>
+            分享（链接）
+            </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.file">
+             <summary>
+             文件
+             "Items": {
+                "fileId": "/7169bb9c-7056-11eb-8e52-5452007b214b",
+                "fileName": "MouseInc.exe",
+                "fileSize": "219136"
+            }
+             </summary>
+        </member>
+        <member name="F:SDK.Core.TextFormat.XiaoLzFunction.Other">
+            <summary>
+            其他类型（未列举出的）
+            </summary>
+        </member>
+        <member name="T:SDK.Core.TextFormat.XiaoLzTextCode">
+            <summary>
+            表示 小栗子文本转义码 的类
+            </summary>
+        </member>
+        <member name="P:SDK.Core.TextFormat.XiaoLzTextCode.Target">
+            <summary>
+            AT的目标qq号或小表情的ID（如 <see cref="F:SDK.Core.TextFormat.XiaoLzFunction.At"/> 和 <see cref="F:SDK.Core.TextFormat.XiaoLzFunction.bq"/> 时该值有效）
+            </summary>
+        </member>
+        <member name="P:SDK.Core.TextFormat.XiaoLzTextCode.Original">
+            <summary>
+            表示解析前的原文
+            </summary>
+        </member>
+        <member name="P:SDK.Core.TextFormat.XiaoLzTextCode.Function">
+            <summary>
+            获取一个值, 指示当前实例的功能
+            </summary>
+        </member>
+        <member name="P:SDK.Core.TextFormat.XiaoLzTextCode.Items">
+            <summary>
+            获取当前实例所包含的所有项目
+            </summary>
+        </member>
+        <member name="P:SDK.Core.TextFormat.XiaoLzTextCode.FunctionTypeRaw">
+            <summary>
+            解析时存储的原类型(原 <see cref="T:System.String"/> )
+            </summary>
+        </member>
+        <member name="M:SDK.Core.TextFormat.XiaoLzTextCode.#ctor(System.String)">
+            <summary>
+            使用 小栗子文本转义码 字符串初始化 <see cref="T:SDK.Core.TextFormat.XiaoLzTextCode"/> 类的新实例
+            </summary>
+            <param name="str">小栗子文本转义码字符串 或 包含小栗子文本转义码的字符串</param>
+        </member>
+        <member name="M:SDK.Core.TextFormat.XiaoLzTextCode.Parse(System.String)">
+            <summary>
+            从字符串中解析出所有的 小栗子文本转义码, 转换为 <see cref="T:SDK.Core.TextFormat.XiaoLzTextCode"/> 集合
+            </summary>
+            <param name="source">原始字符串</param>
+            <returns>返回等效的 <see cref="T:System.Collections.Generic.List`1"/></returns>
+        </member>
+        <member name="M:SDK.Core.TextFormat.XiaoLzTextCode.InitializeRegex">
+            <summary>
+            延时初始化正则表达式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SDK.Enum.APIJsonEnum">
+            <summary>
+            无用类，API JSON 参考说明
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.AudioTypeEnum.Normal">
+            <summary>
+            普通语音
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.AudioTypeEnum.Change">
+            <summary>
+            变声语音
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.AudioTypeEnum.Text">
+            <summary>
+            文字语音
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.AudioTypeEnum.Match">
+            <summary>
+            (红包)匹配语音
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.EventProcessEnum">
+            <summary>
+            启动事件处理
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventProcessEnum.Block">
+            <summary>
+            阻止其他插件继续处理此事件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventProcessEnum.Ignore">
+            <summary>
+            允许其他插件继续处理此事件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_Removed">
+            <summary>
+            好友事件_被好友删除
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_SignatureChanged">
+            <summary>
+            好友事件_签名变更
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_NameChanged">
+            <summary>
+            好友事件_昵称改变
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_UserUndid">
+            <summary>
+            好友事件_某人撤回事件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_NewFriend">
+            <summary>
+            好友事件_有新好友
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_FriendRequest">
+            <summary>
+            好友事件_好友请求
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_FriendRequestAccepted">
+            <summary>
+            好友事件_对方同意了您的好友请求
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_FriendRequestRefused">
+            <summary>
+            好友事件_对方拒绝了您的好友请求
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_InformationLiked">
+            <summary>
+            好友事件_资料卡点赞
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_SignatureLiked">
+            <summary>
+            好友事件_签名点赞
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_SignatureReplied">
+            <summary>
+            好友事件_签名回复
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_TagLiked">
+            <summary>
+            好友事件_个性标签点赞
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_StickerLiked">
+            <summary>
+            好友事件_随心贴回复
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_StickerAdded">
+            <summary>
+            好友事件_随心贴增添
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Friend_SystmHint">
+            <summary>
+            好友事件_系统提示
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_Invited">
+            <summary>
+            群事件_我被邀请加入群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberJoined">
+            <summary>
+            群事件_某人加入了群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberVerifying">
+            <summary>
+            群事件_某人申请加群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_GroupDissolved">
+            <summary>
+            群事件_群被解散
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberQuit">
+            <summary>
+            群事件_某人退出了群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberKicked">
+            <summary>
+            群事件_某人被踢出群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberShutUp">
+            <summary>
+            群事件_某人被禁言
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberUndid">
+            <summary>
+            群事件_某人撤回事件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_AdministratorTook">
+            <summary>
+            群事件_某人被取消管理
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_AdministratorGave">
+            <summary>
+            群事件_某人被赋予管理
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_EnableAllShutUp">
+            <summary>
+            群事件_开启全员禁言
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_DisableAllShutUp">
+            <summary>
+            群事件_关闭全员禁言
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_EnableAnonymous">
+            <summary>
+            群事件_开启匿名聊天
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_DisableAnonymous">
+            <summary>
+            群事件_关闭匿名聊天
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_EnableChatFrankly">
+            <summary>
+            群事件_开启坦白说
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_DisableChatFrankly">
+            <summary>
+            群事件_关闭坦白说
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_AllowGroupTemporary">
+            <summary>
+            群事件_允许群临时会话
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_ForbidGroupTemporary">
+            <summary>
+            群事件_禁止群临时会话
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_AllowCreateGroup">
+            <summary>
+            群事件_允许发起新的群聊
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_ForbidCreateGroup">
+            <summary>
+            群事件_禁止发起新的群聊
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_AllowUploadFile">
+            <summary>
+            群事件_允许上传群文件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_ForbidUploadFile">
+            <summary>
+            群事件_禁止上传群文件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_AllowUploadPicture">
+            <summary>
+            群事件_允许上传相册
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_ForbidUploadPicture">
+            <summary>
+            群事件_禁止上传相册
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberInvited">
+            <summary>
+            群事件_某人被邀请入群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_ShowMemberTitle">
+            <summary>
+            群事件_展示成员群头衔
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_HideMemberTitle">
+            <summary>
+            群事件_隐藏成员群头衔
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberNotShutUp">
+            <summary>
+            群事件_某人被解除禁言
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.QZone_Related">
+            <summary>
+            空间事件_与我相关
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_MemberKickOut">
+            <summary>
+            群事件_我被踢出
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.This_SignInSuccess">
+            <summary>
+            框架事件_登录成功
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_GroupNameUpdate">
+            <summary>
+            群事件_群名变更
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_SystmHint">
+            <summary>
+            群事件_系统提示
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventTypeEnum.Group_Face">
+            <summary>
+            群事件_群头像事件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FiletypeEnum.file">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FiletypeEnum.folder">
+            <summary>
+            文件夹
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_280">
+            <summary>
+            牵你的手
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_281">
+            <summary>
+            可爱猫咪
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_284">
+            <summary>
+            神秘面具
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_285">
+            <summary>
+            甜wink
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_286">
+            <summary>
+            我超忙的
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_289">
+            <summary>
+            快乐肥宅水
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_290">
+            <summary>
+            幸运手链
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_299">
+            <summary>
+            卡布奇诺
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_302">
+            <summary>
+            猫咪手表
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_307">
+            <summary>
+            绒绒手套
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_308">
+            <summary>
+            彩虹糖果
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_312">
+            <summary>
+            爱心口罩
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_313">
+            <summary>
+            坚强
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FreeGiftEnum.Gift_367">
+            <summary>
+            告白话筒
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.FriendAuthenticationModeEnum">
+            <summary>
+            好友验证方式
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendAuthenticationModeEnum.disable">
+            <summary>
+            禁止任何人添加
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendAuthenticationModeEnum.allow">
+            <summary>
+            允许任何人添加
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendAuthenticationModeEnum.verification">
+            <summary>
+            需要验证信息
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendAuthenticationModeEnum.ATQC">
+            <summary>
+            需要正确回答问题
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendAuthenticationModeEnum.ATQACPM">
+            <summary>
+            需要回答问题并由我确认
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendVerificationOperateEnum.Agree">
+            <summary>
+            同意
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.FriendVerificationOperateEnum.Deny">
+            <summary>
+            拒绝
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupFindMethodEnum.NotAllowed">
+            <summary>
+            不允许
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupFindMethodEnum.GroupName">
+            <summary>
+            通过群号或关键词
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupFindMethodEnum.GroupQQ">
+            <summary>
+            仅可通过群号
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupNoticeMethodEnum.no">
+            <summary>
+            不接收此人消息
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupNoticeMethodEnum.SpecialAttention">
+            <summary>
+            特别关注
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupNoticeMethodEnum.Default">
+            <summary>
+            默认
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.GroupPermission_SetInviteMethodEnum">
+            <summary>
+            群邀请权限
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupPermission_SetInviteMethodEnum.No_review_required">
+            <summary>
+            无需审核
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupPermission_SetInviteMethodEnum.Admin_review">
+            <summary>
+            需要管理员审核
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupPermission_SetInviteMethodEnum.No_review_required_within_100_people">
+            <summary>
+            100人以内无需审核
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.GroupPosition">
+            <summary>
+            表示群成员对于所在群的群成员类型
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupPosition.Member">
+            <summary>
+            普通用户
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupPosition.Manage">
+            <summary>
+            管理员
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupPosition.Creator">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupVerificationOperateEnum.Agree">
+            <summary>
+            同意
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupVerificationOperateEnum.Deny">
+            <summary>
+            拒绝
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.GroupVerificationOperateEnum.Ignore">
+            <summary>
+            忽略
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IMEStatusEnum.Input">
+            <summary>
+            正在输入
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IMEStatusEnum.CloseShow">
+            <summary>
+            关闭显示
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IMEStatusEnum.Talking">
+            <summary>
+            正在说话
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IsGroupRecviceEnum.recAndRemind">
+            <summary>
+            接收并提醒
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IsGroupRecviceEnum.shrinkGroup">
+            <summary>
+            收进群助手
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IsGroupRecviceEnum.shieldGroup">
+            <summary>
+            屏蔽群消息
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.IsGroupRecviceEnum.recNoRemind">
+            <summary>
+            接收不提醒
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.EventMessageEnum">
+            <summary>
+            消息事件处理
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventMessageEnum.Block">
+            <summary>
+            阻止其他插件继续处理此事件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.EventMessageEnum.Ignore">
+            <summary>
+            允许其他插件继续处理此事件
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.MessageSubTypeEnum">
+            <summary>
+            消息子类型
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageSubTypeEnum.Temporary_Group">
+            <summary>
+            临时会话_群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageSubTypeEnum.Temporary_PublicAccount">
+            <summary>
+            临时会话_公众号
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageSubTypeEnum.Temporary_WebQQConsultation">
+            <summary>
+            临时会话_网页QQ咨询
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageTypeEnum.Temporary">
+            <summary>
+            临时会话
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageTypeEnum.FriendUsualMessage">
+            <summary>
+            好友通常消息
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageTypeEnum.FriendFile">
+            <summary>
+            好友文件
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageTypeEnum.FriendAudio">
+            <summary>
+            好友语音
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageTypeEnum.GroupRedEnvelope">
+            <summary>
+             群红包
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MessageTypeEnum.GroupUsualMessage">
+            <summary>
+            群聊通常消息
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicAppTypeEnum.QQMusic">
+            <summary>
+            QQ音乐
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicAppTypeEnum.XiaMiMusic">
+            <summary>
+            虾米音乐
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicAppTypeEnum.KuWoMusic">
+            <summary>
+            酷我音乐
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicAppTypeEnum.KuGouMusic">
+            <summary>
+            酷狗音乐
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicAppTypeEnum.WangYiMusic">
+            <summary>
+            网易云音乐
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicShare_Type.PrivateMsg">
+            <summary>
+            私聊
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.MusicShare_Type.GroupMsg">
+            <summary>
+            群聊
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.IT">
+            <summary>
+            IT
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Manufacturing">
+            <summary>
+            制造
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Medical">
+            <summary>
+            医疗
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Finance">
+            <summary>
+            金融
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Business">
+            <summary>
+            商业
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Culture">
+            <summary>
+            文化
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Art">
+            <summary>
+            艺术
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Law">
+            <summary>
+            法律
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Education">
+            <summary>
+            教育
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Administration">
+            <summary>
+            行政
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Model">
+            <summary>
+            模特
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Stewardess">
+            <summary>
+            空姐
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.Student">
+            <summary>
+            学生
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ProfessionEnum.OtherOccupations">
+            <summary>
+            其他职业
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.RedE2TypeEnum">
+            <summary>
+            红包转发类型
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.RedE2TypeEnum.Friend">
+            <summary>
+            好友
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.RedE2TypeEnum.Group">
+            <summary>
+            群
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.SexEnum.M">
+            <summary>
+            男
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.SexEnum.F">
+            <summary>
+            女
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ShowPicEnum.normal">
+            <summary>
+            40000普通
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ShowPicEnum.phantom">
+            <summary>
+            40001幻影
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ShowPicEnum.jitter">
+            <summary>
+            40002抖动
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ShowPicEnum.birthday">
+            <summary>
+            40003生日
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ShowPicEnum.loveyou">
+            <summary>
+            40004爱你
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.ShowPicEnum.friends">
+            <summary>
+            40005征友
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Normal">
+            <summary>
+            普通在线
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Battery">
+            <summary>
+            我的电量
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.WeakSignal">
+            <summary>
+            信号弱
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Sleeping">
+            <summary>
+            睡觉中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Gaming">
+            <summary>
+            游戏中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Studying">
+            <summary>
+            学习中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Eating">
+            <summary>
+            吃饭中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.WatchingTVSeries">
+            <summary>
+            煲剧中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.OnVacation">
+            <summary>
+            度假中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.OnlineStudying">
+            <summary>
+             在线学习
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.TravelAtHome">
+            <summary>
+            在家旅游
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.TiMiing">
+            <summary>
+            TiMi中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.ListeningToMusic">
+            <summary>
+            我在听歌
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.StayingUpLate">
+            <summary>
+            熬夜中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.PlayingBall">
+            <summary>
+            打球中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.FallInLove">
+            <summary>
+            恋爱中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.ImOK">
+            <summary>
+            我没事(实际上有事)
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Barking">
+            <summary>
+            汪汪汪
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.OnEarth">
+            <summary>
+            40001在地球
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusOnlineTypeEnum.Moving">
+            <summary>
+            移动中
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusTypeEnum.Online">
+            <summary>
+            在线
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusTypeEnum.Away">
+            <summary>
+            离开
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusTypeEnum.Invisible">
+            <summary>
+            隐身
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusTypeEnum.Busy">
+            <summary>
+            忙碌
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusTypeEnum.TalkToMe">
+            <summary>
+            Q我吧
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.StatusTypeEnum.DoNotDisturb">
+            <summary>
+            请勿打扰
+            </summary>
+        </member>
+        <member name="T:SDK.Enum.TransferTypeEnum">
+            <summary>
+            转账类型
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.TransferTypeEnum.Firend">
+            <summary>
+            好友转账
+            </summary>
+        </member>
+        <member name="F:SDK.Enum.TransferTypeEnum.Stranger">
+            <summary>
+            陌生人转账
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.ThisQQ">
+            <summary>
+            框架QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.SourceGroupQQ">
+            <summary>
+            来源群号
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.OperateQQ">
+            <summary>
+            v
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.TriggerQQ">
+            <summary>
+            触发QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.MessageSeq">
+            <summary>
+            消息Seq
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.MessageTimestamp">
+            <summary>
+            消息时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.SourceGroupName">
+            <summary>
+            来源群名
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.OperateQQName">
+            <summary>
+            操作QQ昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.TriggerQQName">
+            <summary>
+            触发QQ昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.MessageContent">
+            <summary>
+            事件内容
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.EventType">
+            <summary>
+            事件类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.EventTypeBase.EventSubType">
+            <summary>
+            事件子类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.SenderQQ">
+            <summary>
+            发送人QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.ThisQQ">
+            <summary>
+            框架QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageReq">
+            <summary>
+            消息Req
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageReceiveTime">
+            <summary>
+            消息接收时间
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageGroupQQ">
+            <summary>
+            消息群号
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.SourceGroupName">
+            <summary>
+            消息来源群名（貌似失效了）etext SourceGroupName = nullptr;
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.SenderNickname">
+            <summary>
+            发送人群名片 没有名片则为空白
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageSendTime">
+            <summary>
+            消息发送时间
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageRandom">
+            <summary>
+            消息Random
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageClip">
+            <summary>
+            消息分片序列
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageClipCount">
+            <summary>
+            消息分片数量
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageClipID">
+            <summary>
+            消息分片标识
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.SenderTitle">
+            <summary>
+            发送人群头衔
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageContent">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.ReplyMessageContent">
+            <summary>
+            回复对象消息内容 如果是回复消息
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.BubbleID">
+            <summary>
+            发送者气泡ID
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.ThisQQAnonymousID">
+            <summary>
+            框架QQ匿名Id
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.reserved_">
+            <summary>
+            保留参数，请勿使用
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.FileID">
+            <summary>
+            文件Id
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.FileMD5">
+            <summary>
+            文件Md5
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.FileSize">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="F:SDK.Events.GroupMessageEvent.MessageAppID">
+            <summary>
+            消息AppID
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.ThisQQ">
+            <summary>
+            框架QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.SourceMessageGroupQQ">
+            <summary>
+            消息群号
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.OperationEventQQ">
+            <summary>
+            操作QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.SourceEventQQ">
+            <summary>
+            触发QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.MessageSeq">
+            <summary>
+            消息Seq
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.MessageSendTime">
+            <summary>
+            消息时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.SourceGroupName">
+            <summary>
+            来源群名
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.OperationQQName">
+            <summary>
+            操作QQ昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.SourceQQName">
+            <summary>
+            触发QQ昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.MessageContent">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.MessageType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.MessageEvent.MessageSubType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.SenderQQ">
+            <summary>
+            发送人QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.ThisQQ">
+            <summary>
+            框架QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageReq">
+            <summary>
+            消息Req
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageSeq">
+            <summary>
+            消息Seq
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageReceiveTime">
+            <summary>
+            消息接收时间
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageGroupQQ">
+            <summary>
+            消息群号 当为群临时会话时可取
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageSendTime">
+            <summary>
+            消息发送时间
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageRandom">
+            <summary>
+            消息Random
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageClip">
+            <summary>
+            消息分片序列
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageClipCount">
+            <summary>
+            消息分片数量
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageClipID">
+            <summary>
+            消息分片标识
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageContent">
+            <summary>
+            消息内容
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.BubbleID">
+            <summary>
+            气泡Id
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageType">
+            <summary>
+            消息类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageSubType">
+            <summary>
+            消息子类型 
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.MessageSubTemporaryType">
+            <summary>
+            消息子临时类型 0 群 1 讨论组 129 腾讯公众号 201 QQ咨询
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.RedEnvelopeType">
+            <summary>
+            红包类型
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.SessionToken">
+            <summary>
+            会话token
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.SourceEventQQ">
+            <summary>
+            来源事件QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.SourceEventQQName">
+            <summary>
+            来源事件QQ昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.FileID">
+            <summary>
+            文件Id
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.FileMD5">
+            <summary>
+            文件Md5
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.FileName">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="F:SDK.Events.PrivateMessageEvent.FileSize">
+            <summary>
+            文件大小
+            </summary>
+        </member>
+        <member name="T:SDK.Interface.IAppEnableEvent">
+            <summary>
+            启动事件
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IAppEnableEvent.AppEnableEvent(SDK.Events.AppEnableEvent)">
+            <summary>
+            启动事件
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:SDK.Interface.IAppSetting">
+            <summary>
+            点击插件设置
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IAppSetting.AppSetting">
+            <summary>
+            点击插件设置
+            </summary>
+        </member>
+        <member name="T:SDK.Interface.IAppUninstall">
+            <summary>
+            插件卸载事件
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IAppUninstall.AppUninstall">
+            <summary>
+            插件卸载事件
+            </summary>
+        </member>
+        <member name="T:SDK.Interface.IDisabledEvent">
+            <summary>
+            插件禁用事件
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IDisabledEvent.DisabledEvent">
+            <summary>
+            插件禁用事件
+            </summary>
+        </member>
+        <member name="T:SDK.Interface.IEventcallBack">
+            <summary>
+            机器人人事件处理类
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IEventcallBack.EventcallBack(SDK.Events.EventTypeBase)">
+            <summary>
+            机器人人事件处理类
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:SDK.Interface.IGroupMessage">
+            <summary>
+            接收群消息
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IGroupMessage.ReceviceGroupMsg(SDK.Events.GroupMessageEvent)">
+            <summary>
+            接收群消息
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:SDK.Interface.IRecvicetPrivateMessage">
+            <summary>
+            接收好友信息
+            </summary>
+        </member>
+        <member name="M:SDK.Interface.IRecvicetPrivateMessage.RecvicetPrivateMsg(SDK.Events.PrivateMessageEvent)">
+            <summary>
+            接收好友信息
+            </summary>
+            <param name="e"></param>
+        </member>
+        <member name="T:SDK.Model.CaptchaInformation">
+            <summary>
+            验证码信息
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.TokenID">
+            <summary>
+            token_id
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.SKey">
+            <summary>
+            skey
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.BankType">
+            <summary>
+            bank_type
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.Mobile">
+            <summary>
+            mobile
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.BusinessType">
+            <summary>
+            business_type
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.Random">
+            <summary>
+            random
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.TransactionID">
+            <summary>
+            transaction_id
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.PurchaserID">
+            <summary>
+            purchaser_id
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.Token">
+            <summary>
+            token
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CaptchaInformation.AuthParams">
+            <summary>
+            auth_params
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.QQNumber">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Name">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Note">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Status">
+            <summary>
+            在线状态 只能使用[取好友列表]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Likes">
+            <summary>
+            赞数量 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Signature">
+            <summary>
+            签名 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Gender">
+            <summary>
+            性别 255: 隐藏, 0: 男, 1: 女
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Level">
+            <summary>
+            Q等级 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Age">
+            <summary>
+            年龄 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Nation">
+            <summary>
+            国家 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.Province">
+            <summary>
+            省份 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.City">
+            <summary>
+            城市 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.serviceInfo">
+            <summary>
+            服务列表 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.ContinuousOnlineTime">
+            <summary>
+            连续在线天数 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.QQTalent">
+            <summary>
+            QQ达人 只能使用[查询好友信息]获取
+            <para>2.7.1RC9 SDK前 是QQ达人</para>
+            <para>2.7.1RC9 SDK后含2.7.1RC9 是所属分组名</para>
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.LikesToday">
+            <summary>
+            今日已赞 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="F:SDK.Model.FriendInfo.LikesAvailableToday">
+            <summary>
+            今日可赞数 只能使用[查询好友信息]获取
+            </summary>
+        </member>
+        <member name="T:SDK.Model.GroupCardInfo">
+            <summary>
+            群卡片信息
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupCardInfo.GroupName">
+            <summary>
+            群名称
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupCardInfo.GroupLocation">
+            <summary>
+            群地点
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupCardInfo.GroupClassification">
+            <summary>
+            群分类
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupCardInfo.GroupTags">
+            <summary>
+            群标签 以|分割
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupCardInfo.GroupDescription">
+            <summary>
+            群介绍
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileID">
+            <summary>
+            文件夹fileid或者文件fileid
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileName">
+            <summary>
+            文件夹名或文件名
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileSize">
+            <summary>
+            文件大小，文件夹时表示有多少个文件
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileMd5">
+            <summary>
+            文件md5，文件夹时为空，部分文件类型也可能是空
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileFromUin">
+            <summary>
+            创建文件夹或上传文件的QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileFromNick">
+            <summary>
+            创建文件夹或上传文件的QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupFileInformation.FileType">
+            <summary>
+            文件类型  1: 文件, 2: 文件夹
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupID">
+            <summary>
+            群ID
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupQQ">
+            <summary>
+            群号
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupRankSeq">
+            <summary>
+            群等级查询Seq
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.ShutUpTimestamp">
+            <summary>
+            全员禁言解除时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.ThisShutUpTimestamp">
+            <summary>
+            解除禁言时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupMemberCount">
+            <summary>
+            群成员数量
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.MemberNumSeq">
+            <summary>
+            群成员名片查询Seq
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupFlagExt3">
+            <summary>
+            群主QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.CmduinJoinTime">
+            <summary>
+            入群时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupName">
+            <summary>
+            群名称
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupInfo.GroupMemo">
+            <summary>
+            新人公告
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GMBriefInfo.GroupMAax">
+            <summary>
+            群上限
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GMBriefInfo.GruoupNum">
+            <summary>
+            群人数
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GMBriefInfo.GroupOwner">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GMBriefInfo.AdminiList">
+            <summary>
+            群管理员列表
+            </summary>
+        </member>
+        <member name="T:SDK.Model.GroupMemberBriefInfo">
+            <summary>
+            群成员状况简略信息
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupMemberBriefInfo.GroupMAax">
+            <summary>
+            群上限
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupMemberBriefInfo.GruoupNum">
+            <summary>
+            群人数
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupMemberBriefInfo.GroupOwner">
+            <summary>
+            群主
+            </summary>
+        </member>
+        <member name="F:SDK.Model.GroupMemberBriefInfo.AdminiList">
+            <summary>
+            群管理员列表
+            </summary>
+        </member>
+        <member name="F:SDK.Model.NotReRedEnvelopes.SourceQQ">
+            <summary>
+            来源QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Model.NotReRedEnvelopes.listid">
+            <summary>
+            listid
+            </summary>
+        </member>
+        <member name="F:SDK.Model.NotReRedEnvelopes.authkey">
+            <summary>
+            authkey
+            </summary>
+        </member>
+        <member name="F:SDK.Model.NotReRedEnvelopes.title">
+            <summary>
+            标题
+            </summary>
+        </member>
+        <member name="F:SDK.Model.NotReRedEnvelopes.channel">
+            <summary>
+            channel
+            </summary>
+        </member>
+        <member name="T:SDK.Model.OneGroupMemberInfo">
+            <summary>
+            群员信息
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.GroupCardName">
+            <summary>
+            群名片
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.GroupChatLevel">
+            <summary>
+            群聊等级<para>文本型等级,取决于群等级设置,如：冒泡</para>
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.JoinTime">
+            <summary>
+            入群时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.LastSpeackTime">
+            <summary>
+            最后发言时间戳
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.groupPosition">
+            <summary>
+            管理权限<para>表示群成员对于所在群的群成员类型</para>
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OneGroupMemberInfo.GroupTitle">
+            <summary>
+            头衔
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OrderTime">
+            <summary>
+            订单时间
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OrderDescription">
+            <summary>
+            订单说明
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OrderClassification">
+            <summary>
+            订单类名
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OrderType">
+            <summary>
+            订单类型
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OrderCommission">
+            <summary>
+            订单手续费
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OperatorQQ">
+            <summary>
+            操作人QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OperatorName">
+            <summary>
+            操作人昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.ReceiverQQ">
+            <summary>
+            接收人QQ
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.ReceiverName">
+            <summary>
+            接收人昵称
+            </summary>
+        </member>
+        <member name="F:SDK.Model.OrderDetail.OperateAmount">
+            <summary>
+            操作金额
+            </summary>
+        </member>
+        <member name="F:SDK.Model.PersonalInfo.性别">
+            <summary>
+            1:男 2:女,默认男
+            </summary>
+        </member>
+        <member name="F:SDK.Model.PersonalInfo.生日">
+            <summary>
+            格式：2020/5/5 均为整数
+            </summary>
+        </member>
+        <member name="F:SDK.Model.PersonalInfo.职业">
+            <summary>
+            1:IT,2:制造,3:医疗,4:金融,5:商业,6:文化,7:艺术,8:法律,9:教育,10:行政,11:模特,12:空姐,13:学生,14:其他职业，默认1
+            </summary>
+        </member>
+        <member name="F:SDK.Model.PersonalInfo.所在地">
+            <summary>
+            国家代码|省份代码|市代码|区字母|区代码，如：49|13110|56|NK|51，表示中国江西省吉安市青原区，这些数据是腾讯的数据，非国际数据
+            </summary>
+        </member>
+        <member name="F:SDK.Model.PersonalInfo.家乡">
+            <summary>
+            国家代码|省份代码|市代码|区字母|区代码，如：49|13110|56|NK|51，表示中国江西省吉安市青原区，这些数据是腾讯的数据，非国际数据
+            </summary>
+        </member>
+        <member name="F:SDK.Model.QQWalletInformation.Balance">
+            <summary>
+            余额
+            </summary>
+        </member>
+        <member name="F:SDK.Model.QQWalletInformation.ID">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="F:SDK.Model.QQWalletInformation.RealName">
+            <summary>
+            实名
+            </summary>
+        </member>
+        <member name="F:SDK.Model.QQWalletInformation.CardList">
+            <summary>
+            银行卡列表
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CardInformation.Serial">
+            <summary>
+            序列
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CardInformation.TailNumber">
+            <summary>
+            尾号
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CardInformation.Bank">
+            <summary>
+            银行
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CardInformation.BindPhone">
+            <summary>
+            绑定手机
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CardInformation.BindSerial">
+            <summary>
+            bind_serial
+            </summary>
+        </member>
+        <member name="F:SDK.Model.CardInformation.BankType">
+            <summary>
+            bank_type
+            </summary>
+        </member>
+        <member name="F:SDK.Model.RetQQWalletInformation.Balance">
+            <summary>
+            余额
+            </summary>
+        </member>
+        <member name="F:SDK.Model.RetQQWalletInformation.ID">
+            <summary>
+            身份证号
+            </summary>
+        </member>
+        <member name="F:SDK.Model.RetQQWalletInformation.RealName">
+            <summary>
+            实名
+            </summary>
+        </member>
+        <member name="F:SDK.Model.RetQQWalletInformation.CardList">
+            <summary>
+            银行卡列表
+            </summary>
+        </member>
+    </members>
+</doc>

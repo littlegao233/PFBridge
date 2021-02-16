@@ -43,7 +43,7 @@ namespace PFBridgeForOneBot
             return builder.ToString();
         }
         internal static string ParseMessage(string raw, long group)
-        { 
+        {
             StringBuilder builder = new StringBuilder(raw);
             foreach (var code in CQCode.Parse(raw))
             {
@@ -134,16 +134,6 @@ namespace PFBridgeForOneBot
         /// 获取当前实例所包含的所有项目
         /// </summary>
         public Dictionary<string, string> Items { get { return _items; } }
-
-        /// <summary>
-        /// 获取一个值, 指示当前实例是否属于图片 <see cref="CQCode"/>
-        /// </summary>
-        public bool IsImageCQCode { get { return EqualIsImageCQCode(this); } }
-
-        /// <summary>
-        /// 获取一个值, 指示当前实例是否属于语音 <see cref="CQCode"/>
-        /// </summary>
-        public bool IsRecordCQCode { get { return EqualIsRecordCQCode(this); } }
         #endregion
 
         #region --构造函数--
@@ -214,24 +204,6 @@ namespace PFBridgeForOneBot
                 codes.Add(new CQCode(item.Groups[0].Value));
             }
             return codes;
-        }
-        /// <summary>
-        /// 判断是否是图片 <see cref="CQCode"/>
-        /// </summary>
-        /// <param name="code">要判断的 <see cref="CQCode"/> 实例</param>
-        /// <returns>如果是图片 <see cref="CQCode"/> 返回 <see langword="true"/> 否则返回 <see langword="false"/></returns>
-        public static bool EqualIsImageCQCode(CQCode code)
-        {
-            return code.Function == CQFunction.Image;
-        }
-        /// <summary>
-        /// 判断是否是语音 <see cref="CQCode"/>
-        /// </summary>
-        /// <param name="code">要判断的 <see cref="CQCode"/> 实例</param>
-        /// <returns>如果是语音 <see cref="CQCode"/> 返回 <see langword="true"/> 否则返回 <see langword="false"/></returns>
-        public static bool EqualIsRecordCQCode(CQCode code)
-        {
-            return code.Function == CQFunction.Record;
         }
         /// <summary>
         /// 确定指定的对象是否等于当前对象

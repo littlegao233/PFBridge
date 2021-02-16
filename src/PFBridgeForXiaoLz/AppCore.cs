@@ -20,7 +20,7 @@ using System.Web.Script.Serialization;
 using System.Windows.Forms;
 using Unity;
 
-namespace XiaolzCSharp
+namespace PFBridgeForXiaoLz
 {
     public static class RegisterCore
     {
@@ -76,7 +76,7 @@ namespace XiaolzCSharp
             App_Info.sdkv = "2.8.8.1";
             App_Info.describe = string.Join("\r\n", new string[]
             {
-                "PFBridgeForXiaoLz beta by gxh ","",
+                "PFBridgeForXiaoLz beta by gxh","",
                 "github:",
                 "https://github.com/littlegao233/PFBridge"
             });

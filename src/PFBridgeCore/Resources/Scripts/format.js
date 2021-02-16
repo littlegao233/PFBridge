@@ -19,4 +19,5 @@ format.Forward = "§r§l§7[转发]" + defaultColor;
 format.Node = "§r§l§7[转发节点]" + defaultColor;
 format.Xml = "§r§l§7[富文本消息]" + defaultColor;
 format.Json = "§r§l§7[富文本消息]" + defaultColor;
+format.File = "§r§l§b[文件:§r§o§7{0}§r§l§d]" + defaultColor;
 format.Unknown = "§r§l§7[{0}]" + defaultColor;
