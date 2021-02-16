@@ -86,7 +86,18 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似  的本地化字符串。
+        '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;;
+        '''moduleInfo.Version = &quot;v0.0.1&quot;;
+        '''moduleInfo.Description = &apos;此JS定义了消息特殊内容的替换方式&apos;;
+        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API;
+        '''const format = api.ParseMessageFormat;
+        '''const defaultColor = &quot;§r§a&quot;
+        '''format.At = &quot;§r§l§6@§r§6{0}&quot; + defaultColor;
+        '''format.AtAll = &quot;§r§l§g@§r§g全体成员&quot; + defaultColor;
+        '''format.Image = &quot;§r§l§d[图骗]§&quot;;
+        '''format.Emoji = &quot;§r§l§d[emoji]&quot; + defaultColor;
+        '''format.Face = &quot;§r§l§c[表情]&quot; + defaultColor;
+        '''format.Bface = &quot;§r§l§d[大表情:§r§o§7{0}§r§l§d]&quot; + defaul [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property format() As String
             Get

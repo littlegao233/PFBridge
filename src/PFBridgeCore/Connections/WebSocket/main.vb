@@ -6,9 +6,9 @@ Namespace Ws
         Public Sub ProcessMessage(con As Connection, message As String)
             Try
                 Dim receive = JObject.Parse(message)
-                Select Case [Enum].Parse(GetType(PackType), receive("type").ToString())
+                Select Case [Enum].Parse(GetType(PackType), receive("type").ToString(), True)
                     Case PackType.pack
-                        Select Case [Enum].Parse(GetType(ServerCauseType), receive("cause").ToString())
+                        Select Case [Enum].Parse(GetType(ServerCauseType), receive("cause").ToString(), True)
                             Case ServerCauseType.join
                                 With New CauseJoin(receive).params
                                     Events.Server.Join.Invoke(New ServerPlayerJoinEventsArgs(con, .sender, .ip, .uuid, .xuid))
@@ -24,6 +24,10 @@ Namespace Ws
                             Case ServerCauseType.cmd
                                 With New CauseCmd(receive).params
                                     Events.Server.Cmd.Invoke(New ServerPlayerCmdEventsArgs(con, .sender, .text))
+                                End With
+                            Case ServerCauseType.mobdie
+                                With New CauseMobDie(receive).params
+                                    Events.Server.MobDie.Invoke(New ServerMobDieEventsArgs(con, .mobname, .mobtype, .dmcase, .srcname, .srctype, .pos))
                                 End With
                             Case ServerCauseType.runcmdfeedback '命令返回
                                 ProcessCmdFeedback(New CauseRuncmdFeedback(receive))

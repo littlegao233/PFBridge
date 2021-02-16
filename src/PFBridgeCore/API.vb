@@ -132,6 +132,23 @@ Public Module APIs
 
             End Class
 #End Region
+#Region "生物死亡"
+            Public MobDie As New EventsMapItem(Of ServerMobDieEventsArgs)
+            Public Class ServerMobDieEventsArgs
+                Inherits ServerBaseEventsArgs
+                Public Sub New(_con As IBridgeMCBase, _mobname As String, _mobtype As String, _dmcase As Integer, _srcname As String, _srctype As String, _pos As PFWebsocketAPI.Model.Vec3)
+                    MyBase.New(_con)
+                    mobname = _mobname : mobtype = _mobtype : dmcase = _dmcase
+                    srctype = _srctype : srcname = _srcname : pos = _pos
+                End Sub
+                Public ReadOnly Property mobname As String
+                Public ReadOnly Property mobtype As String
+                Public ReadOnly Property dmcase As Integer
+                Public ReadOnly Property srcname As String
+                Public ReadOnly Property srctype As String
+                Public ReadOnly Property pos As PFWebsocketAPI.Model.Vec3
+            End Class
+#End Region
         End Class
 #End Region
     End Class

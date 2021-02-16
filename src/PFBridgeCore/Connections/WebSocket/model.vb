@@ -96,12 +96,16 @@ Namespace PFWebsocketAPI.Model
     End Class
 
 #Region "Server"
+    Public Structure Vec3
+        Public x, y, z As Single
+    End Structure
     <JsonConverter(GetType(Converters.StringEnumConverter))>
     Public Enum ServerCauseType
         chat
         join
         left
         cmd
+        mobdie
         runcmdfeedback
         decodefailed
         invalidrequest
@@ -166,6 +170,20 @@ Namespace PFWebsocketAPI.Model
         Public params As ParamMap
         Friend Class ParamMap
             Public sender, text As String
+        End Class
+    End Class
+    Friend Class CauseMobDie
+        Inherits ServerPackBase
+        Friend Sub New(json As JObject)
+            params = GetParams(Of ParamMap)(json)
+        End Sub
+        Friend Sub New(mobtype As String, mobname As String, dmcase As Integer, srctype As String, srcname As String, XYZ As Vec3)
+            params = New ParamMap With {.mobtype = mobtype, .mobname = mobname, .dmcase = dmcase, .srctype = srctype, .srcname = srcname, .pos = XYZ}
+        End Sub
+        Public Overrides ReadOnly Property cause As ServerCauseType = ServerCauseType.mobdie
+        Public params As ParamMap
+        Friend Class ParamMap
+            Public mobtype, mobname As String, dmcase As Integer, srctype, srcname As String, pos As Vec3
         End Class
     End Class
     '命令返回
