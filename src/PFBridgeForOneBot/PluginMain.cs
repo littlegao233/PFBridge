@@ -27,8 +27,8 @@ namespace PFBridgeForOneBot
                 {
                     Sora.EventArgs.SoraEvent.FileUploadEventArgs e = eventArgs;
                     //e.SoraApi.GetGroupMemberInfo
-                    PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, CodeEx.CQDeCode(e.Message.RawText),
-                          () =>
+                    PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, $"群文件：{ e.FileInfo.Name }[{ e.FileInfo.Size}]",
+() =>
                           {
                               var get = e.SourceGroup.GetGroupInfo().AsTask();
                               get.Wait();

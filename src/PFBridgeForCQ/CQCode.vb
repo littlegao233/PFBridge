@@ -19,13 +19,6 @@ Public Module CodeEx
         Return builder.ToString()
     End Function
 
-    ''' <summary>
-    ''' 获取字符串副本的转义形式
-    ''' </summary>
-    ''' <paramname="source">欲转义的原始字符串</param>
-    ''' <paramname="enCodeComma">是否转义逗号, 默认 <code>false</code></param>
-    ''' <exceptioncref="ArgumentNullException">参数: source 为 null</exception>
-    ''' <returns>返回转义后的字符串副本</returns>
     Public Function CQEnCode(ByVal source As String, ByVal enCodeComma As Boolean) As String
         If Equals(source, Nothing) Then Return String.Empty
         Dim builder As StringBuilder = New StringBuilder(source)
