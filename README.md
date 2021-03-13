@@ -7,18 +7,36 @@
             </div>
             <div align="center">
                 <blockquote align="center">
-                    <a href="https://github.com/littlegao233/PFBridge/releases">最新可执行文件</a>
-                    <a>|</a>
-                    <a href="https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2">最新构建状态</a>
-                </blockquote>
+
+[![](https://img.shields.io/badge/Minebbs-%E8%AE%BA%E5%9D%9B-ea2bc7?style=flat-square)](https://www.minebbs.com/resources/1975/)
+[![](https://img.shields.io/github/downloads/littlegao233/PFBridge/total?color=ea2bc7&label=%E4%B8%8B%E8%BD%BD&style=flat-square)](https://github.com/littlegao233/PFBridge/releases)
+[![](https://img.shields.io/github/v/release/littlegao233/PFBridge?color=ea2bc7&label=%E6%9C%80%E6%96%B0%E5%8F%91%E5%B8%83&style=flat-square)](https://github.com/littlegao233/PFBridge/releases/latest)
+[![](https://img.shields.io/github/license/littlegao233/PFBridge?color=ea2bc7&label=%E5%BC%80%E6%BA%90%E5%8D%8F%E8%AE%AE&style=flat-square)](https://github.com/littlegao233/PFBridge/blob/main/LICENSE)
+![GitHub Repo stars](https://img.shields.io/github/stars/littlegao233/PFBridge?color=ea2bc7&label=%E2%98%85&style=flat-square)
+                </blockquote> 
                 <blockquote align="center">
-                    <a href="https://www.minebbs.com/resources/1975/">MineBBS</a>
+
+[![](https://img.shields.io/azure-devops/build/gaoxinhong2004/88fb96c4-21cf-4d12-91ec-54a1c36c21b7/2?color=ea2bc7&label=%E6%9E%84%E5%BB%BA&style=flat-square)](https://dev.azure.com/gaoxinhong2004/PFBridge/_build?definitionId=2)
+[![](https://img.shields.io/azure-devops/release/gaoxinhong2004/88fb96c4-21cf-4d12-91ec-54a1c36c21b7/2/2?color=ea2bc7&label=%E9%83%A8%E7%BD%B2&style=flat-square)](https://dev.azure.com/gaoxinhong2004/PFBridge/_release?view=all&_a=releases&definitionId=2)
+![](https://img.shields.io/github/languages/count/littlegao233/PFBridge?color=ea2bc7&style=flat-square)
+![](https://img.shields.io/github/languages/top/littlegao233/PFBridge?color=ea2bc7&style=flat-square)
+![](https://img.shields.io/github/last-commit/littlegao233/PFBridge?color=ea2bc7&label=%E6%9C%80%E5%90%8E%E6%8F%90%E4%BA%A4&style=flat-square)
+![](https://img.shields.io/github/commit-activity/m/littlegao233/PFBridge?color=ea2bc7&label=%E6%8F%90%E4%BA%A4%E9%A2%91%E7%8E%87&style=flat-square)
                 </blockquote>
+                <div align="center">
+                
+
+
+
+</div>
             </div>
         </td>
     </tr>
 </table>
 <hr>
+
+
+                
 
 - ## State/开发状态
    - 基础脚本,支持简单的[自定义配置](#QQ部分)
@@ -39,17 +57,17 @@
     - [x] 多机器人框架支持
     - - [x] 原酷Q插件支持（兼容Mirai Native、CQXQ等）
     - - [x] 先驱机器人框架支持
-    - - [X] OnoQQ机器人框架支[
+    - - [X] OnoQQ机器人框架支持
     - - [X] 小栗子框架支持
     - - [x] [OPQ](https://github.com/OPQBOT/OPQ)客户端支持
     - - [x] go-cqhttp客户端支持
-    - - [ ] Nanbot支持
     - - [X] ERbot机器人框架支持(重命名`PFBridge.IR.dll`为`PFBridge.ER.dll`即可载入)
     - - [x] NutQQ支持(重命名`PFBridge.IR.dll`为`PFBridge.NT.dll`即可载入)
-    - - [ ] QQmini框架支持（需要Pro版本）(暂不适配)
+    - - [ ] Telegram支持(编写中)
+    - - [ ] Nanbot支持（咕咕咕，太多了没人用
+    - - [ ] QQmini框架支持(咕咕咕，太多了没人用
     - - [ ] 可爱猫微信机器人框架支持
     - - [ ] Discord支持
-    - - [ ] Telegram支持
     - - [ ] 钉钉支持
 ---
 - ## Usage/使用方法

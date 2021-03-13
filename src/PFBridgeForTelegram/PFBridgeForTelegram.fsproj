@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>netcoreapp3.1;net5</TargetFrameworks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Console.fs" />
+    <Compile Include="Config.fs" />
+    <Compile Include="Api.fs" />
+    <Compile Include="EventHandler.fs" />
+    <Compile Include="App.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Telegram.Bot" Version="15.7.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj" />
+  </ItemGroup>
+</Project>
