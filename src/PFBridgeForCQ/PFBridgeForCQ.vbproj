@@ -90,13 +90,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CQCode.vb" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\PFBridgeCore\PFBridgeCore.vbproj">
       <Project>{a79da47f-85c9-4e02-b92b-2e2fb325318c}</Project>
       <Name>PFBridgeCore</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CQCode.vb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <Import Project="..\packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets" Condition="Exists('..\packages\HuajiTech.UnmanagedExports.MSBuild.1.0.0-rc2\build\HuajiTech.UnmanagedExports.MSBuild.targets')" />
