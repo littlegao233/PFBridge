@@ -1,5 +1,4 @@
 ﻿Imports PFBridgeCore.EventArgs
-Imports WebSocketSharp
 Public Interface IParseMessageFormat
     Property At As String
     Property AtAll As String

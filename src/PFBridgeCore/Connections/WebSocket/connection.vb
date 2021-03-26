@@ -37,7 +37,7 @@ Namespace Ws
         Private ReadOnly WSUrl As String
         Private Function CreateNewClient() As WebsocketClient
             Dim result = New WebsocketClient(New Uri(WSUrl)) With {
-                .ReconnectTimeout = TimeSpan.FromSeconds(5),
+                .ReconnectTimeout = Nothing,
                 .ErrorReconnectTimeout = TimeSpan.FromSeconds(5)
             }
             'result.s
@@ -95,20 +95,27 @@ Namespace Ws
             ''AddHandler Client.OnError, Sub(sender, e)
             ''                           End Sub
             Client.DisconnectionHappened.Subscribe(Sub(info)
-                                                       If info.Exception Is Nothing Then
-                                                           Select Case info.Type
+                                                       Select Case info.Type
                                                             'Case DisconnectionType.ByServer
-                                                            'Case DisconnectionType.Error
-                                                            'Case DisconnectionType.Exit
-                                                            'Case DisconnectionType.Lost
-                                                            'Case DisconnectionType.NoMessageReceived
-                                                               Case DisconnectionType.ByUser
-                                                               Case Else
-                                                                   API.LogErr($"{Client.Url}断开连接，将自动尝试重连[" & info.Type & "]:" & info.CloseStatusDescription)
-                                                           End Select
-                                                       Else
-                                                           API.LogErr($"{Client.Url}遇到错误：{info.Exception}")
-                                                       End If
+                                                           Case DisconnectionType.Error
+                                                               Try
+                                                                   Throw info.Exception
+                                                               Catch ex As Net.WebSockets.WebSocketException
+                                                                   If ex.ErrorCode = 1006 Then
+                                                                       API.LogErr($"{Client.Url}建立连接失败[WebSocket:{ex.WebSocketErrorCode}]:连接状态异常]，将自动尝试重连：{ex.Message}“)
+                                                                   Else
+                                                                       API.LogErr($"{Client.Url}遇到错误[WebSocket:{ex.WebSocketErrorCode}]：{info.Exception.Message}")
+                                                                   End If
+                                                               Catch ex As Exception
+                                                                   API.LogErr($"{Client.Url}遇到错误[{info.Type}]：{info.Exception.Message}")
+                                                               End Try
+                                                               'Case DisconnectionType.Exit
+                                                               'Case DisconnectionType.Lost
+                                                               'Case DisconnectionType.NoMessageReceived
+                                                               'Case DisconnectionType.ByUser
+                                                           Case Else
+                                                               API.LogErr($"{Client.Url}断开连接，将自动尝试重连[" & info.Type & "]:" & info.CloseStatusDescription)
+                                                       End Select
                                                    End Sub)
             'AddHandler Client.OnClose, Sub(sender, e)
             '                               If e.Code = 1006 Then
