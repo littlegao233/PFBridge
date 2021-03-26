@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Sora.Server;
 using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
 using PFBridgeCore;
-
+using Sora.OnebotModel;
 namespace PFBridgeForOneBot
 {
     class PluginMain
@@ -19,7 +18,7 @@ namespace PFBridgeForOneBot
             PFBridgeCore.Main.Init(new API(api));
             hasStarted = true;
         }
-        internal static void Init(SoraWSServer server)
+        internal static void Init(Sora.Interfaces.ISoraService server)
         {
             server.Event.OnFileUpload += (sender, eventArgs) =>
             {
