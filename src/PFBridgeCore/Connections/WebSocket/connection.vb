@@ -97,12 +97,12 @@ Namespace Ws
 
         Public Property Tag As Object Implements IBridgeMCBase.Tag
 #If DEBUG Then
-        Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 1000, .Enabled = True}
+        Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 500, .Enabled = True}
 #Else
         Private ReadOnly CheckTimer As New Timers.Timer() With {.AutoReset = True, .Interval = 10000, .Enabled = True}
 #End If
         'Private ConnectingStateTimes As Integer = 0
-        Private ClosedStateTimes As Integer = 0
+        'Private ClosedStateTimes As Integer = 0
         Private _connectionState As Boolean = False
         Private WriteOnly Property ConnectionState
             Set(value)
@@ -112,7 +112,7 @@ Namespace Ws
                             API.Log($"与{Client.Url}的连接已建立 ")
                             _connectionState = value
                             'ConnectingStateTimes = 0
-                            ClosedStateTimes = 0
+                            'ClosedStateTimes = 0
                         End If
                     Else
                         _connectionState = value
@@ -125,18 +125,21 @@ Namespace Ws
             Try
                 If Not Client.IsAlive Then
 #If DEBUG Then
-                    API.Log(Client.ReadyState)
+                    API.Log(Client.ReadyState.ToString() &
+                     Client.GetType().GetField("_retryCountForConnect", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Instance).GetValue(Client)
+                    )
 #End If
                     If Client.ReadyState = WebSocketState.Closed OrElse Client.ReadyState = WebSocketState.Connecting Then
                         Client.Connect()
-                        ClosedStateTimes += 1
-                        If ClosedStateTimes > 20 Then
-                            Try : Client.Log.Output = Sub()
-                                                      End Sub : Catch : End Try
-                            Try : Client.CloseAsync() : Catch : End Try
-                            Client = CreateNewClient()
-                            ClosedStateTimes = 0
-                        End If
+
+                        'ClosedStateTimes += 1
+                        'If ClosedStateTimes > 20 Then
+                        '    Try : Client.Log.Output = Sub()
+                        '                              End Sub : Catch : End Try
+                        '    Try : Client.CloseAsync() : Catch : End Try
+                        '    Client = CreateNewClient()
+                        '    ClosedStateTimes = 0
+                        'End If
                         'ElseIfThen
                         'ConnectingStateTimes += 1
                         'If ConnectingStateTimes > 4 Then
@@ -146,10 +149,25 @@ Namespace Ws
                     End If
                 End If
             Catch ex As InvalidOperationException
-                Try : Client.Log.Output = Sub()
-                                          End Sub : Catch : End Try
-                Try : Client.CloseAsync() : Catch : End Try
-                Client = CreateNewClient()
+                Try
+                    Dim t As Type = Client.GetType()
+                    'For Each a In t.GetFields(Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Static)
+                    '    Console.WriteLine(a.Name)
+                    'Next
+                    Dim f = t.GetField("_retryCountForConnect", Reflection.BindingFlags.NonPublic Or Reflection.BindingFlags.Instance)
+#If DEBUG Then
+                    Console.WriteLine(f.GetValue(Client))
+#End If
+                    f.SetValue(Client, 1)
+                Catch exx As Exception
+#If DEBUG Then
+                    Console.WriteLine(exx)
+#End If
+                End Try
+                'Try : Client.Log.Output = Sub()
+                '                          End Sub : Catch : End Try
+                'Try : Client.CloseAsync() : Catch : End Try
+                'Client = CreateNewClient()
             Catch ex As Exception
 #If DEBUG Then
                 API.LogErr(ex.ToString)
