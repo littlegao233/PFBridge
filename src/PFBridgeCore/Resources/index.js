@@ -84,7 +84,13 @@ if (IO.Directory.Exists(custom_script_path)) {
             api.log('■■■■■■■■■■■■■■');
             custom_script_success_count++;
         } catch (e) {
-            api.LogErr('自定义脚本"' + IO.Path.GetFileName(file) + '"运行出错：' + e);
+            api.LogErr('自定义脚本"' + IO.Path.GetFileName(file) + '"运行出错：' + e.message);
+            if (e.stack !== undefined) {
+                api.LogErr("堆栈信息：");
+                e.stack.split("\n").forEach((s) => {
+                    api.LogErr(s);
+                });
+            }
             custom_script_failed_count++;
         }
     });
@@ -93,5 +99,3 @@ if (IO.Directory.Exists(custom_script_path)) {
 }
 //#endregion
 api.log('JavaScript自定义配置已加载完毕！');
-
-
