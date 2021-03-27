@@ -1,7 +1,7 @@
 ﻿Imports PFBridgeCore
 Imports HuajiTech.CoolQ
-Imports System.Collections.Generic
 Imports System
+Imports System.Collections.Generic
 
 Namespace PFBridgeForCQ
     Friend Module Data
