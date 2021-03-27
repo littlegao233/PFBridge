@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Sora.Server;
 using System.IO;
 using Newtonsoft.Json;
+using Sora.Extensions;
 using Alba.CsConsoleFormat;
 using Console = Colorful.Console;
-using Sora.OnebotModel;
-using Sora.Net;
-using YukariToolBox.Extensions;
-
 namespace PFBridgeForOneBot
 {
-
     class Program
     {
         static void WriteLine(string content)
@@ -21,10 +18,9 @@ namespace PFBridgeForOneBot
         {
             Console.WriteLine($"[{DateTime.Now:G}][Error][PFBridgeForOneBot]" + content);
         }
-
         static string ConfigPath { get { return Path.GetFullPath("config.json"); } }
-        private static ServerConfigModel _ConfigData = null;
-        static ServerConfigModel ConfigData
+        private static ServerConfig _ConfigData = null;
+        static ServerConfig ConfigData
         {
             get
             {
@@ -33,11 +29,7 @@ namespace PFBridgeForOneBot
                     if (File.Exists(ConfigPath))
                     {
                         WriteLine("正在读取\"config.json\"...");
-                        try
-                        {
-                            _ConfigData = JsonConvert.DeserializeObject<ServerConfigModel>(File.ReadAllText(ConfigPath));
-                            File.WriteAllText(ConfigPath, JsonConvert.SerializeObject(_ConfigData, Formatting.Indented));
-                        }
+                        try { _ConfigData = JsonConvert.DeserializeObject<ServerConfig>(File.ReadAllText(ConfigPath)); }
                         catch (Exception ex)
                         {
                             WriteLineErr("配置文件读取错误！请检查\"config.json\"填写是否规范！\n信息" + ex.ToString());
@@ -46,7 +38,7 @@ namespace PFBridgeForOneBot
                         }
                     }
                     else
-                        ConfigData = new ServerConfigModel();
+                        ConfigData = new ServerConfig();
                 }
                 return _ConfigData;
             }
@@ -59,8 +51,8 @@ namespace PFBridgeForOneBot
         }
         static async Task Main(string[] args)
         {
-            var service = SoraServiceFactory.CreateInstance(ConfigData.GetServerConfig());
-            PluginMain.Init(service);
+            SoraWSServer server = new SoraWSServer(ConfigData);
+            PluginMain.Init(server);
             WriteLine("QQ端参考配置方法：");
             Span EditText(string content) => new Span(content) { Background = ConsoleColor.Magenta, Color = ConsoleColor.Gray };
             Span BgText(string content) => new Span(content) { Color = ConsoleColor.Yellow };
@@ -91,7 +83,9 @@ namespace PFBridgeForOneBot
                                        NewLine,BgText("ws_reverse_servers: ["),
                                        NewLine,BgText("    {"),
                                        NewLine,BgText("        enabled: "),EditText("true") ,
-                                       NewLine,BgText("        reverse_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.UniversalPath}") ,//                                       NewLine,BgText("        reverse_api_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.ApiPath}"),//                                       NewLine,BgText("        reverse_event_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.EventPath}"),
+                                       NewLine,BgText("        reverse_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.UniversalPath}") ,
+                                       NewLine,BgText("        reverse_api_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.ApiPath}"),
+                                       NewLine,BgText("        reverse_event_url: ws://127.0.0.1:"),EditText($"{ConfigData.Port}/{ConfigData.EventPath}"),
                                        NewLine,BgText("        reverse_reconnect_interval: 3000"),
                                        NewLine,BgText("    }"),
                                        NewLine,BgText("]"),
@@ -120,7 +114,9 @@ namespace PFBridgeForOneBot
                                        NewLine,BgText("        reverseHost: 127.0.0.1"),
                                        NewLine,BgText("        reversePort: "),EditText(ConfigData.Port.ToString()),
                                        NewLine,BgText("        accessToken: ''"),
-                                       NewLine,BgText("        reversePath: "),EditText(string.IsNullOrEmpty(ConfigData.UniversalPath)?"''":ConfigData.UniversalPath),                                       //NewLine,BgText("        reverseApiPath: "),EditText(string.IsNullOrEmpty(ConfigData.ApiPath)?"''":ConfigData.ApiPath),                                       //NewLine,BgText("        reverseEventPath: "),EditText(string.IsNullOrEmpty(ConfigData.EventPath)?"''":ConfigData.EventPath),
+                                       NewLine,BgText("        reversePath: "),EditText(string.IsNullOrEmpty(ConfigData.UniversalPath)?"''":ConfigData.UniversalPath),
+                                       NewLine,BgText("        reverseApiPath: "),EditText(string.IsNullOrEmpty(ConfigData.ApiPath)?"''":ConfigData.ApiPath),
+                                       NewLine,BgText("        reverseEventPath: "),EditText(string.IsNullOrEmpty(ConfigData.EventPath)?"''":ConfigData.EventPath),
                                        NewLine,SeptTxt
                                    }
                                 }
@@ -131,26 +127,25 @@ namespace PFBridgeForOneBot
             }
             catch (Exception) { }
             _ = Task.Run(() =>
-            {
-                while (true)
-                {
-                    var read = Console.ReadLine();
-                    switch (read.Trim().ToLower())
-                    {
-                        case "help":
-                            Console.WriteLine("未完成");
-                            break;
-                        case "stop":
-                            Environment.Exit(0);
-                            break;
-                        default:
-                            Console.WriteLine("未知命令:" + read);
-                            break;
-                    }
-                }
-            });
-            await service.StartService().RunCatch(e => WriteLineErr("[Sora Service]" + e.ToString()));
-            await Task.Delay(-1);
+             {
+                 while (true)
+                 {
+                     var read = Console.ReadLine();
+                     switch (read.Trim().ToLower())
+                     {
+                         case "help":
+                             Console.WriteLine("未完成");
+                             break;
+                         case "stop":
+                             Environment.Exit(0);
+                             break;
+                         default:
+                             Console.WriteLine("未知命令:" + read);
+                             break;
+                     }
+                 }
+             });
+            await server.StartServer().RunCatch();
         }
     }
 }
