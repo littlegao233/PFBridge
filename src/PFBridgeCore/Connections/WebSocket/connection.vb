@@ -92,6 +92,8 @@ Namespace Ws
                                                               API.Log($"与{Client.Url}的连接已恢复 ")
                                                       End Select
                                                   End Sub)
+            ''AddHandler Client.OnError, Sub(sender, e)
+            ''                           End Sub
             Client.DisconnectionHappened.Subscribe(Sub(info)
                                                        Select Case info.Type
                                                             'Case DisconnectionType.ByServer
@@ -115,6 +117,12 @@ Namespace Ws
                                                                API.LogErr($"{Client.Url}断开连接，将自动尝试重连[" & info.Type & "]:" & info.CloseStatusDescription)
                                                        End Select
                                                    End Sub)
+            'AddHandler Client.OnClose, Sub(sender, e)
+            '                               If e.Code = 1006 Then
+            '                                   API.LogErr($"{Client.Url}建立连接失败[" & e.Code & ":连接状态异常]，将自动尝试重连“)
+            '                               Else
+            '                               End If
+            '                           End Sub
             AddHandler CheckTimer.Elapsed, Sub(sender, e)
                                                Try
                                                    CheckConnect()
