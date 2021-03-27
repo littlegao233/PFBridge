@@ -131,7 +131,6 @@ Namespace Ws
 #End If
                     If Client.ReadyState = WebSocketState.Closed OrElse Client.ReadyState = WebSocketState.Connecting Then
                         Client.Connect()
-
                         'ClosedStateTimes += 1
                         'If ClosedStateTimes > 20 Then
                         '    Try : Client.Log.Output = Sub()
