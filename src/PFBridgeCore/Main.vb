@@ -81,14 +81,11 @@ Public Module Main
         Dim options As Options = New Options()
         options.AllowClr()
         options.AllowClr(GetType(Main).Assembly)
-        'APIs.API.Log(Assembly.GetExecutingAssembly.GetName)
-        'APIs.API.Log(Assembly.GetCallingAssembly.GetName)
-        'APIs.API.Log(Assembly.GetEntryAssembly.GetName)
-        options.AllowClr(GetType(FileIO.FileSystem).Assembly)
-        options.AllowClr(GetType(Directory).Assembly)
-        options.AllowClr(GetType(Process).Assembly)
-        options.AllowClr(GetType(System.Threading.Thread).Assembly)
-        options.AllowClr(GetType(Newtonsoft.Json.Linq.JObject).Assembly)
+        For Each x In AppDomain.CurrentDomain.GetAssemblies()
+            Try
+                options.AllowClr(x)
+            Catch : End Try
+        Next
 #If DEBUG Then
         options.DebugMode()
 #End If

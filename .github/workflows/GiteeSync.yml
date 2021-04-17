@@ -28,7 +28,7 @@ jobs:
         #  需要被同步的源端账户名，如github/phpdragon，表示Github的phpdragon账户。
         src: github/littlegao233
         # 需要同步到的目的端账户名，如gitee/phpdragon，表示Gitee的phpdragon账户。
-        dst: gitee/Pixel_Faramita
+        dst: gitee/littlegao233
         # 用于目的端上传代码的SSH key，用于上传代码
         dst_key: ${{ secrets.GITEE_PRIVATE_SSH_KEY }}
         # 创建仓库的API tokens， 用于自动创建不存在的仓库

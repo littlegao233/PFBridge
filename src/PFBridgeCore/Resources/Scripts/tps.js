@@ -9,7 +9,7 @@ const events = importNamespace('PFBridgeCore').APIs.Events
 
 const Engine = importNamespace('PFBridgeCore').Main.Engine
 const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
-function GetConfigGroups() { return Data_GetConfigGroups.Value();}
+function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
 //const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
 //function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value();}
 events.QQ.onGroupMessage.add(function (e) {
@@ -26,11 +26,11 @@ events.QQ.onGroupMessage.add(function (e) {
                     case "tps":
                         MCConnections.forEach(eachCon => {
                             const ServerName = eachCon.Tag.name;
-                            if (ServerName == "TFC") {
-                                eachCon.RunCmd("tps", function (result) {
-                                    e.feedback(ServerName + "查询结果:\n" + result.trim())
-                                });
-                            }
+                            //  if (ServerName == "TFC") {
+                            eachCon.RunCmd("tps", function (result) {
+                                e.feedback(ServerName + "查询结果:\n" + result.trim())
+                            });
+                            //    }
                         });
                 }
             }
