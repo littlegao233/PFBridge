@@ -34,10 +34,11 @@
     </tr>
 </table>
 <hr>
-
-
-                
-
+    
+- ## Link/链接
+    - [GitHub](https://github.com/littlegao233/PFBridge)
+    - [Gitee](https://gitee.com/littlegao233/PFBridge)
+    - [构建下载(信息)](release_node.md)
 - ## State/开发状态
    - 基础脚本,支持简单的[自定义配置](#QQ部分)
    - （目前更新可能需要删除部分旧脚本文件）
