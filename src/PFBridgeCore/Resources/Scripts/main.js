@@ -90,7 +90,7 @@ Servers.forEach(server => {//添加所有服务器到实例
         api.LogErr("未知的mc连接方案:" + server.type)
     }
 });
-events.Server.Chat.add(function (e) {
+events.MC.Chat.add(function (e) {
     const { connection, sender, message } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -104,12 +104,12 @@ events.Server.Chat.add(function (e) {
         }
     }
 })
-//events.Server.Cmd.add(function (e) {
+//events.MC.Cmd.add(function (e) {
 //        const { connection, sender, cmd } = e
 //        const { Id } = connection
 //        ProcessServerMsgToGroup(JSON.stringify(e));
 //})
-events.Server.Join.add(function (e) {
+events.MC.Join.add(function (e) {
     const { connection, sender, ip, uuid, xuid } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -123,7 +123,7 @@ events.Server.Join.add(function (e) {
         }
     }
 })
-events.Server.Left.add(function (e) {
+events.MC.Left.add(function (e) {
     const { connection, sender, ip, uuid, xuid } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -275,7 +275,7 @@ function GetEntityName(id) {
         }
     }
 }
-events.Server.MobDie.add(function (e) {
+events.MC.MobDie.add(function (e) {
     const { connection, mobname, mobtype, dmcase, srcname, srctype, pos } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -338,7 +338,7 @@ function ProcessServerMsgToOtherServer(id, message) {
 //#endregion
 
 //#region QQ主体部分
-events.QQ.onGroupMessage.add(function (e) {
+events.IM.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {

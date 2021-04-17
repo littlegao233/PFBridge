@@ -27,7 +27,7 @@ const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
 function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
 function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value(); }
 
-events.QQ.onGroupMessage.add(function (e) {
+events.IM.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {

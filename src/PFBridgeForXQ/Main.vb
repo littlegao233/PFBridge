@@ -2,14 +2,14 @@
 Imports PFBridgeCore.EventArgs
 Imports XQ.Net.SDK.Attributes
 Imports XQ.Net.SDK.EventArgs
-Imports PFBridgeCore.APIs.EventsMap.QQEventsMap
+Imports PFBridgeCore.APIs.EventsMap.IMEventsMap
 
 <Plugin>
 Friend Module Main
     <GroupMsgEvent>
     Public Sub OnGroupMsg(sender As Object, _e As XQAppGroupMsgEventArgs)
         Dim e = _e
-        PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.FromGroup.Id, e.FromQQ.Id, e.Message.Text,
+        PFBridgeCore.Events.IM.OnGroupMessage.Invoke(New GroupMessageEventsArgs(e.FromGroup.Id, e.FromQQ.Id, e.Message.Text,
                                                                                                 Function() e.FromGroup.GetGroupName(e.RobotQQ),
                                                                                                 Function() e.FromQQ.GetNick(e.RobotQQ),
                                                                                                 Function() e.FromGroup.GetGroupCard(e.RobotQQ, e.FromQQ.Id),

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
+using static PFBridgeCore.APIs.EventsMap.IMEventsMap;
 using PFBridgeCore;
 using Sora.OnebotModel;
 namespace PFBridgeForOneBot
@@ -26,7 +26,7 @@ namespace PFBridgeForOneBot
                 {
                     Sora.EventArgs.SoraEvent.FileUploadEventArgs e = eventArgs;
                     //e.SoraApi.GetGroupMemberInfo
-                    PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, $"群文件：{ e.FileInfo.Name }[{ e.FileInfo.Size}]",
+                    PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, $"群文件：{ e.FileInfo.Name }[{ e.FileInfo.Size}]",
 () =>
 {
     var get = e.SourceGroup.GetGroupInfo().AsTask();
@@ -63,7 +63,7 @@ namespace PFBridgeForOneBot
                 {
                     Sora.EventArgs.SoraEvent.GroupMessageEventArgs e = eventArgs;
                     //e.SoraApi.GetGroupMemberInfo
-                    PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, CodeEx.CQDeCode(e.Message.RawText),
+                    PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, CodeEx.CQDeCode(e.Message.RawText),
                           () =>
                           {
                               var get = e.SourceGroup.GetGroupInfo().AsTask();

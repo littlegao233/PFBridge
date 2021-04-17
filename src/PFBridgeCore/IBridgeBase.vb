@@ -19,7 +19,7 @@ Public Interface IParseMessageFormat
     Property File As String
     Property Unknown As String
 End Interface
-Public Interface IBridgeQQBase
+Public Interface IBridgeIMBase
     Sub SendGroupMessage(TargetGroup As Long, Message As String)
     Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String)
     Sub Log(Message As Object)

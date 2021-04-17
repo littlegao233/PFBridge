@@ -27,28 +27,28 @@ Namespace PFBridgeForCQ
         End Function
     End Module
     Friend Class API
-        Implements IBridgeQQBase
-        Public ReadOnly Property PluginDataPath As String Implements IBridgeQQBase.PluginDataPath
+        Implements IBridgeIMBase
+        Public ReadOnly Property PluginDataPath As String Implements IBridgeIMBase.PluginDataPath
             Get
                 Dim path = CurrentPluginContext.Bot.AppDirectory.FullName
                 If Not My.Computer.FileSystem.DirectoryExists(path) Then My.Computer.FileSystem.CreateDirectory(path)
                 Return path
             End Get
         End Property
-        Public Sub Log(Message As Object) Implements IBridgeQQBase.Log
+        Public Sub Log(Message As Object) Implements IBridgeIMBase.Log
             CurrentPluginContext.Logger.LogSuccess(Message.ToString())
         End Sub
-        Public Sub LogErr(Message As Object) Implements IBridgeQQBase.LogErr
+        Public Sub LogErr(Message As Object) Implements IBridgeIMBase.LogErr
             Try
                 CurrentPluginContext.Logger.LogWarning(Message.ToString())
             Catch ex As Exception : System.Console.WriteLine(ex) : End Try
         End Sub
-        Public Sub SendGroupMessage(TargetGroup As Long, Message As String) Implements IBridgeQQBase.SendGroupMessage
+        Public Sub SendGroupMessage(TargetGroup As Long, Message As String) Implements IBridgeIMBase.SendGroupMessage
             GetGroup(TargetGroup).Send(Message)
         End Sub
-        Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
+        Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeIMBase.SendPrivateMessageFromGroup
             GetMember(TargetGroup, QQid).Send(Message)
         End Sub
-        Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeQQBase.ParseMessageFormat
+        Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeIMBase.ParseMessageFormat
     End Class
 End Namespace

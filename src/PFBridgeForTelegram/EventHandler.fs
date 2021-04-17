@@ -6,8 +6,8 @@ open PFBridgeCore
 let OnGroupMessage(_:obj)(e:Args.MessageEventArgs)=
     Console.WriteLine($"Received a text message in chat {e.Message.Chat.Id}.")
     //Api.botClient.SendTextMessageAsync(chatId=new Types.ChatId(e.Message.Chat.Id),text="You said:\n" + e.Message.Text) |> ignore
-    APIs.Events.QQ.OnGroupMessage.Invoke(
-        APIs.EventsMap.QQEventsMap.GroupMessageEventsArgs(
+    APIs.Events.IM.OnGroupMessage.Invoke(
+        APIs.EventsMap.IMEventsMap.GroupMessageEventsArgs(
             e.Message.Chat.Id,
             int64 e.Message.From.Id,
             e.Message.Text, 

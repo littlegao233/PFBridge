@@ -36,11 +36,11 @@ api.log('文件位于:' + IO.Path.Combine(api.pluginDataPath, "index.js"));
 //#region 清理重载前的残留
 try {
     const events = PFBridgeCore.APIs.Events
-    events.QQ.OnGroupMessage.Clear();
-    events.Server.Chat.Clear();
-    events.Server.Cmd.Clear();
-    events.Server.Join.Clear();
-    events.Server.Left.Clear();
+    events.IM.OnGroupMessage.Clear();
+    events.MC.Chat.Clear();
+    events.MC.Cmd.Clear();
+    events.MC.Join.Clear();
+    events.MC.Left.Clear();
 } catch (e) { }
 //#endregion
 //#region 自定义脚本

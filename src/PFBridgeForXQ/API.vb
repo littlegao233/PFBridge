@@ -1,29 +1,29 @@
 ﻿Imports PFBridgeCore
 Imports XQ.Net.SDK
 Friend Class API
-    Implements IBridgeQQBase
-    Public ReadOnly Property PluginDataPath As String Implements IBridgeQQBase.PluginDataPath
+    Implements IBridgeIMBase
+    Public ReadOnly Property PluginDataPath As String Implements IBridgeIMBase.PluginDataPath
         Get
             Dim path = XQAPI.AppDir
             If Not My.Computer.FileSystem.DirectoryExists(path) Then My.Computer.FileSystem.CreateDirectory(path)
             Return path
         End Get
     End Property
-    Public Sub SendGroupMessage(TargetGroup As Long, Message As String) Implements IBridgeQQBase.SendGroupMessage
+    Public Sub SendGroupMessage(TargetGroup As Long, Message As String) Implements IBridgeIMBase.SendGroupMessage
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群聊, TargetGroup, Nothing, Message, BubbleID.跟随框架的设置))
     End Sub
-    Public Sub Log(Message As Object) Implements IBridgeQQBase.Log
+    Public Sub Log(Message As Object) Implements IBridgeIMBase.Log
         XQAPI.OutPutLog(Message.ToString)
     End Sub
-    Public Sub LogErr(Message As Object) Implements IBridgeQQBase.LogErr
+    Public Sub LogErr(Message As Object) Implements IBridgeIMBase.LogErr
         For Each line In Message.ToString.Split(vbLf)
             If line IsNot Nothing Then XQAPI.OutPutLog("[错误] " & line)
         Next
     End Sub
-    Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeQQBase.SendPrivateMessageFromGroup
+    Public Sub SendPrivateMessageFromGroup(TargetGroup As Long, QQid As Long, Message As String) Implements IBridgeIMBase.SendPrivateMessageFromGroup
         QQList.ForEach(Sub(l) XQAPI.SendMsg(l, MessageType.群临时会话, TargetGroup, QQid, Message, BubbleID.跟随框架的设置))
     End Sub
-    Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeQQBase.ParseMessageFormat
+    Public Property ParseMessageFormat As IParseMessageFormat = New Model.DefaultParseFormat Implements IBridgeIMBase.ParseMessageFormat
 
 End Class
 Friend Module APIEx

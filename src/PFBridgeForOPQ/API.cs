@@ -5,7 +5,7 @@ using Traceless.OPQSDK;
 using System.Drawing;
 namespace PFBridgeForOPQ
 {
-    internal class API : IBridgeQQBase
+    internal class API : IBridgeIMBase
     {
         public string PluginDataPath
         {

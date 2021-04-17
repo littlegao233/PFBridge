@@ -3,7 +3,7 @@ open Telegram.Bot
 open Telegram.Bot.Types
 let mutable botClient:ITelegramBotClient=null
 type ApiBase()=
-    interface PFBridgeCore.IBridgeQQBase with
+    interface PFBridgeCore.IBridgeIMBase with
         member _this.Log(message: obj): unit = message|>Console.WriteLine
         member _this.LogErr(message: obj): unit = message|>Console.WriteLineWarn
         member val ParseMessageFormat =PFBridgeCore.Model.DefaultParseFormat():>PFBridgeCore.IParseMessageFormat with get, set

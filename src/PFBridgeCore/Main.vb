@@ -135,7 +135,7 @@ Public Module Main
         Catch : End Try
         Try
             Try
-                APIs.Events.QQ.OnGroupMessage.Clear()
+                APIs.Events.IM.OnGroupMessage.Clear()
             Catch : End Try
 #If DEBUG Then
             Engine.Add(e)
@@ -169,7 +169,7 @@ Public Module Main
         Return e
     End Function
 
-    Public Sub Init(_api As IBridgeQQBase)
+    Public Sub Init(_api As IBridgeIMBase)
         API = _api '保存API
         API.Log("正在加载PFBridgeCore...")
         StartJSEngine(CreateJSEngine, 1000)

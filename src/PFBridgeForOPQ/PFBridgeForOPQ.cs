@@ -7,7 +7,7 @@ using Traceless.OPQSDK.Models.Api;
 using Traceless.OPQSDK.Models.Event;
 using Traceless.OPQSDK.Models.Msg;
 using Traceless.OPQSDK.Plugin;
-using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
+using static PFBridgeCore.APIs.EventsMap.IMEventsMap;
 namespace PFBridgeForOPQ
 {
     /// <summary>
@@ -65,7 +65,7 @@ namespace PFBridgeForOPQ
                         //feedback(s);
                     }
                 };
-                PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(msg.FromGroupId, msg.FromUserId, msg.Content,
+                PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(new GroupMessageEventsArgs(msg.FromGroupId, msg.FromUserId, msg.Content,
                       () => msg.FromGroupName,
                       () => msg.FromNickName,
                       () => msg.FromNickName,

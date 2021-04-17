@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using IBoxs.Core.App;
 namespace PFBridgeForOQ.Plugin
 {
-    internal class API : IBridgeQQBase
+    internal class API : IBridgeIMBase
     {
         public API(long qq) => RobotQQ = qq;
         public readonly long RobotQQ;

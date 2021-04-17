@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using static SDK.Common;
 namespace PFBridgeForXiaoLz.Plugin
 {
-    internal class API : IBridgeQQBase
+    internal class API : IBridgeIMBase
     {
         public IParseMessageFormat ParseMessageFormat { get; set; } = new PFBridgeCore.Model.DefaultParseFormat();
 

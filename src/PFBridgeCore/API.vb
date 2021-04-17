@@ -1,14 +1,15 @@
 ﻿Imports System.Text.RegularExpressions
 Imports PFBridgeCore.EventArgs
+
 Public Module APIs
-    Public Property API As IBridgeQQBase
+    Public Property API As IBridgeIMBase
     Public Property Events As New EventsMap
 #Disable Warning IDE1006 ' 命名样式
     Public Class EventsMap
-        Public QQ As New QQEventsMap
-        Public Server As New ServerEventsMap
-#Region "QQ"
-        Public Class QQEventsMap
+        Public IM As New IMEventsMap
+        Public MC As New ServerEventsMap
+#Region "IM(QQ)"
+        Public Class IMEventsMap
 #Region "群消息"
             Public OnGroupMessage As New EventsMapItem(Of GroupMessageEventsArgs)
             Public Class GroupMessageEventsArgs
@@ -192,6 +193,7 @@ Public Module APIs
     End Class
 #Enable Warning IDE1006 ' 命名样式
     Public Class EventsMapItem(Of T)
+        'Inherits List(Of Jint.Native.JsValue())
         Inherits List(Of Action(Of T))
         Public Sub Invoke(Args As T)
             ForEach(Sub(l)

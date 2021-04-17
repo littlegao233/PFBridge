@@ -11,23 +11,23 @@ Namespace Ws
                         Select Case [Enum].Parse(GetType(ServerCauseType), receive("cause").ToString(), True)
                             Case ServerCauseType.join
                                 With New CauseJoin(receive).params
-                                    Events.Server.Join.Invoke(New ServerPlayerJoinEventsArgs(con, .sender, .ip, .uuid, .xuid))
+                                    Events.MC.Join.Invoke(New ServerPlayerJoinEventsArgs(con, .sender, .ip, .uuid, .xuid))
                                 End With
                             Case ServerCauseType.left
                                 With New CauseLeft(receive).params
-                                    Events.Server.Left.Invoke(New ServerPlayerLeftEventsArgs(con, .sender, .ip, .uuid, .xuid))
+                                    Events.MC.Left.Invoke(New ServerPlayerLeftEventsArgs(con, .sender, .ip, .uuid, .xuid))
                                 End With
                             Case ServerCauseType.chat
                                 With New CauseChat(receive).params
-                                    Events.Server.Chat.Invoke(New ServerPlayerChatEventsArgs(con, .sender, .text))
+                                    Events.MC.Chat.Invoke(New ServerPlayerChatEventsArgs(con, .sender, .text))
                                 End With
                             Case ServerCauseType.cmd
                                 With New CauseCmd(receive).params
-                                    Events.Server.Cmd.Invoke(New ServerPlayerCmdEventsArgs(con, .sender, .text))
+                                    Events.MC.Cmd.Invoke(New ServerPlayerCmdEventsArgs(con, .sender, .text))
                                 End With
                             Case ServerCauseType.mobdie
                                 With New CauseMobDie(receive).params
-                                    Events.Server.MobDie.Invoke(New ServerMobDieEventsArgs(con, .mobname, .mobtype, .dmcase, .srcname, .srctype, .pos))
+                                    Events.MC.MobDie.Invoke(New ServerMobDieEventsArgs(con, .mobname, .mobtype, .dmcase, .srcname, .srctype, .pos))
                                 End With
                             Case ServerCauseType.runcmdfeedback '命令返回
                                 ProcessCmdFeedback(New CauseRuncmdFeedback(receive))

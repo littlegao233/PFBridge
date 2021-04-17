@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IBoxs.Sdk.Cqp.EventArgs;
 using PFBridgeCore.EventArgs;
-using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
+using static PFBridgeCore.APIs.EventsMap.IMEventsMap;
 
 namespace PFBridgeForOQ.Plugin
 {
@@ -36,7 +36,7 @@ namespace PFBridgeForOQ.Plugin
 
 #endif
                 CqGroupMessageEventArgs e = oe;
-                PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message,
+                PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.FromGroup, e.FromQQ, e.Message,
                     () => IBoxs.Core.App.Common.CqApi.GetGroupInfo(e.RobotQQ, e.FromGroup).Name,
                     () => IBoxs.Core.App.Common.CqApi.GetQQNick(e.RobotQQ, e.FromQQ),
                     () => IBoxs.Core.App.Common.CqApi.GetMemberInfo(e.RobotQQ, e.FromGroup, e.FromQQ).Card,

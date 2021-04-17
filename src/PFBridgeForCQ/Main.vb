@@ -1,7 +1,7 @@
 ﻿Imports System
 Imports HuajiTech.CoolQ
 Imports HuajiTech.CoolQ.Events
-Imports PFBridgeCore.APIs.EventsMap.QQEventsMap
+Imports PFBridgeCore.APIs.EventsMap.IMEventsMap
 Namespace PFBridgeForCQ
     ''' <summary>
     ''' 包含应用的逻辑。
@@ -34,7 +34,7 @@ Namespace PFBridgeForCQ
         Private Sub OnMessageReceived(sender As Object, _e As MessageReceivedEventArgs)
             'e.Sender.Nickname
             Dim e = _e
-            PFBridgeCore.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(
+            PFBridgeCore.Events.IM.OnGroupMessage.Invoke(New GroupMessageEventsArgs(
                                                                                     e.Source.Number,
                                                                                     e.Sender.Number,
                                                                                     CQDeCode(e.Message.Content),

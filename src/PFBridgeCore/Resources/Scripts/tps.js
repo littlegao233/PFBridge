@@ -12,7 +12,7 @@ const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
 function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
 //const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
 //function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value();}
-events.QQ.onGroupMessage.add(function (e) {
+events.IM.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {

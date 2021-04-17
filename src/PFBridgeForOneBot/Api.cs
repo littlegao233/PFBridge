@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace PFBridgeForOneBot
 {
-    internal class API : IBridgeQQBase
+    internal class API : IBridgeIMBase
     {
         internal API(SoraApi _api)
         {

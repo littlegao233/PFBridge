@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PFBridgeCore.EventArgs;
-using static PFBridgeCore.APIs.EventsMap.QQEventsMap;
+using static PFBridgeCore.APIs.EventsMap.IMEventsMap;
 
 namespace PFBridgeForXiaoLz.Plugin
 {
@@ -30,7 +30,7 @@ namespace PFBridgeForXiaoLz.Plugin
             try
             {
                 var e = _e;
-                PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent,
+                PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.MessageGroupQQ, e.SenderQQ, e.MessageContent,
                   () => e.SourceGroupName,
                   () => e.SenderNickname,// SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).NickName
                   () => SDK.Common.xlzAPI.GetOneGroupMemberInfo(e.ThisQQ, e.MessageGroupQQ, e.SenderQQ).GroupCardName,

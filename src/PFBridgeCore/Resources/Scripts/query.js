@@ -50,7 +50,7 @@ function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value(); }
 
 //#endregion <<<<<-----公共方法(建议折叠)-----<<<<<
 const events = importNamespace('PFBridgeCore').APIs.Events
-events.Server.Cmd.add(function (e) {
+events.MC.Cmd.add(function (e) {
     const { connection, sender, cmd } = e;
     const { Id } = connection;
     if (cmd.trim().replace(/^\//, "").toLowerCase() == "list") {
@@ -66,7 +66,7 @@ events.Server.Cmd.add(function (e) {
     //const { Id } = connection
     //ProcessServerMsgToGroup(JSON.stringify(e));
 })
-events.QQ.onGroupMessage.add(function (e) {
+events.IM.onGroupMessage.add(function (e) {
     const { groupId } = e
     let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
