@@ -1,5 +1,5 @@
 ﻿Imports Newtonsoft.Json.Linq
-Imports PFBridgeCore.APIs.EventsMap.ServerEventsMap
+Imports PFBridgeCore.APIs.EventsMap.MCEventsMap
 Imports PFBridgeCore.PFWebsocketAPI.Model
 Namespace Ws
     Public Module WebsocketCore

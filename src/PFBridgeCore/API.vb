@@ -7,7 +7,7 @@ Public Module APIs
 #Disable Warning IDE1006 ' 命名样式
     Public Class EventsMap
         Public IM As New IMEventsMap
-        Public MC As New ServerEventsMap
+        Public MC As New MCEventsMap
 #Region "IM(QQ)"
         Public Class IMEventsMap
 #Region "群消息"
@@ -38,7 +38,7 @@ Public Module APIs
                         Return getQQCard.Invoke
                     End Get
                 End Property
-                Public ReadOnly Property memberType As String
+                Public ReadOnly Property memberType As Integer
                     Get
                         Return getMemberType.Invoke
                     End Get
@@ -72,7 +72,7 @@ Public Module APIs
         End Class
 #End Region
 #Region "Server"
-        Public Class ServerEventsMap
+        Public Class MCEventsMap
             Public Class ServerBaseEventsArgs
                 Inherits BaseEventsArgs
                 Public Sub New(_con As IBridgeMCBase)

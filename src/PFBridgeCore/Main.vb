@@ -88,11 +88,12 @@ Public Module Main
         Next
 #If DEBUG Then
         options.DebugMode()
-#End If
-        options.CatchClrExceptions(Function(ex As Exception)
+                options.CatchClrExceptions(Function(ex As Exception)
                                        API.LogErr(ex.ToString())
                                        Return True
                                    End Function)
+#End If
+        options.CatchClrExceptions()
         options.AllowClr(AssemblyEx.AssemblyList.Values.ToArray())
         'System.Console.WriteLine(String.Join(vbCrLf, Assembly.GetCallingAssembly.GetExportedTypes.ToList().ConvertAll(Function(l) l.Assembly.FullName)))
         'For Each item In Assembly.GetExecutingAssembly().GetReferencedAssemblies()
