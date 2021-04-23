@@ -65,6 +65,20 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  查找类似 &quot;use strict&quot;;
+        '''/// &lt;reference types=&quot;PFBridgeCore&quot; /&gt;
+        '''const a = System.IO;
+        '''a.File.WriteAllText(&quot;aa.json&quot;, &quot;&quot;, System.Text.Encoding.UTF8);
+        '''const x = a.File.ReadAllText;
+        ''' 的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property bind() As String
+            Get
+                Return ResourceManager.GetString("bind", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;;
         '''moduleInfo.Version = &quot;v0.0.2&quot;;
         '''moduleInfo.Description = &apos;群内使用&quot;/cmd [服务器] &lt;命令&gt;&quot;命令执行服务器命令&apos;;
@@ -94,10 +108,10 @@ Namespace My.Resources
         '''const defaultColor = &quot;§r§a&quot;
         '''format.At = &quot;§r§l§6@§r§6{0}&quot; + defaultColor;
         '''format.AtAll = &quot;§r§l§g@§r§g全体成员&quot; + defaultColor;
-        '''format.Image = &quot;§r§l§d[图骗]§&quot;;
+        '''format.Image = &quot;§r§l§d[图骗]&quot; + defaultColor;
         '''format.Emoji = &quot;§r§l§d[emoji]&quot; + defaultColor;
         '''format.Face = &quot;§r§l§c[表情]&quot; + defaultColor;
-        '''format.Bface = &quot;§r§l§d[大表情:§r§o§7{0}§r§l§d]&quot; + defaul [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''format.Bface = &quot;§r§l§d[大表情:§r§o§7{0}§r§ [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property format() As String
             Get
@@ -146,6 +160,31 @@ Namespace My.Resources
         Public Shared ReadOnly Property main() As String
             Get
                 Return ResourceManager.GetString("main", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 &quot;use strict&quot;;
+        '''/// &lt;reference types=&quot;PFBridgeCore&quot; /&gt;
+        '''moduleInfo.Author = &quot;littlegao233&quot;;
+        '''moduleInfo.Description = &quot;测试&quot;;
+        '''moduleInfo.Version = &quot;0.0.1&quot;;
+        '''const sendData = System.Convert.FromBase64String(&quot;AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw&quot;);
+        '''const apis = importNamespace(&quot;PFBridgeCore&quot; /* Core */).APIs;
+        '''const api = apis.API;
+        '''const utils = importNamespace(&quot;PFBridgeCore.Utils&quot; /* Utils */);
+        '''const SocketApi = utils.Net.Sockets.Socket;
+        '''/*
+        '''0:MCPE
+        '''1:Dedicated Server
+        '''2:431
+        '''3:1.16.220
+        '''4:0
+        '''5:10        ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property motd() As String
+            Get
+                Return ResourceManager.GetString("motd", resourceCulture)
             End Get
         End Property
         
