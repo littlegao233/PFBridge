@@ -1,6 +1,6 @@
 ﻿Imports System
 Imports PFBridgeCore.EventArgs
-Imports PFBridgeCore.APIs.EventsMap.QQEventsMap
+Imports PFBridgeCore.APIs.EventsMap.IMEventsMap
 
 Namespace PFBridgeForER.Plugin
     Friend Module App
@@ -25,7 +25,7 @@ Namespace PFBridgeForER.Plugin
             Dim message = _message
             Dim _robotQQ = __robotQQ
             Try
-                PFBridgeCore.APIs.Events.QQ.OnGroupMessage.Invoke(New GroupMessageEventsArgs(Long.Parse(group), Long.Parse(sender), message,
+                PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(New GroupMessageEventsArgs(Long.Parse(group), Long.Parse(sender), message,
                                                                                              Function() IRQQ.CSharp.IRApi.GetGroupName(_robotQQ, group),
                                                                                              Function() IRQQ.CSharp.IRApi.GetNickName(_robotQQ, sender),
                                                                                              Function() IRQQ.CSharp.IRApi.GetMemberCard(_robotQQ, group, sender),
