@@ -11,10 +11,13 @@
   <ItemGroup>
     <Compile Remove="Connections\WebSocket\AES\**" />
     <Compile Remove="My Project\**" />
+    <Compile Remove="Resources\Loader - 复制\**" />
     <EmbeddedResource Remove="Connections\WebSocket\AES\**" />
     <EmbeddedResource Remove="My Project\**" />
+    <EmbeddedResource Remove="Resources\Loader - 复制\**" />
     <None Remove="Connections\WebSocket\AES\**" />
     <None Remove="My Project\**" />
+    <None Remove="Resources\Loader - 复制\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,6 +58,7 @@
 
   <ItemGroup>
     <Folder Include="My Project\" />
+    <Folder Include="Resources\Loader\" />
     <Folder Include="Tools\" />
   </ItemGroup>
 
