@@ -1,7 +1,7 @@
 "use strict";
 /// <reference types="PFBridgeCore" />
 moduleInfo.Author = "littlegao233";
-moduleInfo.Description = "测试";
+moduleInfo.Description = "Motd插件，使用方法：群内/motd ip:port查询服务器";
 moduleInfo.Version = "0.0.1";
 const sendData = System.Convert.FromBase64String("AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw");
 const apis = importNamespace("PFBridgeCore" /* Core */).APIs;
