@@ -1,5 +1,5 @@
 //本文件是脚本加载器，正常使用时请勿改动
-/// <reference types="PFBridgeCore" />
+/// <reference path="PFBridgeCore/index.d.ts"/>
 //使用命名空间
 var File = System.IO.File;
 var Path = System.IO.Path;

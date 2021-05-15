@@ -1,4 +1,3 @@
-/// <reference types="PFBridgeCore" />
 moduleInfo.Author = "littlegao233";
 moduleInfo.Version = "v0.0.1";
 moduleInfo.Description = '此JS定义了消息特殊内容的替换方式';

@@ -1,4 +1,3 @@
-/// <reference types="PFBridgeCore" />
 moduleInfo.Author = "littlegao233"
 moduleInfo.Version = "v0.0.2"
 moduleInfo.Description = "包含配置文件的读写、\n服务器之间的同步、\n群与服务器的聊天同步、\n加入服务器的群反馈"
