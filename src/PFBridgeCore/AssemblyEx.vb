@@ -6,7 +6,6 @@ Public Module AssemblyEx
             If AssemblyList.ContainsKey(path) Then
                 Return False
             End If
-
             AssemblyList.Add(path, Assembly.LoadFrom(path))
             API.Log("[AssemblyEx] [√] 程序集""" & IO.Path.GetFileName(path) & """加载成功！")
             Return True

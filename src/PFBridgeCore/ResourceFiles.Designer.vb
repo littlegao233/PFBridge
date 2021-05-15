@@ -65,20 +65,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  查找类似 &quot;use strict&quot;;
-        '''/// &lt;reference types=&quot;PFBridgeCore&quot; /&gt;
-        '''const a = System.IO;
-        '''a.File.WriteAllText(&quot;aa.json&quot;, &quot;&quot;, System.Text.Encoding.UTF8);
-        '''const x = a.File.ReadAllText;
-        ''' 的本地化字符串。
-        '''</summary>
-        Public Shared ReadOnly Property bind() As String
-            Get
-                Return ResourceManager.GetString("bind", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  查找类似 moduleInfo.Author = &quot;littlegao233&quot;;
         '''moduleInfo.Version = &quot;v0.0.2&quot;;
         '''moduleInfo.Description = &apos;群内使用&quot;/cmd [服务器] &lt;命令&gt;&quot;命令执行服务器命令&apos;;
@@ -121,18 +107,19 @@ Namespace My.Resources
         
         '''<summary>
         '''  查找类似 //本文件是脚本加载器，正常使用时请勿改动
-        '''/*
-        '''//写入最新的默认index.js(用于更新)
-        ''' IO.File.WriteAllText(IO.Path.Combine(api.pluginDataPath, &quot;index_new.js&quot;), ResourceFiles.index)
-        '''*/
-        '''const IO = importNamespace(&apos;System.IO&apos;);//导入命名空间
-        '''const FileSystem = importNamespace(&apos;Microsoft.VisualBasic.FileIO&apos;).FileSystem;
-        '''const PFBridgeCore = importNamespace(&apos;PFBridgeCore&apos;)
-        '''const api = PFBridgeCore.APIs.API
-        '''const events = PFBridgeCore.APIs.Events
-        '''const MCConnections = PFBridgeCore.ConnectionList.MCConnections
+        '''/// &lt;reference types=&quot;PFBridgeCore&quot; /&gt;
+        '''//使用命名空间
+        '''const File = System.IO.File;
+        '''const Path = System.IO.Path;
+        '''const Directory = System.IO.Directory;
+        '''const FileSystem = importNamespace(&quot;Microsoft&quot; /* Microsoft */).VisualBasic.FileIO.FileSystem;
+        '''const core = importNamespace(&quot;PFBridgeCore&quot; /* Core */);
+        '''const api = core.APIs.API;
+        '''const events = core.APIs.Events;
+        '''const MCConnections = core.ConnectionList.MCConnections;
         '''//#region 加载自定义程序集(位于libs目录下)
-        '''try [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''try {
+        '''    const AssemblyEx = core [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property index() As String
             Get
@@ -167,7 +154,7 @@ Namespace My.Resources
         '''  查找类似 &quot;use strict&quot;;
         '''/// &lt;reference types=&quot;PFBridgeCore&quot; /&gt;
         '''moduleInfo.Author = &quot;littlegao233&quot;;
-        '''moduleInfo.Description = &quot;测试&quot;;
+        '''moduleInfo.Description = &quot;Motd插件，使用方法：群内/motd ip:port查询服务器&quot;;
         '''moduleInfo.Version = &quot;0.0.1&quot;;
         '''const sendData = System.Convert.FromBase64String(&quot;AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw&quot;);
         '''const apis = importNamespace(&quot;PFBridgeCore&quot; /* Core */).APIs;
@@ -176,11 +163,7 @@ Namespace My.Resources
         '''const SocketApi = utils.Net.Sockets.Socket;
         '''/*
         '''0:MCPE
-        '''1:Dedicated Server
-        '''2:431
-        '''3:1.16.220
-        '''4:0
-        '''5:10        ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''1:Dedicated Server        ''' [字符串的其余部分被截断]&quot;; 的本地化字符串。
         '''</summary>
         Public Shared ReadOnly Property motd() As String
             Get
@@ -207,6 +190,27 @@ Namespace My.Resources
         Public Shared ReadOnly Property query() As String
             Get
                 Return ResourceManager.GetString("query", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  查找类似 moduleInfo.Author = &quot;mcllaop&quot;
+        '''moduleInfo.Version = &quot;v0.0.1&quot;
+        '''moduleInfo.Description = &quot;[BDX专用]\n群内使用/tps命令返回TPS&quot;
+        '''
+        '''
+        '''const MCConnections = importNamespace(&apos;PFBridgeCore&apos;).ConnectionList.MCConnections
+        '''const api = importNamespace(&apos;PFBridgeCore&apos;).APIs.API
+        '''const events = importNamespace(&apos;PFBridgeCore&apos;).APIs.Events
+        '''
+        '''const Engine = importNamespace(&apos;PFBridgeCore&apos;).Main.Engine
+        '''const Data_GetConfigGroups = Engine.GetShareData(&quot;GetConfigGroups&quot;)
+        '''function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
+        '''//const [字符串的其余部分被截断]&quot;; 的本地化字符串。
+        '''</summary>
+        Public Shared ReadOnly Property tps() As String
+            Get
+                Return ResourceManager.GetString("tps", resourceCulture)
             End Get
         End Property
         
