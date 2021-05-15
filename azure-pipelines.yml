@@ -20,7 +20,10 @@ steps:
 - task: CmdLine@2
   inputs:
     script: '.\recover.cmd'
-
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: 'src\PFBridgeScriptsLoader\'
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
