@@ -1,9 +1,11 @@
-﻿moduleInfo.Author = "littlegao233";
+﻿/// <reference types="PFBridgeCore" />
+
+moduleInfo.Author = "littlegao233";
 moduleInfo.Version = "v0.0.1";
 moduleInfo.Description = '此JS定义了消息特殊内容的替换方式';
-const api = importNamespace('PFBridgeCore').APIs.API;
-const format = api.ParseMessageFormat;
-const defaultColor = "§r§a"
+var api = importNamespace('PFBridgeCore').APIs.API;
+var format = api.ParseMessageFormat;
+var defaultColor = "§r§a"
 format.At = "§r§l§6@§r§6{0}" + defaultColor;
 format.AtAll = "§r§l§g@§r§g全体成员" + defaultColor;
 format.Image = "§r§l§d[图骗]" + defaultColor;

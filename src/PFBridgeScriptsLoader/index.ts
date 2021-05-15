@@ -4,14 +4,13 @@
 /// <reference types="PFBridgeCore" />
 
 //使用命名空间
-const File = System.IO.File;
-const Path = System.IO.Path;
-const Directory = System.IO.Directory;
-const FileSystem = importNamespace(Namespaces.Microsoft).VisualBasic.FileIO.FileSystem;
-const core = importNamespace(Namespaces.Core)
-const api = core.APIs.API
-const events = core.APIs.Events
-const MCConnections = core.ConnectionList.MCConnections
+var File = System.IO.File;
+var Path = System.IO.Path;
+var Directory = System.IO.Directory;
+var FileSystem = importNamespace(Namespaces.Microsoft).VisualBasic.FileIO.FileSystem;
+var core = importNamespace(Namespaces.Core)
+var api = core.APIs.API
+var MCConnections = core.ConnectionList.MCConnections
 
 
 //#region 加载自定义程序集(位于libs目录下)

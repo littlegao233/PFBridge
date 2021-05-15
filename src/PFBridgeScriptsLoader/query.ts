@@ -3,8 +3,8 @@ moduleInfo.Version = "v0.0.2"
 moduleInfo.Description = "群内使用/list命令查询服务器在线玩家\n服务器内使用/list命令自动反馈其他服务器的在线状态"
 
 
-const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
-const api = importNamespace('PFBridgeCore').APIs.API
+var MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+var api = importNamespace('PFBridgeCore').APIs.API
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
 // /**
 // * 发送消息到所有已经连接并且配置开启GroupMsgToServer的MC服务器
@@ -27,7 +27,7 @@ const api = importNamespace('PFBridgeCore').APIs.API
  * @param {string} playername 玩家名
  * @param {string} message 消息内容
  */
-function SendToPlayer(connection, playername, message) {
+var SendToPlayer = function (connection: IBridgeMCBase, playername: string, message: string) {
     connection.RunCmd(`tellraw @a[name="${playername}"] {"rawtext":[{"text":"${encodeUnicode(message)}"}]}`)
 }
 
@@ -35,29 +35,29 @@ function SendToPlayer(connection, playername, message) {
  * string转为unicode编码
  * @param {string} str 内容
  */
-function encodeUnicode(str) {
+var encodeUnicode=function (str: string) {
     //return escape(str).replace(/%u/g, "\\u")
     var res = [];
     for (var i = 0; i < str.length; i++) { res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4); }
     return "\\u" + res.join("\\u");
 }
 
-const Engine = importNamespace('PFBridgeCore').Main.Engine
-const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
-const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
-function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
-function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value(); }
+var Engine = importNamespace('PFBridgeCore').Main.Engine
+var Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
+var Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
+var GetConfigGroups=function () { return Data_GetConfigGroups.Value(); }
+var GetConfigAdminQQs=function () { return Data_GetConfigAdminQQs.Value(); }
 
 //#endregion <<<<<-----公共方法(建议折叠)-----<<<<<
-const events = importNamespace('PFBridgeCore').APIs.Events
-events.MC.Cmd.add(function (e) {
+var events = importNamespace('PFBridgeCore').APIs.Events
+events.MC.Cmd.Add(function (e) {
     const { connection, sender, cmd } = e;
     const { Id } = connection;
     if (cmd.trim().replace(/^\//, "").toLowerCase() == "list") {
         MCConnections.forEach(eachCon => {
             if (eachCon.Id !== Id) {
                 const ServerName = eachCon.Tag.name;
-                eachCon.RunCmd("list", result => {
+                eachCon.RunCmdCallback("list", (result: string) => {
                     SendToPlayer(connection, sender, `[${ServerName}在线状态]${result.trim().replace(/\n/g, "")}`);
                 })
             }
@@ -66,9 +66,9 @@ events.MC.Cmd.add(function (e) {
     //const { Id } = connection
     //ProcessServerMsgToGroup(JSON.stringify(e));
 })
-events.IM.onGroupMessage.add(function (e) {
+events.IM.OnGroupMessage.Add(function (e) {
     const { groupId } = e
-    let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
+    let index = GetConfigGroups().findIndex((l: { id: number }) => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         //let group = GetConfigGroups()[index];
         //let msg = e.message;
@@ -88,7 +88,7 @@ events.IM.onGroupMessage.add(function (e) {
                                 const ServerName = thisCon.Tag.name;
                                 if (thisCon.State) {
                                     AllResult.push([ServerName, "查询结果未知"])
-                                    thisCon.RunCmd('list', function (result) {
+                                    thisCon.RunCmdCallback('list', function (result: string) {
                                         try {
                                             let item = AllResult.find(x => x[0] == ServerName);
                                             item[1] = result.trim();
@@ -113,7 +113,7 @@ events.IM.onGroupMessage.add(function (e) {
                             MCConnections.forEach(eachCon => {
                                 const ServerName = eachCon.Tag.name;
                                 if (ServerName === cmds[1]) {
-                                    eachCon.RunCmd("list", function (result) {
+                                    eachCon.RunCmdCallback("list", function (result) {
                                         e.feedback(ServerName + "查询结果:\n" + result.trim())
                                     });
                                     NotEcecuted = false;

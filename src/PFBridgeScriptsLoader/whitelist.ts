@@ -2,34 +2,34 @@
 moduleInfo.Version = "v0.0.2"
 moduleInfo.Description = '群内管理员使用"/白名单 <添加|删除> [服务器] <玩家名>"操作白名单\n群内使用"/白名单 查询 [服务器] <玩家名>查询白名单'
 //简单设置：
-const JudgePermissionByConfig = true;
+var JudgePermissionByConfig = true;
 //JudgePermissionByConfig：是否通过配置文件判断权限
 //  - true：仅有main.js配置的管理员QQ课执行
 //  - false：发送者为群内的管理员就能执行
-function JudgePermission(e) {
+var JudgePermission=function (e:BridgeIMEventsOnGroupMessage) {
     if (JudgePermissionByConfig) {
         const { senderId } = e;
         //根据配置文件main.js中的管理员判断权限
-        return GetConfigAdminQQs().some(l => l == senderId);
+        return GetConfigAdminQQs().some((l:number) => l == senderId);
     } else {
         //根据成员类型判断权限（memberType属性=>0未知;1成员;2管理员;3群主）
         return e.memberType >= 2
     }
 }
-const events = importNamespace('PFBridgeCore').APIs.Events
-const api = importNamespace('PFBridgeCore').APIs.API
-const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
-const Thread = importNamespace('System.Threading').Thread
+var events = importNamespace('PFBridgeCore').APIs.Events
+var api = importNamespace('PFBridgeCore').APIs.API
+var MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+var Thread = importNamespace('System.Threading').Thread
 
-const Engine = importNamespace('PFBridgeCore').Main.Engine
-const Data_GetConfigGroups = Engine.GetShareData("GetConfigGroups")
-const Data_GetConfigAdminQQs = Engine.GetShareData("GetConfigAdminQQs")
-function GetConfigGroups() { return Data_GetConfigGroups.Value(); }
-function GetConfigAdminQQs() { return Data_GetConfigAdminQQs.Value(); }
+var engine = importNamespace('PFBridgeCore').Main.Engine
+var Data_GetConfigGroups = engine.GetShareData("GetConfigGroups")
+var Data_GetConfigAdminQQs = engine.GetShareData("GetConfigAdminQQs")
+var GetConfigGroups=function () { return Data_GetConfigGroups.Value(); }
+var GetConfigAdminQQs=function () { return Data_GetConfigAdminQQs.Value(); }
 
-events.IM.onGroupMessage.add(function (e) {
+events.IM.OnGroupMessage.Add(function (e) {
     const { groupId } = e
-    let index = GetConfigGroups().findIndex(l => l.id == groupId);//匹配群号（于配置）
+    let index = GetConfigGroups().findIndex((l: { id: number; }) => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
         //let group = GetConfigGroups()[index];
         //let msg = e.message;
@@ -65,7 +65,7 @@ events.IM.onGroupMessage.add(function (e) {
                                                     if (thisCon.State) {
                                                         const ServerName = thisCon.Tag.name;
                                                         AllResult.push([ServerName, "添加结果未知"])
-                                                        thisCon.RunCmd(`whitelist add "${cmds[2]}"`, function (result) {
+                                                        thisCon.RunCmd(`whitelist add "${cmds[2]}"`, function (result:string) {
                                                             let item = AllResult.find(x => x[0] == ServerName)
                                                             item[1] = result.trim();
                                                             if (item[1] === "Player added to whitelist") {
@@ -99,7 +99,7 @@ events.IM.onGroupMessage.add(function (e) {
                                                         let WhitelistEnabled = true
                                                         try { WhitelistEnabled = thisCon.Tag.WhitelistEnabled } catch (error) { }
                                                         if (WhitelistEnabled) {
-                                                            thisCon.RunCmd(`whitelist add "${cmds[3]}"`, function (result) {
+                                                            thisCon.RunCmdCallback(`whitelist add "${cmds[3]}"`, function (result) {
                                                                 let returnStr = result.trim();
                                                                 if (returnStr === "Player added to whitelist") {
                                                                     returnStr = "添加到白名单成功";
@@ -148,7 +148,7 @@ events.IM.onGroupMessage.add(function (e) {
                                                     if (thisCon.State) {
                                                         const ServerName = thisCon.Tag.name;
                                                         AllResult.push([ServerName, "删除结果未知"])
-                                                        thisCon.RunCmd(`whitelist remove "${cmds[2]}"`, function (result) {
+                                                        thisCon.RunCmd(`whitelist remove "${cmds[2]}"`, function (result:string) {
                                                             let item = AllResult.find(x => x[0] == ServerName)
                                                             item[1] = result.trim();
                                                             if (item[1] === "Player removed from whitelist") {
@@ -182,7 +182,7 @@ events.IM.onGroupMessage.add(function (e) {
                                                         let WhitelistEnabled = true
                                                         try { WhitelistEnabled = thisCon.Tag.WhitelistEnabled } catch (error) { }
                                                         if (WhitelistEnabled) {
-                                                            thisCon.RunCmd(`whitelist remove "${cmds[3]}"`, function (result) {
+                                                            thisCon.RunCmdCallback(`whitelist remove "${cmds[3]}"`, function (result) {
                                                                 let returnStr = result.trim();
                                                                 if (returnStr === "Player removed from whitelist") {
                                                                     returnStr = "白名单删除成功"
@@ -231,13 +231,14 @@ events.IM.onGroupMessage.add(function (e) {
                                                 if (thisCon.State) {
                                                     const ServerName = thisCon.Tag.name;
                                                     AllResult.push([ServerName, "查询结果未知"])
-                                                    thisCon.RunCmd('whitelist list', function (result) {
+                                                    thisCon.RunCmd('whitelist list', function (result:string) {
                                                         try {
                                                             const matchResult = /###\*((\s|\S)*)\*###/.exec(result)
+                                                            if (matchResult === null) return
                                                             //###* {"command":"whitelist","result":[{"name":"gxh2004"}]}*###
                                                             const wl = JSON.parse(matchResult[1]).result
                                                             let item = AllResult.find(x => x[0] == ServerName)
-                                                            if (wl.some(x => x.name == cmds[2])) {//查到
+                                                            if (wl.some((x: { name: string; }) => x.name == cmds[2])) {//查到
                                                                 item[1] = "已在白名单中"
                                                             } else {//未查到
                                                                 item[1] = "不在白名单中"
@@ -269,11 +270,12 @@ events.IM.onGroupMessage.add(function (e) {
                                                     let WhitelistEnabled = true
                                                     try { WhitelistEnabled = thisCon.Tag.WhitelistEnabled } catch (error) { }
                                                     if (WhitelistEnabled) {
-                                                        thisCon.RunCmd('whitelist list', function (result) {
+                                                        thisCon.RunCmdCallback('whitelist list', function (result) {
                                                             const matchResult = /###\*((\s|\S)*)\*###/.exec(result)
                                                             //###* {"command":"whitelist","result":[{"name":"gxh2004"}]}*###
+                                                            if (matchResult === null) return
                                                             const wl = JSON.parse(matchResult[1]).result
-                                                            if (wl.some(x => x.name == cmds[3])) {//查到
+                                                            if (wl.some((x: { name: string; }) => x.name == cmds[3])) {//查到
                                                                 e.feedback(`[${ServerName}]${cmds[3]}已在白名单中`);
                                                             } else {//未查到
                                                                 e.feedback(`[${ServerName}]${cmds[3]}不在白名单中`);

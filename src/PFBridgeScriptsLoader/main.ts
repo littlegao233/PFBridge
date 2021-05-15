@@ -1,4 +1,5 @@
-﻿moduleInfo.Author = "littlegao233"
+/// <reference types="PFBridgeCore" />
+moduleInfo.Author = "littlegao233"
 moduleInfo.Version = "v0.0.2"
 moduleInfo.Description = "包含配置文件的读写、\n服务器之间的同步、\n群与服务器的聊天同步、\n加入服务器的群反馈"
 
@@ -6,20 +7,21 @@ let AdminQQs = new Array()
 let Groups = new Array()
 let Servers = new Array()
 //#region 共享数据
-const engine = importNamespace('PFBridgeCore').Main.Engine
+var engine = importNamespace('PFBridgeCore').Main.Engine
 engine.SetShareData("GetConfigGroups", () => { return Groups; })
 engine.SetShareData("GetConfigAdminQQs", () => { return AdminQQs; })
 //#endregion
 
 //#region >>>>>-----公共方法(建议折叠)----->>>>>
-const ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
-const events = importNamespace('PFBridgeCore').APIs.Events
-const api = importNamespace('PFBridgeCore').APIs.API
-const MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
+var ConnectionManager = importNamespace('PFBridgeCore').ConnectionManager;
+var events = importNamespace('PFBridgeCore').APIs.Events
+var api = importNamespace('PFBridgeCore').APIs.API
+var MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
 
 //保存文件
-const File = importNamespace('System.IO').File;//导入命名空间
-const configPath = api.pluginDataPath + "\\config.json"
+var File = System.IO.File;//导入命名空间
+var Path = System.IO.Path;
+var configPath = Path.Combine(api.PluginDataPath, "config.json")
 function LoadConfig() {
     const JSONLinq = importNamespace('Newtonsoft.Json.Linq');//导入命名空间
     //用于读取带注释的json
@@ -44,14 +46,14 @@ if (File.Exists(configPath)) {
  * 参考：ws://127.0.0.1:29132/mcws
  * @param {string} token 密匙串（用于运行命令等操作）
  */
-function AddWebsocket(url, token, tag) {
+function AddWebsocket(url: string, token: string, tag: any) {
     return ConnectionManager.AddWebsocketClient(url, token, tag)
 }
 /**
  * 发送消息到所有已经连接并且配置开启GroupMsgToServer的MC服务器
  * @param {string} message 消息内容
  */
-function SendBoardcastToAllServer(message) {
+function SendBoardcastToAllServer(message: string) {
     MCConnections.forEach(connection => {
         let index = Servers.findIndex(s => s.id === connection.Id)
         if (index !== -1) {
@@ -67,14 +69,14 @@ function SendBoardcastToAllServer(message) {
  * @param {*} connection 连接实例
  * @param {string} message 消息内容
  */
-function SendToServer(connection, message) {
+function SendToServer(connection: IBridgeMCBase, message: string) {
     connection.RunCmd(`tellraw @a {"rawtext":[{"text":"${encodeUnicode(message)}"}]}`)
 }
 /**
  * string转为unicode编码
  * @param {string} str 内容
  */
-function encodeUnicode(str) {
+var encodeUnicode=function (str: string) {
     //return escape(str).replace(/%u/g, "\\u")
     var res = [];
     for (var i = 0; i < str.length; i++) { res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4); }
@@ -90,7 +92,7 @@ Servers.forEach(server => {//添加所有服务器到实例
         api.LogErr("未知的mc连接方案:" + server.type)
     }
 });
-events.MC.Chat.add(function (e) {
+events.MC.Chat.Add(function (e) {
     const { connection, sender, message } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -109,7 +111,7 @@ events.MC.Chat.add(function (e) {
 //        const { Id } = connection
 //        ProcessServerMsgToGroup(JSON.stringify(e));
 //})
-events.MC.Join.add(function (e) {
+events.MC.Join.Add(function (e) {
     const { connection, sender, ip, uuid, xuid } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -123,7 +125,7 @@ events.MC.Join.add(function (e) {
         }
     }
 })
-events.MC.Left.add(function (e) {
+events.MC.Left.Add(function (e) {
     const { connection, sender, ip, uuid, xuid } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -264,18 +266,18 @@ const entityList = {
     "entity.zombie_villager.name": "僵尸村民",
     "entity.zombie_villager_v2.name": "怪人村民"
 }
-function GetEntityName(id) {
+function GetEntityName(id: string): string {
     try {
-        return entityList[id];
+        return entityList[id as keyof typeof entityList];
     } catch (e) {
         try {
-            return srctype.substr(7, srctype.length - 12);
+            return id.substr(7, id.length - 12);
         } catch (e) {
             return "未知生物";
         }
     }
 }
-events.MC.MobDie.add(function (e) {
+events.MC.MobDie.Add(function (e) {
     const { connection, mobname, mobtype, dmcase, srcname, srctype, pos } = e
     const { Id } = connection
     let index = Servers.findIndex(s => s.id === Id);//匹配服务器（于配置中）
@@ -315,14 +317,14 @@ events.MC.MobDie.add(function (e) {
         }
     }
 })
-function ProcessServerMsgToGroup(message) {
+function ProcessServerMsgToGroup(message: string) {
     Groups.forEach(group => {
         if (group.ServerMsgToGroup) {
             api.SendGroupMessage(group.id, message)
         }
     });
 }
-function ProcessServerMsgToOtherServer(id, message) {
+function ProcessServerMsgToOtherServer(id: number, message: string) {
     MCConnections.forEach(connection => {
         if (connection.Id !== id) {
             let index = Servers.findIndex(s => s.id === connection.Id)
@@ -338,7 +340,7 @@ function ProcessServerMsgToOtherServer(id, message) {
 //#endregion
 
 //#region QQ主体部分
-events.IM.onGroupMessage.add(function (e) {
+events.IM.OnGroupMessage.Add(function (e) {
     const { groupId } = e
     let index = Groups.findIndex(l => l.id == groupId);//匹配群号（于配置）
     if (index !== -1) {
