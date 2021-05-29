@@ -6,8 +6,9 @@ moduleInfo.Version = "0.0.1";
 const sendData = System.Convert.FromBase64String("AQAAAAAAA2oHAP//AP7+/v79/f39EjRWeJx0FrwC/0lw");
 const apis = importNamespace("PFBridgeCore" /* Core */).APIs;
 const api = apis.API;
-const utils = importNamespace("PFBridgeCore.Utils" /* Utils */);
-const SocketApi = utils.Net.Sockets.Socket;
+const utils = importNamespace("PFBridgeCore.Utils.Net.Sockets" /* UtilsNetSockets */);
+const SocketApi = utils.Socket;
+const TaskRun = importNamespace('System.Threading.Tasks').Task.Run;
 /*
 0:MCPE
 1:Dedicated Server
@@ -68,7 +69,6 @@ function MotdBE(ip, port) {
         return new MotdInfo(false, [error]);
     }
 }
-const TaskRun = System.Threading.Tasks.Task.Run;
 apis.Events.IM.OnGroupMessage.Add(e => {
     const { message } = e;
     if (message.startsWith("+") || message.startsWith("/")) {

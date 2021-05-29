@@ -1,11 +1,6 @@
 /// <reference path="./System.d.ts" />
-declare interface Utils {
-    Net: Net
-}
-declare interface Net {
-    Sockets: Sockets
-}
-declare interface Sockets {
+ 
+declare interface UtilsNetSockets {
     Socket: Socket
 }
 declare interface Socket {

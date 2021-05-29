@@ -18,8 +18,8 @@ var api = importNamespace('PFBridgeCore').APIs.API
 var MCConnections = importNamespace('PFBridgeCore').ConnectionList.MCConnections
 
 //保存文件
-var File = System.IO.File;//导入命名空间
-var Path = System.IO.Path;
+var File = importNamespace('System.IO').File;//导入命名空间
+var Path = importNamespace('System.IO').Path;
 var configPath = Path.Combine(api.PluginDataPath, "config.json")
 function LoadConfig() {
     const JSONLinq = importNamespace('Newtonsoft.Json.Linq');//导入命名空间

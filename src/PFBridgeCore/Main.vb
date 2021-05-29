@@ -81,6 +81,16 @@ Public Module Main
         Dim options As Options = New Options()
         options.AllowClr()
         options.AllowClr(GetType(Main).Assembly)
+#Region "Fix"
+        options.AllowClr(GetType(Newtonsoft.Json.JsonConvert).Assembly)
+        options.AllowClr(GetType(Main).Assembly)
+        options.AllowClr(GetType(My.Resources.ResourceFiles).Assembly)
+        options.AllowClr(GetType(FileIO.FileSystem).Assembly)
+        options.AllowClr(GetType(Directory).Assembly)
+        options.AllowClr(GetType(Process).Assembly)
+        options.AllowClr(GetType(Threading.Thread).Assembly)
+        options.AllowClr(GetType(Threading.Tasks.Task).Assembly)
+#End Region
         For Each x In AppDomain.CurrentDomain.GetAssemblies()
             Try
                 options.AllowClr(x)
@@ -103,7 +113,6 @@ Public Module Main
         '    'End If
         'Next
 
-        'options.AllowClr(GetType(System.IO.Directory).Assembly)
         'options.CatchClrExceptions(Function(e)
         '                               Return False
         '                           End Function)

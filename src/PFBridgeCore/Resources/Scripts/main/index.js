@@ -1,10 +1,10 @@
 //本文件是脚本加载器，正常使用时请勿改动
 /// <reference path="PFBridgeCore/index.d.ts"/>
 //使用命名空间
-var File = System.IO.File;
-var Path = System.IO.Path;
-var Directory = System.IO.Directory;
-var FileSystem = importNamespace("Microsoft" /* Microsoft */).VisualBasic.FileIO.FileSystem;
+var File = importNamespace("System.IO").File;
+var Path = importNamespace("System.IO").Path;
+var Directory = importNamespace("System.IO").Directory;
+var FileSystem = importNamespace("Microsoft.VisualBasic.FileIO" /* MicrosoftVisualBasicFileIO */).FileSystem;
 var core = importNamespace("PFBridgeCore" /* Core */);
 var api = core.APIs.API;
 var MCConnections = core.ConnectionList.MCConnections;
@@ -33,7 +33,7 @@ catch (e) {
     api.LogErr("加载自定义程序集出错" + e);
 }
 //#endregion
-const ResourceFiles = importNamespace("PFBridgeCore" /* Core */).My.Resources.ResourceFiles;
+const ResourceFiles = importNamespace("PFBridgeCore.My.Resources" /* CoreResources */).ResourceFiles;
 api.Log('JavaScript自定义配置加载中...');
 api.Log('文件位于:' + Path.Combine(api.PluginDataPath, "index.js"));
 //#region 清理重载前的残留
