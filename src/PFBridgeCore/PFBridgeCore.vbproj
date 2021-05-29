@@ -27,7 +27,7 @@
     <PackageReference Include="EasyEncryption.Core" Version="1.0.0" />
   
     <PackageReference Include="Jint">
-      <Version>3.0.0-beta-2031</Version>
+      <Version>3.0.0-beta-2032</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SimpleAES" Version="1.1.1" />
