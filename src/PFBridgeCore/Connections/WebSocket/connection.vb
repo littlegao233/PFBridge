@@ -72,7 +72,7 @@ Namespace Ws
                                              ProcessMessage(Me, e.Data)
                                          End Sub
             AddHandler Client.OnOpen, Sub(sender, e)
-                                          ConnectionState = Client.IsAlive
+                                          ConnectionState = Client.IsAlive AndAlso Client.ReadyState = WebSocketState.Open
                                       End Sub
             'AddHandler Client.OnError, Sub(sender, e)
             '                               API.LogErr($"{Client.Url}遇到错误：{ e.Exception}")
@@ -173,14 +173,14 @@ Namespace Ws
 #End If
             End Try
             Try
-                ConnectionState = Client.IsAlive
+                ConnectionState = Client.IsAlive AndAlso Client.ReadyState = WebSocketState.Open
             Catch : End Try
         End Sub
         Public Shared Property EncryptionMode As EncryptionMode = EncryptionMode.aes_cbc_pck7padding
 
         Public ReadOnly Property State As Boolean Implements IBridgeMCBase.State
             Get
-                Return Client.IsAlive
+                Return Client.IsAlive AndAlso Client.ReadyState = WebSocketState.Open
             End Get
         End Property
     End Class

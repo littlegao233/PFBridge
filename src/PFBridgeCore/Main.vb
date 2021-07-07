@@ -89,7 +89,7 @@ Public Module Main
         options.AllowClr(GetType(Directory).Assembly)
         options.AllowClr(GetType(Process).Assembly)
         options.AllowClr(GetType(Threading.Thread).Assembly)
-        options.AllowClr(GetType(Threading.Tasks.Task).Assembly)
+        options.AllowClr(GetType(Task).Assembly)
 #End Region
         For Each x In AppDomain.CurrentDomain.GetAssemblies()
             Try

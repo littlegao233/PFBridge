@@ -35,6 +35,9 @@
 </table>
 <hr>
     
+- ## Tips/提示
+    - 大部分版本需要.net4.6.1-.net4.8环境，或者onebot版本需要.net5环境
+    - 不需要任何框架的Pro版本
 - ## Link/链接
     - [GitHub](https://github.com/littlegao233/PFBridge)
     - [Gitee](https://gitee.com/littlegao233/PFBridge)
