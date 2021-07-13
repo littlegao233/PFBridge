@@ -64,7 +64,7 @@ namespace PFBridgeForOneBot
                 Port = Port,
                 UniversalPath = UniversalPath,
                 Host = Host,
-                HeartBeatTimeOut = HeartBeatTimeOut,
+                HeartBeatTimeOut = HeartBeatTimeOut
             };
         }
     }

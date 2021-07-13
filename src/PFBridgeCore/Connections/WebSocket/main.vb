@@ -36,10 +36,10 @@ Namespace Ws
                                 ProcessCmdFeedback(New CauseRuncmdFeedback(receive))
                             Case ServerCauseType.decodefailed '解码失败的包
                                 Dim e As CauseDecodeFailed = New CauseDecodeFailed(receive)
-                                API.LogErr(con.Client.Url.ToString & "==>" & e.params.msg)
+                                API.LogErr(con.Client.Url.ToString & "==>[解码失败]" & e.params.msg)
                             Case ServerCauseType.invalidrequest '请求无效的包
                                 Dim e As CauseInvalidRequest = New CauseInvalidRequest(receive)
-                                API.LogErr(con.Client.Url.ToString & "==>" & e.params.msg)
+                                API.LogErr(con.Client.Url.ToString & "==>[请求无效]" & e.params.msg)
                         End Select
                     Case PackType.encrypted
 #If DEBUG Then

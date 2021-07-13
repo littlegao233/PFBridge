@@ -11,7 +11,7 @@ Namespace Ws
         Implements IBridgeMCBase
         Public Sub RunCmd(cmd As String) Implements IBridgeMCBase.RunCmd
             Try
-                Dim packet1 As ActionRunCmd = New ActionRunCmd(cmd, "", Nothing)
+                Dim packet1 As ActionRunCmd = New ActionRunCmd(cmd, Nothing)
                 Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
                 If Client.IsAlive Then
                     Client.SendAsync(packet2.ToString, Sub(result)
@@ -25,7 +25,7 @@ Namespace Ws
             End Try
         End Sub
         Public Sub RunCmd(cmd As String, callback As Action(Of String)) Implements IBridgeMCBase.RunCmdCallback
-            Dim packet1 = New ActionRunCmd(cmd, Guid.NewGuid().ToString(), Nothing)
+            Dim packet1 = New ActionRunCmd(cmd, Nothing, Guid.NewGuid().ToString())
             CmdQueue.Add(New WaitingModel(packet1, callback))
             Dim packet2 = New EncryptedPack(EncryptionMode, packet1.ToString(), Token)
             If Client.IsAlive Then

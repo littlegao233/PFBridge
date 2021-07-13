@@ -27,12 +27,12 @@ namespace PFBridgeForOneBot
                     Sora.EventArgs.SoraEvent.FileUploadEventArgs e = eventArgs;
                     //e.SoraApi.GetGroupMemberInfo
                     PFBridgeCore.APIs.Events.IM.OnGroupMessage.Invoke(new GroupMessageEventsArgs(e.SourceGroup.Id, e.Sender.Id, $"群文件：{ e.FileInfo.Name }[{ e.FileInfo.Size}]",
-() =>
-{
-    var get = e.SourceGroup.GetGroupInfo().AsTask();
-    get.Wait();
-    return get.Result.groupInfo.GroupName;
-},
+                            () =>
+                            {
+                                var get = e.SourceGroup.GetGroupInfo().AsTask();
+                                get.Wait();
+                                return get.Result.groupInfo.GroupName;
+                            },
                           () =>
                           {
                               var info = e.SourceGroup.GetGroupMemberInfo(e.Sender.Id).Result.memberInfo;
