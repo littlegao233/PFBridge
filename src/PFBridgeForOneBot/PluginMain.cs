@@ -44,13 +44,16 @@ namespace PFBridgeForOneBot
                               var info = e.SourceGroup.GetGroupMemberInfo(e.Sender.Id).Result.memberInfo;
                               return (int)info.Role + 1;
                           },
-                            //     成员        Member = 0,
-                            //     管理员        Admin = 1,
-                            //     群主        Owner = 2
-                          s => e.SourceGroup.SendGroupMessage(new List<Sora.Entities.CQCodes.CQCode> {
-                              Sora.Entities.CQCodes.CQCode.CQAt(e.Sender.Id),
-                              Sora.Entities.CQCodes.CQCode.CQText(s)
-                          }),
+                          //     成员        Member = 0,
+                          //     管理员        Admin = 1,
+                          //     群主        Owner = 2
+                          s =>
+                          {
+                              e.SourceGroup.SendGroupMessage(  Sora.Entities.MessageElement.CQCodes.CQAt(e.Sender.Id),Sora.Entities.MessageElement.CQCodes.CQText(s));
+                              //e.SourceGroup.SendGroupMessage(new Sora.Entities.MessageBody(new List<Sora.Entities.MessageElement.CQCode> {
+                              //                                                                  new Sora.Entities.MessageElement.CQCode(){MessageType=Sora.Enumeration.CQType.At   },
+                              //                                                                  new Sora.Entities.MessageElement.CQCode(){  }
+                          },
                           () => string.Format(PFBridgeCore.APIs.API.ParseMessageFormat.File, $"{e.FileInfo.Name}[{e.FileInfo.Size}]")
                       ));
                 }
@@ -78,10 +81,7 @@ namespace PFBridgeForOneBot
                           //     群主        Owner = 2
                           //s => e.SourceGroup.SendGroupMessage($"[CQ:reply,id={e.Message.MessageId}]{s}"),
                           //s => e.SourceGroup.SendGroupMessage($"[CQ:at,qq={e.Sender.Id}]{s}"  ),
-                          s => e.SourceGroup.SendGroupMessage(new List<Sora.Entities.CQCodes.CQCode> {
-                              Sora.Entities.CQCodes.CQCode.CQReply(e.Message.MessageId) ,
-                              Sora.Entities.CQCodes.CQCode.CQText(s)
-                          }),
+                          s => e.SourceGroup.SendGroupMessage(Sora.Entities.MessageElement.CQCodes.CQAt(e.Sender.Id), Sora.Entities.MessageElement.CQCodes.CQText(s)),
                           () => CodeEx.ParseMessage(e.Message.RawText, e.SourceGroup.Id)
                       ));
                 }

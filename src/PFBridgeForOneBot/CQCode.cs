@@ -1,12 +1,42 @@
 ﻿using PFBridgeCore;
-using Sora.Enumeration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-
+public enum CQFunction
+{
+    [Description("unknown")] Unknown,
+    [Description("face")] Face,
+    [Description("emoji")] Emoji,
+    [Description("bface")] Bface,
+    [Description("sface")] Sface,
+    [Description("image")] Image,
+    [Description("record")] Record,
+    [Description("at")] At,
+    [Description("rps")] Rps,
+    [Description("dice")] Dice,
+    [Description("shake")] Shake,
+    [Description("music")] Music,
+    [Description("share")] Share,
+    [Description("rich")] Rich,
+    [Description("sign")] Sign,
+    [Description("hb")] Hb,
+    [Description("contact")] Contact,
+    [Description("show")] Show,
+    [Description("location")] Location,
+    [Description("anonymous")] Anonymous,
+    CardImage,
+    Reply,
+    Forward,
+    Video, Xml, Json
+}
+//< DefaultValue(CQFunction.Unknown) >
+//Public Enum 
+//    
+//End Enum
 namespace PFBridgeForOneBot
 {
     public static class CodeEx
@@ -25,13 +55,13 @@ namespace PFBridgeForOneBot
             return builder.ToString();
         }
         /// <summary>
-		/// 获取字符串副本的转义形式
-		/// </summary>
-		/// <param name="source">欲转义的原始字符串</param>
-		/// <param name="enCodeComma">是否转义逗号, 默认 <code>false</code></param>
-		/// <exception cref="ArgumentNullException">参数: source 为 null</exception>
-		/// <returns>返回转义后的字符串副本</returns>
-		public static string CQEnCode(string source, bool enCodeComma)
+        /// 获取字符串副本的转义形式
+        /// </summary>
+        /// <param name="source">欲转义的原始字符串</param>
+        /// <param name="enCodeComma">是否转义逗号, 默认 <code>false</code></param>
+        /// <exception cref="ArgumentNullException">参数: source 为 null</exception>
+        /// <returns>返回转义后的字符串副本</returns>
+        public static string CQEnCode(string source, bool enCodeComma)
         {
             if (source == null) return string.Empty;
             StringBuilder builder = new StringBuilder(source);
@@ -45,6 +75,7 @@ namespace PFBridgeForOneBot
         internal static string ParseMessage(string raw, long group)
         {
             StringBuilder builder = new StringBuilder(raw);
+
             foreach (var code in CQCode.Parse(raw))
             {
                 switch (code.Function)
@@ -276,8 +307,8 @@ namespace PFBridgeForOneBot
             // 此处延时加载, 以提升运行速度
             return new Regex[]
             {
-                new Regex(@"\[CQ:([A-Za-z]*)(?:(,[^\[\]]+))?\]", RegexOptions.Compiled),    // 匹配CQ码
-                new Regex(@",([A-Za-z]+)=([^,\[\]]+)", RegexOptions.Compiled)               // 匹配键值对
+                    new Regex(@"\[CQ:([A-Za-z]*)(?:(,[^\[\]]+))?\]", RegexOptions.Compiled),    // 匹配CQ码
+                    new Regex(@",([A-Za-z]+)=([^,\[\]]+)", RegexOptions.Compiled)               // 匹配键值对
             };
         }
         #endregion

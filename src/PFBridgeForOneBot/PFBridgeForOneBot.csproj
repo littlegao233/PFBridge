@@ -17,7 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Sora" Version="1.0.0-RC.1" />
+    <PackageReference Include="Sora" Version="1.0.0-rc.12" />
   </ItemGroup>
 
   <ItemGroup>

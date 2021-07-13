@@ -4,6 +4,9 @@ Imports PFBridgeCore.PFWebsocketAPI.Model
 Namespace Ws
     Public Module WebsocketCore
         Public Sub ProcessMessage(con As Connection, message As String)
+#If DEBUG Then
+            API.Log("receive:" & message)
+#End If
             Try
                 Dim receive = JObject.Parse(message)
                 Select Case [Enum].Parse(GetType(PackType), receive("type").ToString(), True)

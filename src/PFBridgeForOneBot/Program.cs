@@ -59,7 +59,7 @@ namespace PFBridgeForOneBot
         }
         static async Task Main(string[] args)
         {
-            var service = SoraServiceFactory.CreateInstance(ConfigData.GetServerConfig());
+            var service = SoraServiceFactory.CreateService(ConfigData.GetServerConfig());
             PluginMain.Init(service);
             WriteLine("QQ端参考配置方法：");
             Span EditText(string content) => new Span(content) { Background = ConsoleColor.Magenta, Color = ConsoleColor.Gray };
