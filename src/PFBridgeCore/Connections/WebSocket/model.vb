@@ -269,11 +269,8 @@ Namespace PFWebsocketAPI.Model
             params = GetParams(Of ParamMap)(json)
             params.con = con
         End Sub
-        Friend Sub New(cmd As String, con As Object, Optional id As String = Nothing)
-            If id Is Nothing Then
-                id = Guid.NewGuid().ToString
-            End If
-            params = New ParamMap With {.cmd = cmd, .id = id, .con = con}
+        Friend Sub New(cmd As String, con As Object)
+            params = New ParamMap With {.cmd = cmd, .id = Guid.NewGuid().ToString & Now.ToString, .con = con}
         End Sub
         Public Overrides ReadOnly Property action As ClientActionType = ClientActionType.runcmdrequest
         Public params As ParamMap
